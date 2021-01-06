@@ -1,0 +1,1081 @@
+<?xml version="1.0" ?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null">
+	<Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="B316" ControlName="B316">
+		<Property Name="Name">Panel</Property>
+		<Property Name="Size">750,505</Property>
+		<Property Name="BackColor">Crimson</Property>
+		<Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="">
+			<Property Name="Name">StaticTextControl1</Property>
+			<Property Name="Size">200, 25</Property>
+			<Property Name="Location">15, 10</Property>
+			<Property Name="BackColor">Crimson</Property>
+			<Property Name="Font">Arial Narrow, 12pt, style=Bold</Property>
+			<Property Name="Text">ChangAn B316 V1.0</Property>
+			<Property Name="ForeColor">HighlightText</Property>
+		</Object>
+		<Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="">
+			<Property Name="Name">StaticTextControl2</Property>
+			<Property Name="Size">100, 25</Property>
+			<Property Name="Location">650, 10</Property>
+			<Property Name="BackColor">Crimson</Property>
+			<Property Name="Font">Arial Narrow, 12pt, style=Bold</Property>
+			<Property Name="Text">BCS SuZhou</Property>
+			<Property Name="ForeColor">HighlightText</Property>
+		</Object>
+		<Object Type="Vector.CANalyzer.Panels.Design.VectorTabControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabControl" ControlName="panelName">
+			<Property Name="Name">VectorTabControl</Property>
+			<Property Name="Size">720,455</Property>
+			<Property Name="Location">15,40</Property>
+			<Property Name="SymbolConfiguration">SymbolConfiguration</Property>
+			<Property Name="TabIndex">0</Property>
+			<Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage" Children="Controls" ControlName="">
+				<Property Name="Name">VectorTabPage</Property>
+				<Property Name="Size">720,415</Property>
+				<Property Name="Location">4, 22</Property>
+				<Property Name="Text">Action</Property>
+				<Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="">
+					<Property Name="Name">ButtonControl1</Property>
+					<Property Name="Size">100, 25</Property>
+					<Property Name="Location">30, 50</Property>
+					<Property Name="Text">Lock</Property>
+					<Property Name="SymbolConfiguration">4;16;ACTION;;;Commands;1;;;-1</Property>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl2" Children="Controls" ControlName="">
+					<Property Name="Name">ButtonControl2</Property>
+					<Property Name="Size">100, 25</Property>
+					<Property Name="Location">150, 50</Property>
+					<Property Name="PressValue">2</Property>
+					<Property Name="Text">Unlock</Property>
+					<Property Name="SymbolConfiguration">4;16;ACTION;;;Commands;2;;;-1</Property>
+				</Object>
+			</Object>
+			<Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage1" Children="Controls" ControlName="">
+				<Property Name="Name">VectorTabPage1</Property>
+				<Property Name="Size">720,415</Property>
+				<Property Name="Location">4, 22</Property>
+				<Property Name="Text">Msg-1</Property>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlAC0" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlAC0</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">AC</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">2, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgAC1" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgAC1</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;ACEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgAC2" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgAC2</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;ACDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlMsgAC419hNM3" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableMsgAC419hNM0" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableMsgAC419hNM0</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;Msg_AC_419h_NMMessageEnable;1;;;-1</Property>
+						</Object>
+						<Property Name="Name">MsgAC419hNM3</Property>
+						<Property Name="Size">340, 55</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">Msg_AC_419h_NM   0x419</Property>
+					</Object>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlHU4" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlHU4</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">HU</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">358, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgHU5" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgHU5</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;HUEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgHU6" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgHU6</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;HUDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlMsgHU411NM7" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableMsgHU411NM1" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableMsgHU411NM1</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;Msg_HU_411_NMMessageEnable;1;;;-1</Property>
+						</Object>
+						<Property Name="Name">MsgHU411NM7</Property>
+						<Property Name="Size">340, 55</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">Msg_HU_411_NM   0x411</Property>
+					</Object>
+				</Object>
+			</Object>
+			<Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage2" Children="Controls" ControlName="">
+				<Property Name="Name">VectorTabPage2</Property>
+				<Property Name="Size">720,415</Property>
+				<Property Name="Location">4, 22</Property>
+				<Property Name="Text">Msg-2</Property>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlPEPS8" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlPEPS8</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">PEPS</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">2, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgPEPS9" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgPEPS9</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;PEPSEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgPEPS10" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgPEPS10</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;PEPSDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlPEPS26611" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnablePEPS2662" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnablePEPS2662</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;PEPS_266MessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageControlPEPS2663" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl0" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">PEPS_UnlockSignal</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;PEPS_UnlockSignalValue;1;;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 45</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">PEPS_PowerDistributionStatus</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;PEPS_PowerDistributionStatusValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl2" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 70</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">PEPS_LockSignal</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;PEPS_LockSignalValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Property Name="Name">MessageControlPEPS2663</Property>
+							<Property Name="Size">340, 100</Property>
+							<Property Name="Text">Control</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">PEPS26611</Property>
+						<Property Name="Size">340, 155</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">PEPS_266   0x266</Property>
+					</Object>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlEPBi12" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlEPBi12</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">EPBi</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">358, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgEPBi13" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgEPBi13</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;EPBiEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgEPBi14" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgEPBi14</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;EPBiDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlEPBi21815" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableEPBi2184" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableEPBi2184</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;EPBi_218MessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageControlEPBi2185" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl3" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESP_VehicleSpeedValid_NoGW</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;ESP_VehicleSpeedValid_NoGWValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl4" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 45</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESP_VehicleSpeed_NoGW</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;ESP_VehicleSpeed_NoGWValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Property Name="Name">MessageControlEPBi2185</Property>
+							<Property Name="Size">340, 75</Property>
+							<Property Name="Text">Control</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">EPBi21815</Property>
+						<Property Name="Size">340, 130</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">EPBi_218   0x218</Property>
+					</Object>
+				</Object>
+			</Object>
+			<Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage3" Children="Controls" ControlName="">
+				<Property Name="Name">VectorTabPage3</Property>
+				<Property Name="Size">720,415</Property>
+				<Property Name="Location">4, 22</Property>
+				<Property Name="Text">Msg-3</Property>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlIP16" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlIP16</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">IP</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">2, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgIP17" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgIP17</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;IPEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgIP18" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgIP18</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;IPDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlIP38019" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableIP3806" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableIP3806</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;IP_380MessageEnable;1;;;-1</Property>
+						</Object>
+						<Property Name="Name">IP38019</Property>
+						<Property Name="Size">340, 55</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">IP_380   0x380</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlMsgIPNM20" Children="Controls" ControlName="">
+						<Property Name="Location">5, 110</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableMsgIPNM7" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableMsgIPNM7</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;Msg_IP_NMMessageEnable;1;;;-1</Property>
+						</Object>
+						<Property Name="Name">MsgIPNM20</Property>
+						<Property Name="Size">340, 55</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">Msg_IP_NM   0x401</Property>
+					</Object>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlGW21" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlGW21</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">GW</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">358, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgGW22" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgGW22</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;GWEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgGW23" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgGW23</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;GWDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlGW50124" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableGW5018" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableGW5018</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;GW_501MessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageControlGW5019" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl5" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">HU_LocalTimeYear</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;HU_LocalTimeYearValue;1;;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl6" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 45</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">HU_LocalTimeValid</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;HU_LocalTimeValidValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl7" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 70</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">HU_LocalTimeSecond</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;HU_LocalTimeSecondValue;1;;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl8" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 95</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">HU_LocalTimeMinute</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;HU_LocalTimeMinuteValue;1;;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl9" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 120</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">HU_LocalTimeHour</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;HU_LocalTimeHourValue;1;;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl10" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 145</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">HU_LocalTimeDate</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;HU_LocalTimeDateValue;1;;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl11" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 170</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">HU_LocalTimeMonth</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;HU_LocalTimeMonthValue;1;;;-1</Property>
+							</Object>
+							<Property Name="Name">MessageControlGW5019</Property>
+							<Property Name="Size">340, 200</Property>
+							<Property Name="Text">Control</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">GW50124</Property>
+						<Property Name="Size">340, 255</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">GW_501   0x501</Property>
+					</Object>
+				</Object>
+			</Object>
+			<Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage4" Children="Controls" ControlName="">
+				<Property Name="Name">VectorTabPage4</Property>
+				<Property Name="Size">720,415</Property>
+				<Property Name="Location">4, 22</Property>
+				<Property Name="Text">Msg-4</Property>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlGW25" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlGW25</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">GW</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">2, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgGW26" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgGW26</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;GWEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgGW27" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgGW27</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;GWDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlMsgGWNM28" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableMsgGWNM10" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableMsgGWNM10</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;Msg_GW_NMMessageEnable;1;;;-1</Property>
+						</Object>
+						<Property Name="Name">MsgGWNM28</Property>
+						<Property Name="Size">340, 55</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">Msg_GW_NM   0x406</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlGW32029" Children="Controls" ControlName="">
+						<Property Name="Location">5, 110</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableGW32011" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableGW32011</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;GW_320MessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageControlGW32012" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl12" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESP_VehicleSpeedValid</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;ESP_VehicleSpeedValidValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl13" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 45</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESP_VehicleSpeed</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;ESP_VehicleSpeedValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Property Name="Name">MessageControlGW32012</Property>
+							<Property Name="Size">340, 75</Property>
+							<Property Name="Text">Control</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">GW32029</Property>
+						<Property Name="Size">340, 130</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">GW_320   0x320</Property>
+					</Object>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlBCM30" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlBCM30</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">BCM</Property>
+					<Property Name="Size">350,410</Property>
+					<Property Name="Location">358, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgBCM31" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgBCM31</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;BCMEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgBCM32" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgBCM32</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;BCMDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlMsgBCMNM33" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableMsgBCMNM13" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableMsgBCMNM13</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;Msg_BCM_NMMessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageControlMsgBCMNM14" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl14" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">BCM_NM_Destination_ID</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;BCM_NM_Destination_IDValue;1;;;-1</Property>
+							</Object>
+							<Property Name="Name">MessageControlMsgBCMNM14</Property>
+							<Property Name="Size">340, 50</Property>
+							<Property Name="Text">Control</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">MsgBCMNM33</Property>
+						<Property Name="Size">340, 105</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">Msg_BCM_NM   0x400</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlBCM28834" Children="Controls" ControlName="">
+						<Property Name="Location">5, 160</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableBCM28815" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableBCM28815</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;BCM_288MessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageControlBCM28816" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl15" Children="Controls" ControlName="">
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="DropDownWidth">115</Property>
+								<Property Name="BackColor">Window</Property>
+								<Property Name="ForeColor">WindowText</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">BCM_DriverDoorStatus</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;16;SIGNALINFO;;;BCM_DriverDoorStatusValue;1;;;-1</Property>
+								<Property Name="TabIndex">4</Property>
+							</Object>
+							<Property Name="Name">MessageControlBCM28816</Property>
+							<Property Name="Size">340, 50</Property>
+							<Property Name="Text">Control</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">BCM28834</Property>
+						<Property Name="Size">340, 105</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">BCM_288   0x288</Property>
+					</Object>
+				</Object>
+			</Object>
+			<Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPage5" Children="Controls" ControlName="">
+				<Property Name="Name">VectorTabPage5</Property>
+				<Property Name="Size">720,415</Property>
+				<Property Name="Location">4, 22</Property>
+				<Property Name="Text">Msg-5</Property>
+				<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlESCL35" Children="Controls" ControlName="">
+					<Property Name="Name">GroupBoxControlESCL35</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="ForeColor">ControlDarkDark</Property>
+					<Property Name="Text">ESCL</Property>
+					<Property Name="Size">706,410</Property>
+					<Property Name="Location">2, 5</Property>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="EnableAllMsgESCL36" Children="Controls" ControlName="">
+						<Property Name="Name">EnableAllMsgESCL36</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">8, 25</Property>
+						<Property Name="Text">EnableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;ESCLEnableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="DisableAllMsgESCL37" Children="Controls" ControlName="">
+						<Property Name="Name">DisableAllMsgESCL37</Property>
+						<Property Name="Size">120,20</Property>
+						<Property Name="Location">128, 25</Property>
+						<Property Name="Text">DisableAll_Msg</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="SymbolConfiguration">4;16;NODE;;;ESCLDisableAll_Msg;1;;;-1</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlMsgESCLNM38" Children="Controls" ControlName="">
+						<Property Name="Location">5, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableMsgESCLNM17" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableMsgESCLNM17</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;Msg_ESCL_NMMessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageViewMsgESCLNM18" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl16" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_PowerDistributionStatus</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_PowerDistributionStatus;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl17" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 45</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_BusMessageWakeUpMold</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_BusMessageWakeUpMold;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl18" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 70</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_BusMessageWakeUp</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_BusMessageWakeUp;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl19" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 95</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_NM_LimpHome</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_NM_LimpHome;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl20" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 120</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_NM_Ring</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_NM_Ring;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl21" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 145</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_NM_Sleep_Ack</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_NM_Sleep_Ack;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl22" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 170</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_NM_Sleep_Ind</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_NM_Sleep_Ind;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl23" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 195</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_NM_Destination_ID</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_NM_Destination_ID;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl24" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 220</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_NM_Alive</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;Msg_ESCL_NM;ESCL_NM_Alive;1;CAN;;-1</Property>
+							</Object>
+							<Property Name="Name">MessageViewMsgESCLNM18</Property>
+							<Property Name="Size">340, 250</Property>
+							<Property Name="Text">View</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">MsgESCLNM38</Property>
+						<Property Name="Size">340, 305</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">Msg_ESCL_NM   0x402</Property>
+					</Object>
+					<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControlESCL27639" Children="Controls" ControlName="">
+						<Property Name="Location">355, 50</Property>
+						<Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageEnableESCL27619" Children="Controls" ControlName="">
+							<Property Name="Name">MessageEnableESCL27619</Property>
+							<Property Name="Size">120,20</Property>
+							<Property Name="Location">5, 30</Property>
+							<Property Name="Text">MessageEnable</Property>
+							<Property Name="SymbolConfiguration">4;16;MESSAGEFRAME;;;ESCL_276MessageEnable;1;;;-1</Property>
+						</Object>
+						<Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="MessageViewESCL27620" Children="Controls" ControlName="">
+							<Property Name="Location">0 , 55</Property>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl25" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 20</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_SteeringLockError</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;ESCL_276;ESCL_SteeringLockError;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl26" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 45</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_SteeringLockStatusReserve</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;ESCL_276;ESCL_SteeringLockStatusReserve;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl27" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 70</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_SteeringLockStuck</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;ESCL_276;ESCL_SteeringLockStuck;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl28" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 95</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_SteeringLockWait</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;ESCL_276;ESCL_SteeringLockWait;1;CAN;;-1</Property>
+							</Object>
+							<Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl29" Children="Controls" ControlName="">
+								<Property Name="Name">TextBoxControl</Property>
+								<Property Name="Size">300, 20</Property>
+								<Property Name="Location">10 , 120</Property>
+								<Property Name="AlarmUpperTextColor">WindowText</Property>
+								<Property Name="ValueDecimalPlaces">0</Property>
+								<Property Name="AlarmLowerBkgColor">Salmon</Property>
+								<Property Name="TextBackColor">White</Property>
+								<Property Name="ValueDisplay">Symbolic</Property>
+								<Property Name="AlarmUpperBkgColor">IndianRed</Property>
+								<Property Name="AlarmLowerTextColor">WindowText</Property>
+								<Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+								<Property Name="DisplayLabel">Left</Property>
+								<Property Name="DescriptionText">ESCL_SteeringLockStatus_S301</Property>
+								<Property Name="DescriptionSize">150, 20</Property>
+								<Property Name="SymbolConfiguration">4;2;ChangAn;ESCL;ESCL_276;ESCL_SteeringLockStatus_S301;1;CAN;;-1</Property>
+							</Object>
+							<Property Name="Name">MessageViewESCL27620</Property>
+							<Property Name="Size">340, 150</Property>
+							<Property Name="Text">View</Property>
+							<Property Name="BackColor">White</Property>
+						</Object>
+						<Property Name="Name">ESCL27639</Property>
+						<Property Name="Size">340, 205</Property>
+						<Property Name="BackColor">White</Property>
+						<Property Name="Font">Arial Narrow, 9.75pt</Property>
+						<Property Name="Text">ESCL_276   0x276</Property>
+					</Object>
+				</Object>
+			</Object>
+			<Object Type="Vector.CANalyzer.Panels.Design.VectorTabPage, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="VectorTabPageHelp" Children="Controls" ControlName="">
+				<Property Name="Name">VectorTabPageHelp</Property>
+				<Property Name="Size">720,415</Property>
+				<Property Name="Location">4, 22</Property>
+				<Property Name="Text">Help</Property>
+				<Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControlGeneral01" Children="Controls" ControlName="">
+					<Property Name="Name">StaticTextControlGeneral01</Property>
+					<Property Name="Size">200, 20</Property>
+					<Property Name="Location">15, 15</Property>
+					<Property Name="BackColor">White</Property>
+					<Property Name="Font">Arial, 12pt, style=Bold</Property>
+					<Property Name="Text">ChangAn B316 V1.0</Property>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControlGeneral02" Children="Controls" ControlName="">
+					<Property Name="Name">StaticTextControlGeneral02</Property>
+					<Property Name="Size">200, 20</Property>
+					<Property Name="Location">15, 45</Property>
+					<Property Name="BackColor">White</Property>
+					<Property Name="Font">Arial, 10pt, style=Bold</Property>
+					<Property Name="Text">General Information</Property>
+					<Property Name="ForeColor">Crimson</Property>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControlGeneral03" Children="Controls" ControlName="">
+					<Property Name="Name">StaticTextControlGeneral03</Property>
+					<Property Name="Size">200, 50</Property>
+					<Property Name="Location">15, 65</Property>
+					<Property Name="BackColor">White</Property>
+					<Property Name="Font">Arial Narrow, 9pt</Property>
+					<Property Name="Text">Generation time: 05/08/2020 16:09:19
+User: BenY
+Dbc: CAN_Matrix_ESCL_20200617.dbc
+</Property>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControlGeneral04" Children="Controls" ControlName="">
+					<Property Name="Name">StaticTextControlGeneral04</Property>
+					<Property Name="Size">200, 20</Property>
+					<Property Name="Location">15, 125</Property>
+					<Property Name="BackColor">White</Property>
+					<Property Name="Font">Arial, 10pt, style=Bold</Property>
+					<Property Name="Text">Support</Property>
+					<Property Name="ForeColor">Crimson</Property>
+				</Object>
+				<Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=9.0.86.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControlGeneral05" Children="Controls" ControlName="">
+					<Property Name="Name">StaticTextControlGeneral05</Property>
+					<Property Name="Size">200, 50</Property>
+					<Property Name="Location">15, 145</Property>
+					<Property Name="BackColor">White</Property>
+					<Property Name="Font">Arial Narrow, 9pt</Property>
+					<Property Name="Text">Author: Yueting Ben
+Email: Yueting.Ben@bcs-ais.com</Property>
+				</Object>
+			</Object>
+		</Object>
+	</Object>
+</Panel>
