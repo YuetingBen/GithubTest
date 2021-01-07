@@ -1,0 +1,77 @@
+/* -----------------------------------------------------------------------------
+  Filename:    HVAC.can
+  
+  Description: Brief: Brief_Replace
+               Generation date: GenerationDate_Replace
+
+ ----------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+  C O P Y R I G H T
+ -------------------------------------------------------------------------------
+  Copyright (c) 2019 by Yueting Ben. All rights reserved.
+ -------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------- */
+ variables
+{
+  message HVAC_403h HVAC_403h_Frame;
+  msTimer HVAC_403h_Timer;
+  byte HVAC_403h_EnableFlag;
+}
+on start
+{
+  setTimer(HVAC_403h_Timer, 0);
+  HVAC_403h_EnableFlag = @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable & @sysvar::NODE::HVACEnableAll_Msg;
+}
+on Timer HVAC_403h_Timer
+{
+  byte HVAC_403h_MegCounter;
+  byte HVAC_403h_CheckSum;
+  if(1 == HVAC_403h_EnableFlag)
+  {
+    output(HVAC_403h_Frame);
+  }
+  HVAC_403h_Frame.HVACNMCoSlpBit = @sysvar::SIGNALINFO::HVACNMCoSlpBitValue;
+  HVAC_403h_Frame.HVACRepMsgReq = @sysvar::SIGNALINFO::HVACRepMsgReqValue;
+  HVAC_403h_Frame.HVACSrcNodeID = @sysvar::SIGNALINFO::HVACSrcNodeIDValue;
+  HVAC_403h_Frame.HVACPNIBit = @sysvar::SIGNALINFO::HVACPNIBitValue;
+  HVAC_403h_Frame.HVACActWuBit = @sysvar::SIGNALINFO::HVACActWuBitValue;
+  setTimer(HVAC_403h_Timer, 0);
+}
+on sysvar NODE::HVACEnableAll_Msg
+{
+  if(1 == @sysvar::NODE::HVACEnableAll_Msg)
+  {
+    @sysvar::NODE::HVACEnableAll_Msg = 1;
+    @sysvar::NODE::HVACDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable = 1;
+    HVAC_403h_EnableFlag = @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable & @sysvar::NODE::HVACEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::HVACEnableAll_Msg = 0;
+    @sysvar::NODE::HVACDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable = 0;
+    HVAC_403h_EnableFlag = @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable & @sysvar::NODE::HVACEnableAll_Msg;
+  }
+}
+on sysvar NODE::HVACDisableAll_Msg
+{
+  if(1 == @sysvar::NODE::HVACDisableAll_Msg)
+  {
+    @sysvar::NODE::HVACEnableAll_Msg = 0;
+    @sysvar::NODE::HVACDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable = 0;
+    HVAC_403h_EnableFlag = @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable & @sysvar::NODE::HVACEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::HVACEnableAll_Msg = 1;
+    @sysvar::NODE::HVACDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable = 1;
+    HVAC_403h_EnableFlag = @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable & @sysvar::NODE::HVACEnableAll_Msg;
+  }
+}
+on sysvar MESSAGEFRAME::HVAC_403hMessageEnable
+{
+  HVAC_403h_EnableFlag = @sysvar::MESSAGEFRAME::HVAC_403hMessageEnable & @sysvar::NODE::HVACEnableAll_Msg;
+}

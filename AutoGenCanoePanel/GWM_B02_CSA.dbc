@@ -1,0 +1,588 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Tester CSA
+VAL_TABLE_ VehSpdVld_ValueTable 1 "Valid" 0 "Invalid" ;
+VAL_TABLE_ EngSpdVldty_ValueTable 3 "Reserved" 2 "Init value" 1 "Valid" 0 "Invalid" ;
+VAL_TABLE_ ShiftLeverPosn_SBWM_ValueTable 7 "Invalid value" 6 "Reserved" 5 "Blank" 4 "M" 3 "R" 2 "N" 1 "D" 0 "P" ;
+VAL_TABLE_ E_ShiftFault_ValueTable 3 "reserved" 2 "reserved" 1 "E-shift fault
+" 0 "E-shift Normal" ;
+VAL_TABLE_ DrvReqPark_ValueTable 3 "reserved" 2 "Park button fault" 1 "driver request park button" 0 "no request" ;
+VAL_TABLE_ DrvReqUnlock_ValueTable 1 "driver request unlock button" 0 "no request" ;
+VAL_TABLE_ ShftDispFlt_ValueTable 1 "Display fault" 0 "Display OK" ;
+VAL_TABLE_ ShftSensFlt_ValueTable 1 "Shift sensor single fault" 0 "Shift sensor single OK" ;
+VAL_TABLE_ DrvReqShftInv_ValueTable 15 "Shifter position zero" 14 "Reserved" 13 "Shifter position two " 12 "Shifter position three" 11 "Shifter position four " 10 "Shifter position five" 9 "Reserved" 8 "Reserved" 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Reserved" 2 "Reserved" 1 "Reserved" 0 "Signal not available" ;
+VAL_TABLE_ DRV_RQ_SHFT_ValueTable 15 "Signal not available SNA Double" 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 7 "Reserved" 6 "Reserved" 5 "Shifter position five" 4 "Shifter position four" 3 "Shifter position three " 2 "Shifter position two" 1 "Reserved" 0 "Shifter position zero " ;
+VAL_TABLE_ VT_RollingCounter_CSA4 15 "Valid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_TABLE_ VT_HOD_HandOffSts 15 "SNA" 14 "Not used" 13 "Not used" 12 "Not used" 11 "Not used" 10 "Not used" 9 "Not used" 8 "Not used" 7 "Not used" 6 "Not used" 5 "Not used" 4 "HANDS_OFF_ERROR" 3 "HANDS_NOT_AVAILABLE" 2 "HANDS_OFF_NOT_DETECTED" 1 "Not uesd" 0 "HANDS_OFF_DETECTED" ;
+VAL_TABLE_ VT_HOD_ErrInfo 15 "SNA" 14 "Not_Used" 13 "Not_Used" 12 "Not_Used" 11 "HOD_GENERIC_SYSTEM_ERROR" 10 "HOD_CODING_ERROR" 9 "OVERVOLTAGE_ERROR" 8 "UNDERVOLTAGE_ERROR" 7 "HOD_CPU_DEFECT_OR_MAT_SHORTAGE" 6 "HOD_SENSE_INTERRUPTION_ERROR" 5 "HOD_GUARD_INTERRUPTION_ERROR" 4 "HOD_CPU_ERROR" 3 "HOD_WATCHDOG_ERROR" 2 "HOD_ROM_ERROR" 1 "HOD_EEPROM_ERROR" 0 "NO_ERROR" ;
+VAL_TABLE_ VT_HOD_ImagiImpedence 255 "Invalid Real value" 254 "Valid Real value" 0 "Valid Real value" ;
+VAL_TABLE_ VT_HOD_RealImpedence 255 "InValid Imaginary Value" 254 "Valid Imaginary Value" 0 "Valid Imaginary Value" ;
+VAL_TABLE_ VT_HOD_CalcThreshold 255 "Inalid Calculated Threshold val" 254 "Valid Calculated Threshold value" 0 "Valid Calculated Threshold value" ;
+VAL_TABLE_ VT_CheckSum_CSA4 255 "Valid Value" 0 "Valid Value" ;
+VAL_TABLE_ VehSpdVld 1 "Valid" 0 "Invalid" ;
+VAL_TABLE_ EngSpdVldty 3 "Reserved" 2 "Initial value" 1 "Valid" 0 "Invalid" ;
+VAL_TABLE_ IP_VehTotDistanceValid 1 "Valid" 0 "Invalid" ;
+VAL_TABLE_ SysPowerMod 3 "Crank" 2 "ON" 1 "ACC (reserved)" 0 "OFF" ;
+VAL_TABLE_ PosLmpOutputSts 1 "On" 0 "Off" ;
+VAL_TABLE_ Rollingcounter_CSA3 15 "Invalid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_TABLE_ SteerWheelHeatdSts 1 "Active" 0 "Not active" ;
+VAL_TABLE_ CC_ACCSwtErr 1 "Error" 0 "No error" ;
+VAL_TABLE_ CustomSwtSts 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ MuteSwtSts 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ HomeSwtSts 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ MenuReturnSwtSts 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ HWA_OK_OFFSwt 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ CC_ACC_DecSetSpd_SetSwt 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ CC_ACC_IncSetSpd_ResuSwt 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ CC_ACC_CANCEL_OFFSwt 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ CC_ACC_CRUISE_OFFSwt 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ ACC_TimeGap_DecSetSwt 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ ACC_TimeGap_IncSetSwt 1 "Pressed" 0 "No press" ;
+VAL_TABLE_ ManualShiftReq 7 "Fault" 6 "Invalid" 5 "Reserved" 4 "Reserved" 3 "both pedals pressed" 2 "Shift down request " 1 "Shift up request " 0 "no shift/ no control" ;
+VAL_TABLE_ SAS_Sts 3 "Permanent Error Detected" 2 "Intermittent Error Detected" 1 "SAS Not Calibrated" 0 "SAS Angle And Speed Correct" ;
+VAL_TABLE_ SteerWheelSpdSign 1 "Right (Negative)" 0 "Left (Positive)" ;
+VAL_TABLE_ SteerWheelAngSign 1 "Right (Negative)" 0 "Left (Positive)" ;
+VAL_TABLE_ Rollingcounter_CSA2 15 "Invalid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_TABLE_ Rollingcounter_CSA1 15 "Invalid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_TABLE_ TurnLmpSwtErrSts 1 "Error" 0 "No Error" ;
+VAL_TABLE_ LowBeamSwtErrSts 1 "Error" 0 "No Error" ;
+VAL_TABLE_ EnterSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ SoundSourceModSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ PhoneSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ VRSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ AdjVolDwnSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ AdjVolUpSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ SeekDwnSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ SeekUpSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ PageRSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ PageLSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ PageDwnSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ PageUpSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_TABLE_ AutoLmpSwtSts 1 "Auto" 0 "Non-Auto" ;
+VAL_TABLE_ HornSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ AutoHiLowBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ OverVehBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ HiBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ LowBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ RearFogLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ FrntFogLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ PosnLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ RTurnLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ LTurnLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_TABLE_ RLSSensitivityReq 7 "reserved" 6 "reserved" 5 "reserved" 4 "Sensitivity5_FAST" 3 "Sensitivity4" 2 "Sensitivity3" 1 "Sensitivity2" 0 "Sensitivity1_SLOW" ;
+VAL_TABLE_ FrntWiprSwtSts 7 "Error" 6 "reserved" 5 "reserved" 4 "reserved" 3 "High Speed" 2 "Low Speed" 1 "Wiper Auto Or Intermittent" 0 "Wiper Off" ;
+VAL_TABLE_ FrntWshrSwtSts 3 "Reserved" 2 "Wash in Auto Mode" 1 "Wiper Wash" 0 "OFF" ;
+VAL_TABLE_ RearWiprSwtSts 3 "reserved" 2 "Wiper & Wash" 1 "Wiper ON" 0 "Wiper Off" ;
+VAL_TABLE_ AutoHiLowBeamSwtErrSts 1 "Error" 0 "No Error" ;
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ PosLmpOutputSts : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 282 HCU_HP6: 8 Tester
+ SG_ RollingCounter_HCU_HP6 : 59|4@0+ (1,0) [0|0] ""  CSA
+ SG_ ShiftLeverPosn_SBWM_HCU_HP6 : 39|3@0+ (1,0) [0|0] ""  CSA
+ SG_ Checksum_HCU_HP6 : 7|8@0+ (1,0) [0|0] ""  CSA
+
+BO_ 545 DCT5: 8 Tester
+ SG_ RollingCounter_DCT5 : 59|4@0+ (1,0) [0|0] ""  CSA
+ SG_ ShiftLeverPosn_SBWM_DCT5 : 62|3@0+ (1,0) [0|0] ""  CSA
+ SG_ CheckSum_DCT5 : 7|8@0+ (1,0) [0|0] ""  CSA
+
+BO_ 199 SBWM1: 8 Tester
+ SG_ RollingCounter_SBWM1 : 59|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ E_ShiftFault : 18|2@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ DrvReqPark : 20|2@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ DrvReqUnlock : 21|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ShftDispFlt : 22|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ShftSensFlt : 23|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ DrvReqShftInv : 11|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ DRV_RQ_SHFT : 15|4@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ CheckSum_SBWM1 : 7|8@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 837 BCM3: 8 Tester
+ SG_ PowerModeBackup : 21|2@0+ (1,0) [0|3] ""  CSA
+
+BO_ 555 CSA4: 8 CSA
+ SG_ HOD_RespErr : 8|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RollingCounter_HOD_1 : 59|4@0+ (1,0) [0|15] ""  Tester
+ SG_ HOD_HandOffSts : 63|4@0+ (1,0) [0|15] ""  Tester
+ SG_ HOD_ErrInfo : 12|4@0+ (1,0) [0|15] ""  Tester
+ SG_ HOD_ImagiImpedence : 39|8@0+ (1,0) [0|255] ""  Tester
+ SG_ HOD_RealImpedence : 31|8@0+ (1,0) [0|255] ""  Tester
+ SG_ HOD_CalcThreshold : 23|8@0+ (1,0) [0|255] ""  Tester
+ SG_ CheckSum_HOD_1 : 7|8@0+ (1,0) [0|255] ""  Tester
+
+BO_ 210 MCU_5: 8 Tester
+ SG_ MCU_ActRotSpd : 39|16@0+ (1,-14000) [-14000|14000] "rpm"  CSA
+
+BO_ 147 TMCU6: 8 Tester
+ SG_ TMCU_ActPosRotSpd : 15|16@0+ (1,0) [0|65535] "rpm"  CSA
+
+BO_ 190 P2M3: 8 Tester
+ SG_ P2M_ActSpd : 43|16@0+ (1,-2000) [-2000|10286] "rpm"  CSA
+
+BO_ 1653 KostiaRequest: 8 Tester
+ SG_ KostiaRx : 7|64@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1652 KostiaResponse: 8 Vector__XXX
+ SG_ KostiaTx : 7|64@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 412 R_PBox1: 8 Tester
+ SG_ PosnLmpOutpSts_R_Pbox : 11|1@0+ (1,0) [0|1] ""  CSA
+
+BO_ 494 HUT15: 8 Tester
+ SG_ SteerWheelHeatSwtReq : 3|2@0+ (1,0) [0|3] ""  CSA
+
+BO_ 1288 CSA_NM: 8 CSA
+ SG_ CSA_NM_NodeId : 7|8@0+ (1,0) [0|0] ""  Tester
+ SG_ CSA_NM_CBV_RMR : 8|1@0+ (1,0) [0|0] ""  Tester
+ SG_ CSA_NM_CBV_AWB : 12|1@0+ (1,0) [0|0] ""  Tester
+ SG_ CSA_NM_WakeupReason_Bit2 : 26|1@0+ (1,0) [0|1] ""  Tester
+ SG_ CSA_NM_WakeupReason_Bit1 : 25|1@0+ (1,0) [0|0] ""  Tester
+ SG_ CSA_NM_WakeupReason_Bit0 : 24|1@0+ (1,0) [0|1] ""  Tester
+ SG_ CSA_NM_SystemInfo_Bit1 : 40|1@0+ (1,0) [0|1] ""  Tester
+ SG_ CSA_NM_SystemInfo_Bit0 : 41|1@0+ (1,0) [0|1] ""  Tester
+ SG_ CSA_NM_StayAwakeReason_Bit1 : 33|1@0+ (1,0) [0|1] ""  Tester
+ SG_ CSA_NM_StayAwakeReason_Bit0 : 32|1@0+ (1,0) [0|1] ""  Tester
+ SG_ CSA_NM_RMS_FLAG : 16|1@0+ (1,0) [0|1] ""  Tester
+
+BO_ 1923 CSA_Phy_Req: 8 Tester
+ SG_ DiagRequest : 7|64@0+ (1,0) [0|0] ""  CSA
+
+BO_ 1888 DiagFuncReq: 8 Tester
+ SG_ DiagRequestFunc : 7|64@0+ (1,0) [0|0] ""  CSA
+
+BO_ 1987 CSA_Phy_Resp: 8 CSA
+ SG_ DiagResponse : 7|64@0+ (1,0) [0|0] ""  Tester
+
+BO_ 661 PEPS2: 8 Tester
+ SG_ SysPowerMod : 15|2@0+ (1,0) [0|3] ""  CSA
+
+BO_ 880 HUT34: 8 Tester
+ SG_ Time_Day : 55|5@0+ (1,0) [0|31] ""  CSA
+ SG_ Time_Month : 47|4@0+ (1,0) [0|15] ""  CSA
+ SG_ Time_Year_Right : 35|4@0+ (1,0) [0|15] ""  CSA
+ SG_ Time_Year_Left : 39|4@0+ (1,0) [0|15] ""  CSA
+ SG_ Time_Minutes : 23|6@0+ (1,0) [0|63] ""  CSA
+ SG_ Time_Hour : 15|5@0+ (1,0) [0|31] ""  CSA
+
+BO_ 639 HUT_IP2: 8 Tester
+ SG_ IP_VehTotDistanceValid : 46|1@0+ (1,0) [0|1] ""  CSA
+ SG_ IP_VehTotDistance : 15|24@0+ (0.1,0) [0|999999.9] "Km"  CSA
+
+BO_ 273 ECM1: 8 Tester
+ SG_ EngSpdVldty : 63|2@0+ (1,0) [0|0] ""  CSA
+ SG_ EngSpd : 47|16@0+ (0.125,0) [0|8191.875] "rpm"  CSA
+
+BO_ 793 BCM1: 8 Tester
+ SG_ PosLmpOutputSts : 12|1@0+ (1,0) [0|1] ""  CSA
+ SG_ BackgroundLightLvl : 39|8@0+ (1,0) [0|255] ""  CSA
+
+BO_ 613 ABS3: 8 Tester
+ SG_ VehSpdVld : 13|1@0+ (1,0) [0|0] ""  CSA
+ SG_ VehSpd : 12|13@0+ (0.05625,0) [0|299.98125] "kph"  CSA
+
+BO_ 580 CSA3: 8 CSA
+ SG_ WeChatVTSwt : 37|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ CustomSwtSts_Mmed_CAN : 39|2@0+ (1,0) [0|3] ""  Tester
+ SG_ EnterSwtSts_Mmed_CAN : 27|2@0+ (1,0) [0|3] ""  Tester
+ SG_ VRSwtSts : 19|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ SoundSourceModSwtSts : 17|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ SeekUpSwtSts : 63|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ SeekDwnSwtSts : 61|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ PhoneSwtSts : 29|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ PageUpSwtSts : 15|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ PageRSwtSts : 9|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ PageLSwtSts : 11|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ PageDwnSwtSts : 13|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ EnterSwtSts : 31|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ AdjVolUpSwtSts : 23|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ AdjVolDwnSwtSts : 21|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ Rollingcounter_CSA3 : 59|4@0+ (1,0) [0|15] ""  Tester
+ SG_ CustomSwtSts : 55|2@0+ (1,0) [0|3] ""  Tester
+ SG_ MuteSwtSts : 53|2@0+ (1,0) [0|3] ""  Tester
+ SG_ HomeSwtSts : 51|2@0+ (1,0) [0|3] ""  Tester
+ SG_ MenuReturnSwtSts : 49|2@0+ (1,0) [0|3] ""  Tester
+ SG_ SteerWheelHeatdSts : 40|1@0+ (1,0) [0|1] ""  Tester
+ SG_ Checksum_CSA3 : 7|8@0+ (1,0) [0|255] ""  Tester
+
+BO_ 161 CSA2: 8 CSA
+ SG_ CC_ACC_CancelSwt : 52|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CC_ACC_ON_OFFSwt : 53|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ ACCTimeGapSetSwt : 49|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ HWA_OK_OFFSwt : 60|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CC_ACCSwtErr : 48|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CC_ACC_IncSetSpd_ResuSwt : 51|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CC_ACC_DecSetSpd_SetSwt : 50|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CC_ACC_CRUISE_OFFSwt : 47|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CC_ACC_CANCEL_OFFSwt : 46|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ ACC_TimeGap_IncSetSwt : 45|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ ACC_TimeGap_DecSetSwt : 44|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ ManualShiftReq : 63|3@0+ (1,0) [0|7] ""  Tester
+ SG_ Rollingcounter_CSA2 : 59|4@0+ (1,0) [0|15] ""  Tester
+ SG_ SAS_Sts : 55|2@0+ (1,0) [0|3] ""  Tester
+ SG_ SteerWheelSpd : 31|15@0+ (0.1,0) [0|1016] ""  Tester
+ SG_ SteerWheelSpdSign : 32|1@0+ (1,0) [0|1] ""  Tester
+ SG_ SteerWheelAng : 15|15@0+ (0.1,0) [0|780] ""  Tester
+ SG_ SteerWheelAngSign : 16|1@0+ (1,0) [0|1] ""  Tester
+ SG_ Checksum_CSA2 : 7|8@0+ (1,0) [0|255] ""  Tester
+
+BO_ 357 CSA1: 8 CSA
+ SG_ OverVehBeamSwtErrSts : 60|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ HiBeamSwtErrSts : 61|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LowBeamSwtErrSts : 63|1@0+ (1,0) [0|1] ""  Tester
+ SG_ TurnLmpSwtErrSts : 62|1@0+ (1,0) [0|1] ""  Tester
+ SG_ Rollingcounter_CSA1 : 59|4@0+ (1,0) [0|15] ""  Tester
+ SG_ HornSwtSts : 29|1@0+ (1,0) [0|1] ""  Tester
+ SG_ AutoLmpSwtSts : 28|1@0+ (1,0) [0|1] ""  Tester
+ SG_ AutoHiLowBeamSwtSts : 27|1@0+ (1,0) [0|1] ""  Tester
+ SG_ OverVehBeamSwtSts : 26|1@0+ (1,0) [0|1] ""  Tester
+ SG_ HiBeamSwtSts : 25|1@0+ (1,0) [0|1] ""  Tester
+ SG_ LowBeamSwtSts : 24|1@0+ (1,0) [0|1] ""  Tester
+ SG_ RearFogLmpSwtSts : 23|1@0+ (1,0) [0|1] ""  Tester
+ SG_ FrntFogLmpSwtSts : 22|1@0+ (1,0) [0|1] ""  Tester
+ SG_ PosnLmpSwtSts : 21|1@0+ (1,0) [0|1] ""  Tester
+ SG_ RTurnLmpSwtSts : 20|1@0+ (1,0) [0|1] ""  Tester
+ SG_ LTurnLmpSwtSts : 19|1@0+ (1,0) [0|1] ""  Tester
+ SG_ RLSSensitivityReq : 18|3@0+ (1,0) [0|7] ""  Tester
+ SG_ AutoHiLowBeamSwtErrSts : 15|1@0+ (1,0) [0|1] ""  Tester
+ SG_ RearWiprSwtSts : 14|2@0+ (1,0) [0|3] ""  Tester
+ SG_ FrntWshrSwtSts : 12|2@0+ (1,0) [0|3] ""  Tester
+ SG_ FrntWiprSwtSts : 10|3@0+ (1,0) [0|7] ""  Tester
+ SG_ Checksum_CSA1 : 7|8@0+ (1,0) [0|255] ""  Tester
+
+BO_TX_BU_ 199 : CSA,Tester;
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+BA_DEF_ SG_  "GenSigDeltaValue" INT 0 65535;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_  "GenSigSendOnInit" ENUM  "Not Initialized","Application","Handler";
+BA_DEF_ SG_  "GenSigSendTopBottom" ENUM  "None","SendAtTop","SendAtBottom","SendAtTopBottom";
+BA_DEF_ SG_  "PacketOrder" INT 0 65535;
+BA_DEF_ SG_  "SignalLongName" STRING ;
+BA_DEF_ SG_  "SignalType" STRING ;
+BA_DEF_ SG_  "VNSigAllNodes" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigDiagnostic" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigInfotainment" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigIntermediate" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigParkedVehicle" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigPrimaryTriggering" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHS_VNHVEM" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHS_VNReq" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHSSharedDiagnostic" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagConnection" INT 0 100;
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagUUDTResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 100000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 255;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BO_  "MessageSubnet" ENUM  "BB","PB","CB","Body";
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "TpTxIndex" INT 0 99;
+BA_DEF_ BU_  "ECU_Id" HEX 0 255;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmAsrCanMsgCycleOffset" INT 0 65535;
+BA_DEF_ BU_  "NmAsrCanMsgReducedTime" INT 0 65535;
+BA_DEF_ BU_  "NmAsrNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_ BU_  "SourceId" HEX 0 255;
+BA_DEF_  "BusOffRecoveryTime" INT 0 65535;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "NmAsrBaseAddress" HEX 0 1535;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 0 65535;
+BA_DEF_  "NmAsrMessageCount" INT 0 256;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 0 65525;
+BA_DEF_  "NmAsrTimeoutTime" INT 0 65535;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 0 65535;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "SamplePointMax" FLOAT 0 100;
+BA_DEF_  "SamplePointMin" FLOAT 0 100;
+BA_DEF_  "SyncJumpWidthMax" INT 0 255;
+BA_DEF_  "SyncJumpWidthMin" INT 0 255;
+BA_DEF_  "VersionNumber" INT 0 65535;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 65535;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "NotUsed","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepeition","NoSigSendType";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NoMsgSendType";
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 100000;
+BA_DEF_  "Baudrate" INT 0 1000000;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigRxStartValue" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvResp" ENUM  "None","Notify App","Substitute Default";
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespSubValue" INT 0 65535;
+BA_DEF_REL_ BU_SG_REL_  "GenSigTimeoutMsg" HEX 0 2032;
+BA_DEF_REL_ BU_SG_REL_  "GenSigTimeoutTime" INT 0 15000;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVBitResp" ENUM  "No","Yes";
+BA_DEF_REL_ BU_SG_REL_  "GenSigVBitRespComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVDAFailComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVDAFailResp" ENUM  "No","Yes";
+BA_DEF_DEF_  "GenSigDeltaValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigSendOnInit" "Not Initialized";
+BA_DEF_DEF_  "GenSigSendTopBottom" "None";
+BA_DEF_DEF_  "PacketOrder" 0;
+BA_DEF_DEF_  "SignalLongName" "";
+BA_DEF_DEF_  "SignalType" "";
+BA_DEF_DEF_  "VNSigAllNodes" "No";
+BA_DEF_DEF_  "VNSigDiagnostic" "No";
+BA_DEF_DEF_  "VNSigInfotainment" "No";
+BA_DEF_DEF_  "VNSigIntermediate" "No";
+BA_DEF_DEF_  "VNSigParkedVehicle" "No";
+BA_DEF_DEF_  "VNSigPrimaryTriggering" "No";
+BA_DEF_DEF_  "VNSigSLHS_VNHVEM" "No";
+BA_DEF_DEF_  "VNSigSLHS_VNReq" "No";
+BA_DEF_DEF_  "VNSigSLHSSharedDiagnostic" "No";
+BA_DEF_DEF_  "DiagConnection" 0;
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "DiagUUDTResponse" "No";
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "MessageSubnet" "Body";
+BA_DEF_DEF_  "NmAsrMessage" "No";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "ECU_Id" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 20;
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 20;
+BA_DEF_DEF_  "NmAsrNode" "Yes";
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 0;
+BA_DEF_DEF_  "SourceId" 0;
+BA_DEF_DEF_  "BusOffRecoveryTime" 160;
+BA_DEF_DEF_  "Manufacturer" "Ford";
+BA_DEF_DEF_  "NmAsrBaseAddress" 0;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 500;
+BA_DEF_DEF_  "NmAsrMessageCount" 128;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 1500;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 2000;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 5000;
+BA_DEF_DEF_  "NmType" "NmAsr";
+BA_DEF_DEF_  "SamplePointMax" 80;
+BA_DEF_DEF_  "SamplePointMin" 81.25;
+BA_DEF_DEF_  "SyncJumpWidthMax" 3;
+BA_DEF_DEF_  "SyncJumpWidthMin" 4;
+BA_DEF_DEF_  "VersionNumber" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "Baudrate" 500000;
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_REL_ "GenSigRxStartValue" "";
+BA_DEF_DEF_REL_ "GenSigSuprvResp" "None";
+BA_DEF_DEF_REL_ "GenSigSuprvRespComment" "";
+BA_DEF_DEF_REL_ "GenSigSuprvRespSubValue" 0;
+BA_DEF_DEF_REL_ "GenSigTimeoutMsg" 0;
+BA_DEF_DEF_REL_ "GenSigTimeoutTime" 500;
+BA_DEF_DEF_REL_ "GenSigVBitResp" "No";
+BA_DEF_DEF_REL_ "GenSigVBitRespComment" "";
+BA_DEF_DEF_REL_ "GenSigVDAFailComment" "";
+BA_DEF_DEF_REL_ "GenSigVDAFailResp" "No";
+BA_ "NmAsrMessageCount" 128;
+BA_ "SyncJumpWidthMax" 16;
+BA_ "NmAsrWaitBusSleepTime" 5000;
+BA_ "NmAsrTimeoutTime" 2000;
+BA_ "NmAsrRepeatMessageTime" 1500;
+BA_ "NmAsrCanMsgCycleTime" 500;
+BA_ "NmAsrBaseAddress" 1280;
+BA_ "BusType" "CAN";
+BA_ "ECU_Id" BU_ CSA 8;
+BA_ "NmAsrNodeIdentifier" BU_ CSA 8;
+BA_ "SourceId" BU_ CSA 8;
+BA_ "GenMsgSendType" BO_ 199 0;
+BA_ "GenMsgCycleTime" BO_ 199 50;
+BA_ "GenMsgCycleTime" BO_ 837 50;
+BA_ "GenMsgSendType" BO_ 837 0;
+BA_ "GenMsgCycleTime" BO_ 210 10;
+BA_ "GenMsgSendType" BO_ 210 0;
+BA_ "GenMsgCycleTime" BO_ 147 10;
+BA_ "GenMsgSendType" BO_ 147 0;
+BA_ "GenMsgCycleTime" BO_ 190 10;
+BA_ "GenMsgSendType" BO_ 190 0;
+BA_ "GenMsgILSupport" BO_ 1653 0;
+BA_ "GenMsgILSupport" BO_ 1652 0;
+BA_ "GenMsgSendType" BO_ 412 0;
+BA_ "GenMsgCycleTime" BO_ 412 50;
+BA_ "GenMsgNrOfRepetition" BO_ 494 5;
+BA_ "NmAsrMessage" BO_ 1288 1;
+BA_ "GenMsgILSupport" BO_ 1288 0;
+BA_ "GenMsgILSupport" BO_ 1923 0;
+BA_ "DiagConnection" BO_ 1923 1;
+BA_ "DiagRequest" BO_ 1923 1;
+BA_ "GenMsgILSupport" BO_ 1888 0;
+BA_ "DiagState" BO_ 1888 1;
+BA_ "DiagConnection" BO_ 1888 1;
+BA_ "GenMsgILSupport" BO_ 1987 0;
+BA_ "DiagConnection" BO_ 1987 1;
+BA_ "DiagResponse" BO_ 1987 1;
+BA_ "GenMsgSendType" BO_ 661 0;
+BA_ "GenMsgCycleTime" BO_ 661 50;
+BA_ "GenMsgSendType" BO_ 880 0;
+BA_ "GenMsgCycleTime" BO_ 880 1000;
+BA_ "GenMsgSendType" BO_ 639 0;
+BA_ "GenMsgCycleTime" BO_ 639 50;
+BA_ "GenMsgSendType" BO_ 273 0;
+BA_ "GenMsgCycleTime" BO_ 273 10;
+BA_ "GenMsgSendType" BO_ 793 0;
+BA_ "GenMsgCycleTime" BO_ 793 50;
+BA_ "GenMsgSendType" BO_ 613 0;
+BA_ "GenMsgCycleTime" BO_ 613 20;
+BA_ "GenMsgSendType" BO_ 580 0;
+BA_ "GenMsgCycleTime" BO_ 580 50;
+BA_ "GenMsgSendType" BO_ 161 0;
+BA_ "GenMsgCycleTime" BO_ 161 10;
+BA_ "GenMsgNrOfRepetition" BO_ 357 3;
+BA_ "GenMsgCycleTimeFast" BO_ 357 20;
+BA_ "GenMsgSendType" BO_ 357 0;
+BA_ "GenMsgCycleTime" BO_ 357 20;
+BA_ "GenSigSendType" SG_ 555 HOD_RespErr 1;
+BA_ "GenSigSendType" SG_ 555 HOD_HandOffSts 1;
+BA_ "GenSigStartValue" SG_ 555 HOD_HandOffSts 15;
+BA_ "GenSigSendType" SG_ 555 HOD_ErrInfo 1;
+BA_ "GenSigStartValue" SG_ 555 HOD_ErrInfo 15;
+BA_ "GenSigSendType" SG_ 555 HOD_ImagiImpedence 1;
+BA_ "GenSigStartValue" SG_ 555 HOD_ImagiImpedence 255;
+BA_ "GenSigSendType" SG_ 555 HOD_RealImpedence 1;
+BA_ "GenSigStartValue" SG_ 555 HOD_RealImpedence 255;
+BA_ "GenSigSendType" SG_ 555 HOD_CalcThreshold 1;
+BA_ "GenSigStartValue" SG_ 555 HOD_CalcThreshold 255;
+BA_ "GenSigStartValue" SG_ 210 MCU_ActRotSpd 34000;
+BA_ "GenSigStartValue" SG_ 190 P2M_ActSpd 2000;
+BA_ "GenSigSendType" SG_ 494 SteerWheelHeatSwtReq 2;
+BA_ "GenSigStartValue" SG_ 494 SteerWheelHeatSwtReq 1;
+BA_ "GenSigStartValue" SG_ 880 Time_Year_Right 15;
+BA_ "GenSigStartValue" SG_ 880 Time_Year_Left 15;
+BA_ "GenSigStartValue" SG_ 880 Time_Minutes 63;
+BA_ "GenSigStartValue" SG_ 880 Time_Hour 31;
+BA_ "GenSigStartValue" SG_ 793 BackgroundLightLvl 128;
+BA_ "GenSigSendType" SG_ 357 AutoHiLowBeamSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 OverVehBeamSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 HiBeamSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 RearFogLmpSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 RTurnLmpSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 LTurnLmpSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 RearWiprSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 FrntWshrSwtSts 4;
+BA_ "GenSigSendType" SG_ 357 FrntWiprSwtSts 4;
+VAL_ 3221225472 PosLmpOutputSts 1 "On" 0 "Off" ;
+VAL_ 282 ShiftLeverPosn_SBWM_HCU_HP6 7 "Invalid value" 6 "Reserved" 5 "Blank" 4 "M" 3 "R" 2 "N" 1 "D" 0 "P" ;
+VAL_ 545 ShiftLeverPosn_SBWM_DCT5 7 "Invalid value" 6 "Reserved" 5 "Blank" 4 "M" 3 "R" 2 "N" 1 "D" 0 "P" ;
+VAL_ 199 E_ShiftFault 3 "reserved" 2 "reserved" 1 "E-shift fault
+" 0 "E-shift Normal" ;
+VAL_ 199 DrvReqPark 3 "reserved" 2 "Park button fault" 1 "driver request park button" 0 "no request" ;
+VAL_ 199 DrvReqUnlock 1 "driver request unlock button" 0 "no request" ;
+VAL_ 199 ShftDispFlt 1 "Display fault" 0 "Display OK" ;
+VAL_ 199 ShftSensFlt 1 "Shift sensor single fault" 0 "Shift sensor single OK" ;
+VAL_ 199 DrvReqShftInv 15 "Shifter position zero" 14 "Reserved" 13 "Shifter position two " 12 "Shifter position three" 11 "Shifter position four " 10 "Shifter position five" 9 "Reserved" 8 "Reserved" 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Reserved" 2 "Reserved" 1 "Reserved" 0 "Signal not available" ;
+VAL_ 199 DRV_RQ_SHFT 15 "Signal not available SNA Double" 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 7 "Reserved" 6 "Reserved" 5 "Shifter position five" 4 "Shifter position four" 3 "Shifter position three " 2 "Shifter position two" 1 "Reserved" 0 "Shifter position zero " ;
+VAL_ 837 PowerModeBackup 3 "Crank" 2 "ON" 1 "ACC" 0 "OFF" ;
+VAL_ 555 HOD_RespErr 1 "ERROR" 0 "NO_ERROR" ;
+VAL_ 555 RollingCounter_HOD_1 15 "Valid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_ 555 HOD_HandOffSts 15 "SNA" 14 "Not used" 13 "Not used" 12 "Not used" 11 "Not used" 10 "Not used" 9 "Not used" 8 "Not used" 7 "Not used" 6 "Not used" 5 "Not used" 4 "HANDS_OFF_ERROR" 3 "HANDS_NOT_AVAILABLE" 2 "HANDS_OFF_NOT_DETECTED" 1 "Not uesd" 0 "HANDS_OFF_DETECTED" ;
+VAL_ 555 HOD_ErrInfo 15 "SNA" 14 "Not_Used" 13 "Not_Used" 12 "Not_Used" 11 "HOD_GENERIC_SYSTEM_ERROR" 10 "HOD_CODING_ERROR" 9 "OVERVOLTAGE_ERROR" 8 "UNDERVOLTAGE_ERROR" 7 "HOD_CPU_DEFECT_OR_MAT_SHORTAGE" 6 "HOD_SENSE_INTERRUPTION_ERROR" 5 "HOD_GUARD_INTERRUPTION_ERROR" 4 "HOD_CPU_ERROR" 3 "HOD_WATCHDOG_ERROR" 2 "HOD_ROM_ERROR" 1 "HOD_EEPROM_ERROR" 0 "NO_ERROR" ;
+VAL_ 555 HOD_ImagiImpedence 255 "Invalid Real value" 254 "Valid Real value" 0 "Valid Real value" ;
+VAL_ 555 HOD_RealImpedence 255 "InValid Imaginary Value" 254 "Valid Imaginary Value" 0 "Valid Imaginary Value" ;
+VAL_ 555 HOD_CalcThreshold 255 "Inalid Calculated Threshold val" 254 "Valid Calculated Threshold value" 0 "Valid Calculated Threshold value" ;
+VAL_ 555 CheckSum_HOD_1 255 "Valid Value" 0 "Valid Value" ;
+VAL_ 661 SysPowerMod 3 "Crank" 2 "ON" 1 "ACC (reserved)" 0 "OFF" ;
+VAL_ 639 IP_VehTotDistanceValid 1 "Valid" 0 "Invalid" ;
+VAL_ 273 EngSpdVldty 3 "Reserved" 2 "Initial value" 1 "Valid" 0 "Invalid" ;
+VAL_ 793 PosLmpOutputSts 1 "On" 0 "Off" ;
+VAL_ 613 VehSpdVld 1 "Valid" 0 "Invalid" ;
+VAL_ 580 WeChatVTSwt 3 "Invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 CustomSwtSts_Mmed_CAN 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 EnterSwtSts_Mmed_CAN 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 VRSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 SoundSourceModSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 SeekUpSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 SeekDwnSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 PhoneSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 PageUpSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 PageRSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 PageLSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 PageDwnSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 EnterSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 AdjVolUpSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 AdjVolDwnSwtSts 3 "invalidation" 2 "error" 1 "Pressed" 0 "Released" ;
+VAL_ 580 Rollingcounter_CSA3 15 "Invalid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_ 580 CustomSwtSts 1 "Pressed" 0 "No press" ;
+VAL_ 580 MuteSwtSts 1 "Pressed" 0 "No press" ;
+VAL_ 580 HomeSwtSts 1 "Pressed" 0 "No press" ;
+VAL_ 580 MenuReturnSwtSts 1 "Pressed" 0 "No press" ;
+VAL_ 580 SteerWheelHeatdSts 1 "Active" 0 "Not active" ;
+VAL_ 161 HWA_OK_OFFSwt 1 "Pressed" 0 "No press" ;
+VAL_ 161 CC_ACCSwtErr 1 "Error" 0 "No error" ;
+VAL_ 161 CC_ACC_IncSetSpd_ResuSwt 1 "Pressed" 0 "No press" ;
+VAL_ 161 CC_ACC_DecSetSpd_SetSwt 1 "Pressed" 0 "No press" ;
+VAL_ 161 CC_ACC_CRUISE_OFFSwt 1 "Pressed" 0 "No press" ;
+VAL_ 161 CC_ACC_CANCEL_OFFSwt 1 "Pressed" 0 "No press" ;
+VAL_ 161 ACC_TimeGap_IncSetSwt 1 "Pressed" 0 "No press" ;
+VAL_ 161 ACC_TimeGap_DecSetSwt 1 "Pressed" 0 "No press" ;
+VAL_ 161 ManualShiftReq 7 "Fault" 6 "Invalid" 5 "Reserved" 4 "Reserved" 3 "both pedals pressed" 2 "Shift down request " 1 "Shift up request " 0 "no shift/ no control" ;
+VAL_ 161 Rollingcounter_CSA2 15 "Invalid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_ 161 SAS_Sts 3 "Permanent Error Detected" 2 "Intermittent Error Detected" 1 "SAS Not Calibrated" 0 "SAS Angle And Speed Correct" ;
+VAL_ 161 SteerWheelSpdSign 1 "Right (Negative)" 0 "Left (Positive)" ;
+VAL_ 161 SteerWheelAngSign 1 "Right (Negative)" 0 "Left (Positive)" ;
+VAL_ 357 LowBeamSwtErrSts 1 "Error" 0 "No Error" ;
+VAL_ 357 TurnLmpSwtErrSts 1 "Error" 0 "No Error" ;
+VAL_ 357 Rollingcounter_CSA1 15 "Invalid value" 14 "Valid value" 13 "Valid value" 12 "Valid value" 11 "Valid value" 10 "Valid value" 9 "Valid value" 8 "Valid value" 7 "Valid value" 6 "Valid value" 5 "Valid value" 4 "Valid value" 3 "Valid value" 2 "Valid value" 1 "Valid value" 0 "Valid value" ;
+VAL_ 357 HornSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 AutoLmpSwtSts 1 "Auto" 0 "Non-Auto" ;
+VAL_ 357 AutoHiLowBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 OverVehBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 HiBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 LowBeamSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 RearFogLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 FrntFogLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 PosnLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 RTurnLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 LTurnLmpSwtSts 1 "ON" 0 "OFF" ;
+VAL_ 357 RLSSensitivityReq 7 "reserved" 6 "reserved" 5 "reserved" 4 "Sensitivity5_FAST" 3 "Sensitivity4" 2 "Sensitivity3" 1 "Sensitivity2" 0 "Sensitivity1_SLOW" ;
+VAL_ 357 AutoHiLowBeamSwtErrSts 1 "Error" 0 "No Error" ;
+VAL_ 357 RearWiprSwtSts 3 "reserved" 2 "Wiper & Wash" 1 "Wiper ON" 0 "Wiper Off" ;
+VAL_ 357 FrntWshrSwtSts 3 "Reserved" 2 "Wash in Auto Mode" 1 "Wiper Wash" 0 "OFF" ;
+VAL_ 357 FrntWiprSwtSts 7 "Error" 6 "reserved" 5 "reserved" 4 "reserved" 3 "High Speed" 2 "Low Speed" 1 "Wiper Auto Or Intermittent" 0 "Wiper Off" ;
+

@@ -1,0 +1,745 @@
+/*@!Encoding:936*/
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   Dtc.cin                              $                                    *
+*            $Revision: 1.2 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/02/12 11:37:44CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup Dtc                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  Dtc Dtc
+    \ingroup   Application
+    \brief   The DTC functional module. <br>
+*/
+
+/**************************************************************************************************/
+variables
+{
+  /* GAC A26 DTC name */
+  enum DTC_NAME
+  {
+      DTC_BUS_OFF = 0
+    , DTC_OVER_16V0_FAIL
+    , DTC_UNDER_9V0_FAIL  
+    , DTC_BCS_TIMEOUT  
+    , DTC_GW_TIMEOUT
+    , DTC_VCU_TIMEOUT
+    , DTC_BCS_INVALID
+    , DTC_GW_INVALID
+    , DTC_VCU_INVALID
+    , DTC_HW_CAN_MISMATCH  
+    , DTC_VSO_WSO_INCOHER
+    , DTC_VSO_INVALID  
+    , DTC_AUTH_NO_SIG  
+    , DTC_AUTH_COMPARE_FAIL   
+    , DTC_RAM_FAIL 
+    , DTC_EEPROM_FAIL  
+    , DTC_UNLOCK_HALL_FAIL
+    , DTC_MOTOR_POS_TO  
+    , DTC_SMP_FAIL 
+    , DTC_SBC_FAIL 
+    , DTC_RTOS_FAIL 
+    , DTC_FLASH_FAIL
+    , DTC_VOLT_MTR_FAIL
+    , DTC_BRIDGE_OVERLOAD 
+    , DTC_SFT_MSFT_FAIL
+    , DTC_ELECTRIC_FAIL 
+    , DTC_LAST_DTC_ID
+  };
+
+  enum DTC_SNAPSHOT_INDEX
+  {
+      DTC_SNAPSHOT_VOLTAGE = 0
+    , DTC_SNAPSHOT_ESCL_STATUS
+    , DTC_SNAPSHOT_IG_STATUS
+    , DTC_SNAPSHOT_NUM
+  };
+
+  enum DTC_EXTENDED_INDEX
+  {
+      DTC_EXTENDED_COUNTER = 0
+    , DTC_EXTENDED_AGING
+    , DTC_EXTENDED_AGED
+    , DTC_EXTENDED_NUM
+  };
+
+  enum DTC_TRIGGER_INDEX
+  {
+      DTC_01_TRIGGER = 0x01
+    , DTC_02_TRIGGER = 0x02
+    , DTC_04_TRIGGER = 0x04 
+    , DTC_06_TRIGGER = 0x06 
+    , DTC_0A_TRIGGER = 0x0A
+    , DTC_NONE_TRIGGER = 0xFF
+  };
+  
+  struct DTC_TABLE
+  {
+    enum DTC_NAME dtcName;
+    dword dtcNumber;
+    char dtcComments[32];
+  };
+
+  struct DTC_DISPLAY_INFORMATION 
+  {
+    enum DTC_NAME dtcName;
+    dword dtcNumber;
+    char dtcComments[32];
+    byte status;
+    byte snapshot[DTC_SNAPSHOT_NUM];
+    byte extendedData[DTC_EXTENDED_NUM];
+  };
+
+  struct DTC_DISPLAY_INFORMATION DtcDisplayInfo[DTC_LAST_DTC_ID];
+  
+  /* GAC A26 DTC table */
+  struct DTC_TABLE DtcTable[DTC_LAST_DTC_ID] = 
+  {
+     {DTC_BUS_OFF,            0xC07388,  "DTC_BUS_OFF           "}  /*busoff*/
+    ,{DTC_OVER_16V0_FAIL,     0xA60017,  "DTC_OVER_16V0_FAIL    "}  /*batteryvoltagehigh*/
+    ,{DTC_UNDER_9V0_FAIL,     0xA60016,  "DTC_UNDER_9V0_FAIL    "}  /*batteryvoltagelow*/
+    ,{DTC_BCS_TIMEOUT,        0xC12987,  "DTC_BCS_TIMEOUT       "}  /*LostCommunicationWithBCS*/
+    ,{DTC_GW_TIMEOUT,         0xC14687,  "DTC_GW_TIMEOUT        "}  /*LostCommunicationWithGateway*/
+    ,{DTC_VCU_TIMEOUT,        0xD08087,  "DTC_VCU_TIMEOUT       "}  /*LostCommunicationWithVCU*/
+    ,{DTC_BCS_INVALID,        0xC41581,  "DTC_BCS_INVALID       "}  /*InvaliddatareceivedfromBCS*/
+    ,{DTC_GW_INVALID,         0xC44781,  "DTC_GW_INVALID        "}  /*InvaliddatareceivedfromGateway*/
+    ,{DTC_VCU_INVALID,        0xD08081,  "DTC_VCU_INVALID       "}  /*InvaliddatareceivedfromVCU*/
+    ,{DTC_HW_CAN_MISMATCH,    0xA64062,  "DTC_HW_CAN_MISMATCH   "}  /*ONHW&CANdon'tmatch*/
+    ,{DTC_VSO_WSO_INCOHER,    0xA64162,  "DTC_VSO_WSO_INCOHER   "}  /*VSO_HWandWSO_CANincoherence*/
+    ,{DTC_VSO_INVALID,        0xA64186,  "DTC_VSO_INVALID       "}  /*VSOSignalInvalid*/
+    ,{DTC_AUTH_NO_SIG,        0xA64287,  "DTC_AUTH_NO_SIG       "}  /*Authenticationnosignal*/
+    ,{DTC_AUTH_COMPARE_FAIL,  0xA64362,  "DTC_AUTH_COMPARE_FAIL "}  /*Authenticationcomparefailure*/
+    ,{DTC_RAM_FAIL,           0xA66044,  "DTC_RAM_FAIL          "}  /*RAMError*/
+    ,{DTC_EEPROM_FAIL,        0xA66045,  "DTC_EEPROM_FAIL       "}  /*EEPROMError*/
+    ,{DTC_UNLOCK_HALL_FAIL,   0xA65000,  "DTC_UNLOCK_HALL_FAIL  "}  /*UnlockHalleffectdoesn'twork*/
+    ,{DTC_MOTOR_POS_TO,       0xA6A077,  "DTC_MOTOR_POS_TO      "}  /*DCMotordoesn'treachitsdestinationpositionintime*/
+    ,{DTC_SMP_FAIL,           0xA68000,  "DTC_SMP_FAIL          "}  /*UARTCommunicationErrorbetweenMainControllerandSlaveController*/
+    ,{DTC_SBC_FAIL,           0xA68304,  "DTC_SBC_FAIL          "}  /*CANSBCfailure*/
+    ,{DTC_RTOS_FAIL,          0x920048,  "DTC_RTOS_FAIL         "}  /*RTOSfail*/
+    ,{DTC_FLASH_FAIL,         0xA66142,  "DTC_FLASH_FAIL        "}  /*FLASHfailure*/
+    ,{DTC_VOLT_MTR_FAIL,      0xA6A01C,  "DTC_VOLT_MTR_FAIL     "}  /*BadvoltageonDCMotorterminals*/
+    ,{DTC_BRIDGE_OVERLOAD,    0xA6A192,  "DTC_BRIDGE_OVERLOAD   "}  /*Fullbridgeoverloaded*/
+    ,{DTC_SFT_MSFT_FAIL,      0xA69096,  "DTC_SFT_MSFT_FAIL     "}  /*SafetyMosfetdoesn'twork*/
+  //,{DTC_LAST_DTC_ID,        0x000000,  "ABCDEFGHIJKLMNOPQRSTUV"}   /*None*/
+  };
+}
+
+
+/**************************************************************************************************/
+/**
+    \brief   Fill the DTC information to DtcDisplayInfo from TpDataReceived <br>
+             Call by function DTC_Display_Task() when needed to be displayed.
+             
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void Fill_Dtc_Information(byte subService)
+{
+  word tempIndex;
+  byte dtcIndex;
+  byte temp;
+  
+  dword dtcNumberTemp;
+  byte dtcStatusTemp;
+  byte dtcSnapshotRecordNum;
+  byte dtcDTCExtendedDataRecordNum;
+  
+  switch(subService)
+  {
+    /* reportNumberOfDTCByStatusMask */
+    case 0x01:
+    {
+      break;
+    }
+    /* reportDTCByStatusMask */
+    case 0x02:
+    {
+      /* If the length of TpDataReceivedLen > 3, we can think that there some DTC information are respond */
+      /* Negiative response :7F 19 NRC, the length is 3 */
+      /* Positive response with none DTC:59 xx 89, the length is 3 */
+      if(TpDataReceivedLen > 3)
+      {
+        tempIndex = 3;
+        while(tempIndex < TpDataReceivedLen)
+        {
+          dtcNumberTemp = ((dword)TpDataReceived[tempIndex] << 16)
+                          + ((dword)TpDataReceived[tempIndex + 1] << 8)
+                          + (dword)TpDataReceived[tempIndex + 2];
+          dtcStatusTemp = TpDataReceived[tempIndex + 3];
+
+          for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+          {
+            if(DtcTable[dtcIndex].dtcNumber == dtcNumberTemp)
+            {
+              DtcDisplayInfo[dtcIndex].status = dtcStatusTemp;
+            }
+          }
+          tempIndex = tempIndex + 4;
+        }
+      }
+
+      break;
+    }
+    /* reportDTCSnapshotRecordByDTCNumber */
+    /* Based on ISO 14229-1 Table 254 ！ Response message definition ！ sub-function = reportDTCSnapshotRecordByDTCNumber */
+    case 0x04:
+    {
+      dtcNumberTemp = ((dword)TpDataReceived[2] << 16)
+                      + ((dword)TpDataReceived[3] << 8)
+                      + (dword)TpDataReceived[4];
+                      
+      dtcSnapshotRecordNum = TpDataReceived[7];
+      
+      for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+      {
+        if(DtcTable[dtcIndex].dtcNumber == dtcNumberTemp)
+        {
+          for(temp = 0; temp < dtcSnapshotRecordNum; temp++)
+          {
+            DtcDisplayInfo[dtcIndex].snapshot[temp] = TpDataReceived[10 + 3 * temp];
+          }
+        }
+      }
+
+      break;
+    }
+    /* reportDTCExtendedDataRecordByDTCNumber */
+    /* Based on ISO 14229-1 Table 256 ！ Response message definition ！ sub-function = reportDTCExtendedDataRecordByDTCNumber and
+       reportMirrorMemoryDTCExtendedDataRecordByDTCNumber */
+    case 0x06:
+    {
+      dtcNumberTemp = ((dword)TpDataReceived[2] << 16)
+                      + ((dword)TpDataReceived[3] << 8)
+                      + (dword)TpDataReceived[4];
+                      
+      dtcDTCExtendedDataRecordNum = DTC_EXTENDED_NUM;
+      for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+      {
+        if(DtcTable[dtcIndex].dtcNumber == dtcNumberTemp)
+        {
+          for(temp = 0; temp < dtcDTCExtendedDataRecordNum; temp++)
+          {
+            DtcDisplayInfo[dtcIndex].extendedData[temp] = TpDataReceived[7 + temp];
+          }
+        }
+      }
+      break;
+    }
+    /* reportSupportedDTC */
+    case 0x0A:
+    {
+      break;
+    }
+    default:
+    {
+      break;
+    }
+  }
+}
+
+
+/**************************************************************************************************/
+/**
+    \brief   Initialize the DtcDisplayInfo default value <br>
+             
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void DTC_Display_Init_Task(void)
+{
+  byte dtcIndex;
+  byte tempIndex;
+  
+  for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+  {
+    DtcDisplayInfo[dtcIndex].dtcName = DtcTable[dtcIndex].dtcName;
+    DtcDisplayInfo[dtcIndex].dtcNumber = DtcTable[dtcIndex].dtcNumber;
+    for(tempIndex = 0; tempIndex < 32; tempIndex++)
+    {
+      DtcDisplayInfo[dtcIndex].dtcComments[tempIndex] = DtcTable[dtcIndex].dtcComments[tempIndex];
+    }
+    DtcDisplayInfo[dtcIndex].status = 0x00;
+    //DtcDisplayInfo[dtcIndex].snapshot = 0x00;
+    //DtcDisplayInfo[dtcIndex].extendedData = 0x00;
+  }
+}
+
+/**************************************************************************************************/
+/**
+    \brief   Display DTC information on DtcDisplayControl <br>
+             ReadDTCInformation_19_xx_Triger from TRUE to FALSE as a trigger to display DTC information
+             
+    \period  1ms
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void DTC_Display_Task(void)
+{
+  enum TRUE_FALSE displayTrigger;
+  
+  enum TRUE_FALSE displayTriggerTemp_01;
+  enum TRUE_FALSE displayTriggerTemp_02;
+  enum TRUE_FALSE displayTriggerTemp_04;
+  enum TRUE_FALSE displayTriggerTemp_06;
+  enum TRUE_FALSE displayTriggerTemp_0A;
+
+  enum DTC_TRIGGER_INDEX displayTriggerTemp = DTC_NONE_TRIGGER;
+
+  byte subServiceIndex;
+  byte dtcIndex;
+  byte dtcIndexOld;
+  byte tempIndex;
+  byte sequenceNum;
+  
+  char s_sequenceNum[3];
+  char s_dtcNumberHigh[3];
+  char s_dtcNumberMid[3];
+  char s_dtcNumberLow[3];
+  char s_dtcStatus[3];
+
+  char s_dtcSnapshotVoltage[3];
+  char s_dtcSnapshotEsclStatus[3];
+  char s_dtcSnapshotIgStatus[3];
+
+  char s_dtcExtendedDataCounter[3];
+  char s_dtcExtendedDataAging[3];
+  char s_dtcExtendedDataAged[3];
+  
+  /* ReadDTCInformation_19_xx_Triger from TRUE to FALSE trigger the flag displayTrigger to TRUE */
+  switch(displayTriggerTemp)
+  {
+    case DTC_01_TRIGGER:
+    {
+      break;
+    }
+    case DTC_02_TRIGGER:
+    {
+      if(FALSE == ReadDTCInformation_19_02_Triger)
+      {
+        subServiceIndex = DTC_02_TRIGGER;
+        Fill_Dtc_Information(subServiceIndex);
+        
+        if(ENABLED == DtcSnapshotEnable)
+        {
+          for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+          {
+            if(0x00 != DtcDisplayInfo[dtcIndex].status)
+            {
+              DtcNumber = DtcDisplayInfo[dtcIndex].dtcNumber;
+              write("DtcNumber %d", DtcNumber);
+              break;
+            }
+          }
+          if(dtcIndex < DTC_LAST_DTC_ID)
+          {
+            ReadDTCInformation_19_04_Triger = TRUE;
+            displayTriggerTemp = DTC_04_TRIGGER;
+            dtcIndexOld = dtcIndex + 1;
+          }
+          else
+          {
+            displayTriggerTemp = DTC_NONE_TRIGGER;
+            displayTrigger = TRUE;
+          }
+        }
+        else if(ENABLED == DtcExtendedDatatEnable)
+        {
+          for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+          {
+            if(0x00 != DtcDisplayInfo[dtcIndex].status)
+            {
+              DtcNumber = DtcDisplayInfo[dtcIndex].dtcNumber;
+              write("DtcNumber %d", DtcNumber);
+              break;
+            }
+          }
+          if(dtcIndex < DTC_LAST_DTC_ID)
+          {
+            ReadDTCInformation_19_06_Triger = TRUE;
+            displayTriggerTemp = DTC_06_TRIGGER;   
+          }
+          else
+          {
+            displayTriggerTemp = DTC_NONE_TRIGGER;
+            displayTrigger = TRUE;
+          }
+        }
+        else
+        {
+          displayTriggerTemp = DTC_NONE_TRIGGER;
+          displayTrigger = TRUE;
+        }
+      }
+      break;
+    }
+    case DTC_04_TRIGGER:
+    {      
+      if(FALSE == ReadDTCInformation_19_04_Triger)
+      {
+        subServiceIndex = DTC_04_TRIGGER;
+        Fill_Dtc_Information(subServiceIndex);
+        
+        for(dtcIndex = dtcIndexOld; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+        {
+          if(0x00 != DtcDisplayInfo[dtcIndex].status)
+          {
+            DtcNumber = DtcDisplayInfo[dtcIndex].dtcNumber;
+            break;
+          }
+        }
+        if(dtcIndex < DTC_LAST_DTC_ID)
+        {
+          ReadDTCInformation_19_04_Triger = TRUE;
+          displayTriggerTemp = DTC_04_TRIGGER;
+          dtcIndexOld = dtcIndex + 1;
+        }
+        else
+        {
+          if(ENABLED == DtcExtendedDatatEnable)
+          {
+            for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+            {
+              if(0x00 != DtcDisplayInfo[dtcIndex].status)
+              {
+                DtcNumber = DtcDisplayInfo[dtcIndex].dtcNumber;
+                break;
+              }
+            }
+            if(dtcIndex < DTC_LAST_DTC_ID)
+            {
+              ReadDTCInformation_19_06_Triger = TRUE;
+              displayTriggerTemp = DTC_06_TRIGGER;
+              dtcIndexOld = dtcIndex + 1;
+            }
+            else
+            {
+              displayTriggerTemp = DTC_NONE_TRIGGER;
+              displayTrigger = TRUE;
+            }
+          }
+          else
+          {
+            displayTriggerTemp = DTC_NONE_TRIGGER;
+            displayTrigger = TRUE;
+          }
+        }
+      }
+      break;
+    }
+    case DTC_06_TRIGGER:
+    {
+      if(FALSE == ReadDTCInformation_19_06_Triger)
+      {
+        subServiceIndex = DTC_06_TRIGGER;
+        Fill_Dtc_Information(subServiceIndex);
+        
+        for(dtcIndex = dtcIndexOld; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+        {
+          if(0x00 != DtcDisplayInfo[dtcIndex].status)
+          {
+            DtcNumber = DtcDisplayInfo[dtcIndex].dtcNumber;
+            break;
+          }
+        }
+        if(dtcIndex < DTC_LAST_DTC_ID)
+        {
+          ReadDTCInformation_19_06_Triger = TRUE;
+          displayTriggerTemp = DTC_06_TRIGGER;
+          dtcIndexOld = dtcIndex + 1;
+        }
+        else
+        {
+          displayTriggerTemp = DTC_NONE_TRIGGER;
+          displayTrigger = TRUE;
+        }
+      }
+      break;
+    }
+    case DTC_0A_TRIGGER:
+    {
+      break;
+    }
+    default:
+    {
+      /* Waitting for trigger */
+      if(TRUE == ReadDTCInformation_19_01_Triger)
+      {
+        displayTriggerTemp = DTC_01_TRIGGER;
+      }
+      else if(TRUE == ReadDTCInformation_19_02_Triger)
+      {
+        displayTriggerTemp = DTC_02_TRIGGER;
+        write("displayTriggerTemp = DTC_02_TRIGGER;");
+      }
+      else if(TRUE == ReadDTCInformation_19_0A_Triger)
+      {
+        displayTriggerTemp = DTC_0A_TRIGGER;
+      }
+      else
+      {
+        displayTriggerTemp = DTC_NONE_TRIGGER;
+      }
+      break;
+    }  
+  }
+
+  if(TRUE == displayTriggerTemp_01)
+  {
+    if(FALSE == ReadDTCInformation_19_01_Triger)
+    {
+      displayTrigger = TRUE;
+      displayTriggerTemp_01 = FALSE;
+      subServiceIndex = 0x01;
+    }
+  }
+  else if(TRUE == displayTriggerTemp_02)
+  {
+    if(FALSE == ReadDTCInformation_19_02_Triger)
+    {
+      displayTriggerTemp_02 = FALSE;
+      subServiceIndex = 0x02;
+      Fill_Dtc_Information(subServiceIndex);
+      
+      if(ENABLED == DtcSnapshotEnable)
+      {
+        ReadDTCInformation_19_04_Triger = TRUE;
+      }
+      else if(ENABLED == DtcExtendedDatatEnable)
+      {
+        ReadDTCInformation_19_06_Triger = TRUE;
+      }
+      else
+      {
+        displayTrigger = TRUE;
+      }
+    }
+  }
+  else if(TRUE == displayTriggerTemp_04)
+  {
+    if(FALSE == ReadDTCInformation_19_04_Triger)
+    {
+      if(ENABLED == DtcExtendedDatatEnable)
+      {
+        ReadDTCInformation_19_06_Triger = TRUE;
+      }
+      else
+      {
+        displayTrigger = TRUE;
+      }
+      displayTriggerTemp_04 = FALSE;
+      subServiceIndex = 0x04;
+
+      Fill_Dtc_Information(subServiceIndex);
+    }
+  }
+  else if(TRUE == displayTriggerTemp_06)
+  {
+    if(FALSE == ReadDTCInformation_19_06_Triger)
+    {
+      displayTrigger = TRUE;
+      displayTriggerTemp_06 = FALSE;
+      subServiceIndex = 0x06;
+
+      Fill_Dtc_Information(subServiceIndex);
+    }
+  }
+  else if(TRUE == displayTriggerTemp_0A)
+  {
+    if(FALSE == ReadDTCInformation_19_0A_Triger)
+    {
+      displayTrigger = TRUE;
+      displayTriggerTemp_0A = FALSE;
+      subServiceIndex = 0x0A;
+    }
+  }
+  else
+  {
+    /* Do nothing */
+  }
+  
+  if(TRUE == displayTrigger)
+  {
+    putValueToControl("Main_Panel","DtcDisplayControl", "No | Number | DTC Name               |Sta |   DTC Snapshot  |   DTC Extended  |\n");
+    putValueToControl("Main_Panel","DtcDisplayControl", "   |        |                        |tus |                 |     Data        |\n");
+    putValueToControl("Main_Panel","DtcDisplayControl", "   |        |                        |    |Volt |ESCL |Igni |Coun |Agin |Aged |\n");
+    putValueToControl("Main_Panel","DtcDisplayControl", "   |        |                        |    |age  |     |tion |ter  |g    |     |\n");
+    putValueToControl("Main_Panel","DtcDisplayControl", "---|--------|------------------------|----|-----|-----|-----|-----|-----|-----|\n");
+
+    sequenceNum = 0;
+    for(dtcIndex = 0; dtcIndex < DTC_LAST_DTC_ID; dtcIndex++)
+    {
+      if(0 != DtcDisplayInfo[dtcIndex].status)
+      {
+        /* Display sequenceNum */
+        /* Display the message data, fill '0' to make each number to length 2, total DTC number length is 6, for beauty layout */
+        ltoa(sequenceNum, s_sequenceNum, 10);
+        if(sequenceNum < 10)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+    	  putValueToControl("Main_Panel","DtcDisplayControl", s_sequenceNum);
+    	  /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", " | ");
+  
+    	  /* Display DTC number */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].dtcNumber >> 16), s_dtcNumberHigh, 16);
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].dtcNumber >> 8), s_dtcNumberMid, 16);
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].dtcNumber), s_dtcNumberLow, 16);
+  
+        toUpper(s_dtcNumberHigh, s_dtcNumberHigh, elcount(s_dtcNumberHigh));
+        toUpper(s_dtcNumberMid, s_dtcNumberMid, elcount(s_dtcNumberMid));
+        toUpper(s_dtcNumberLow, s_dtcNumberLow, elcount(s_dtcNumberLow));
+        
+        /* Display the message data, fill '0' to make each number to length 2, total DTC number length is 6, for beauty layout */
+    	  if(((byte)(DtcDisplayInfo[dtcIndex].dtcNumber >> 16)) <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcNumberHigh);
+        if(((byte)(DtcDisplayInfo[dtcIndex].dtcNumber >> 8)) <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcNumberMid);
+        if((byte)DtcDisplayInfo[dtcIndex].dtcNumber <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcNumberLow);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", " | ");
+        
+  
+        /* Display DTC Name */
+        putValueToControl("Main_Panel","DtcDisplayControl", DtcDisplayInfo[dtcIndex].dtcComments);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", " | ");
+  
+        /* Display DTC Status */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].status), s_dtcStatus, 16);
+        toUpper(s_dtcStatus, s_dtcStatus, elcount(s_dtcStatus));
+        
+        /* Display the message data, fill '0' to make each number to length 2, for beauty layout */
+    	  if(DtcDisplayInfo[dtcIndex].status <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcStatus);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", " | ");
+  
+        /* Display DTC Snapshot */
+        /* Snapshot -> Supply voltage */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].snapshot[DTC_SNAPSHOT_VOLTAGE]), s_dtcSnapshotVoltage, 16);
+        toUpper(s_dtcSnapshotVoltage, s_dtcSnapshotVoltage, elcount(s_dtcSnapshotVoltage));
+        
+    	  if(DtcDisplayInfo[dtcIndex].snapshot[DTC_SNAPSHOT_VOLTAGE] <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcSnapshotVoltage);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", "  | ");
+        
+        /* Snapshot -> ESCL Status */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].snapshot[DTC_SNAPSHOT_ESCL_STATUS]), s_dtcSnapshotEsclStatus, 16);
+        toUpper(s_dtcSnapshotEsclStatus, s_dtcSnapshotEsclStatus, elcount(s_dtcSnapshotEsclStatus));
+        
+    	  if(DtcDisplayInfo[dtcIndex].snapshot[DTC_SNAPSHOT_ESCL_STATUS] <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcSnapshotEsclStatus);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", "  | ");
+        
+        
+        /* Snapshot -> Ignition Status */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].snapshot[DTC_SNAPSHOT_IG_STATUS]), s_dtcSnapshotIgStatus, 16);
+        toUpper(s_dtcSnapshotIgStatus, s_dtcSnapshotIgStatus, elcount(s_dtcSnapshotIgStatus));
+        
+    	  if(DtcDisplayInfo[dtcIndex].snapshot[DTC_SNAPSHOT_IG_STATUS] <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcSnapshotIgStatus);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", "  | ");
+        
+        /* Display DTC Extended Data */
+        /* Extended Data -> Fault occurrence counter */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].extendedData[DTC_EXTENDED_COUNTER]), s_dtcExtendedDataCounter, 16);
+        toUpper(s_dtcExtendedDataCounter, s_dtcExtendedDataCounter, elcount(s_dtcExtendedDataCounter));
+        
+    	  if(DtcDisplayInfo[dtcIndex].extendedData[DTC_EXTENDED_COUNTER] <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcExtendedDataCounter);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", "  | ");
+        
+        /* Extended Data -> Aging counter */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].extendedData[DTC_EXTENDED_AGING]), s_dtcExtendedDataAging, 16);
+        toUpper(s_dtcExtendedDataAging, s_dtcExtendedDataAging, elcount(s_dtcExtendedDataAging));
+        
+    	  if(DtcDisplayInfo[dtcIndex].extendedData[DTC_EXTENDED_AGING] <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcExtendedDataAging);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", "  | ");
+        
+        /* Extended Data -> Aged counter */
+        ltoa((byte)(DtcDisplayInfo[dtcIndex].extendedData[DTC_EXTENDED_AGED]), s_dtcExtendedDataAged, 16);
+        toUpper(s_dtcExtendedDataAged, s_dtcExtendedDataAged, elcount(s_dtcExtendedDataAged));
+        
+    	  if(DtcDisplayInfo[dtcIndex].extendedData[DTC_EXTENDED_AGED] <= 0x0F)
+    	  {
+    	    putValueToControl("Main_Panel","DtcDisplayControl", "0");
+    	  }
+        putValueToControl("Main_Panel","DtcDisplayControl", s_dtcExtendedDataAged);
+        /* Separation Line */
+        putValueToControl("Main_Panel","DtcDisplayControl", "  | ");
+        
+        putValueToControl("Main_Panel","DtcDisplayControl", " \n");
+  
+        sequenceNum = sequenceNum + 1;
+      }  
+    }
+    if(0 == sequenceNum)
+    {
+      putValueToControl("Main_Panel","DtcDisplayControl", "None DTC \n");
+    }
+    
+    putValueToControl("Main_Panel","DtcDisplayControl", "   |        |                        |    |     |     |     |     |     |     |\n");
+    putValueToControl("Main_Panel","DtcDisplayControl", "---|--------|------------------------|----|-----|-----|-----|-----|-----|-----|\n");
+    putValueToControl("Main_Panel","DtcDisplayControl", " \n");
+    
+    subServiceIndex = 0x00;
+    displayTrigger = FALSE;
+  }
+}
+
+

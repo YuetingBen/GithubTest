@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="" interface="">
+    <namespace name="MESSAGE" comment="" interface="">
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="VCU_DCU_ActRotSpd_MsgEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2" />
+    </namespace>
+    <namespace name="NODE" comment="" interface="">
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Peps_Enable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="Off" />
+          <valuetableentry value="1" description="On" />
+          <valuetableentry value="2" description="Invalid" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Vcu_Enable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+    </namespace>
+  </namespace>
+</systemvariables>

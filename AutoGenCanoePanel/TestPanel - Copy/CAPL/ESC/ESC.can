@@ -1,0 +1,115 @@
+/* -----------------------------------------------------------------------------
+  Filename:    ESC.can
+  
+  Description: Brief: Brief_Replace
+               Generation date: GenerationDate_Replace
+
+ ----------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+  C O P Y R I G H T
+ -------------------------------------------------------------------------------
+  Copyright (c) 2019 by Yueting Ben. All rights reserved.
+ -------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------- */
+ variables
+{
+  message ESC_3A1h ESC_3A1h_Frame;
+  message ESC_3A0h ESC_3A0h_Frame;
+  msTimer ESC_3A1h_Timer;
+  msTimer ESC_3A0h_Timer;
+  byte ESC_3A1h_EnableFlag;
+  byte ESC_3A0h_EnableFlag;
+}
+on start
+{
+  setTimer(ESC_3A1h_Timer, 0);
+  setTimer(ESC_3A0h_Timer, 0);
+  ESC_3A1h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+  ESC_3A0h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+}
+on Timer ESC_3A1h_Timer
+{
+  byte ESC_3A1h_MegCounter;
+  byte ESC_3A1h_CheckSum;
+  if(1 == ESC_3A1h_EnableFlag)
+  {
+    output(ESC_3A1h_Frame);
+  }
+  ESC_3A1h_Frame.ABSCheckSum_R = @sysvar::SIGNALINFO::ABSCheckSum_RValue;
+  ESC_3A1h_Frame.ABSMessageCounter_R = @sysvar::SIGNALINFO::ABSMessageCounter_RValue;
+  ESC_3A1h_Frame.WhlSpdSenErrRR = @sysvar::SIGNALINFO::WhlSpdSenErrRRValue;
+  ESC_3A1h_Frame.WhlSpdSenErrRL = @sysvar::SIGNALINFO::WhlSpdSenErrRLValue;
+  ESC_3A1h_Frame.WheelSpeedRRStatus = @sysvar::SIGNALINFO::WheelSpeedRRStatusValue;
+  ESC_3A1h_Frame.WheelSpeedRR = @sysvar::SIGNALINFO::WheelSpeedRRValue;
+  ESC_3A1h_Frame.WheelSpeedRLStatus = @sysvar::SIGNALINFO::WheelSpeedRLStatusValue;
+  ESC_3A1h_Frame.WheelSpeedRL = @sysvar::SIGNALINFO::WheelSpeedRLValue;
+  setTimer(ESC_3A1h_Timer, 20);
+}
+on Timer ESC_3A0h_Timer
+{
+  byte ESC_3A0h_MegCounter;
+  byte ESC_3A0h_CheckSum;
+  if(1 == ESC_3A0h_EnableFlag)
+  {
+    output(ESC_3A0h_Frame);
+  }
+  ESC_3A0h_Frame.ABSCheckSum_F = @sysvar::SIGNALINFO::ABSCheckSum_FValue;
+  ESC_3A0h_Frame.ABSMessageCounter_F = @sysvar::SIGNALINFO::ABSMessageCounter_FValue;
+  ESC_3A0h_Frame.WhlSpdSenErrFR = @sysvar::SIGNALINFO::WhlSpdSenErrFRValue;
+  ESC_3A0h_Frame.WhlSpdSenErrFL = @sysvar::SIGNALINFO::WhlSpdSenErrFLValue;
+  ESC_3A0h_Frame.WheelSpeedFRStatus = @sysvar::SIGNALINFO::WheelSpeedFRStatusValue;
+  ESC_3A0h_Frame.WheelSpeedFR = @sysvar::SIGNALINFO::WheelSpeedFRValue;
+  ESC_3A0h_Frame.WheelSpeedFLStatus = @sysvar::SIGNALINFO::WheelSpeedFLStatusValue;
+  ESC_3A0h_Frame.WheelSpeedFL = @sysvar::SIGNALINFO::WheelSpeedFLValue;
+  setTimer(ESC_3A0h_Timer, 20);
+}
+on sysvar NODE::ESCEnableAll_Msg
+{
+  if(1 == @sysvar::NODE::ESCEnableAll_Msg)
+  {
+    @sysvar::NODE::ESCEnableAll_Msg = 1;
+    @sysvar::NODE::ESCDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable = 1;
+    ESC_3A1h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable = 1;
+    ESC_3A0h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::ESCEnableAll_Msg = 0;
+    @sysvar::NODE::ESCDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable = 0;
+    ESC_3A1h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable = 0;
+    ESC_3A0h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+  }
+}
+on sysvar NODE::ESCDisableAll_Msg
+{
+  if(1 == @sysvar::NODE::ESCDisableAll_Msg)
+  {
+    @sysvar::NODE::ESCEnableAll_Msg = 0;
+    @sysvar::NODE::ESCDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable = 0;
+    ESC_3A1h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable = 0;
+    ESC_3A0h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::ESCEnableAll_Msg = 1;
+    @sysvar::NODE::ESCDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable = 1;
+    ESC_3A1h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable = 1;
+    ESC_3A0h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+  }
+}
+on sysvar MESSAGEFRAME::ESC_3A1hMessageEnable
+{
+  ESC_3A1h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A1hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::ESC_3A0hMessageEnable
+{
+  ESC_3A0h_EnableFlag = @sysvar::MESSAGEFRAME::ESC_3A0hMessageEnable & @sysvar::NODE::ESCEnableAll_Msg;
+}

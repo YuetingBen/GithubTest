@@ -1,0 +1,780 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Tester TEL VCU IPS DCU DCDC BMS SRS SAS MRR PCU GSM AFS BCS WCM PCS PAS IFC ESCL EPS BSDS BSDM ICM AVNT ACU PEPS SM IAL HVAC HCP FRDCM FLDCM FCP BCM AVAS GWM
+
+
+BO_ 697 VCU_8_A: 8 VCU
+ SG_ VCU_DCU_ActRotSpd : 7|16@0+ (1,-32767) [-32767|32766] "rpm"  ESCL
+ SG_ VCU_8_A_MsgCounter : 31|4@0+ (1,0) [0|15] ""  ESCL
+ SG_ VCU_8_A_Checksum : 63|8@0+ (1,0) [0|255] ""  ESCL
+
+BO_ 864 VCU_2_A: 8 VCU
+ SG_ VCU_VehRdySt_A : 22|1@0+ (1,0) [0|0] "-"  PAS,IFC,ESCL,EPS
+
+BO_ 51 GW_SBM_RemoteControlReq_2_A: 8 GWM
+ SG_ SBM_LockDoorReqVD : 3|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ SBM_LockDoorReq : 2|1@0+ (1,0) [0|1] ""  ESCL
+
+BO_ 81 GW_SBM_1_A: 8 GWM
+ SG_ SBM_PassengerDoorLockReq : 17|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ SBM_DriverDoorLockReq : 15|1@0+ (1,0) [0|0] ""  ESCL
+
+BO_ 1391 BSDS_NM_ACAN: 8 BSDS
+ SG_ BSDS_NodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDM,ICM,AVNT,GWM
+ SG_ BSDS_NMDataField : 15|56@0+ (1,0) [0|0] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDM,ICM,AVNT,GWM
+
+BO_ 1323 ACU_NM_ACAN: 8 AVNT
+ SG_ ACU_NMNodeAddress : 7|8@0+ (1,0) [0|255] "-"  BSDM,BCS,TEL,VCU,WCM,PCS,ESCL,EPS,BSDS,ICM,GWM
+ SG_ ACU_NMDataField : 15|56@0+ (1,0) [0|0] "-"  BSDM,BCS,TEL,VCU,WCM,PCS,ESCL,EPS,BSDS,ICM,GWM
+
+BO_ 1863 ESCL_Phys_Diag_Rx: 8 Tester
+ SG_ ESCL_Diag_Request : 7|64@0+ (1,0) [0|0] ""  ESCL
+
+BO_ 2015 Func_Diag_Rx: 8 Tester
+ SG_ Func_Diag_Rx : 7|64@0+ (1,0) [0|0] ""  WCM,PCS,PAS,IFC,ESCL,EPS,BSDM
+
+BO_ 1507 VCU_NM_ACAN: 8 VCU
+ SG_ VCU_NMDataField2_A : 39|32@0+ (1,0) [0|0] "-"  TEL,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+ SG_ VCU_SubNetWakeRq_A : 31|8@0+ (1,0) [0|255] "-"  TEL,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+ SG_ VCU_NMDataField1_A : 15|16@0+ (1,0) [0|0] "-"  TEL,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+ SG_ VCU_NMNodeAddress_A : 7|8@0+ (1,0) [0|255] "-"  TEL,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+
+BO_ 1325 TEL_NM_ACAN: 8 TEL
+ SG_ TEL_NMDataField : 15|56@0+ (1,0) [0|0] "-"  VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+ SG_ TEL_NodeAddress : 7|8@0+ (1,0) [0|255] "-"  VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+
+BO_ 1352 WCM_NM_ACAN: 8 WCM
+ SG_ WCM_NMDataField : 15|56@0+ (1,0) [0|0] ""  TEL,VCU,BCS,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+ SG_ WCM_NodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+
+BO_ 1337 PCS_NM: 8 PCS
+ SG_ PCS_NMDataField : 15|56@0+ (1,0) [0|0] ""  TEL,VCU,BCS,WCM,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+ SG_ PCS_NodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,WCM,ESCL,EPS,BSDS,BSDM,ICM,AVNT,GWM
+
+BO_ 1320 ICM_NM_ACAN: 8 ICM
+ SG_ ICM_NMDataField : 15|56@0+ (1,0) [0|0] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,AVNT,ACU,GWM
+ SG_ ICM_NodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,AVNT,ACU,GWM
+
+BO_ 1359 GWM_NM_ACAN: 8 GWM
+ SG_ GWM_NMDataField : 15|56@0+ (1,0) [0|0] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT
+ SG_ GWM_NodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT
+
+BO_ 1343 BSDM_NM_ACAN: 8 BSDM
+ SG_ BSDM_NMDataField : 15|56@0+ (1,0) [0|0] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,ICM,AVNT,ACU,GWM
+ SG_ BSDM_NodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,WCM,PCS,ESCL,EPS,BSDS,ICM,AVNT,ACU,GWM
+
+BO_ 1300 EPS_NM: 8 EPS
+ SG_ EPS_NMDataField : 15|56@0+ (1,0) [0|0] ""  TEL,VCU,BCS,WCM,PCS,ESCL,BSDS,BSDM,ICM,AVNT,ACU,GWM
+ SG_ EPS_NMNodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,WCM,PCS,ESCL,BSDS,BSDM,ICM,AVNT,ACU,GWM
+
+BO_ 1296 BCS_NM_ACAN: 8 BCS
+ SG_ BCS_NMDataField2 : 39|32@0+ (1,0) [0|0] ""  TEL,VCU,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+ SG_ BCS_SubNetWakeRq : 31|8@0+ (1,0) [0|255] ""  TEL,VCU,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+ SG_ BCS_NMDataField1 : 15|16@0+ (1,0) [0|0] ""  TEL,VCU,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+ SG_ BCS_NMNodeAddress : 7|8@0+ (1,0) [0|255] "-"  TEL,VCU,WCM,PCS,ESCL,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+
+BO_ 71 TEL_RmtCntrlReq_1_A: 8 GWM
+ SG_ TEL_LockDoorReqVD : 3|1@0+ (1,0) [0|1] "-"  ESCL
+ SG_ TEL_LockDoorReq : 2|1@0+ (1,0) [0|1] "-"  ESCL
+
+BO_ 83 GW_PEPS_7_A: 8 GWM
+ SG_ PEPS_AuthResp : 15|32@0+ (1,0) [0|0] ""  ESCL
+ SG_ PEPS_SUB_ID : 7|8@0+ (1,0) [0|2] ""  ESCL
+
+BO_ 85 GW_PEPS_3_A: 8 GWM
+ SG_ PEPS_WALReq : 19|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_ESCLLockReq : 30|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_keyComdInfor : 15|8@0+ (1,0) [0|255] ""  ESCL
+ SG_ PEPS_DoorLockReq : 4|1@0+ (1,0) [0|1] ""  ESCL
+
+BO_ 629 GW_PEPS_2_A: 8 GWM
+ SG_ PEPS_2_Checksum : 63|8@0+ (1,0) [0|255] ""  ESCL
+ SG_ PEPS_2_MsgCounter : 55|4@0+ (1,0) [0|15] ""  ESCL
+ SG_ PEPS_ESCLInhabitSt : 51|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_IGNFbkStVD : 46|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_IGNFbkSt : 45|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_IG1RelayStVD : 44|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_IG1RelaySt : 41|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_SysPowMode_RddyVD : 26|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ PEPS_SysPowMode_Rddy : 25|2@0+ (1,0) [0|3] ""  ESCL
+
+BO_ 369 GW_DCU_1_A: 8 GWM
+ SG_ DCU_1_Checksum : 63|8@0+ (1,0) [0|255] "-"  WCM,ESCL
+ SG_ DCU_1_MsgCounter : 51|4@0+ (1,0) [0|15] "-"  WCM,ESCL
+ SG_ DCU_RotSpdAct : 7|16@0+ (1,-32767) [-32767|32767] "rpm"  WCM,ESCL
+
+BO_ 885 GW_BCM_2_A: 8 GWM
+ SG_ BCM_CentralLockSWSt : 55|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ BCM_DriverDoorAjarSt : 14|1@0+ (1,0) [0|1] ""  WCM,PCS,PAS,IFC,ESCL,BSDS,BSDM
+ SG_ BCM_KeySt : 9|2@0+ (1,0) [0|3] ""  WCM,PCS,PAS,IFC,ESCL,EPS,BSDS,BSDM
+
+BO_ 621 BCS_10_A: 8 BCS
+ SG_ BCS_10_A_Checksum : 63|8@0+ (1,0) [0|255] ""  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_10_A_MsgCounter : 51|4@0+ (1,0) [0|15] ""  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_RRWheelSpd : 28|13@0+ (0.05625,0) [0|240] "km/h"  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_RRWheelSpdVD : 31|1@0+ (1,0) [0|1] ""  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_RLWheelSpd : 12|13@0+ (0.05625,0) [0|240] "km/h"  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_RLWheelSpdVD : 5|1@0+ (1,0) [0|1] ""  BSDS,BSDM,PAS,IFC,ESCL
+
+BO_ 620 BCS_9_A: 8 BCS
+ SG_ BCS_9_A_Checksum : 63|8@0+ (1,0) [0|255] ""  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_9_A_MsgCounter : 51|4@0+ (1,0) [0|15] ""  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_FRWheelSpd : 28|13@0+ (0.05625,0) [0|240] "km/h"  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_FRWheelSpdVD : 31|1@0+ (1,0) [0|1] ""  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_FLWheelSpd : 12|13@0+ (0.05625,0) [0|240] "km/h"  BSDS,BSDM,PAS,IFC,ESCL
+ SG_ BCS_FLWheelSpdVD : 5|1@0+ (1,0) [0|1] ""  BSDS,BSDM,PAS,IFC,ESCL
+
+BO_ 1991 ESCL_Diag_Tx: 8 ESCL
+ SG_ ESCL_Diag_Response : 7|64@0+ (1,0) [0|0] ""  Tester
+
+BO_ 1351 ESCL_NM: 8 ESCL
+ SG_ ESCL_SubNetWakeRq : 31|8@0+ (1,0) [0|255] "-" Vector__XXX
+ SG_ ESCL_NMDataField2 : 39|32@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESCL_NMDataField1 : 15|16@0+ (1,0) [0|0] ""  TEL,VCU,BCS,WCM,PCS,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+ SG_ ESCL_NodeAddress : 7|8@0+ (1,0) [0|255] ""  TEL,VCU,BCS,WCM,PCS,EPS,BSDS,BSDM,ICM,AVNT,ACU,GWM
+
+BO_ 190 ESCL_2: 8 ESCL
+ SG_ ESCL_AuthResult : 47|8@0+ (1,0) [0|3] ""  GWM
+ SG_ ESCL_AuthChallenge : 15|32@0+ (1,0) [0|0] ""  GWM
+ SG_ ESCL_SUB_ID : 7|8@0+ (1,0) [0|2] ""  GWM
+
+BO_ 867 ESCL_1: 8 ESCL
+ SG_ ESCL_1_Checksum : 63|8@0+ (1,0) [0|255] ""  GWM
+ SG_ ESCL_1_MsgCounter : 55|4@0+ (1,0) [0|15] ""  GWM
+ SG_ ESCL_PromptRotateSteerWheel : 4|1@0+ (1,0) [0|1] ""  GWM
+ SG_ ESCL_WarnFunctional : 3|1@0+ (1,0) [0|1] ""  GWM
+ SG_ ESCL_WarnSafety : 2|1@0+ (1,0) [0|1] ""  GWM
+ SG_ ESCL_St : 1|2@0+ (1,0) [0|3] ""  GWM
+
+
+
+CM_ SG_ 697 VCU_DCU_ActRotSpd "actual rotation speed of drvie motor";
+CM_ SG_ 697 VCU_8_A_MsgCounter "The MessageCounter is a 0 ~ 15 counter, increased of one unit on every message transmission";
+CM_ SG_ 697 VCU_8_A_Checksum "Message checksum";
+CM_ SG_ 864 VCU_VehRdySt_A "HEV system ready status";
+CM_ SG_ 51 SBM_LockDoorReqVD "SBM_LockDoorReq valid value";
+CM_ SG_ 51 SBM_LockDoorReq "Lock door request";
+CM_ SG_ 81 SBM_PassengerDoorLockReq "Passenger Door lock request";
+CM_ SG_ 81 SBM_DriverDoorLockReq "Driver Door lock request";
+CM_ SG_ 1391 BSDS_NodeAddress "BSDS Slave node adress";
+CM_ SG_ 1391 BSDS_NMDataField "BSDS Network management data";
+CM_ SG_ 1323 ACU_NMNodeAddress "ACU node address";
+CM_ SG_ 1323 ACU_NMDataField "ACU Network management data";
+CM_ SG_ 1863 ESCL_Diag_Request "Diagnostic physical request";
+CM_ SG_ 1507 VCU_NMDataField2_A "VCU Network management data";
+CM_ SG_ 1507 VCU_SubNetWakeRq_A "SubNet wake up request";
+CM_ SG_ 1507 VCU_NMDataField1_A "VCU Network management data";
+CM_ SG_ 1507 VCU_NMNodeAddress_A "VCU node adress";
+CM_ SG_ 1325 TEL_NMDataField "TEL Network management data";
+CM_ SG_ 1325 TEL_NodeAddress "TEL node address";
+CM_ SG_ 1352 WCM_NMDataField "WCM Network management data";
+CM_ SG_ 1352 WCM_NodeAddress "WCM node address";
+CM_ SG_ 1337 PCS_NMDataField "PCS Network management data";
+CM_ SG_ 1337 PCS_NodeAddress "PCS node address";
+CM_ SG_ 1320 ICM_NMDataField "ICM Network management data";
+CM_ SG_ 1320 ICM_NodeAddress "ICM node address";
+CM_ SG_ 1359 GWM_NMDataField "GWM Network management data";
+CM_ SG_ 1359 GWM_NodeAddress "GWM node address";
+CM_ SG_ 1343 BSDM_NMDataField "BSDM Network management data";
+CM_ SG_ 1343 BSDM_NodeAddress "BSDM node adress";
+CM_ SG_ 1300 EPS_NMDataField "EPS Network management data";
+CM_ SG_ 1300 EPS_NMNodeAddress "EPS node address";
+CM_ SG_ 1296 BCS_NMDataField2 "BCS Network management data";
+CM_ SG_ 1296 BCS_SubNetWakeRq "SubNet wake up request";
+CM_ SG_ 1296 BCS_NMDataField1 "BCS Network management data";
+CM_ SG_ 1296 BCS_NMNodeAddress "BCS node adress";
+CM_ SG_ 71 TEL_LockDoorReqVD "TEL_LockDoorReq valid value";
+CM_ SG_ 71 TEL_LockDoorReq "Lock door request";
+CM_ SG_ 83 PEPS_AuthResp "PEPS authentication response data";
+CM_ SG_ 83 PEPS_SUB_ID "Authentication message function code";
+CM_ SG_ 85 PEPS_WALReq "PEPS walk away lock request";
+CM_ SG_ 85 PEPS_ESCLLockReq "Request ESCL to perform locking";
+CM_ SG_ 85 PEPS_keyComdInfor "Key active command Information";
+CM_ SG_ 85 PEPS_DoorLockReq "Door lock request";
+CM_ SG_ 629 PEPS_ESCLInhabitSt "ESCL inhabit status";
+CM_ SG_ 629 PEPS_IGNFbkStVD "Indication Signal PEPS_IGNFbkSt validity";
+CM_ SG_ 629 PEPS_IGNFbkSt "Peps IGN1 feedback status";
+CM_ SG_ 629 PEPS_IG1RelayStVD "Indication Signal PEPS_IG1RelaySt validity";
+CM_ SG_ 629 PEPS_IG1RelaySt "PEPS IG1 relay status";
+CM_ SG_ 629 PEPS_SysPowMode_RddyVD "Indicates signal PEPS_SysPowMode_Rddy validity";
+CM_ SG_ 629 PEPS_SysPowMode_Rddy "System power mode redundancy (only for ESCL)";
+CM_ SG_ 369 DCU_1_Checksum "Message checksum";
+CM_ SG_ 369 DCU_1_MsgCounter "The MessageCounter is a 0 ~ 15 counter, increased of one unit on every message transmission";
+CM_ SG_ 369 DCU_RotSpdAct "actual rotation speed of drvie motor";
+CM_ SG_ 885 BCM_CentralLockSWSt "Central lock switch status";
+CM_ SG_ 885 BCM_DriverDoorAjarSt "Driver door ajar status";
+CM_ SG_ 885 BCM_KeySt "Ignition key position status";
+CM_ SG_ 621 BCS_10_A_MsgCounter "The message counter is a 0-15 counter, increased of one unit on every message transmission";
+CM_ SG_ 621 BCS_RRWheelSpd "Current wheel speed information of RRont left wheel";
+CM_ SG_ 621 BCS_RRWheelSpdVD "Quality/fault information to current wheel speed of RRont left wheel,be used for validity of BCS_RRWheelSpd and BCS_RRWheelSpdEdgesSum signal";
+CM_ SG_ 621 BCS_RLWheelSpd "Current wheel speed information of front left wheel";
+CM_ SG_ 621 BCS_RLWheelSpdVD "Quality/fault information to current wheel speed of front left wheel,be used for validity of BCS_RLWheelSpd and BCS_RLWheelSpdEdgesSum signal";
+CM_ SG_ 620 BCS_9_A_MsgCounter "The message counter is a 0-15 counter, increased of one unit on every message transmission";
+CM_ SG_ 620 BCS_FRWheelSpd "Current wheel speed information of front left wheel";
+CM_ SG_ 620 BCS_FRWheelSpdVD "Quality/fault information to current wheel speed of front left wheel,be used for validity of BCS_FRWheelSpd and BCS_FRWheelSpdEdgesSum signal";
+CM_ SG_ 620 BCS_FLWheelSpd "Current wheel speed information of front left wheel";
+CM_ SG_ 620 BCS_FLWheelSpdVD "Quality/fault information to current wheel speed of front left wheel,be used for validity of BCS_FLWheelSpd and BCS_FLWheelSpdEdgesSum signal";
+CM_ SG_ 1991 ESCL_Diag_Response "ESCL diagnostic response";
+CM_ SG_ 1351 ESCL_SubNetWakeRq "SubNet wake up request";
+CM_ SG_ 1351 ESCL_NMDataField2 "ESCL Network management data";
+CM_ SG_ 1351 ESCL_NMDataField1 "ESCL Network management data";
+CM_ SG_ 1351 ESCL_NodeAddress "ESCL node adress";
+CM_ SG_ 190 ESCL_AuthResult "The ESCL authentication result indicates the authentication status inside of ESCL";
+CM_ SG_ 190 ESCL_AuthChallenge "The ESCL authentication challenge is used to send the random number to PEPS ECU";
+CM_ SG_ 190 ESCL_SUB_ID "The ESCL subfunction identifier is used to distinguish the challenge and result feedback";
+CM_ SG_ 867 ESCL_PromptRotateSteerWheel "Prompt the driver to rotate steering wheel";
+CM_ SG_ 867 ESCL_WarnFunctional "Warning of _Functional Failure_";
+CM_ SG_ 867 ESCL_WarnSafety "Warning of _Safety Failure_";
+CM_ SG_ 867 ESCL_St "locking/unlocking status of ESCL";
+BA_DEF_ SG_  "GenSigTimeoutValue" INT 0 16777000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 65535;
+BA_DEF_ BO_  "TpTxIndex" INT 0 99;
+BA_DEF_ SG_  "GenSigTimeoutTime_ESCL" INT 0 65535;
+BA_DEF_ SG_  "GenSigTimeoutMsg_ESCL" HEX 0 16777215;
+BA_DEF_  "ILTxTimeout" INT 0 65535;
+BA_DEF_ BO_  "GenMsgFastOnStart" INT 0 65535;
+BA_DEF_ BO_  "GenMsgMinAcceptLenght" INT -1 8;
+BA_DEF_ BO_  "DiagUudtResponse" ENUM  "false","true";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmAsrCanMsgReducedTime" INT 1 65535;
+BA_DEF_ BU_  "NmAsrCanMsgCycleOffset" INT 0 65535;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 1 65535;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 0 65535;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 0 65535;
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_  "NmAsrTimeoutTime" INT 1 65535;
+BA_DEF_  "NmAsrBaseAddress" HEX 0 2047;
+BA_DEF_  "NmAsrMessageCount" INT 0 256;
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmAsrNode" ENUM  "No","Yes","vector_leerstring";
+BA_DEF_  "NmType" STRING ;
+BA_DEF_ SG_  "GatewayedSignals" ENUM  "No","Yes";
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_ BU_  "NodelayerModules" STRING ;
+BA_DEF_ SG_  "GenSigStartValue" HEX 0 16777215;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 999999;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","Cyclic","NotUsed","IfActive","NoMsgSendType";
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespSubValue" INT 0 16777000;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvResp" ENUM  "None","TimeoutFlag","TimeoutDefaultValue","TimeoutFlag and TimeoutDefaultValue";
+BA_DEF_DEF_  "GenSigTimeoutValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_ESCL" 0;
+BA_DEF_DEF_  "GenSigTimeoutMsg_ESCL" 0;
+BA_DEF_DEF_  "ILTxTimeout" 0;
+BA_DEF_DEF_  "GenMsgFastOnStart" 0;
+BA_DEF_DEF_  "GenMsgMinAcceptLenght" -1;
+BA_DEF_DEF_  "DiagUudtResponse" "false";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 150;
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 0;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 200;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 1000;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 5000;
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 0;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 1000;
+BA_DEF_DEF_  "NmAsrBaseAddress" 1280;
+BA_DEF_DEF_  "NmAsrMessageCount" 128;
+BA_DEF_DEF_  "NmAsrMessage" "No";
+BA_DEF_DEF_  "NmAsrNode" "Yes";
+BA_DEF_DEF_  "NmType" "NmAsr";
+BA_DEF_DEF_  "GatewayedSignals" "No";
+BA_DEF_DEF_  "Manufacturer" "GAC";
+BA_DEF_DEF_  "NodelayerModules" "CANoeILNLVector.dll";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 10;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_REL_ "GenSigSuprvRespSubValue" 0;
+BA_DEF_DEF_REL_ "GenSigSuprvResp" "None";
+BA_ "NmAsrNodeIdentifier" BU_ TEL 45;
+BA_ "NmAsrNodeIdentifier" BU_ VCU 2;
+BA_ "NmAsrNodeIdentifier" BU_ BCS 16;
+BA_ "NmAsrNodeIdentifier" BU_ WCM 72;
+BA_ "NmAsrNodeIdentifier" BU_ PCS 57;
+BA_ "NmAsrNodeIdentifier" BU_ ESCL 71;
+BA_ "NmAsrNodeIdentifier" BU_ EPS 20;
+BA_ "NmAsrNodeIdentifier" BU_ BSDM 63;
+BA_ "NmAsrNodeIdentifier" BU_ ICM 40;
+BA_ "NmAsrNodeIdentifier" BU_ ACU 43;
+BA_ "NmAsrNodeIdentifier" BU_ GWM 79;
+BA_ "GenMsgCycleTime" BO_ 697 10;
+BA_ "GenMsgCycleTime" BO_ 864 100;
+BA_ "GenMsgSendType" BO_ 51 8;
+BA_ "GenMsgSendType" BO_ 81 8;
+BA_ "GenMsgCycleTime" BO_ 1391 200;
+BA_ "GenMsgCycleTime" BO_ 1323 200;
+BA_ "DiagRequest" BO_ 1863 1;
+BA_ "GenMsgILSupport" BO_ 1863 0;
+BA_ "GenMsgSendType" BO_ 1863 8;
+BA_ "DiagState" BO_ 1863 1;
+BA_ "GenMsgNrOfRepetition" BO_ 1863 0;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgILSupport" BO_ 2015 0;
+BA_ "GenMsgSendType" BO_ 2015 8;
+BA_ "GenMsgCycleTime" BO_ 2015 0;
+BA_ "GenMsgMinAcceptLenght" BO_ 1507 4;
+BA_ "GenMsgILSupport" BO_ 1507 1;
+BA_ "GenMsgSendType" BO_ 1507 0;
+BA_ "GenMsgCycleTime" BO_ 1507 200;
+BA_ "NmAsrMessage" BO_ 1507 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1325 1;
+BA_ "GenMsgILSupport" BO_ 1325 1;
+BA_ "GenMsgSendType" BO_ 1325 0;
+BA_ "GenMsgCycleTime" BO_ 1325 200;
+BA_ "NmAsrMessage" BO_ 1325 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1352 1;
+BA_ "GenMsgILSupport" BO_ 1352 1;
+BA_ "GenMsgSendType" BO_ 1352 0;
+BA_ "GenMsgCycleTime" BO_ 1352 200;
+BA_ "NmAsrMessage" BO_ 1352 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1337 1;
+BA_ "GenMsgILSupport" BO_ 1337 1;
+BA_ "GenMsgSendType" BO_ 1337 0;
+BA_ "GenMsgCycleTime" BO_ 1337 200;
+BA_ "NmAsrMessage" BO_ 1337 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1320 1;
+BA_ "GenMsgILSupport" BO_ 1320 1;
+BA_ "GenMsgSendType" BO_ 1320 0;
+BA_ "GenMsgCycleTime" BO_ 1320 200;
+BA_ "NmAsrMessage" BO_ 1320 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1359 1;
+BA_ "GenMsgILSupport" BO_ 1359 1;
+BA_ "GenMsgSendType" BO_ 1359 0;
+BA_ "GenMsgCycleTime" BO_ 1359 200;
+BA_ "NmAsrMessage" BO_ 1359 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1343 1;
+BA_ "GenMsgILSupport" BO_ 1343 1;
+BA_ "GenMsgSendType" BO_ 1343 0;
+BA_ "GenMsgCycleTime" BO_ 1343 200;
+BA_ "NmAsrMessage" BO_ 1343 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1300 1;
+BA_ "GenMsgILSupport" BO_ 1300 1;
+BA_ "GenMsgSendType" BO_ 1300 0;
+BA_ "GenMsgCycleTime" BO_ 1300 200;
+BA_ "NmAsrMessage" BO_ 1300 1;
+BA_ "GenMsgMinAcceptLenght" BO_ 1296 4;
+BA_ "GenMsgILSupport" BO_ 1296 1;
+BA_ "GenMsgSendType" BO_ 1296 0;
+BA_ "GenMsgCycleTime" BO_ 1296 200;
+BA_ "NmAsrMessage" BO_ 1296 1;
+BA_ "GenMsgNrOfRepetition" BO_ 71 3;
+BA_ "GenMsgILSupport" BO_ 71 1;
+BA_ "GenMsgSendType" BO_ 71 8;
+BA_ "GenMsgCycleTime" BO_ 71 0;
+BA_ "GenMsgNrOfRepetition" BO_ 83 3;
+BA_ "GenMsgILSupport" BO_ 83 1;
+BA_ "GenMsgSendType" BO_ 83 8;
+BA_ "GenMsgCycleTime" BO_ 83 0;
+BA_ "GenMsgNrOfRepetition" BO_ 85 3;
+BA_ "GenMsgILSupport" BO_ 85 1;
+BA_ "GenMsgSendType" BO_ 85 8;
+BA_ "GenMsgCycleTime" BO_ 85 0;
+BA_ "GenMsgILSupport" BO_ 629 1;
+BA_ "GenMsgSendType" BO_ 629 0;
+BA_ "GenMsgCycleTime" BO_ 629 100;
+BA_ "GenMsgILSupport" BO_ 369 1;
+BA_ "GenMsgSendType" BO_ 369 0;
+BA_ "GenMsgCycleTime" BO_ 369 10;
+BA_ "GenMsgILSupport" BO_ 885 1;
+BA_ "GenMsgSendType" BO_ 885 0;
+BA_ "GenMsgCycleTime" BO_ 885 20;
+BA_ "GenMsgILSupport" BO_ 621 1;
+BA_ "GenMsgSendType" BO_ 621 0;
+BA_ "GenMsgCycleTime" BO_ 621 20;
+BA_ "GenMsgILSupport" BO_ 620 1;
+BA_ "GenMsgSendType" BO_ 620 0;
+BA_ "GenMsgCycleTime" BO_ 620 20;
+BA_ "DiagResponse" BO_ 1991 1;
+BA_ "GenMsgILSupport" BO_ 1991 0;
+BA_ "GenMsgSendType" BO_ 1991 8;
+BA_ "GenMsgCycleTime" BO_ 1991 0;
+BA_ "GenMsgILSupport" BO_ 1351 1;
+BA_ "GenMsgSendType" BO_ 1351 0;
+BA_ "GenMsgCycleTime" BO_ 1351 200;
+BA_ "NmAsrMessage" BO_ 1351 1;
+BA_ "GenMsgNrOfRepetition" BO_ 190 3;
+BA_ "GenMsgILSupport" BO_ 190 1;
+BA_ "GenMsgSendType" BO_ 190 8;
+BA_ "GenMsgCycleTime" BO_ 190 0;
+BA_ "GenMsgCycleTimeFast" BO_ 190 20;
+BA_ "GenMsgILSupport" BO_ 867 1;
+BA_ "GenMsgSendType" BO_ 867 0;
+BA_ "GenMsgCycleTime" BO_ 867 50;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 697 VCU_DCU_ActRotSpd 697;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 697 VCU_DCU_ActRotSpd 45;
+BA_ "GenSigStartValue" SG_ 697 VCU_DCU_ActRotSpd 65534;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 697 VCU_8_A_MsgCounter 697;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 697 VCU_8_A_MsgCounter 45;
+BA_ "GenSigSendType" SG_ 697 VCU_8_A_MsgCounter 0;
+BA_ "GenSigStartValue" SG_ 697 VCU_8_A_Checksum 255;
+BA_ "GenSigSendType" SG_ 697 VCU_8_A_Checksum 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 697 VCU_8_A_Checksum 45;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 697 VCU_8_A_Checksum 697;
+BA_ "GenSigSendType" SG_ 864 VCU_VehRdySt_A 0;
+BA_ "GenSigStartValue" SG_ 1391 BSDS_NodeAddress 111;
+BA_ "GenSigSendType" SG_ 1391 BSDS_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1391 BSDS_NMDataField 0;
+BA_ "GenSigStartValue" SG_ 1323 ACU_NMNodeAddress 67;
+BA_ "GenSigSendType" SG_ 1323 ACU_NMNodeAddress 0;
+BA_ "GenSigSendType" SG_ 1323 ACU_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 2015 Func_Diag_Rx 0;
+BA_ "GenSigSendType" SG_ 2015 Func_Diag_Rx 7;
+BA_ "GenSigStartValue" SG_ 2015 Func_Diag_Rx 0;
+BA_ "GatewayedSignals" SG_ 1507 VCU_NMDataField2_A 0;
+BA_ "GenSigSendType" SG_ 1507 VCU_NMDataField2_A 7;
+BA_ "GenSigStartValue" SG_ 1507 VCU_NMDataField2_A 0;
+BA_ "GatewayedSignals" SG_ 1507 VCU_SubNetWakeRq_A 0;
+BA_ "GenSigSendType" SG_ 1507 VCU_SubNetWakeRq_A 7;
+BA_ "GenSigStartValue" SG_ 1507 VCU_SubNetWakeRq_A 0;
+BA_ "GatewayedSignals" SG_ 1507 VCU_NMDataField1_A 0;
+BA_ "GenSigSendType" SG_ 1507 VCU_NMDataField1_A 7;
+BA_ "GenSigStartValue" SG_ 1507 VCU_NMDataField1_A 0;
+BA_ "GatewayedSignals" SG_ 1507 VCU_NMNodeAddress_A 0;
+BA_ "GenSigSendType" SG_ 1507 VCU_NMNodeAddress_A 7;
+BA_ "GenSigStartValue" SG_ 1507 VCU_NMNodeAddress_A 2;
+BA_ "GatewayedSignals" SG_ 1325 TEL_NMDataField 0;
+BA_ "GenSigSendType" SG_ 1325 TEL_NMDataField 7;
+BA_ "GenSigStartValue" SG_ 1325 TEL_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 1325 TEL_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1325 TEL_NodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1325 TEL_NodeAddress 45;
+BA_ "GatewayedSignals" SG_ 1352 WCM_NMDataField 0;
+BA_ "GenSigSendType" SG_ 1352 WCM_NMDataField 7;
+BA_ "GenSigStartValue" SG_ 1352 WCM_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 1352 WCM_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1352 WCM_NodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1352 WCM_NodeAddress 72;
+BA_ "GatewayedSignals" SG_ 1337 PCS_NMDataField 0;
+BA_ "GenSigSendType" SG_ 1337 PCS_NMDataField 7;
+BA_ "GenSigStartValue" SG_ 1337 PCS_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 1337 PCS_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1337 PCS_NodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1337 PCS_NodeAddress 57;
+BA_ "GatewayedSignals" SG_ 1320 ICM_NMDataField 0;
+BA_ "GenSigSendType" SG_ 1320 ICM_NMDataField 7;
+BA_ "GenSigStartValue" SG_ 1320 ICM_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 1320 ICM_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1320 ICM_NodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1320 ICM_NodeAddress 40;
+BA_ "GatewayedSignals" SG_ 1359 GWM_NMDataField 0;
+BA_ "GenSigSendType" SG_ 1359 GWM_NMDataField 7;
+BA_ "GenSigStartValue" SG_ 1359 GWM_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 1359 GWM_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1359 GWM_NodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1359 GWM_NodeAddress 79;
+BA_ "GatewayedSignals" SG_ 1343 BSDM_NMDataField 0;
+BA_ "GenSigSendType" SG_ 1343 BSDM_NMDataField 7;
+BA_ "GenSigStartValue" SG_ 1343 BSDM_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 1343 BSDM_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1343 BSDM_NodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1343 BSDM_NodeAddress 63;
+BA_ "GatewayedSignals" SG_ 1300 EPS_NMDataField 0;
+BA_ "GenSigSendType" SG_ 1300 EPS_NMDataField 7;
+BA_ "GenSigStartValue" SG_ 1300 EPS_NMDataField 0;
+BA_ "GatewayedSignals" SG_ 1300 EPS_NMNodeAddress 0;
+BA_ "GenSigSendType" SG_ 1300 EPS_NMNodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1300 EPS_NMNodeAddress 20;
+BA_ "GatewayedSignals" SG_ 1296 BCS_NMDataField2 0;
+BA_ "GenSigSendType" SG_ 1296 BCS_NMDataField2 7;
+BA_ "GenSigStartValue" SG_ 1296 BCS_NMDataField2 0;
+BA_ "GatewayedSignals" SG_ 1296 BCS_SubNetWakeRq 0;
+BA_ "GenSigSendType" SG_ 1296 BCS_SubNetWakeRq 7;
+BA_ "GenSigStartValue" SG_ 1296 BCS_SubNetWakeRq 0;
+BA_ "GatewayedSignals" SG_ 1296 BCS_NMDataField1 0;
+BA_ "GenSigSendType" SG_ 1296 BCS_NMDataField1 7;
+BA_ "GenSigStartValue" SG_ 1296 BCS_NMDataField1 0;
+BA_ "GatewayedSignals" SG_ 1296 BCS_NMNodeAddress 0;
+BA_ "GenSigSendType" SG_ 1296 BCS_NMNodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1296 BCS_NMNodeAddress 16;
+BA_ "GatewayedSignals" SG_ 71 TEL_LockDoorReqVD 0;
+BA_ "GenSigSendType" SG_ 71 TEL_LockDoorReqVD 4;
+BA_ "GenSigStartValue" SG_ 71 TEL_LockDoorReqVD 0;
+BA_ "GatewayedSignals" SG_ 71 TEL_LockDoorReq 0;
+BA_ "GenSigSendType" SG_ 71 TEL_LockDoorReq 4;
+BA_ "GenSigStartValue" SG_ 71 TEL_LockDoorReq 0;
+BA_ "GatewayedSignals" SG_ 83 PEPS_AuthResp 0;
+BA_ "GenSigSendType" SG_ 83 PEPS_AuthResp 4;
+BA_ "GenSigStartValue" SG_ 83 PEPS_AuthResp 0;
+BA_ "GatewayedSignals" SG_ 83 PEPS_SUB_ID 0;
+BA_ "GenSigSendType" SG_ 83 PEPS_SUB_ID 4;
+BA_ "GenSigStartValue" SG_ 83 PEPS_SUB_ID 0;
+BA_ "GatewayedSignals" SG_ 85 PEPS_ESCLLockReq 0;
+BA_ "GenSigSendType" SG_ 85 PEPS_ESCLLockReq 4;
+BA_ "GenSigStartValue" SG_ 85 PEPS_ESCLLockReq 0;
+BA_ "GatewayedSignals" SG_ 85 PEPS_keyComdInfor 0;
+BA_ "GenSigSendType" SG_ 85 PEPS_keyComdInfor 4;
+BA_ "GenSigStartValue" SG_ 85 PEPS_keyComdInfor 0;
+BA_ "GatewayedSignals" SG_ 85 PEPS_DoorLockReq 0;
+BA_ "GenSigSendType" SG_ 85 PEPS_DoorLockReq 4;
+BA_ "GenSigStartValue" SG_ 85 PEPS_DoorLockReq 0;
+BA_ "GatewayedSignals" SG_ 629 PEPS_2_Checksum 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_2_Checksum 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_2_Checksum 255;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_2_Checksum 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_2_Checksum 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_2_MsgCounter 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_2_MsgCounter 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_2_MsgCounter 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_2_MsgCounter 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_2_MsgCounter 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_ESCLInhabitSt 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_ESCLInhabitSt 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_ESCLInhabitSt 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_ESCLInhabitSt 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_ESCLInhabitSt 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_IGNFbkStVD 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_IGNFbkStVD 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_IGNFbkStVD 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_IGNFbkStVD 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_IGNFbkStVD 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_IGNFbkSt 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_IGNFbkSt 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_IGNFbkSt 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_IGNFbkSt 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_IGNFbkSt 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_IG1RelayStVD 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_IG1RelayStVD 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_IG1RelayStVD 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_IG1RelayStVD 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_IG1RelayStVD 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_IG1RelaySt 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_IG1RelaySt 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_IG1RelaySt 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_IG1RelaySt 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_IG1RelaySt 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_SysPowMode_RddyVD 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_SysPowMode_RddyVD 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_SysPowMode_RddyVD 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_SysPowMode_RddyVD 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_SysPowMode_RddyVD 450;
+BA_ "GatewayedSignals" SG_ 629 PEPS_SysPowMode_Rddy 0;
+BA_ "GenSigSendType" SG_ 629 PEPS_SysPowMode_Rddy 7;
+BA_ "GenSigStartValue" SG_ 629 PEPS_SysPowMode_Rddy 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 629 PEPS_SysPowMode_Rddy 629;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 629 PEPS_SysPowMode_Rddy 450;
+BA_ "GatewayedSignals" SG_ 369 DCU_1_Checksum 0;
+BA_ "GenSigSendType" SG_ 369 DCU_1_Checksum 7;
+BA_ "GenSigStartValue" SG_ 369 DCU_1_Checksum 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 369 DCU_1_Checksum 369;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 369 DCU_1_Checksum 45;
+BA_ "GatewayedSignals" SG_ 369 DCU_1_MsgCounter 0;
+BA_ "GenSigSendType" SG_ 369 DCU_1_MsgCounter 7;
+BA_ "GenSigStartValue" SG_ 369 DCU_1_MsgCounter 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 369 DCU_1_MsgCounter 369;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 369 DCU_1_MsgCounter 45;
+BA_ "GatewayedSignals" SG_ 369 DCU_RotSpdAct 0;
+BA_ "GenSigSendType" SG_ 369 DCU_RotSpdAct 7;
+BA_ "GenSigStartValue" SG_ 369 DCU_RotSpdAct 65534;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 369 DCU_RotSpdAct 369;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 369 DCU_RotSpdAct 45;
+BA_ "GatewayedSignals" SG_ 885 BCM_CentralLockSWSt 0;
+BA_ "GenSigSendType" SG_ 885 BCM_CentralLockSWSt 7;
+BA_ "GenSigStartValue" SG_ 885 BCM_CentralLockSWSt 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 885 BCM_CentralLockSWSt 885;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 885 BCM_CentralLockSWSt 90;
+BA_ "GatewayedSignals" SG_ 885 BCM_DriverDoorAjarSt 0;
+BA_ "GenSigSendType" SG_ 885 BCM_DriverDoorAjarSt 7;
+BA_ "GenSigStartValue" SG_ 885 BCM_DriverDoorAjarSt 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 885 BCM_DriverDoorAjarSt 885;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 885 BCM_DriverDoorAjarSt 90;
+BA_ "GatewayedSignals" SG_ 885 BCM_KeySt 0;
+BA_ "GenSigSendType" SG_ 885 BCM_KeySt 7;
+BA_ "GenSigStartValue" SG_ 885 BCM_KeySt 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 885 BCM_KeySt 885;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 885 BCM_KeySt 90;
+BA_ "GatewayedSignals" SG_ 621 BCS_10_A_Checksum 0;
+BA_ "GenSigSendType" SG_ 621 BCS_10_A_Checksum 7;
+BA_ "GenSigStartValue" SG_ 621 BCS_10_A_Checksum 85;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 621 BCS_10_A_Checksum 621;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 621 BCS_10_A_Checksum 90;
+BA_ "GatewayedSignals" SG_ 621 BCS_10_A_MsgCounter 0;
+BA_ "GenSigSendType" SG_ 621 BCS_10_A_MsgCounter 7;
+BA_ "GenSigStartValue" SG_ 621 BCS_10_A_MsgCounter 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 621 BCS_10_A_MsgCounter 621;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 621 BCS_10_A_MsgCounter 90;
+BA_ "GatewayedSignals" SG_ 621 BCS_RRWheelSpd 0;
+BA_ "GenSigSendType" SG_ 621 BCS_RRWheelSpd 7;
+BA_ "GenSigStartValue" SG_ 621 BCS_RRWheelSpd 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 621 BCS_RRWheelSpd 621;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 621 BCS_RRWheelSpd 90;
+BA_ "GatewayedSignals" SG_ 621 BCS_RRWheelSpdVD 0;
+BA_ "GenSigSendType" SG_ 621 BCS_RRWheelSpdVD 7;
+BA_ "GenSigStartValue" SG_ 621 BCS_RRWheelSpdVD 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 621 BCS_RRWheelSpdVD 621;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 621 BCS_RRWheelSpdVD 90;
+BA_ "GatewayedSignals" SG_ 621 BCS_RLWheelSpd 0;
+BA_ "GenSigSendType" SG_ 621 BCS_RLWheelSpd 7;
+BA_ "GenSigStartValue" SG_ 621 BCS_RLWheelSpd 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 621 BCS_RLWheelSpd 621;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 621 BCS_RLWheelSpd 90;
+BA_ "GatewayedSignals" SG_ 621 BCS_RLWheelSpdVD 0;
+BA_ "GenSigSendType" SG_ 621 BCS_RLWheelSpdVD 7;
+BA_ "GenSigStartValue" SG_ 621 BCS_RLWheelSpdVD 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 621 BCS_RLWheelSpdVD 621;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 621 BCS_RLWheelSpdVD 90;
+BA_ "GatewayedSignals" SG_ 620 BCS_9_A_Checksum 0;
+BA_ "GenSigSendType" SG_ 620 BCS_9_A_Checksum 7;
+BA_ "GenSigStartValue" SG_ 620 BCS_9_A_Checksum 85;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 620 BCS_9_A_Checksum 620;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 620 BCS_9_A_Checksum 90;
+BA_ "GatewayedSignals" SG_ 620 BCS_9_A_MsgCounter 0;
+BA_ "GenSigSendType" SG_ 620 BCS_9_A_MsgCounter 7;
+BA_ "GenSigStartValue" SG_ 620 BCS_9_A_MsgCounter 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 620 BCS_9_A_MsgCounter 620;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 620 BCS_9_A_MsgCounter 90;
+BA_ "GatewayedSignals" SG_ 620 BCS_FRWheelSpd 0;
+BA_ "GenSigSendType" SG_ 620 BCS_FRWheelSpd 7;
+BA_ "GenSigStartValue" SG_ 620 BCS_FRWheelSpd 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 620 BCS_FRWheelSpd 620;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 620 BCS_FRWheelSpd 90;
+BA_ "GatewayedSignals" SG_ 620 BCS_FRWheelSpdVD 0;
+BA_ "GenSigSendType" SG_ 620 BCS_FRWheelSpdVD 7;
+BA_ "GenSigStartValue" SG_ 620 BCS_FRWheelSpdVD 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 620 BCS_FRWheelSpdVD 620;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 620 BCS_FRWheelSpdVD 90;
+BA_ "GatewayedSignals" SG_ 620 BCS_FLWheelSpd 0;
+BA_ "GenSigSendType" SG_ 620 BCS_FLWheelSpd 7;
+BA_ "GenSigStartValue" SG_ 620 BCS_FLWheelSpd 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 620 BCS_FLWheelSpd 620;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 620 BCS_FLWheelSpd 90;
+BA_ "GatewayedSignals" SG_ 620 BCS_FLWheelSpdVD 0;
+BA_ "GenSigSendType" SG_ 620 BCS_FLWheelSpdVD 7;
+BA_ "GenSigStartValue" SG_ 620 BCS_FLWheelSpdVD 0;
+BA_ "GenSigTimeoutMsg_ESCL" SG_ 620 BCS_FLWheelSpdVD 620;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 620 BCS_FLWheelSpdVD 90;
+BA_ "GatewayedSignals" SG_ 1991 ESCL_Diag_Response 0;
+BA_ "GenSigSendType" SG_ 1991 ESCL_Diag_Response 7;
+BA_ "GenSigStartValue" SG_ 1991 ESCL_Diag_Response 0;
+BA_ "GenSigSendType" SG_ 1351 ESCL_SubNetWakeRq 0;
+BA_ "GatewayedSignals" SG_ 1351 ESCL_NMDataField1 0;
+BA_ "GenSigSendType" SG_ 1351 ESCL_NMDataField1 7;
+BA_ "GenSigStartValue" SG_ 1351 ESCL_NMDataField1 0;
+BA_ "GatewayedSignals" SG_ 1351 ESCL_NodeAddress 0;
+BA_ "GenSigSendType" SG_ 1351 ESCL_NodeAddress 7;
+BA_ "GenSigStartValue" SG_ 1351 ESCL_NodeAddress 71;
+BA_ "GatewayedSignals" SG_ 190 ESCL_AuthResult 1;
+BA_ "GenSigSendType" SG_ 190 ESCL_AuthResult 2;
+BA_ "GenSigStartValue" SG_ 190 ESCL_AuthResult 3;
+BA_ "GatewayedSignals" SG_ 190 ESCL_AuthChallenge 1;
+BA_ "GenSigSendType" SG_ 190 ESCL_AuthChallenge 2;
+BA_ "GenSigStartValue" SG_ 190 ESCL_AuthChallenge 0;
+BA_ "GatewayedSignals" SG_ 190 ESCL_SUB_ID 1;
+BA_ "GenSigSendType" SG_ 190 ESCL_SUB_ID 2;
+BA_ "GenSigStartValue" SG_ 190 ESCL_SUB_ID 0;
+BA_ "GatewayedSignals" SG_ 867 ESCL_1_Checksum 1;
+BA_ "GenSigSendType" SG_ 867 ESCL_1_Checksum 7;
+BA_ "GenSigStartValue" SG_ 867 ESCL_1_Checksum 0;
+BA_ "GenSigTimeoutValue" SG_ 867 ESCL_1_Checksum 255;
+BA_ "GatewayedSignals" SG_ 867 ESCL_1_MsgCounter 1;
+BA_ "GenSigSendType" SG_ 867 ESCL_1_MsgCounter 7;
+BA_ "GenSigStartValue" SG_ 867 ESCL_1_MsgCounter 0;
+BA_ "GatewayedSignals" SG_ 867 ESCL_PromptRotateSteerWheel 1;
+BA_ "GenSigSendType" SG_ 867 ESCL_PromptRotateSteerWheel 7;
+BA_ "GenSigStartValue" SG_ 867 ESCL_PromptRotateSteerWheel 0;
+BA_ "GatewayedSignals" SG_ 867 ESCL_WarnFunctional 1;
+BA_ "GenSigSendType" SG_ 867 ESCL_WarnFunctional 7;
+BA_ "GenSigStartValue" SG_ 867 ESCL_WarnFunctional 0;
+BA_ "GatewayedSignals" SG_ 867 ESCL_WarnSafety 1;
+BA_ "GenSigSendType" SG_ 867 ESCL_WarnSafety 7;
+BA_ "GenSigStartValue" SG_ 867 ESCL_WarnSafety 0;
+BA_ "GatewayedSignals" SG_ 867 ESCL_St 1;
+BA_ "GenSigSendType" SG_ 867 ESCL_St 7;
+BA_ "GenSigStartValue" SG_ 867 ESCL_St 0;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_2_Checksum 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_2_MsgCounter 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_ESCLInhabitSt 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_IGNFbkStVD 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_IGNFbkSt 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_IG1RelayStVD 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_IG1RelaySt 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_SysPowMode_RddyVD 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 629 PEPS_SysPowMode_Rddy 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 369 DCU_1_Checksum 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 369 DCU_1_MsgCounter 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 369 DCU_RotSpdAct 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 885 BCM_CentralLockSWSt 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 885 BCM_DriverDoorAjarSt 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 885 BCM_KeySt 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 621 BCS_10_A_Checksum 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 621 BCS_10_A_MsgCounter 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 621 BCS_RRWheelSpd 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 621 BCS_RRWheelSpdVD 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 621 BCS_RLWheelSpd 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 621 BCS_RLWheelSpdVD 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 620 BCS_9_A_Checksum 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 620 BCS_9_A_MsgCounter 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 620 BCS_FRWheelSpd 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 620 BCS_FRWheelSpdVD 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 620 BCS_FLWheelSpd 3;
+BA_REL_ "GenSigSuprvResp" BU_SG_REL_ ESCL SG_ 620 BCS_FLWheelSpdVD 3;
+VAL_ 71 TEL_LockDoorReqVD 1 "valid" 0 "Invalid" ;
+VAL_ 71 TEL_LockDoorReq 1 "Lock" 0 "No request" ;
+VAL_ 85 PEPS_ESCLLockReq 1 "Request" 0 "No request" ;
+VAL_ 85 PEPS_DoorLockReq 1 "Lock" 0 "No command" ;
+VAL_ 629 PEPS_ESCLInhabitSt 1 "Inhabit" 0 "Not inhabit" ;
+VAL_ 629 PEPS_IGNFbkStVD 1 "Valid" 0 "Not valid" ;
+VAL_ 629 PEPS_IGNFbkSt 1 "Active" 0 "Not active" ;
+VAL_ 629 PEPS_IG1RelayStVD 1 "Valid" 0 "Not valid" ;
+VAL_ 629 PEPS_IG1RelaySt 1 "Active" 0 "Not active" ;
+VAL_ 629 PEPS_SysPowMode_RddyVD 1 "Valid" 0 "Not valid" ;
+VAL_ 629 PEPS_SysPowMode_Rddy 3 "CRANK" 2 "ON" 1 "ACC" 0 "OFF" ;
+VAL_ 885 BCM_CentralLockSWSt 1 "Pressed" 0 "Not pressed" ;
+VAL_ 885 BCM_DriverDoorAjarSt 1 "Open" 0 "Closed" ;
+VAL_ 885 BCM_KeySt 3 "Crank" 2 "On" 1 "Acc" 0 "Off" ;
+VAL_ 621 BCS_RRWheelSpdVD 1 "Valid" 0 "Not valid" ;
+VAL_ 621 BCS_RLWheelSpdVD 1 "Valid" 0 "Not valid" ;
+VAL_ 620 BCS_FRWheelSpdVD 1 "Valid" 0 "Not valid" ;
+VAL_ 620 BCS_FLWheelSpdVD 1 "Valid" 0 "Not valid" ;
+VAL_ 867 ESCL_PromptRotateSteerWheel 1 "Steering column is blocked" 0 "Steering column is not blocked " ;
+VAL_ 867 ESCL_WarnFunctional 1 "Functional failure detected" 0 "Functional failure not detected " ;
+VAL_ 867 ESCL_WarnSafety 1 "Safety failure detected " 0 "Safety failure not detected " ;
+

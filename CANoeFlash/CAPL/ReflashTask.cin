@@ -1,0 +1,2316 @@
+/*@!Encoding:936*/
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   ReflashTask.cin                              $                                    *
+*            $Revision: 1.4 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/03/12 13:12:03CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup ReflashTask                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  ReflashTask ReflashTask
+    \ingroup   Application
+    \brief   The ReflashTask functional module. <br>
+*/
+
+/**************************************************************************************************/
+
+variables
+{
+  enum REFLASH_STATUS
+  {
+    INITIAL_STEP = 0,
+    CHECK_FILE_PATH_STEP,
+    CHECK_FILE_VALID_STEP,
+    PRE_ACTION_STEP,
+    CHECK_PROGRAMMING_PRECONDITION,
+    DTC_SETTING_TYPE_OFF_SETP,
+    COMMUNICATION_CONTROL_DISABLE_STEP,
+    
+    TO_EXTEND_MODE_STEP,
+    OEM_SECURITY_SEED_STEP,
+    OEM_SECURITY_KEY_STEP,
+    TO_PROGRAMMING_MODE_STEP,
+    REFLASH_SECURITY_SEED_STEP,
+    REFLASH_SECURITY_KEY_STEP,
+    WRITE_REPAIRSHOPCODE_STEP,
+    WRITE_PROGRAMMINGDATE_STEP,
+    WRITE_APP_FINGERPRINT_DATA_STEP,
+    
+    REQUEST_DOWNLOAD_FLASHERDRIVER_STEP,
+    TRANSFER_FLASHERDRIVER_DATA_STEP,
+    FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP,
+    FLASHERDRIVER_CHECK_CHECKSUM_STEP,
+
+		APPCODE_ERASEMEMORY_STEP,
+    REQUEST_DOWNLOAD_APPCODE_STEP,
+    TRANSFER_APPCODE_DATA_STEP,
+    APPCODE_REQUEST_TRANSFER_EXIT_STEP,
+    
+		REQUEST_DOWNLOAD_CHECKSUMCODE_STEP,
+    TRANSFER_CHECKSUMCODE_DATA_STEP,
+    CHECKSUMCODE_REQUEST_TRANSFER_EXIT_STEP,
+    
+    APPCODE_CHECK_CHECKSUM_STEP,
+    APPCODE_CHECK_PROGRAMMING_STEP,
+
+    APPCODE_CHECK_INTEGRALITY_STEP,
+    APPCODE_CHECK_PERTINENCE_STEP,
+
+    RESET_STEP,
+
+    WAITING_STEP,
+    READ_VERSIONNUM_STEP,
+    OUTPUT_VERSIONNUM_STEP,
+    REFLASH_FINISHED_STEP
+  };
+
+	enum HEX_DATA_TYPE
+  {
+    DATA_RECORD = 0,
+    END_FILE,
+    EXTENDED_SEGMENT
+  };
+  
+	enum TRUE_FALSE ReflashTaskEnable = FALSE;
+	enum TRUE_FALSE SecurityCalTaskEnable = FALSE;
+  enum REFLASH_STATUS ReflashStatus = INITIAL_STEP;
+  
+  
+  byte byte_fileName[200];
+  char chr_fileName[200]; 
+  long nrOfBytes;
+
+  dword dword_ReflashFileHandle = 0;
+  word TargetDataFirstAddress = 0x0000;
+
+  byte TargetReflashAppArrray[131072];
+  dword AppDataIndex = 0;
+  dword TargetAppLength = 0;
+  dword TargetAppFirstAddress;
+
+  byte TargetReflashCheckSumArrray[128];
+  byte CheckSumIndex = 0;
+  byte TargetCheckSumLength = 0;
+  word TargetCheckSumFirstAddress = 0x0000;
+
+  dword AllFileCheckSum;
+
+  dword RealTimer;
+
+  byte LocalTime_YearHigh_byte;
+  byte LocalTime_YearLow_byte;
+  byte LocalTime_Month_byte;
+  byte LocalTime_Day_byte;
+}
+
+/**************************************************************************************************/
+/**
+    \brief   enum TRUE_FALSE Check_ReflashFilePath()
+             The function can check the length of the target file path, shall less than 200 characters;
+             
+    \return  ReflashFilePath valid result: enum TRUE_FALSE
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+enum TRUE_FALSE Check_ReflashFilePath()
+{
+  enum TRUE_FALSE ret_result = FALSE;
+  byte i;
+  
+  if(byte_fileName[199] == 0x00)
+  {
+    for(i = 0; i < (elCount(byte_fileName) - 1); i++)
+    {
+      chr_fileName[i] = byte_fileName[i];
+      ret_result = TRUE;
+    }
+  }
+  else
+  {
+    /* Error Flag file path length too long */
+    ret_result = ERROR_1;  
+  }
+  return(ret_result);
+}
+
+/**************************************************************************************************/
+/**
+    \brief   enum TRUE_FALSE Check_ReflashFileValid_Bin()
+             The function get all data from target file;
+
+    \return  ReflashFilePath valid result: enum TRUE_FALSE
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+enum TRUE_FALSE Check_ReflashFileValid_Bin()
+{
+  enum TRUE_FALSE ret_result = FALSE;
+  byte buffer[256];
+  long line;
+  
+  dword i;
+  word length;
+  word lengthOld;
+  enum HEX_DATA_TYPE dataType;
+  word dataAddress;
+  word dataAddressOld = 0x0000;
+  word checkSum;
+  word tempDataSum;
+  
+  word haha = 0;
+  
+  line = 0;
+  
+	ret_result = TRUE;
+  AllFileCheckSum = 0x0000;
+  AppDataIndex = 0;
+  CheckSumIndex = 0;
+
+  while(fileGetBinaryBlock(buffer,elcount(buffer), dword_ReflashFileHandle)!=0 ) 
+  {
+    for(i = 0; i < elCount(buffer); i++)
+    {
+      TargetReflashAppArrray[AppDataIndex + i] = buffer[i];
+    }
+    AppDataIndex = AppDataIndex + elcount(buffer);
+  }
+  
+  TargetAppFirstAddress = (dword)TargetReflashAppArrray[33] << 24;
+  TargetAppFirstAddress |= (dword)TargetReflashAppArrray[34] << 16;
+  TargetAppFirstAddress |= (dword)TargetReflashAppArrray[35] << 8;
+  TargetAppFirstAddress |= (dword)TargetReflashAppArrray[36];
+  TargetAppLength = (dword)TargetReflashAppArrray[37] << 24;
+  TargetAppLength |= (dword)TargetReflashAppArrray[38] << 16;
+  TargetAppLength |= (dword)TargetReflashAppArrray[39] << 8;
+  TargetAppLength |= (dword)TargetReflashAppArrray[40];
+  
+  for(i = 41; i < (TargetAppLength + 41); i++)
+  {
+    TargetReflashAppArrray[i - 41] = TargetReflashAppArrray[i];
+  }
+
+  return(ret_result);
+}
+
+/**************************************************************************************************/
+/**
+    \brief   enum TRUE_FALSE Check_ReflashFileValid_Hex()
+             The function get all data from target file, transfer the string characters to dec number;
+             Check the check sum for each data line;
+             Calculate the CRC for total data. <br> 
+             
+    \return  ReflashFilePath valid result: enum TRUE_FALSE
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+enum TRUE_FALSE Check_ReflashFileValid_Hex()
+{
+  enum TRUE_FALSE ret_result = FALSE;
+  char buffer[256];
+  long line;
+  
+  word i;
+  word length;
+  word lengthOld;
+  enum HEX_DATA_TYPE dataType;
+  word dataAddress;
+  word dataAddressOld = 0x0000;
+  word checkSum;
+  word tempDataSum;
+
+  line = 0;
+  
+	ret_result = TRUE;
+  AllFileCheckSum = 0x0000;
+  AppDataIndex = 0;
+  CheckSumIndex = 0;
+
+  while(fileGetString(buffer,elcount(buffer), dword_ReflashFileHandle)!=0 ) 
+  {
+  	/* Transfer the string characters to dec number, ASCII -> dec number */
+    for(i = 0; i < elCount(buffer); i++)
+    {
+      if(buffer[i] >= 48 && buffer[i] <= 57)
+      {
+        /* number */
+        buffer[i] = buffer[i] - 48;
+      }
+      else if(buffer[i] >= 65 && buffer[i] <= 70)
+      {
+        /* upper-case */
+        buffer[i] = buffer[i] - 55;
+      }
+      else if(buffer[i] >= 97 && buffer[i] <= 102)
+      {
+        /* lower-case */
+        buffer[i] = buffer[i] - 97;
+      }
+      else
+      {
+        /* Do nothing */
+      }
+    }
+
+    
+    length = buffer[1] * 16 + buffer[2];
+    dataAddress = ((buffer[3] * 16 + buffer[4]) << 8) + buffer[5] * 16 + buffer[6];
+    dataType = (enum HEX_DATA_TYPE)(buffer[7] * 16 + buffer[8]);
+    
+    tempDataSum = 0;
+    if(DATA_RECORD == dataType)
+    {
+    	if(0x0000 == TargetAppFirstAddress)
+    	{
+    		TargetAppFirstAddress = dataAddress;
+    	}
+			if((lengthOld + dataAddressOld == dataAddress) || (dataAddressOld == 0x0000))
+			{
+				for(i = 0; i < length; i ++)
+				{
+					TargetReflashAppArrray[AppDataIndex + i] = buffer[9+ 2*i] * 16 + buffer[10+ 2*i];
+					tempDataSum = tempDataSum + TargetReflashAppArrray[AppDataIndex + i] ;
+				}
+				AppDataIndex = AppDataIndex + length;
+			}
+
+			else
+			{
+				if(0x0000 == TargetCheckSumFirstAddress)
+				{
+					TargetCheckSumFirstAddress = dataAddress;
+				}
+
+				for(i = 0; i < length; i ++)
+				{
+					TargetReflashCheckSumArrray[CheckSumIndex + i] = buffer[9+ 2*i] * 16 + buffer[10+ 2*i];
+					tempDataSum = tempDataSum + TargetReflashCheckSumArrray[CheckSumIndex + i] ;
+				}
+				CheckSumIndex = CheckSumIndex + length;
+			}
+			
+			tempDataSum = tempDataSum + length;
+			tempDataSum = tempDataSum + buffer[3] * 16 + buffer[4] + buffer[5] * 16 + buffer[6];
+			tempDataSum = tempDataSum + dataType;
+			/* Check for checksum */
+			
+			checkSum = buffer[9+ 2*i] * 16 + buffer[10+ 2*i];
+			if(0x00 != ((checkSum + tempDataSum) & 0x00FF))
+			{
+				/* Checksum error */
+				write("line %d tempDataSum %d checkSum %d",line,tempDataSum,checkSum);
+				ret_result = ERROR_1;
+			}
+		}
+		else if(EXTENDED_SEGMENT == dataType)
+		{
+			dataAddressOld = 0x0000;
+		}
+		else
+		{
+			/*  */
+		}
+    dataAddressOld = dataAddress;
+    lengthOld = length;
+    
+    line = line + 1; 
+  }
+  TargetAppLength = AppDataIndex;
+  TargetCheckSumLength = CheckSumIndex;
+  
+  return(ret_result);
+}
+
+
+/**************************************************************************************************/
+/**
+    \brief   void GEELY_GAC_A26_Reflash_Task()
+             Do the step sequently . <br> 
+             
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void GAC_A26_Reflash_Task()
+{
+  enum TRUE_FALSE temp = FALSE;
+  dword glb_ReflashFile_Handle = 0;
+  dword i;
+  
+  switch (ReflashStatus)
+  {
+    case INITIAL_STEP:
+    {
+    	TargetDataFirstAddress = 0x0000;
+    	TargetCheckSumFirstAddress = 0x0000;
+    	
+      if(TRUE == ReflashTaskEnable)
+      {
+        write("INITIAL_STEP");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "---------------------------------------------- \n");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "Reflash Start \n");
+        sysGetVariableData(sysvar::REFLASH::ReflashFilePath, byte_fileName, nrOfBytes);
+
+        /* Date Transfer to BCD */
+				LocalTime_YearHigh_byte = (byte)(((LocalTime_Year /1000) * 16) + ((LocalTime_Year /100) % 10)) ;
+				LocalTime_YearLow_byte = (byte)((((LocalTime_Year % 100) / 10)  * 16) + (LocalTime_Year % 10));
+        LocalTime_Month_byte = (byte)(((LocalTime_Month /10) * 16) + (LocalTime_Month % 10));
+        LocalTime_Day_byte = (byte)(((LocalTime_DayofMonth /10) * 16) + (LocalTime_DayofMonth % 10));
+				
+        ReflashStatus = CHECK_FILE_PATH_STEP;
+      }
+      break;
+    }
+    case CHECK_FILE_PATH_STEP: 
+    {
+      write("CHECK_FILE_PATH_STEP");
+      temp = Check_ReflashFilePath();
+      if(TRUE == temp)
+      {
+        ReflashStatus = CHECK_FILE_VALID_STEP;
+      }
+      else if(ERROR_1 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag file path length too long");
+      }
+      else if(ERROR_2 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag target file is not a bin file");
+      }
+      else
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        /* Do nothing */
+      }
+      
+      break;
+    }
+    case CHECK_FILE_VALID_STEP: 
+    {
+    	putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity \n");
+      write("CHECK_FILE_VALID_STEP");
+      /* dword openFileRead (char filename[], dword mode);
+         This function opens the file named filename for the read access. 
+         If mode=0 the file is opened in ASCII mode; 
+         if mode=1 the file is opened in binary mode.*/
+      dword_ReflashFileHandle = OpenFileRead(chr_fileName, 1);
+      temp = Check_ReflashFileValid_Bin();
+      if(TRUE == temp)
+      {
+	      SendNextStepEnable = TRUE;
+	      ReflashStatus = TO_EXTEND_MODE_STEP;
+	      //ReflashStatus = REFLASH_FINISHED_STEP;
+	    }
+	    else if(ERROR_1 == temp)
+	    {
+	    	ReflashStatus = REFLASH_FINISHED_STEP;
+	    	write("Checksum error");
+	    }
+      break;
+    }
+
+    case TO_EXTEND_MODE_STEP: 
+    {
+	    if(TRUE == SendNextStepEnable) 
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity : OK \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Extend Mode");
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		ReflashStatus = CHECK_PROGRAMMING_PRECONDITION;
+    	}
+      break;
+    }
+    
+    case DTC_SETTING_TYPE_OFF_SETP: 
+    {
+      break;
+    }
+    case COMMUNICATION_CONTROL_DISABLE_STEP: 
+    {
+      break;
+    }
+    
+    case CHECK_PROGRAMMING_PRECONDITION: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Extend Mode");
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x03;
+    		RoutineControlDataLen = 2;
+
+				RoutineControl_31_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		ReflashStatus = TO_PROGRAMMING_MODE_STEP;
+    	}
+      break;
+      break;
+    }
+    
+    case TO_PROGRAMMING_MODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Programming Mode \n");
+    		write("TO_PROGRAMMING_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = PROGRAMMING_SESSION;
+    		
+    		ReflashStatus = REFLASH_SECURITY_SEED_STEP;
+    	}
+      break;
+    }
+    
+    case REFLASH_SECURITY_SEED_STEP: 
+    {
+    	
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Security flash \n");
+    		write("REFLASH_SECURITY_SEED_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = FLASH_SECURITY;
+    		
+				SecurityAccess_27_Seed_Triger = TRUE;				
+    		
+    		ReflashStatus = REFLASH_SECURITY_KEY_STEP;
+    	}
+      break;
+    }
+
+    case REFLASH_SECURITY_KEY_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		write("REFLASH_SECURITY_KEY_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = FLASH_SECURITY;
+				
+				SecurityAccess_27_Key_Triger = TRUE;				
+    		
+    		ReflashStatus = WRITE_APP_FINGERPRINT_DATA_STEP;
+    	}
+      break;
+    }
+    
+    case WRITE_APP_FINGERPRINT_DATA_STEP: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Key_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Write repairshopcode \n");
+    		write("WRITE_REPAIRSHOPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x84;
+				PidDataArray[2] = 0x77;
+				PidDataArray[3] = LocalTime_Year - 2000;
+				PidDataArray[4] = LocalTime_Month_byte;
+				PidDataArray[5] = LocalTime_Day_byte;
+				PidDataArray[6] = 0x77;
+				PidDataArray[7] = 0x77;
+				PidDataArray[8] = 0x77;
+				PidDataArray[9] = 0x77;
+				PidDataArray[10] = 0x77;
+				PidDataArray[11] = 0x77;
+				PidDataLen = 10 + 2;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		ReflashStatus = REQUEST_DOWNLOAD_FLASHERDRIVER_STEP;
+    	}
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_FLASHERDRIVER_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download flash driver \n");
+    		write("REQUEST_DOWNLOAD_FLASHERDRIVER_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = 0x000FE400;
+        RequestDownloadMemorySize = GAC_A26_BlockOnedataNum;
+    		ReflashStatus = TRANSFER_FLASHERDRIVER_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_FLASHERDRIVER_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download flash driver data \n");
+    		write("TRANSFER_FLASHERDRIVER_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = GAC_A26_BlockOnedataNum;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = GAC_A26_BlockOneDataList[i];
+	    	}
+	    	ReflashStatus = FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	ReflashStatus = FLASHERDRIVER_CHECK_CHECKSUM_STEP;
+	    }	
+      break;
+    }    
+    case FLASHERDRIVER_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Flash driver data check \n");
+    		write("FLASHERDRIVER_CHECK_CHECKSUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		AllFileCheckSum = crc32(TargetReflashDataArrray, TargetDataLength);
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x02;
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+    		RoutineControlDataLen = 6;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_ERASEMEMORY_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_ERASEMEMORY_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Erase memory \n");
+    		write("APPCODE_ERASEMEMORY_STEP");
+    		SendNextStepEnable = FALSE;
+    		RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x00;
+    		RoutineControlDataArray[2] = 0x44;
+    		RoutineControlDataArray[3] = (byte)(TargetAppFirstAddress >> 24);
+    		RoutineControlDataArray[4] = (byte)(TargetAppFirstAddress >> 16);
+    		RoutineControlDataArray[5] = (byte)(TargetAppFirstAddress >> 8);
+    		RoutineControlDataArray[6] = (byte)(TargetAppFirstAddress >> 0);
+
+    		RoutineControlDataArray[7] = (byte)(TargetAppLength >> 24);
+    		RoutineControlDataArray[8] = (byte)(TargetAppLength >> 16);
+    		RoutineControlDataArray[9] = (byte)(TargetAppLength >> 8);
+    		RoutineControlDataArray[10] = (byte)(TargetAppLength >> 0);
+    		
+    		RoutineControlDataLen = 11;
+	    	RoutineControl_31_Triger = TRUE;
+	    	ReflashStatus = REQUEST_DOWNLOAD_APPCODE_STEP;
+	    }	
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_APPCODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download code data \n");
+    		write("REQUEST_DOWNLOAD_APPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = TargetAppFirstAddress;
+        RequestDownloadMemorySize = TargetAppLength;
+    		ReflashStatus = TRANSFER_APPCODE_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_APPCODE_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download code data \n");
+    		write("TRANSFER_APPCODE_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = TargetAppLength;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = TargetReflashAppArrray[i];
+	    	}
+	    	ReflashStatus = APPCODE_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("APPCODE_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	ReflashStatus = APPCODE_CHECK_CHECKSUM_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Code data check \n");
+    		write("APPCODE_CHECK_CHECKSUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+				for(i = 0; i<TargetCheckSumLength; i++)
+				{
+					TargetReflashAppArrray[TargetAppLength + i] = TargetReflashCheckSumArrray[i];
+				}
+				AllFileCheckSum = crc32(TargetReflashAppArrray, (TargetAppLength + TargetCheckSumLength));
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x02;
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+    		RoutineControlDataLen = 6;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_CHECK_PROGRAMMING_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_CHECK_PROGRAMMING_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		write("APPCODE_CHECK_PROGRAMMING_STEP");
+    		SendNextStepEnable = FALSE;
+
+				for(i = 0; i<TargetCheckSumLength; i++)
+				{
+				TargetReflashDataArrray[TargetDataLength + i] = TargetReflashCheckSumArrray[i];
+				}
+				AllFileCheckSum = crc32(TargetReflashDataArrray, (TargetDataLength + TargetCheckSumLength));
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x01;
+    		
+    		RoutineControlDataLen = 2;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = WRITE_PROGRAMMINGDATE_STEP;
+	    }	
+      break;
+    }
+    case WRITE_PROGRAMMINGDATE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Write programming date \n");
+    		write("WRITE_PROGRAMMINGDATE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x99;
+
+				PidDataArray[2] = LocalTime_YearHigh_byte;
+				PidDataArray[3] = LocalTime_YearLow_byte;
+				PidDataArray[4] = LocalTime_Month_byte;
+				PidDataArray[5] = LocalTime_Day_byte;
+				
+				PidDataLen = 4 + 2;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		ReflashStatus = RESET_STEP;
+    	}
+      break;
+    }
+    case RESET_STEP: 
+    {
+	    if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Reset \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "********Reflash Succesfully******** \n\n\n");
+    		write("RESET_STEP");
+    		SendNextStepEnable = FALSE;
+
+				ECUReset_11_Triger = TRUE;
+				Reset_Value = HARDR_ESTE;
+    		
+    		ReflashStatus = REFLASH_FINISHED_STEP;
+    	}
+      break;
+    }
+    
+    case REFLASH_FINISHED_STEP: 
+    {
+      ReflashStatus = REFLASH_FINISHED_STEP;
+      ReflashTaskEnable = FALSE;
+      fileClose (dword_ReflashFileHandle);
+      break;
+    }
+
+    default: 
+    {
+      break;
+    }
+  }
+}
+
+/**************************************************************************************************/
+/**
+    \brief   void GEELY_GAC_A12_Reflash_Task()
+             Do the step sequently . <br> 
+             
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void GAC_A12_Reflash_Task()
+{
+  enum TRUE_FALSE temp = FALSE;
+  dword glb_ReflashFile_Handle = 0;
+  dword i;
+  dword waittingTimerCnt;
+  
+  switch (ReflashStatus)
+  {
+    case INITIAL_STEP:
+    {
+    	TargetDataFirstAddress = 0x0000;
+    	TargetCheckSumFirstAddress = 0x0000;
+    	waittingTimerCnt = 0x00;
+    	
+      if(TRUE == ReflashTaskEnable)
+      {
+        write("INITIAL_STEP");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "---------------------------------------------- \n");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "Reflash Start \n");
+        sysGetVariableData(sysvar::REFLASH::ReflashFilePath, byte_fileName, nrOfBytes);
+
+        /* Date Transfer to BCD */
+				LocalTime_YearHigh_byte = (byte)(((LocalTime_Year /1000) * 16) + ((LocalTime_Year /100) % 10)) ;
+				LocalTime_YearLow_byte = (byte)((((LocalTime_Year % 100) / 10)  * 16) + (LocalTime_Year % 10));
+        LocalTime_Month_byte = (byte)(((LocalTime_Month /10) * 16) + (LocalTime_Month % 10));
+        LocalTime_Day_byte = (byte)(((LocalTime_DayofMonth /10) * 16) + (LocalTime_DayofMonth % 10));
+				
+        ReflashStatus = CHECK_FILE_PATH_STEP;
+      }
+      break;
+    }
+    case CHECK_FILE_PATH_STEP: 
+    {
+      write("CHECK_FILE_PATH_STEP");
+      temp = Check_ReflashFilePath();
+      if(TRUE == temp)
+      {
+        ReflashStatus = CHECK_FILE_VALID_STEP;
+      }
+      else if(ERROR_1 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag file path length too long");
+      }
+      else if(ERROR_2 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag target file is not a bin file");
+      }
+      else
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        /* Do nothing */
+      }
+      
+      break;
+    }
+    case CHECK_FILE_VALID_STEP: 
+    {
+    	putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity \n");
+      write("CHECK_FILE_VALID_STEP");
+      /* dword openFileRead (char filename[], dword mode);
+         This function opens the file named filename for the read access. 
+         If mode=0 the file is opened in ASCII mode; 
+         if mode=1 the file is opened in binary mode.*/
+      dword_ReflashFileHandle = OpenFileRead(chr_fileName, 1);
+      temp = Check_ReflashFileValid_Bin();
+      if(TRUE == temp)
+      {
+	      SendNextStepEnable = TRUE;
+	      ReflashStatus = TO_EXTEND_MODE_STEP;
+	      //ReflashStatus = REFLASH_FINISHED_STEP;
+	    }
+	    else if(ERROR_1 == temp)
+	    {
+	    	ReflashStatus = REFLASH_FINISHED_STEP;
+	    	write("Checksum error");
+	    }
+      break;
+    }
+
+    case TO_EXTEND_MODE_STEP: 
+    {
+	    if(TRUE == SendNextStepEnable) 
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity : OK \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Extend Mode");
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		ReflashStatus = CHECK_PROGRAMMING_PRECONDITION;
+    	}
+      break;
+    }
+    
+    case DTC_SETTING_TYPE_OFF_SETP: 
+    {
+      break;
+    }
+    case COMMUNICATION_CONTROL_DISABLE_STEP: 
+    {
+      break;
+    }
+    
+    case CHECK_PROGRAMMING_PRECONDITION: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Extend Mode");
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x03;
+    		RoutineControlDataLen = 2;
+
+				RoutineControl_31_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		ReflashStatus = TO_PROGRAMMING_MODE_STEP;
+    	}
+      break;
+      break;
+    }
+    
+    case TO_PROGRAMMING_MODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Programming Mode \n");
+    		write("TO_PROGRAMMING_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = PROGRAMMING_SESSION;
+    		
+    		ReflashStatus = REFLASH_SECURITY_SEED_STEP;
+    	}
+      break;
+    }
+    
+    case REFLASH_SECURITY_SEED_STEP: 
+    {
+    	
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Security flash \n");
+    		write("REFLASH_SECURITY_SEED_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = FLASH_SECURITY;
+    		
+				SecurityAccess_27_Seed_Triger = TRUE;				
+    		
+    		ReflashStatus = REFLASH_SECURITY_KEY_STEP;
+    	}
+      break;
+    }
+
+    case REFLASH_SECURITY_KEY_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		write("REFLASH_SECURITY_KEY_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = FLASH_SECURITY;
+				
+				SecurityAccess_27_Key_Triger = TRUE;				
+    		
+    		ReflashStatus = WRITE_APP_FINGERPRINT_DATA_STEP;
+    	}
+      break;
+    }
+    
+    case WRITE_APP_FINGERPRINT_DATA_STEP: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Key_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Write repairshopcode \n");
+    		write("WRITE_REPAIRSHOPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x84;
+				PidDataArray[2] = 0x77;
+				PidDataArray[3] = LocalTime_Year - 2000;
+				PidDataArray[4] = LocalTime_Month_byte;
+				PidDataArray[5] = LocalTime_Day_byte;
+				PidDataArray[6] = 0x77;
+				PidDataArray[7] = 0x77;
+				PidDataArray[8] = 0x77;
+				PidDataArray[9] = 0x77;
+				PidDataArray[10] = 0x77;
+				PidDataArray[11] = 0x77;
+				PidDataLen = 10 + 2;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		ReflashStatus = REQUEST_DOWNLOAD_FLASHERDRIVER_STEP;
+    	}
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_FLASHERDRIVER_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download flash driver \n");
+    		write("REQUEST_DOWNLOAD_FLASHERDRIVER_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = 0x000FE400;
+        RequestDownloadMemorySize = GAC_A26_BlockOnedataNum;
+    		ReflashStatus = TRANSFER_FLASHERDRIVER_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_FLASHERDRIVER_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download flash driver data \n");
+    		write("TRANSFER_FLASHERDRIVER_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = GAC_A26_BlockOnedataNum;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = GAC_A26_BlockOneDataList[i];
+	    	}
+	    	ReflashStatus = FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	ReflashStatus = FLASHERDRIVER_CHECK_CHECKSUM_STEP;
+	    }	
+      break;
+    }    
+    case FLASHERDRIVER_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Flash driver data check \n");
+    		write("FLASHERDRIVER_CHECK_CHECKSUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		AllFileCheckSum = crc32(TargetReflashDataArrray, TargetDataLength);
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x02;
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+    		RoutineControlDataLen = 6;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_ERASEMEMORY_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_ERASEMEMORY_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Erase memory \n");
+    		write("APPCODE_ERASEMEMORY_STEP");
+    		SendNextStepEnable = FALSE;
+    		RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x00;
+    		RoutineControlDataArray[2] = 0x44;
+    		RoutineControlDataArray[3] = (byte)(TargetAppFirstAddress >> 24);
+    		RoutineControlDataArray[4] = (byte)(TargetAppFirstAddress >> 16);
+    		RoutineControlDataArray[5] = (byte)(TargetAppFirstAddress >> 8);
+    		RoutineControlDataArray[6] = (byte)(TargetAppFirstAddress >> 0);
+
+    		RoutineControlDataArray[7] = (byte)(TargetAppLength >> 24);
+    		RoutineControlDataArray[8] = (byte)(TargetAppLength >> 16);
+    		RoutineControlDataArray[9] = (byte)(TargetAppLength >> 8);
+    		RoutineControlDataArray[10] = (byte)(TargetAppLength >> 0);
+    		
+    		RoutineControlDataLen = 11;
+	    	RoutineControl_31_Triger = TRUE;
+	    	ReflashStatus = REQUEST_DOWNLOAD_APPCODE_STEP;
+	    }	
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_APPCODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download code data \n");
+    		write("REQUEST_DOWNLOAD_APPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = TargetAppFirstAddress;
+        RequestDownloadMemorySize = TargetAppLength;
+    		ReflashStatus = TRANSFER_APPCODE_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_APPCODE_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download code data \n");
+    		write("TRANSFER_APPCODE_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = TargetAppLength;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = TargetReflashAppArrray[i];
+	    	}
+	    	ReflashStatus = APPCODE_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("APPCODE_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	ReflashStatus = APPCODE_CHECK_CHECKSUM_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Code data check \n");
+    		write("APPCODE_CHECK_CHECKSUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+				for(i = 0; i<TargetCheckSumLength; i++)
+				{
+					TargetReflashAppArrray[TargetAppLength + i] = TargetReflashCheckSumArrray[i];
+				}
+				AllFileCheckSum = crc32(TargetReflashAppArrray, (TargetAppLength + TargetCheckSumLength));
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x02;
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+    		RoutineControlDataLen = 6;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_CHECK_PROGRAMMING_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_CHECK_PROGRAMMING_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		write("APPCODE_CHECK_PROGRAMMING_STEP");
+    		SendNextStepEnable = FALSE;
+
+				for(i = 0; i<TargetCheckSumLength; i++)
+				{
+				TargetReflashDataArrray[TargetDataLength + i] = TargetReflashCheckSumArrray[i];
+				}
+				AllFileCheckSum = crc32(TargetReflashDataArrray, (TargetDataLength + TargetCheckSumLength));
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x01;
+    		
+    		RoutineControlDataLen = 2;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = WRITE_PROGRAMMINGDATE_STEP;
+	    }	
+      break;
+    }
+    case WRITE_PROGRAMMINGDATE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Write programming date \n");
+    		write("WRITE_PROGRAMMINGDATE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x99;
+
+				PidDataArray[2] = LocalTime_YearHigh_byte;
+				PidDataArray[3] = LocalTime_YearLow_byte;
+				PidDataArray[4] = LocalTime_Month_byte;
+				PidDataArray[5] = LocalTime_Day_byte;
+				
+				PidDataLen = 4 + 2;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		ReflashStatus = RESET_STEP;
+    	}
+      break;
+    }
+    case RESET_STEP: 
+    {
+	    if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Reset \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "********Reflash Succesfully******** \n\n\n");
+    		write("RESET_STEP");
+    		SendNextStepEnable = FALSE;
+
+				ECUReset_11_Triger = TRUE;
+				Reset_Value = HARDR_ESTE;
+    		
+    		ReflashStatus = REFLASH_FINISHED_STEP;
+    	}
+      break;
+    }
+    case REFLASH_FINISHED_STEP: 
+    {
+      ReflashStatus = REFLASH_FINISHED_STEP;
+      ReflashTaskEnable = FALSE;
+      fileClose (dword_ReflashFileHandle);
+      break;
+    }
+
+    default: 
+    {
+      break;
+    }
+  }
+}
+
+/**************************************************************************************************/
+/**
+    \brief   void GEELY_FE_6_Reflash_Task()
+             Do the step sequently . <br> 
+             
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void GEELY_FE_6_Reflash_Task()
+{	
+  enum TRUE_FALSE temp = FALSE;
+  dword glb_ReflashFile_Handle = 0;
+  dword i;
+  word waittingTimerCnt;
+  
+  switch (ReflashStatus)
+  {
+    case INITIAL_STEP:
+    {
+    	TargetDataFirstAddress = 0x0000;
+    	TargetCheckSumFirstAddress = 0x0000;
+    	waittingTimerCnt = 0x00;
+    	
+      if(TRUE == ReflashTaskEnable)
+      {
+        write("INITIAL_STEP");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "---------------------------------------------- \n");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "Reflash Start \n");
+        sysGetVariableData(sysvar::REFLASH::ReflashFilePath, byte_fileName, nrOfBytes);
+        
+				LocalTime_YearHigh_byte = (byte)(((LocalTime_Year /1000) * 16) + ((LocalTime_Year /100) % 10)) ;
+				LocalTime_YearLow_byte = (byte)((((LocalTime_Year % 100) / 10)  * 16) + (LocalTime_Year % 10));
+        LocalTime_Month_byte = (byte)(((LocalTime_Month /10) * 16) + (LocalTime_Month % 10));
+        LocalTime_Day_byte = (byte)(((LocalTime_DayofMonth /10) * 16) + (LocalTime_DayofMonth % 10));
+        
+        ReflashStatus = CHECK_FILE_PATH_STEP;
+      }
+      break;
+    }
+    
+    case CHECK_FILE_PATH_STEP: 
+    {
+      write("CHECK_FILE_PATH_STEP");
+      temp = Check_ReflashFilePath();
+      if(TRUE == temp)
+      {
+        ReflashStatus = CHECK_FILE_VALID_STEP;
+      }
+      else if(ERROR_1 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag file path length too long");
+      }
+      else if(ERROR_2 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag target file is not a bin file");
+      }
+      else
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        /* Do nothing */
+      }
+      
+      break;
+    }
+      
+    case CHECK_FILE_VALID_STEP: 
+    {
+    	putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity \n");
+      write("CHECK_FILE_VALID_STEP");
+      dword_ReflashFileHandle = OpenFileRead(chr_fileName, 0);
+      temp = Check_ReflashFileValid_Hex();
+      if(TRUE == temp)
+      {
+	      SendNextStepEnable = TRUE;
+	      ReflashStatus = TO_EXTEND_MODE_STEP;
+	    }
+	    else if(ERROR_1 == temp)
+	    {
+	    	ReflashStatus = REFLASH_FINISHED_STEP;
+	    	write("Checksum error");
+	    }
+      break;
+    }
+    
+    case PRE_ACTION_STEP: 
+    {
+      break;
+    }
+    
+    case TO_EXTEND_MODE_STEP: 
+    {
+	    if(TRUE == SendNextStepEnable)
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity : OK \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Extend Mode");
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		ReflashStatus = TO_PROGRAMMING_MODE_STEP;
+    	}
+      break;
+    }
+    
+    case TO_PROGRAMMING_MODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Programming Mode \n");
+    		write("TO_PROGRAMMING_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = PROGRAMMING_SESSION;
+    		
+    		ReflashStatus = REFLASH_SECURITY_SEED_STEP;
+    	}
+      break;
+    }
+    
+    case REFLASH_SECURITY_SEED_STEP: 
+    {
+    	
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Security flash \n");
+    		write("REFLASH_SECURITY_SEED_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = FLASH_SECURITY;
+    		
+				SecurityAccess_27_Seed_Triger = TRUE;				
+    		
+    		ReflashStatus = REFLASH_SECURITY_KEY_STEP;
+    	}
+      break;
+    }
+
+    case REFLASH_SECURITY_KEY_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		write("REFLASH_SECURITY_KEY_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = FLASH_SECURITY;
+				
+				SecurityAccess_27_Key_Triger = TRUE;				
+    		
+    		ReflashStatus = WRITE_REPAIRSHOPCODE_STEP;
+    	}
+      break;
+    }
+    
+		case WRITE_REPAIRSHOPCODE_STEP: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Key_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Write repairshopcode \n");
+    		write("WRITE_REPAIRSHOPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x98;
+				PidDataArray[2] = 'B';
+				PidDataArray[3] = 'C';
+				PidDataArray[4] = 'S';
+				PidDataArray[5] = '-';
+				PidDataArray[6] = 'S';
+				PidDataArray[7] = 'u';
+				PidDataArray[8] = 'Z';
+				PidDataArray[9] = 'h';
+				PidDataArray[10] = 'o';
+				PidDataArray[11] = 'u';
+				
+				PidDataLen = 16 + 2;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		ReflashStatus = WRITE_PROGRAMMINGDATE_STEP;
+    	}
+      break;
+    }
+    
+    case WRITE_PROGRAMMINGDATE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Write programming date \n");
+    		write("WRITE_PROGRAMMINGDATE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x99;
+				PidDataArray[2] = LocalTime_YearHigh_byte;
+				PidDataArray[3] = LocalTime_YearLow_byte;
+				PidDataArray[4] = LocalTime_Month_byte;
+				PidDataArray[5] = LocalTime_Day_byte;
+				
+				PidDataLen = 4 + 2;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		ReflashStatus = REQUEST_DOWNLOAD_FLASHERDRIVER_STEP;
+    	}
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_FLASHERDRIVER_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download flash driver \n");
+    		write("REQUEST_DOWNLOAD_FLASHERDRIVER_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = 0x000FE30A;
+        RequestDownloadMemorySize = GEELY_FE_6_BlockOnedataNum;
+    		ReflashStatus = TRANSFER_FLASHERDRIVER_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_FLASHERDRIVER_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download flash driver data \n");
+    		write("TRANSFER_FLASHERDRIVER_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = GEELY_FE_6_BlockOnedataNum;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = GEELY_FE_6_BlockOneDataList[i];
+	    	}
+	    	ReflashStatus = FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	ReflashStatus = FLASHERDRIVER_CHECK_CHECKSUM_STEP;
+	    }	
+      break;
+    }    
+    case FLASHERDRIVER_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Flash driver data check \n");
+    		write("FLASHERDRIVER_CHECK_CHECKSUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		AllFileCheckSum = crc32(TargetReflashDataArrray, TargetDataLength);
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x02;
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+    		RoutineControlDataLen = 6;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_ERASEMEMORY_STEP;
+	    }	
+      break;
+    }
+		case APPCODE_ERASEMEMORY_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Erase memory \n");
+    		write("APPCODE_ERASEMEMORY_STEP");
+    		SendNextStepEnable = FALSE;
+    		RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x00;
+    		RoutineControlDataArray[2] = 0x44;
+    		RoutineControlDataArray[3] = 0x00;
+    		RoutineControlDataArray[4] = 0x00;
+    		RoutineControlDataArray[5] = (byte)(TargetAppFirstAddress >> 8);
+    		RoutineControlDataArray[6] = (byte)(TargetAppFirstAddress >> 0);
+
+    		RoutineControlDataArray[7] = 0x00;
+    		RoutineControlDataArray[8] = 0x01;
+    		RoutineControlDataArray[9] = 0x5F;
+    		RoutineControlDataArray[10] = 0xF2;
+    		
+    		RoutineControlDataLen = 11;
+	    	RoutineControl_31_Triger = TRUE;
+	    	ReflashStatus = REQUEST_DOWNLOAD_APPCODE_STEP;
+	    }	
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_APPCODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download code data \n");
+    		write("REQUEST_DOWNLOAD_APPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = TargetAppFirstAddress;
+        RequestDownloadMemorySize = TargetAppLength;
+    		ReflashStatus = TRANSFER_APPCODE_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_APPCODE_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download code data \n");
+    		write("TRANSFER_APPCODE_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = TargetAppLength;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = TargetReflashAppArrray[i];
+	    	}
+	    	ReflashStatus = APPCODE_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("APPCODE_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	ReflashStatus = REQUEST_DOWNLOAD_CHECKSUMCODE_STEP;
+	    }	
+      break;
+    }
+
+    case REQUEST_DOWNLOAD_CHECKSUMCODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		write("REQUEST_DOWNLOAD_CHECKSUMCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = TargetCheckSumFirstAddress;
+        RequestDownloadMemoryAddress |= 0x00010000;
+        
+        RequestDownloadMemorySize = TargetCheckSumLength;
+    		ReflashStatus = TRANSFER_CHECKSUMCODE_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_CHECKSUMCODE_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		write("TRANSFER_CHECKSUMCODE_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = TargetCheckSumLength;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = TargetReflashCheckSumArrray[i];
+	    	}
+	    	ReflashStatus = CHECKSUMCODE_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case CHECKSUMCODE_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		write("CHECKSUMCODE_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	ReflashStatus = APPCODE_CHECK_CHECKSUM_STEP;
+	    }	
+      break;
+    }
+
+    case APPCODE_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Code data check \n");
+    		write("APPCODE_CHECK_CHECKSUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+				for(i = 0; i<TargetCheckSumLength; i++)
+				{
+					TargetReflashAppArrray[TargetAppLength + i] = TargetReflashCheckSumArrray[i];
+				}
+				AllFileCheckSum = crc32(TargetReflashAppArrray, (TargetAppLength + TargetCheckSumLength));
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x02;
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+    		RoutineControlDataLen = 6;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_CHECK_PROGRAMMING_STEP;
+	    }	
+      break;
+    }
+
+    case APPCODE_CHECK_PROGRAMMING_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		write("APPCODE_CHECK_PROGRAMMING_STEP");
+    		SendNextStepEnable = FALSE;
+
+				for(i = 0; i<TargetCheckSumLength; i++)
+				{
+				TargetReflashDataArrray[TargetDataLength + i] = TargetReflashCheckSumArrray[i];
+				}
+				AllFileCheckSum = crc32(TargetReflashDataArrray, (TargetDataLength + TargetCheckSumLength));
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x01;
+    		
+    		RoutineControlDataLen = 2;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = RESET_STEP;
+	    }	
+      break;
+    }
+    
+    case RESET_STEP: 
+    {
+	    if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Reset \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "********Reflash Succesfully******** \n\n\n");
+    		write("RESET_STEP");
+    		SendNextStepEnable = FALSE;
+
+				ECUReset_11_Triger = TRUE;
+				Reset_Value = HARDR_ESTE;
+    		
+    		ReflashStatus = WAITING_STEP;
+    	}
+      break;
+    }
+    case WAITING_STEP: 
+    {
+    	if(2000 <= waittingTimerCnt)
+    	{
+    	  ReflashStatus = READ_VERSIONNUM_STEP;
+    	}
+    	else
+    	{
+    	  waittingTimerCnt++;
+    	}
+    }
+		case READ_VERSIONNUM_STEP: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == ECUReset_11_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Read version number \n");
+    		write("READ_VERSIONNUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x95;
+				PidDataLen = 16 + 2;
+
+				ReadDataByIdentifier_22_Triger = TRUE;
+    		
+    		ReflashStatus = OUTPUT_VERSIONNUM_STEP;
+    	}
+      break;
+    }
+		case OUTPUT_VERSIONNUM_STEP: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == ReadDataByIdentifier_22_Triger))
+    	{
+				write("DID %x", TpDataReceived[2]);
+				putValueToControl("Main_Panel","ReflashDisplayControl", "OUTPUT_VERSIONNUM_STEP \n");
+    		
+    		ReflashStatus = REFLASH_FINISHED_STEP;
+    	}
+      break;
+    }
+    
+    case REFLASH_FINISHED_STEP: 
+    {
+      ReflashStatus = REFLASH_FINISHED_STEP;
+      ReflashTaskEnable = FALSE;
+      fileClose (dword_ReflashFileHandle);
+      break;
+    }
+    default: 
+    {
+      break;
+    }
+  }
+}
+
+
+/**************************************************************************************************/
+/**
+    \brief   void SAIC_SK83_Reflash_Task()
+             Do the step sequently . <br> 
+             
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void SAIC_SK83_Reflash_Task()
+{
+  enum TRUE_FALSE temp = FALSE;
+  dword glb_ReflashFile_Handle = 0;
+  dword i;
+  dword waittingTimerCnt;
+  
+  switch (ReflashStatus)
+  {
+    case INITIAL_STEP:
+    {
+    	TargetDataFirstAddress = 0x0000;
+    	TargetCheckSumFirstAddress = 0x0000;
+    	waittingTimerCnt = 0x00;
+    	
+      if(TRUE == ReflashTaskEnable)
+      {
+        write("INITIAL_STEP");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "---------------------------------------------- \n");
+        putValueToControl("Main_Panel","ReflashDisplayControl", "Reflash Start \n");
+        sysGetVariableData(sysvar::REFLASH::ReflashFilePath, byte_fileName, nrOfBytes);
+
+        /* Date Transfer to BCD */
+				LocalTime_YearHigh_byte = (byte)(((LocalTime_Year /1000) * 16) + ((LocalTime_Year /100) % 10)) ;
+				LocalTime_YearLow_byte = (byte)((((LocalTime_Year % 100) / 10)  * 16) + (LocalTime_Year % 10));
+        LocalTime_Month_byte = (byte)(((LocalTime_Month /10) * 16) + (LocalTime_Month % 10));
+        LocalTime_Day_byte = (byte)(((LocalTime_DayofMonth /10) * 16) + (LocalTime_DayofMonth % 10));
+				
+        ReflashStatus = CHECK_FILE_PATH_STEP;
+      }
+      break;
+    }
+    case CHECK_FILE_PATH_STEP: 
+    {
+      write("CHECK_FILE_PATH_STEP");
+      temp = Check_ReflashFilePath();
+      if(TRUE == temp)
+      {
+        ReflashStatus = CHECK_FILE_VALID_STEP;
+      }
+      else if(ERROR_1 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag file path length too long");
+      }
+      else if(ERROR_2 == temp)
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        write("Error Flag target file is not a bin file");
+      }
+      else
+      {
+        ReflashStatus = REFLASH_FINISHED_STEP;
+        /* Do nothing */
+      }
+      
+      break;
+    }
+    case CHECK_FILE_VALID_STEP: 
+    {
+    	putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity \n");
+      write("CHECK_FILE_VALID_STEP");
+      /* dword openFileRead (char filename[], dword mode);
+         This function opens the file named filename for the read access. 
+         If mode=0 the file is opened in ASCII mode; 
+         if mode=1 the file is opened in binary mode.*/
+      dword_ReflashFileHandle = OpenFileRead(chr_fileName, 1);
+      temp = Check_ReflashFileValid_Hex();
+      if(TRUE == temp)
+      {
+	      SendNextStepEnable = TRUE;
+	      ReflashStatus = TO_EXTEND_MODE_STEP;
+	      //ReflashStatus = REFLASH_FINISHED_STEP;
+	    }
+	    else if(ERROR_1 == temp)
+	    {
+	    	ReflashStatus = REFLASH_FINISHED_STEP;
+	    	write("Checksum error");
+	    }
+      break;
+    }
+
+    case TO_EXTEND_MODE_STEP: 
+    {
+	    if(TRUE == SendNextStepEnable) 
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Check the target file validity : OK \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Extend Mode");
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		ReflashStatus = OEM_SECURITY_SEED_STEP;
+    	}
+      break;
+    }
+    
+    case OEM_SECURITY_SEED_STEP: 
+    {
+    	
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Security flash \n");
+    		write("REFLASH_SECURITY_SEED_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = OEM_SECURITY;
+    		
+				SecurityAccess_27_Seed_Triger = TRUE;				
+    		
+    		ReflashStatus = OEM_SECURITY_KEY_STEP;
+    	}
+      break;
+    }
+
+    case OEM_SECURITY_KEY_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		write("REFLASH_SECURITY_KEY_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = OEM_SECURITY;
+				
+				SecurityAccess_27_Key_Triger = TRUE;				
+    		
+    		ReflashStatus = CHECK_PROGRAMMING_PRECONDITION;
+    	}
+      break;
+    }
+    
+    case CHECK_PROGRAMMING_PRECONDITION: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Extend Mode");
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xDF;
+    		RoutineControlDataArray[1] = 0xFD;
+    		RoutineControlDataLen = 2;
+
+				RoutineControl_31_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		ReflashStatus = TO_PROGRAMMING_MODE_STEP;
+    	}
+      break;
+      break;
+    }
+    
+    case TO_PROGRAMMING_MODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Enter Programming Mode \n");
+    		write("TO_PROGRAMMING_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = PROGRAMMING_SESSION;
+    		
+    		ReflashStatus = REFLASH_SECURITY_SEED_STEP;
+    	}
+      break;
+    }
+    
+    case REFLASH_SECURITY_SEED_STEP: 
+    {
+    	
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Security flash \n");
+    		write("REFLASH_SECURITY_SEED_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = SAIC_FLASH_SECURITY;
+    		
+				SecurityAccess_27_Seed_Triger = TRUE;				
+    		
+    		ReflashStatus = REFLASH_SECURITY_KEY_STEP;
+    	}
+      break;
+    }
+
+    case REFLASH_SECURITY_KEY_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		write("REFLASH_SECURITY_KEY_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = SAIC_FLASH_SECURITY;
+				
+				SecurityAccess_27_Key_Triger = TRUE;				
+    		
+    		ReflashStatus = REQUEST_DOWNLOAD_FLASHERDRIVER_STEP;
+    	}
+      break;
+    }
+    
+    case WRITE_APP_FINGERPRINT_DATA_STEP: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Key_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Write repairshopcode \n");
+    		write("WRITE_REPAIRSHOPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x84;
+				PidDataArray[2] = 0x77;
+				PidDataArray[3] = LocalTime_Year - 2000;
+				PidDataArray[4] = LocalTime_Month_byte;
+				PidDataArray[5] = LocalTime_Day_byte;
+				PidDataArray[6] = 0x77;
+				PidDataArray[7] = 0x77;
+				PidDataArray[8] = 0x77;
+				PidDataArray[9] = 0x77;
+				PidDataArray[10] = 0x77;
+				PidDataArray[11] = 0x77;
+				PidDataLen = 10 + 2;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		ReflashStatus = REQUEST_DOWNLOAD_FLASHERDRIVER_STEP;
+    	}
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_FLASHERDRIVER_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download flash driver \n");
+    		write("REQUEST_DOWNLOAD_FLASHERDRIVER_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = 0x00000000;
+        RequestDownloadMemorySize = SAIC_SK83_BlockOnedataNum;
+    		ReflashStatus = TRANSFER_FLASHERDRIVER_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_FLASHERDRIVER_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download flash driver data \n");
+    		write("TRANSFER_FLASHERDRIVER_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = SAIC_SK83_BlockOnedataNum;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = SAIC_SK83_BlockOneDataList[i];
+	    	}
+	    	ReflashStatus = FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("FLASHERDRIVER_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	RequestCrcType = CRCREQUEST;
+	    	
+	    	ReflashStatus = APPCODE_ERASEMEMORY_STEP;
+	    }	
+      break;
+    }    
+    case FLASHERDRIVER_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Flash driver data check \n");
+    		write("FLASHERDRIVER_CHECK_CHECKSUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		AllFileCheckSum = crc32(TargetReflashDataArrray, TargetDataLength);
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0x02;
+    		RoutineControlDataArray[1] = 0x02;
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+    		RoutineControlDataLen = 6;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_ERASEMEMORY_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_ERASEMEMORY_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Erase memory \n");
+    		write("APPCODE_ERASEMEMORY_STEP");
+    		SendNextStepEnable = FALSE;
+    		RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x00;
+    		RoutineControlDataArray[2] = 0x44;
+    		RoutineControlDataArray[3] = (byte)(TargetAppFirstAddress >> 24);
+    		RoutineControlDataArray[4] = (byte)(TargetAppFirstAddress >> 16);
+    		RoutineControlDataArray[5] = (byte)(TargetAppFirstAddress >> 8);
+    		RoutineControlDataArray[6] = (byte)(TargetAppFirstAddress >> 0);
+
+    		RoutineControlDataArray[7] = (byte)(TargetAppLength >> 24);
+    		RoutineControlDataArray[8] = (byte)(TargetAppLength >> 16);
+    		RoutineControlDataArray[9] = (byte)(TargetAppLength >> 8);
+    		RoutineControlDataArray[10] = (byte)(TargetAppLength >> 0);
+    		
+    		RoutineControlDataLen = 11;
+	    	RoutineControl_31_Triger = TRUE;
+	    	ReflashStatus = REQUEST_DOWNLOAD_APPCODE_STEP;
+	    }	
+      break;
+    }
+    
+    case REQUEST_DOWNLOAD_APPCODE_STEP: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Request download code data \n");
+    		write("REQUEST_DOWNLOAD_APPCODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+    		RequestDownload_34_Triger = TRUE;
+
+        RequestDownloadMemoryAddress = TargetAppFirstAddress;
+        RequestDownloadMemorySize = TargetAppLength;
+    		ReflashStatus = TRANSFER_APPCODE_DATA_STEP;
+    	}
+      break;
+    }
+    case TRANSFER_APPCODE_DATA_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestDownload_34_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Download code data \n");
+    		write("TRANSFER_APPCODE_DATA_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	TransferData_36_Triger = TRUE;
+	    	
+	    	TargetDataLength = TargetAppLength;
+	    	for(i = 0; i < TargetDataLength; i++)
+	    	{
+	    		TargetReflashDataArrray[i] = TargetReflashAppArrray[i];
+	    	}
+	    	ReflashStatus = APPCODE_REQUEST_TRANSFER_EXIT_STEP;
+	    }	
+      break;
+    }
+    case APPCODE_REQUEST_TRANSFER_EXIT_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == TransferData_36_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Exit transfer \n");
+    		write("APPCODE_REQUEST_TRANSFER_EXIT_STEP");
+    		SendNextStepEnable = FALSE;
+    		
+	    	RequestTransferExit_37_Triger = TRUE;
+	    	RequestCrcType = CRCREQUEST;
+	    	
+	    	ReflashStatus = APPCODE_CHECK_CHECKSUM_STEP;
+	    }	
+      break;
+    }
+
+
+    case APPCODE_CHECK_CHECKSUM_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Code data check \n");
+    		write("APPCODE_CHECK_CHECKSUM_STEP");
+
+				for(i = 0; i<TargetCheckSumLength; i++)
+				{
+					TargetReflashAppArrray[TargetAppLength + i] = TargetReflashCheckSumArrray[i];
+				}
+				AllFileCheckSum = crc32(TargetReflashAppArrray, (TargetAppLength + TargetCheckSumLength));
+
+    		RoutineControlDataArray[2] = (byte)(AllFileCheckSum >> 24);
+    		RoutineControlDataArray[3] = (byte)(AllFileCheckSum >> 16);
+    		RoutineControlDataArray[4] = (byte)(AllFileCheckSum >> 8);
+    		RoutineControlDataArray[5] = (byte)(AllFileCheckSum >> 0);
+
+    		write("crc  %x  %x  %x  %x", RoutineControlDataArray[2], RoutineControlDataArray[3], RoutineControlDataArray[4], RoutineControlDataArray[5]);
+    		
+	    	
+	    	ReflashStatus = APPCODE_CHECK_INTEGRALITY_STEP;
+	    }	
+      break;
+    }
+    
+    case APPCODE_CHECK_INTEGRALITY_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RequestTransferExit_37_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Code data check \n");
+    		write("APPCODE_CHECK_INTEGRALITY_STEP");
+    		SendNextStepEnable = FALSE;
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xDF;
+    		RoutineControlDataArray[1] = 0xFF;
+
+    		RoutineControlDataLen = 2;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = APPCODE_CHECK_PERTINENCE_STEP;
+	    }	
+      break;
+    }
+
+    case APPCODE_CHECK_PERTINENCE_STEP: 
+    {
+      if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Code data check \n");
+    		write("APPCODE_CHECK_PERTINENCE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				RoutineControlType = SARTROUTINE;
+    		RoutineControlDataArray[0] = 0xFF;
+    		RoutineControlDataArray[1] = 0x01;
+
+    		RoutineControlDataLen = 2;
+    		
+	    	RoutineControl_31_Triger = TRUE;
+	    	
+	    	ReflashStatus = RESET_STEP;
+	    }	
+      break;
+    }
+
+    case RESET_STEP: 
+    {
+	    if((TRUE == SendNextStepEnable) && (FALSE == RoutineControl_31_Triger))
+    	{
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "Reset \n");
+    		putValueToControl("Main_Panel","ReflashDisplayControl", "********Reflash Succesfully******** \n\n\n");
+    		write("RESET_STEP");
+    		SendNextStepEnable = FALSE;
+
+				ECUReset_11_Triger = TRUE;
+				Reset_Value = HARDR_ESTE;
+    		
+    		ReflashStatus = REFLASH_FINISHED_STEP;
+    	}
+      break;
+    }
+    case REFLASH_FINISHED_STEP: 
+    {
+      ReflashStatus = REFLASH_FINISHED_STEP;
+      ReflashTaskEnable = FALSE;
+      fileClose (dword_ReflashFileHandle);
+      break;
+    }
+
+    default: 
+    {
+      break;
+    }
+  }
+}
+

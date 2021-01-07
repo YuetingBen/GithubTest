@@ -1,0 +1,435 @@
+<?xml version="1.0" ?>
+<systemvariables systemvariables="4">
+	<namespace name="" comment="" interface="">
+		<namespace name="NODE" comment="" interface="">
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="BCMEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="BCMDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="PEPSEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="PEPSDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TPMSEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TPMSDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TIMEnableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TIMDisableAll_Msg" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1"/>
+		</namespace>
+		<namespace name="MESSAGEFRAME" comment="" interface="">
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ICGM_Tester_7dfhMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ICGM_Tester_7dfhMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ICGM_Tester_7dfhChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ICGM_Tester_7dfhPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="100" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_281hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_281hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_281hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_281hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_375hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_375hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_375hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_BCM_375hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_269hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_269hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_269hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_269hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_404hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_404hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_404hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_404hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVAC_403hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVAC_403hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVAC_403hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVAC_403hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_40AhMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_40AhMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_40AhChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_40AhPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Body_409hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Body_409hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Body_409hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Body_409hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_210hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_210hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_210hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_210hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_220hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_220hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_220hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_220hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_261hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_261hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_261hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_EMS_261hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_IPK_362hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_IPK_362hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_IPK_362hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_IPK_362hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_78AhMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_78AhMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_78AhChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_78AhPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Tester_70AhMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Tester_70AhMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Tester_70AhChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_Tester_70AhPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_348hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_348hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_348hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_348hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A0hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A0hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A0hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A0hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A1hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A1hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A1hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGM_ESC_3A1hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E4hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E4hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E4hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E4hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5E5hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5E5hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5E5hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5E5hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E6hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E6hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E6hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E6hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E7hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E7hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E7hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_5E7hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5FEhMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5FEhMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5FEhChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_5FEhPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="10" minValuePhys="10" maxValue="100000"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_279hMessageEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_279hMsgCounterEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_279hChecksumEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_279hPeriod" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="100" minValue="10" minValuePhys="10" maxValue="100000"/>
+		</namespace>
+		<namespace name="SIGNALINFO" comment="" interface="">
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="FunctionDiagRequestDataValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="0"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="SystemPowerModeValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="$0=Off"/>
+					<valuetableentry value="1" description="$1=Accessory"/>
+					<valuetableentry value="2" description="$2=Run"/>
+					<valuetableentry value="3" description="$3=Crank Request"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="SystemPowerModeValidityValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Valid"/>
+					<valuetableentry value="1" description="Invalid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUMessageCounterValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="15"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUCheckSumValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DoorAjarDriverStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Off"/>
+					<valuetableentry value="1" description="On"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="VehicleSpeedValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="300"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="VehicleSpeedStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Valid"/>
+					<valuetableentry value="1" description="Invalid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCMessageCounterValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="15"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCCheckSumValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUSrcNodeIDValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDURepMsgReqValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Repeat Message State 未被请求"/>
+					<valuetableentry value="1" description="Repeat Message State 被请求"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUNMCoSlpBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="主协调者未请求开始网络的同步关闭"/>
+					<valuetableentry value="1" description="主协调者请求开始网络的同步关闭"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUActWuBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="ECU 未唤醒网络 (passive 唤醒)"/>
+					<valuetableentry value="1" description="ECU 唤醒网络 (active 唤醒)"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDUPNIBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="NM 报文无 Partial Network 请求信息"/>
+					<valuetableentry value="1" description="NM 报文含 Partial Network 请求信息"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDURepMsgStateValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="不处于 Repeat Message State"/>
+					<valuetableentry value="1" description="处于 Repeat Message State"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACSrcNodeIDValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACRepMsgReqValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Repeat Message State 未被请求"/>
+					<valuetableentry value="1" description="Repeat Message State 被请求"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACNMCoSlpBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="主协调者未请求开始网络的同步关闭"/>
+					<valuetableentry value="1" description="主协调者请求开始网络的同步关闭"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACActWuBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="ECU 未唤醒网络 (passive 唤醒)"/>
+					<valuetableentry value="1" description="ECU 唤醒网络 (active 唤醒)"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACPNIBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="NM 报文无 Partial Network 请求信息"/>
+					<valuetableentry value="1" description="NM 报文含 Partial Network 请求信息"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HVACRepMsgStateValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="不处于 Repeat Message State"/>
+					<valuetableentry value="1" description="处于 Repeat Message State"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLSrcNodeIDValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLRepMsgReqValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Repeat Message State 未被请求"/>
+					<valuetableentry value="1" description="Repeat Message State 被请求"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLNMCoSlpBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="主协调者未请求开始网络的同步关闭"/>
+					<valuetableentry value="1" description="主协调者请求开始网络的同步关闭"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLActWuBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="ECU 未唤醒网络 (passive 唤醒)"/>
+					<valuetableentry value="1" description="ECU 唤醒网络 (active 唤醒)"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLPNIBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="NM 报文无 Partial Network 请求信息"/>
+					<valuetableentry value="1" description="NM 报文含 Partial Network 请求信息"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLRepMsgStateValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="不处于 Repeat Message State"/>
+					<valuetableentry value="1" description="处于 Repeat Message State"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMSrcNodeIDValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMRepMsgReqValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Repeat Message State 未被请求"/>
+					<valuetableentry value="1" description="Repeat Message State 被请求"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMNMCoSlpBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="主协调者未请求开始网络的同步关闭"/>
+					<valuetableentry value="1" description="主协调者请求开始网络的同步关闭"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMActWuBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="ECU 未唤醒网络 (passive 唤醒)"/>
+					<valuetableentry value="1" description="ECU 唤醒网络 (active 唤醒)"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMPNIBitValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="NM 报文无 Partial Network 请求信息"/>
+					<valuetableentry value="1" description="NM 报文含 Partial Network 请求信息"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iCGMRepMsgStateValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="不处于 Repeat Message State"/>
+					<valuetableentry value="1" description="处于 Repeat Message State"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="EngineRunActiveValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="False"/>
+					<valuetableentry value="1" description="True"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="PropulsionSystemActiveValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="1" description="True"/>
+					<valuetableentry value="0" description="False"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="EngineSpeedValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="65535">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="65535" description="Invalid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="EMSMessageCounter2Value" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="15"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="EMSChecksum2Value" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="EngineStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="0x0:Stop"/>
+					<valuetableentry value="1" description="0x1:Crank"/>
+					<valuetableentry value="2" description="0x2:Running"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="EngineStatusValidityValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Valid"/>
+					<valuetableentry value="1" description="Invalid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ODOofIPKValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="999999">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="16777215" description="Invalid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCLDiagResponseDataValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TesterDiagRequestData_ESCLValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="AccRelayFeedbackValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Relay Off"/>
+					<valuetableentry value="1" description="Relay ON"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Ig1RelayFeedbackValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Relay Off"/>
+					<valuetableentry value="1" description="Relay ON"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedFLValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="300"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedFLStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="3" description="Reserved"/>
+					<valuetableentry value="2" description="Init"/>
+					<valuetableentry value="1" description="Invalid"/>
+					<valuetableentry value="0" description="Valid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedFRValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="300"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedFRStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="3" description="Reserved"/>
+					<valuetableentry value="2" description="Init"/>
+					<valuetableentry value="1" description="Invalid"/>
+					<valuetableentry value="0" description="Valid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WhlSpdSenErrFLValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="normal"/>
+					<valuetableentry value="1" description="Sensor short to battery"/>
+					<valuetableentry value="2" description="Sensor short to GND/Open Circuit"/>
+					<valuetableentry value="3" description="Wheel Speed signal not reliable"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WhlSpdSenErrFRValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="normal"/>
+					<valuetableentry value="1" description="Sensor short to battery"/>
+					<valuetableentry value="2" description="Sensor short to GND/Open Circuit"/>
+					<valuetableentry value="3" description="Wheel Speed signal not reliable"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ABSMessageCounter_FValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="15"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ABSCheckSum_FValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedRLValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="300"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedRLStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="3" description="Reserved"/>
+					<valuetableentry value="2" description="Init"/>
+					<valuetableentry value="1" description="Invalid"/>
+					<valuetableentry value="0" description="Valid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedRRValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="300"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WheelSpeedRRStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="3" description="Reserved"/>
+					<valuetableentry value="2" description="Init"/>
+					<valuetableentry value="1" description="Invalid"/>
+					<valuetableentry value="0" description="Valid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WhlSpdSenErrRLValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="normal"/>
+					<valuetableentry value="1" description="Sensor short to battery"/>
+					<valuetableentry value="2" description="Sensor short to GND/Open Circuit"/>
+					<valuetableentry value="3" description="Wheel Speed signal not reliable"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="WhlSpdSenErrRRValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="normal"/>
+					<valuetableentry value="1" description="Sensor short to battery"/>
+					<valuetableentry value="2" description="Sensor short to GND/Open Circuit"/>
+					<valuetableentry value="3" description="Wheel Speed signal not reliable"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ABSMessageCounter_RValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="15"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ABSCheckSum_RValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="iBDU_Auth_ESCL_ReqValue" comment="" bitcount="64" isSigned="false" encoding="65001" type="longlong" startValue="0"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_Auth_BCM_RespValue" comment="" bitcount="64" isSigned="false" encoding="65001" type="longlong" startValue="0"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="IBDU_SK2toESCL1Value" comment="" bitcount="64" isSigned="false" encoding="65001" type="longlong" startValue="0"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="IBDU_SK2toESCL2Value" comment="" bitcount="64" isSigned="false" encoding="65001" type="longlong" startValue="0"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_SK2toIBDUValue" comment="" bitcount="64" isSigned="false" encoding="65001" type="longlong" startValue="0"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_LockStatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="7">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="latch processing                                                                       1:Locked                                                                      2:Unlocked                                                                   3:Reserved"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_LockStatusValidityValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Valid"/>
+					<valuetableentry value="1" description="Invalid"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_Learning_StatusValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Not Learnt                                                             0x1:Learnt                                                                    0x2: Reserved                                                          0x3: Reserved"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_Warning_to_IPKValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="7">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="No warning"/>
+					<valuetableentry value="1" description="ESCL_SystemWarning"/>
+					<valuetableentry value="2" description="ESCL_Unlock_Failure_Warning"/>
+					<valuetableentry value="3" description="ESCL_Lock_Failure_Warning"/>
+					<valuetableentry value="4" description="0x4~0x7 Reserved"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_releaseValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1">
+				<valuetable definesMinMax="true">
+					<valuetableentry value="0" description="Failed                                                                               0x1:?Successed"/>
+				</valuetable>
+			</variable>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_Message_Info_AliveCounterValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="15"/>
+			<variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESCL_Message_CheckSumValue" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="255"/>
+		</namespace>
+	</namespace>
+</systemvariables>

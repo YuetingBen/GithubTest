@@ -1,0 +1,220 @@
+/* -----------------------------------------------------------------------------
+  Filename:    iCGM.can
+  
+  Description: Brief: Brief_Replace
+               Generation date: GenerationDate_Replace
+
+ ----------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+  C O P Y R I G H T
+ -------------------------------------------------------------------------------
+  Copyright (c) 2019 by Yueting Ben. All rights reserved.
+ -------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------- */
+ variables
+{
+  message iCGM_IPK_362h iCGM_IPK_362h_Frame;
+  message iCGM_Tester_707h iCGM_Tester_707h_Frame;
+  message iCGM_EMS_220h iCGM_EMS_220h_Frame;
+  message iCGM_EMS_210h iCGM_EMS_210h_Frame;
+  message iCGM_Tester_7dfh iCGM_Tester_7dfh_Frame;
+  message iCGM_Body_409h iCGM_Body_409h_Frame;
+  msTimer iCGM_IPK_362h_Timer;
+  msTimer iCGM_Tester_707h_Timer;
+  msTimer iCGM_EMS_220h_Timer;
+  msTimer iCGM_EMS_210h_Timer;
+  msTimer iCGM_Tester_7dfh_Timer;
+  msTimer iCGM_Body_409h_Timer;
+  byte iCGM_IPK_362h_EnableFlag;
+  byte iCGM_Tester_707h_EnableFlag;
+  byte iCGM_EMS_220h_EnableFlag;
+  byte iCGM_EMS_210h_EnableFlag;
+  byte iCGM_Tester_7dfh_EnableFlag;
+  byte iCGM_Body_409h_EnableFlag;
+}
+on start
+{
+  setTimer(iCGM_IPK_362h_Timer, 0);
+  setTimer(iCGM_Tester_707h_Timer, 0);
+  setTimer(iCGM_EMS_220h_Timer, 0);
+  setTimer(iCGM_EMS_210h_Timer, 0);
+  setTimer(iCGM_Tester_7dfh_Timer, 0);
+  setTimer(iCGM_Body_409h_Timer, 0);
+  iCGM_IPK_362h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  iCGM_Tester_707h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  iCGM_EMS_220h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  iCGM_EMS_210h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  iCGM_Tester_7dfh_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  iCGM_Body_409h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+}
+on Timer iCGM_IPK_362h_Timer
+{
+  byte iCGM_IPK_362h_MegCounter;
+  byte iCGM_IPK_362h_CheckSum;
+  if(1 == iCGM_IPK_362h_EnableFlag)
+  {
+    output(iCGM_IPK_362h_Frame);
+  }
+  iCGM_IPK_362h_Frame.ODOofIPK = @sysvar::SIGNALINFO::ODOofIPKValue;
+  setTimer(iCGM_IPK_362h_Timer, 20);
+}
+on Timer iCGM_Tester_707h_Timer
+{
+  byte iCGM_Tester_707h_MegCounter;
+  byte iCGM_Tester_707h_CheckSum;
+  if(1 == iCGM_Tester_707h_EnableFlag)
+  {
+    output(iCGM_Tester_707h_Frame);
+  }
+  iCGM_Tester_707h_Frame.TesterDiagRequestData_ESCL = @sysvar::SIGNALINFO::TesterDiagRequestData_ESCLValue;
+  setTimer(iCGM_Tester_707h_Timer, 100);
+}
+on Timer iCGM_EMS_220h_Timer
+{
+  byte iCGM_EMS_220h_MegCounter;
+  byte iCGM_EMS_220h_CheckSum;
+  if(1 == iCGM_EMS_220h_EnableFlag)
+  {
+    output(iCGM_EMS_220h_Frame);
+  }
+  iCGM_EMS_220h_Frame.EngineSpeed = @sysvar::SIGNALINFO::EngineSpeedValue;
+  iCGM_EMS_220h_Frame.EMSMessageCounter2 = @sysvar::SIGNALINFO::EMSMessageCounter2Value;
+  iCGM_EMS_220h_Frame.EMSChecksum2 = @sysvar::SIGNALINFO::EMSChecksum2Value;
+  setTimer(iCGM_EMS_220h_Timer, 10);
+}
+on Timer iCGM_EMS_210h_Timer
+{
+  byte iCGM_EMS_210h_MegCounter;
+  byte iCGM_EMS_210h_CheckSum;
+  if(1 == iCGM_EMS_210h_EnableFlag)
+  {
+    output(iCGM_EMS_210h_Frame);
+  }
+  iCGM_EMS_210h_Frame.PropulsionSystemActive = @sysvar::SIGNALINFO::PropulsionSystemActiveValue;
+  iCGM_EMS_210h_Frame.EngineRunActive = @sysvar::SIGNALINFO::EngineRunActiveValue;
+  setTimer(iCGM_EMS_210h_Timer, 10);
+}
+on Timer iCGM_Tester_7dfh_Timer
+{
+  byte iCGM_Tester_7dfh_MegCounter;
+  byte iCGM_Tester_7dfh_CheckSum;
+  if(1 == iCGM_Tester_7dfh_EnableFlag)
+  {
+    output(iCGM_Tester_7dfh_Frame);
+  }
+  iCGM_Tester_7dfh_Frame.FunctionDiagRequestData_escl = @sysvar::SIGNALINFO::FunctionDiagRequestData_esclValue;
+  setTimer(iCGM_Tester_7dfh_Timer, 100);
+}
+on Timer iCGM_Body_409h_Timer
+{
+  byte iCGM_Body_409h_MegCounter;
+  byte iCGM_Body_409h_CheckSum;
+  if(1 == iCGM_Body_409h_EnableFlag)
+  {
+    output(iCGM_Body_409h_Frame);
+  }
+  iCGM_Body_409h_Frame.iCGMActWuBit = @sysvar::SIGNALINFO::iCGMActWuBitValue;
+  iCGM_Body_409h_Frame.iCGMSrcNodeID = @sysvar::SIGNALINFO::iCGMSrcNodeIDValue;
+  iCGM_Body_409h_Frame.iCGMRepMsgReq = @sysvar::SIGNALINFO::iCGMRepMsgReqValue;
+  iCGM_Body_409h_Frame.iCGMPNIBit = @sysvar::SIGNALINFO::iCGMPNIBitValue;
+  iCGM_Body_409h_Frame.iCGMNMCoSlpBit = @sysvar::SIGNALINFO::iCGMNMCoSlpBitValue;
+  setTimer(iCGM_Body_409h_Timer, 0);
+}
+on sysvar NODE::iCGMEnableAll_Msg
+{
+  if(1 == @sysvar::NODE::iCGMEnableAll_Msg)
+  {
+    @sysvar::NODE::iCGMEnableAll_Msg = 1;
+    @sysvar::NODE::iCGMDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable = 1;
+    iCGM_IPK_362h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable = 1;
+    iCGM_Tester_707h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable = 1;
+    iCGM_EMS_220h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable = 1;
+    iCGM_EMS_210h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable = 1;
+    iCGM_Tester_7dfh_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable = 1;
+    iCGM_Body_409h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::iCGMEnableAll_Msg = 0;
+    @sysvar::NODE::iCGMDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable = 0;
+    iCGM_IPK_362h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable = 0;
+    iCGM_Tester_707h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable = 0;
+    iCGM_EMS_220h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable = 0;
+    iCGM_EMS_210h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable = 0;
+    iCGM_Tester_7dfh_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable = 0;
+    iCGM_Body_409h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  }
+}
+on sysvar NODE::iCGMDisableAll_Msg
+{
+  if(1 == @sysvar::NODE::iCGMDisableAll_Msg)
+  {
+    @sysvar::NODE::iCGMEnableAll_Msg = 0;
+    @sysvar::NODE::iCGMDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable = 0;
+    iCGM_IPK_362h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable = 0;
+    iCGM_Tester_707h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable = 0;
+    iCGM_EMS_220h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable = 0;
+    iCGM_EMS_210h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable = 0;
+    iCGM_Tester_7dfh_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable = 0;
+    iCGM_Body_409h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::iCGMEnableAll_Msg = 1;
+    @sysvar::NODE::iCGMDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable = 1;
+    iCGM_IPK_362h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable = 1;
+    iCGM_Tester_707h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable = 1;
+    iCGM_EMS_220h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable = 1;
+    iCGM_EMS_210h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable = 1;
+    iCGM_Tester_7dfh_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable = 1;
+    iCGM_Body_409h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+  }
+}
+on sysvar MESSAGEFRAME::iCGM_IPK_362hMessageEnable
+{
+  iCGM_IPK_362h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_IPK_362hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iCGM_Tester_707hMessageEnable
+{
+  iCGM_Tester_707h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_707hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iCGM_EMS_220hMessageEnable
+{
+  iCGM_EMS_220h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_220hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iCGM_EMS_210hMessageEnable
+{
+  iCGM_EMS_210h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_EMS_210hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable
+{
+  iCGM_Tester_7dfh_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Tester_7dfhMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iCGM_Body_409hMessageEnable
+{
+  iCGM_Body_409h_EnableFlag = @sysvar::MESSAGEFRAME::iCGM_Body_409hMessageEnable & @sysvar::NODE::iCGMEnableAll_Msg;
+}

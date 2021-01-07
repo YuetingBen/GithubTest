@@ -1,0 +1,417 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: AVM DVR AC HU PEPS EPBi IP Tester GW BCM ESCL
+
+
+BO_ 1041 Msg_HU_411_NM: 8 HU
+ SG_ HU_NM_Sleep_Ack : 13|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ HU_NM_Sleep_Ind : 12|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ HU_NM_Ring : 9|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ HU_NM_LimpHome : 10|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ HU_NM_Destination_ID : 7|8@0+ (1,0) [0|255] ""  ESCL
+ SG_ HU_NM_Alive : 8|1@0+ (1,0) [0|1] ""  ESCL
+
+BO_ 1049 Msg_AC_419h_NM: 8 AC
+ SG_ AC_NM_Sleep_Ind : 12|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ AC_NM_Sleep_Ack : 13|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ AC_NM_Ring : 9|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ AC_NM_LimpHome : 10|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ AC_NM_Destination_ID : 7|8@0+ (1,0) [0|255] ""  ESCL
+ SG_ AC_NM_Alive : 8|1@0+ (1,0) [0|1] ""  ESCL
+
+BO_ 536 EPBi_218: 8 EPBi
+ SG_ ESP_VehicleSpeedValid_NoGW : 37|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ ESP_VehicleSpeed_NoGW : 36|13@0+ (0.05625,0) [0|360] "km/h"  ESCL
+
+BO_ 896 IP_380: 8 IP
+ SG_ IP_TotalOdometer : 31|24@0+ (0.1,0) [0|999999] "Km"  BCM,GW,ESCL
+
+BO_ 1281 GW_501: 8 GW
+ SG_ HU_LocalTimeYear : 15|4@0+ (1,2013) [2013|2028] "year"  ESCL
+ SG_ HU_LocalTimeValid : 48|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ HU_LocalTimeSecond : 45|6@0+ (1,0) [0|59] "second"  ESCL
+ SG_ HU_LocalTimeMinute : 37|6@0+ (1,0) [0|59] "minute"  ESCL
+ SG_ HU_LocalTimeHour : 28|5@0+ (1,0) [0|23] ""  ESCL
+ SG_ HU_LocalTimeDate : 20|5@0+ (1,0) [1|31] "day"  ESCL
+ SG_ HU_LocalTimeMonth : 11|4@0+ (1,0) [1|12] "month"  ESCL
+
+BO_ 614 PEPS_266: 8 PEPS
+ SG_ PEPS_UnlockSignal : 3|2@0- (1,0) [0|3] ""  ESCL
+ SG_ PEPS_PowerDistributionStatus : 31|2@0+ (1,0) [0|3] ""  ESCL
+ SG_ PEPS_LockSignal : 1|2@0+ (1,0) [0|3] ""  ESCL
+
+BO_ 1025 Msg_IP_NM: 8 IP
+ SG_ IP_NM_Sleep_Ind : 12|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ IP_NM_Destination_ID : 7|8@0+ (1,0) [0|255] ""  ESCL
+ SG_ IP_NM_Alive : 8|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ IP_NM_LimpHome : 10|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ IP_NM_Ring : 9|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ IP_NM_Sleep_Ack : 13|1@0+ (1,0) [0|1] ""  ESCL
+
+BO_ 1030 Msg_GW_NM: 8 GW
+ SG_ GW_NM_Alive : 8|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ GW_NM_Sleep_Ind : 12|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ GW_NM_Destination_ID : 7|8@0+ (1,0) [0|255] ""  ESCL
+ SG_ GW_NM_LimpHome : 10|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ GW_NM_Ring : 9|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ GW_NM_Sleep_Ack : 13|1@0+ (1,0) [0|1] ""  ESCL
+
+BO_ 1794 Msg_ESCL_Phys_Diag_Rx: 8 Tester
+ SG_ ESCL_Phys_Diag_Rx_Data : 7|64@0+ (1,0) [0|0] ""  ESCL
+
+BO_ 1026 Msg_ESCL_NM: 3 ESCL
+ SG_ ESCL_PowerDistributionStatus : 17|2@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESCL_BusMessageWakeUpMold : 22|3@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESCL_BusMessageWakeUp : 19|2@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESCL_NM_LimpHome : 10|1@0+ (1,0) [0|1] ""  IP,GW,BCM
+ SG_ ESCL_NM_Ring : 9|1@0+ (1,0) [0|1] ""  IP,GW,BCM
+ SG_ ESCL_NM_Sleep_Ack : 13|1@0+ (1,0) [0|1] ""  IP,GW,BCM
+ SG_ ESCL_NM_Sleep_Ind : 12|1@0+ (1,0) [0|1] ""  IP,GW,BCM
+ SG_ ESCL_NM_Destination_ID : 7|8@0+ (1,0) [0|255] ""  IP,GW,BCM
+ SG_ ESCL_NM_Alive : 8|1@0+ (1,0) [0|1] ""  IP,GW,BCM
+
+BO_ 1802 Msg_ESCL_Diag_Tx: 8 ESCL
+ SG_ ESCL_Diag_Tx_Data : 7|64@0+ (1,0) [0|0] ""  Tester
+
+BO_ 1024 Msg_BCM_NM: 8 BCM
+ SG_ BCM_NM_Sleep_Ack : 13|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ BCM_NM_Ring : 9|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ BCM_NM_Alive : 8|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ BCM_NM_LimpHome : 10|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ BCM_NM_Sleep_Ind : 12|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ BCM_NM_Destination_ID : 7|8@0+ (1,0) [0|255] ""  ESCL
+
+BO_ 2015 Msg_BCAN_Func_Diag_Rx: 8 Tester
+ SG_ BCAN_Func_Diag_Rx_Data : 7|64@0+ (1,0) [0|0] ""  ESCL
+
+BO_ 800 GW_320: 8 GW
+ SG_ ESP_VehicleSpeedValid : 14|1@0+ (1,0) [0|1] ""  ESCL
+ SG_ ESP_VehicleSpeed : 12|13@0+ (0.05625,0) [0|360] "km/h"  ESCL
+
+BO_ 630 ESCL_276: 8 ESCL
+ SG_ ESCL_SteeringLockError : 15|1@0+ (1,0) [0|1] ""  BCM
+ SG_ ESCL_SteeringLockStatusReserve : 7|3@0+ (1,0) [0|7] ""  BCM
+ SG_ ESCL_SteeringLockStuck : 4|1@0+ (1,0) [0|1] ""  BCM
+ SG_ ESCL_SteeringLockWait : 3|1@0+ (1,0) [0|1] ""  BCM
+ SG_ ESCL_SteeringLockStatus_S301 : 2|3@0+ (1,0) [0|7] ""  BCM
+
+BO_ 648 BCM_288: 8 BCM
+ SG_ BCM_DriverDoorStatus : 23|1@0+ (1,0) [0|1] ""  ESCL
+
+
+
+CM_ SG_ 536 ESP_VehicleSpeedValid_NoGW "0x0=Valid； 0x1=Not Valid\
+
+所有车型均要求发此信号";
+CM_ SG_ 536 ESP_VehicleSpeed_NoGW "无效值：0x1FFF
+
+所有车型均要求发此信号";
+CM_ SG_ 614 PEPS_UnlockSignal "解锁信号";
+CM_ SG_ 614 PEPS_PowerDistributionStatus "无效值：0x3
+
+在符合条件后，
+仅ACC继电器接通则发0x1;
+ACC+IGN1+IGN2继电器接通后则发0x2;
+IGN1+ST继电器接通后则发0x3";
+CM_ SG_ 614 PEPS_LockSignal "无效值：0x3
+
+
+遥控闭锁时发0x1
+PE闭锁时发0x2
+无闭锁信号时发0x0";
+CM_ SG_ 800 ESP_VehicleSpeedValid "0x0=Valid； 0x1=Not Valid\
+
+所有车型均要求发此信号";
+CM_ SG_ 800 ESP_VehicleSpeed "无效值：0x1FFF
+
+所有车型均要求发此信号";
+CM_ SG_ 630 ESCL_SteeringLockStatusReserve "默认为0x7（111）";
+CM_ SG_ 630 ESCL_SteeringLockStatus_S301 "0x0：Reserved；0x1：lock；0x2-0x3：Reserved；
+0x4：unlock；0x5-0x6：Reserved；
+0x7：Transition between unlock and lock";
+BA_DEF_  "TErrorFast" INT 0 100;
+BA_DEF_  "OnWriteWithRepetition" INT 0 10;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "NmMessageCount" HEX 0 256;
+BA_DEF_  "NmBaseAddress" HEX 1024 1024;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_ BO_  "GenMsgMinAcceptLength" INT -1 8;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 40;
+BA_DEF_ BO_  "DiagUudtResponse" ENUM  "No","Yes";
+BA_DEF_  "ILTxTimeout" INT 0 65535;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ SG_  "NWM_WakeupAllowed" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigTimeoutTime_ESCL" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutMsg_ESCL" HEX 0 2047;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed";
+BA_DEF_ SG_  "GenSigCycleTimeActive" INT 0 65535;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgTimeoutTime" INT 0 10000;
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 5000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","Cyclic","NotUsed","IfActive","NoMsgSendType","NotUsed";
+BA_DEF_ BO_  "NmMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "TpTxIndex" INT 0 255;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_ BU_  "GenNodSleepTime" INT 0 1000000;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_REL_ BU_BO_REL_  "GenMsgCycleTimeFast" INT 0 65535;
+BA_DEF_REL_ BU_BO_REL_  "GenMsgNrOfRepetition" INT 0 65535;
+BA_DEF_REL_ BU_BO_REL_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_DEF_  "TErrorFast" 40;
+BA_DEF_DEF_  "OnWriteWithRepetition" 3;
+BA_DEF_DEF_  "NmType" "";
+BA_DEF_DEF_  "NmMessageCount" 256;
+BA_DEF_DEF_  "NmBaseAddress" 1024;
+BA_DEF_DEF_  "Manufacturer" "Vector";
+BA_DEF_DEF_  "GenMsgMinAcceptLength" -1;
+BA_DEF_DEF_  "GenMsgDelayTime" 20;
+BA_DEF_DEF_  "DiagUudtResponse" "No";
+BA_DEF_DEF_  "ILTxTimeout" 200;
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "NWM_WakeupAllowed" "No";
+BA_DEF_DEF_  "GenSigTimeoutTime_ESCL" 0;
+BA_DEF_DEF_  "GenSigTimeoutMsg_ESCL" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigCycleTimeActive" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenMsgTimeoutTime" 0;
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_DEF_DEF_  "GenNodSleepTime" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "NmNode" "No";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NodeLayerModules" "OSEKNM01.dll,CANoeILNLVector.dll";
+BA_DEF_DEF_REL_ "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_REL_ "GenMsgNrOfRepetition" 3;
+BA_DEF_DEF_REL_ "GenMsgStartDelayTime" 0;
+BA_ "BusType" "CAN";
+BA_ "NmType" "Vector";
+BA_ "NmStationAddress" BU_ AVM 19;
+BA_ "NmStationAddress" BU_ DVR 18;
+BA_ "NmStationAddress" BU_ AC 25;
+BA_ "NmStationAddress" BU_ HU 17;
+BA_ "NmStationAddress" BU_ PEPS 3;
+BA_ "NmStationAddress" BU_ IP 1;
+BA_ "NmStationAddress" BU_ Tester 96;
+BA_ "NmStationAddress" BU_ GW 6;
+BA_ "NmNode" BU_ ESCL 1;
+BA_ "NmStationAddress" BU_ ESCL 2;
+BA_ "GenMsgSendType" BO_ 1041 0;
+BA_ "GenMsgCycleTime" BO_ 1041 100;
+BA_ "NmMessage" BO_ 1041 1;
+BA_ "GenMsgCycleTime" BO_ 1049 100;
+BA_ "GenMsgSendType" BO_ 1049 0;
+BA_ "NmMessage" BO_ 1049 1;
+BA_ "GenMsgDelayTime" BO_ 536 20;
+BA_ "GenMsgCycleTime" BO_ 536 10;
+BA_ "NmMessage" BO_ 536 0;
+BA_ "GenMsgSendType" BO_ 536 0;
+BA_ "GenMsgSendType" BO_ 896 0;
+BA_ "GenMsgCycleTime" BO_ 896 500;
+BA_ "GenMsgCycleTime" BO_ 1281 1000;
+BA_ "GenMsgSendType" BO_ 1281 0;
+BA_ "GenMsgCycleTime" BO_ 614 40;
+BA_ "GenMsgSendType" BO_ 614 0;
+BA_ "GenMsgSendType" BO_ 1025 0;
+BA_ "GenMsgCycleTime" BO_ 1025 100;
+BA_ "NmMessage" BO_ 1025 1;
+BA_ "GenMsgSendType" BO_ 1030 0;
+BA_ "GenMsgCycleTime" BO_ 1030 100;
+BA_ "NmMessage" BO_ 1030 1;
+BA_ "GenMsgSendType" BO_ 1794 0;
+BA_ "DiagRequest" BO_ 1794 1;
+BA_ "GenMsgCycleTime" BO_ 1794 100;
+BA_ "GenMsgSendType" BO_ 1026 0;
+BA_ "GenMsgCycleTime" BO_ 1026 100;
+BA_ "NmMessage" BO_ 1026 1;
+BA_ "GenMsgSendType" BO_ 1802 0;
+BA_ "DiagResponse" BO_ 1802 1;
+BA_ "GenMsgCycleTime" BO_ 1802 100;
+BA_ "GenMsgSendType" BO_ 1024 0;
+BA_ "GenMsgCycleTime" BO_ 1024 100;
+BA_ "NmMessage" BO_ 1024 1;
+BA_ "GenMsgSendType" BO_ 2015 0;
+BA_ "GenMsgDelayTime" BO_ 2015 20;
+BA_ "DiagRequest" BO_ 2015 1;
+BA_ "GenMsgCycleTime" BO_ 2015 100;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgCycleTime" BO_ 800 100;
+BA_ "GenMsgSendType" BO_ 800 0;
+BA_ "GenMsgCycleTime" BO_ 630 40;
+BA_ "GenMsgSendType" BO_ 630 0;
+BA_ "GenMsgCycleTime" BO_ 648 40;
+BA_ "GenMsgSendType" BO_ 648 0;
+BA_ "GenSigSendType" SG_ 1041 HU_NM_Sleep_Ack 7;
+BA_ "GenSigSendType" SG_ 1041 HU_NM_Sleep_Ind 7;
+BA_ "GenSigSendType" SG_ 1041 HU_NM_Ring 7;
+BA_ "GenSigSendType" SG_ 1041 HU_NM_LimpHome 7;
+BA_ "GenSigSendType" SG_ 1041 HU_NM_Destination_ID 7;
+BA_ "GenSigSendType" SG_ 1041 HU_NM_Alive 7;
+BA_ "GenSigSendType" SG_ 1049 AC_NM_Sleep_Ind 7;
+BA_ "GenSigSendType" SG_ 1049 AC_NM_Sleep_Ack 7;
+BA_ "GenSigSendType" SG_ 1049 AC_NM_Ring 7;
+BA_ "GenSigSendType" SG_ 1049 AC_NM_LimpHome 7;
+BA_ "GenSigSendType" SG_ 1049 AC_NM_Destination_ID 7;
+BA_ "GenSigSendType" SG_ 1049 AC_NM_Alive 7;
+BA_ "GenSigSendType" SG_ 536 ESP_VehicleSpeedValid_NoGW 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 536 ESP_VehicleSpeedValid_NoGW 1000;
+BA_ "GenSigSendType" SG_ 536 ESP_VehicleSpeed_NoGW 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 536 ESP_VehicleSpeed_NoGW 1000;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 896 IP_TotalOdometer 2500;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 1281 HU_LocalTimeYear 5000;
+BA_ "GenSigStartValue" SG_ 1281 HU_LocalTimeYear 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 1281 HU_LocalTimeValid 5000;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 1281 HU_LocalTimeSecond 5000;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 1281 HU_LocalTimeMinute 5000;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 1281 HU_LocalTimeHour 5000;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 1281 HU_LocalTimeDate 5000;
+BA_ "GenSigStartValue" SG_ 1281 HU_LocalTimeDate 1;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 1281 HU_LocalTimeMonth 5000;
+BA_ "GenSigStartValue" SG_ 1281 HU_LocalTimeMonth 1;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 614 PEPS_UnlockSignal 1000;
+BA_ "GenSigSendType" SG_ 614 PEPS_UnlockSignal 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 614 PEPS_PowerDistributionStatus 1000;
+BA_ "GenSigSendType" SG_ 614 PEPS_PowerDistributionStatus 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 614 PEPS_LockSignal 1000;
+BA_ "GenSigSendType" SG_ 614 PEPS_LockSignal 0;
+BA_ "GenSigSendType" SG_ 1025 IP_NM_Sleep_Ind 7;
+BA_ "GenSigSendType" SG_ 1025 IP_NM_Destination_ID 7;
+BA_ "GenSigSendType" SG_ 1025 IP_NM_Alive 7;
+BA_ "GenSigSendType" SG_ 1025 IP_NM_LimpHome 7;
+BA_ "GenSigSendType" SG_ 1025 IP_NM_Ring 7;
+BA_ "GenSigSendType" SG_ 1025 IP_NM_Sleep_Ack 7;
+BA_ "GenSigSendType" SG_ 1030 GW_NM_Alive 7;
+BA_ "GenSigSendType" SG_ 1030 GW_NM_Sleep_Ind 7;
+BA_ "GenSigSendType" SG_ 1030 GW_NM_Destination_ID 7;
+BA_ "GenSigSendType" SG_ 1030 GW_NM_LimpHome 7;
+BA_ "GenSigSendType" SG_ 1030 GW_NM_Ring 7;
+BA_ "GenSigSendType" SG_ 1030 GW_NM_Sleep_Ack 7;
+BA_ "GenSigSendType" SG_ 1794 ESCL_Phys_Diag_Rx_Data 7;
+BA_ "GenSigSendType" SG_ 1026 ESCL_NM_LimpHome 7;
+BA_ "GenSigSendType" SG_ 1026 ESCL_NM_Ring 7;
+BA_ "GenSigSendType" SG_ 1026 ESCL_NM_Sleep_Ack 7;
+BA_ "GenSigSendType" SG_ 1026 ESCL_NM_Sleep_Ind 7;
+BA_ "GenSigSendType" SG_ 1026 ESCL_NM_Destination_ID 7;
+BA_ "GenSigSendType" SG_ 1026 ESCL_NM_Alive 7;
+BA_ "GenSigSendType" SG_ 1802 ESCL_Diag_Tx_Data 7;
+BA_ "GenSigSendType" SG_ 1024 BCM_NM_Sleep_Ack 7;
+BA_ "GenSigSendType" SG_ 1024 BCM_NM_Ring 7;
+BA_ "GenSigSendType" SG_ 1024 BCM_NM_Alive 7;
+BA_ "GenSigSendType" SG_ 1024 BCM_NM_LimpHome 7;
+BA_ "GenSigSendType" SG_ 1024 BCM_NM_Sleep_Ind 7;
+BA_ "GenSigSendType" SG_ 1024 BCM_NM_Destination_ID 7;
+BA_ "GenSigSendType" SG_ 2015 BCAN_Func_Diag_Rx_Data 7;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 800 ESP_VehicleSpeedValid 1000;
+BA_ "GenSigSendType" SG_ 800 ESP_VehicleSpeedValid 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 800 ESP_VehicleSpeed 1000;
+BA_ "GenSigSendType" SG_ 800 ESP_VehicleSpeed 0;
+BA_ "GenSigSendType" SG_ 630 ESCL_SteeringLockError 0;
+BA_ "GenSigSendType" SG_ 630 ESCL_SteeringLockStatusReserve 0;
+BA_ "GenSigSendType" SG_ 630 ESCL_SteeringLockStuck 0;
+BA_ "GenSigSendType" SG_ 630 ESCL_SteeringLockWait 0;
+BA_ "GenSigSendType" SG_ 630 ESCL_SteeringLockStatus_S301 0;
+BA_ "GenSigTimeoutTime_ESCL" SG_ 648 BCM_DriverDoorStatus 1000;
+BA_ "GenSigSendType" SG_ 648 BCM_DriverDoorStatus 0;
+BA_REL_ "GenMsgCycleTimeFast" BU_BO_REL_ ESCL 630 40;
+VAL_ 1041 HU_NM_Sleep_Ack 1 "睡眠命令" 0 "非睡眠命令" ;
+VAL_ 1041 HU_NM_Sleep_Ind 1 "节点满足睡眠条件" 0 "节点不满足睡眠条件" ;
+VAL_ 1041 HU_NM_Ring 1 "Ring报文" 0 "非Ring报文" ;
+VAL_ 1041 HU_NM_LimpHome 1 "跛行状态" 0 "非跛行状态" ;
+VAL_ 1041 HU_NM_Alive 1 "建环请求报文" 0 "非建环请求报文" ;
+VAL_ 1049 AC_NM_Sleep_Ind 1 "节点满足睡眠条件" 0 "节点不满足睡眠条件" ;
+VAL_ 1049 AC_NM_Sleep_Ack 1 "睡眠命令" 0 "非睡眠命令" ;
+VAL_ 1049 AC_NM_Ring 1 "Ring报文" 0 "非Ring报文" ;
+VAL_ 1049 AC_NM_LimpHome 1 "跛行状态" 0 "非跛行状态" ;
+VAL_ 1049 AC_NM_Alive 1 "建环请求报文" 0 "非建环请求报文" ;
+VAL_ 536 ESP_VehicleSpeedValid_NoGW 1 "Not Valid" 0 "Valid" ;
+VAL_ 536 ESP_VehicleSpeed_NoGW 8191 "Invalid value" ;
+VAL_ 1281 HU_LocalTimeValid 1 "Not Valid" 0 "Valid" ;
+VAL_ 614 PEPS_PowerDistributionStatus 3 "Start" 2 "ON" 1 "ACC" 0 "OFF" ;
+VAL_ 614 PEPS_LockSignal 3 "不可用" 2 "PE闭锁" 1 "遥控闭锁" 0 "Inactive" ;
+VAL_ 1025 IP_NM_Sleep_Ind 1 "节点满足睡眠条件" 0 "节点不满足睡眠条件" ;
+VAL_ 1025 IP_NM_Alive 1 "建环请求报文" 0 "非建环请求报文" ;
+VAL_ 1025 IP_NM_LimpHome 1 "跛行状态" 0 "非跛行状态" ;
+VAL_ 1025 IP_NM_Ring 1 "Ring报文" 0 "非Ring报文" ;
+VAL_ 1025 IP_NM_Sleep_Ack 1 "睡眠命令" 0 "非睡眠命令" ;
+VAL_ 1030 GW_NM_Alive 1 "建环请求报文" 0 "非建环请求报文" ;
+VAL_ 1030 GW_NM_Sleep_Ind 1 "节点满足睡眠条件" 0 "节点不满足睡眠条件" ;
+VAL_ 1030 GW_NM_LimpHome 1 "跛行状态" 0 "非跛行状态" ;
+VAL_ 1030 GW_NM_Ring 1 "Ring报文" 0 "非Ring报文" ;
+VAL_ 1030 GW_NM_Sleep_Ack 1 "睡眠命令" 0 "非睡眠命令" ;
+VAL_ 1026 ESCL_PowerDistributionStatus 3 "reserved" 2 "yes" 1 "no" 0 "invalid" ;
+VAL_ 1026 ESCL_BusMessageWakeUpMold 7 "reserved" 6 "reserved" 5 "LIN" 4 "D-Can" 3 "T-Can" 2 "P-Can" 1 "B-Can" 0 "invalid" ;
+VAL_ 1026 ESCL_BusMessageWakeUp 3 "reserved" 2 "yes" 1 "no" 0 "invalid" ;
+VAL_ 1026 ESCL_NM_LimpHome 1 "跛行状态" 0 "非跛行状态" ;
+VAL_ 1026 ESCL_NM_Ring 1 "Ring报文" 0 "非Ring报文" ;
+VAL_ 1026 ESCL_NM_Sleep_Ack 1 "睡眠命令" 0 "非睡眠命令" ;
+VAL_ 1026 ESCL_NM_Sleep_Ind 1 "节点满足睡眠条件" 0 "节点不满足睡眠条件" ;
+VAL_ 1026 ESCL_NM_Alive 1 "建环请求报文" 0 "非建环请求报文" ;
+VAL_ 1024 BCM_NM_Sleep_Ack 1 "睡眠命令" 0 "非睡眠命令" ;
+VAL_ 1024 BCM_NM_Ring 1 "Ring报文" 0 "非Ring报文" ;
+VAL_ 1024 BCM_NM_Alive 1 "建环请求报文" 0 "非建环请求报文" ;
+VAL_ 1024 BCM_NM_LimpHome 1 "跛行状态" 0 "非跛行状态" ;
+VAL_ 1024 BCM_NM_Sleep_Ind 1 "节点满足睡眠条件" 0 "节点不满足睡眠条件" ;
+VAL_ 800 ESP_VehicleSpeedValid 1 "Not Valid" 0 "Valid" ;
+VAL_ 800 ESP_VehicleSpeed 8191 "Invalid value" ;
+VAL_ 630 ESCL_SteeringLockError 1 "Error" 0 "No Error" ;
+VAL_ 630 ESCL_SteeringLockStuck 1 "Stuck Error" 0 "Natural" ;
+VAL_ 630 ESCL_SteeringLockWait 1 "Waiting Error" 0 "Natural" ;
+VAL_ 630 ESCL_SteeringLockStatus_S301 7 "Transition in unlock and lock" 6 "Reserved" 5 "Reserved" 4 "unlock" 3 "Reserved" 2 "Reserved" 1 "lock" 0 "Reserved" ;
+VAL_ 648 BCM_DriverDoorStatus 1 "Open" 0 "Close" ;
+

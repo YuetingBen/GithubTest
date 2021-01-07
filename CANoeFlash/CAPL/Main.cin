@@ -1,0 +1,58 @@
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   Main.cin                              $                                    *
+*            $Revision: 1.3 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/02/12 11:37:49CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup Main                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  Main Main
+    \ingroup   Main
+    \brief   The CanDriver functional module. <br>
+*/
+
+/**************************************************************************************************/
+
+variables
+{
+  /* General */
+  enum TRUE_FALSE
+  {
+    FALSE = 0,
+    TRUE,
+    ERROR_1,
+    ERROR_2,
+    ERROR_3,
+    ERROR_4,
+    ERROR_5,
+    ERROR_6
+  };
+
+	enum IFENABLED
+	{
+		DISABLED = 0,
+		ENABLED
+	};
+
+  msTimer MianTimer;
+}

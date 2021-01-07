@@ -1,0 +1,166 @@
+/* -----------------------------------------------------------------------------
+  Filename:    ESCL.can
+  
+  Description: Brief: Brief_Replace
+               Generation date: GenerationDate_Replace
+
+ ----------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+  C O P Y R I G H T
+ -------------------------------------------------------------------------------
+  Copyright (c) 2019 by Yueting Ben. All rights reserved.
+ -------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------- */
+ variables
+{
+  message ESCL_2 ESCL_2_Frame;
+  message ESCL_1 ESCL_1_Frame;
+  message ESCL_407h ESCL_407h_Frame;
+  message ESCL_787h ESCL_787h_Frame;
+  msTimer ESCL_2_Timer;
+  msTimer ESCL_1_Timer;
+  msTimer ESCL_407h_Timer;
+  msTimer ESCL_787h_Timer;
+  byte ESCL_2_EnableFlag;
+  byte ESCL_1_EnableFlag;
+  byte ESCL_407h_EnableFlag;
+  byte ESCL_787h_EnableFlag;
+}
+on start
+{
+  setTimer(ESCL_2_Timer, 0);
+  setTimer(ESCL_1_Timer, 0);
+  setTimer(ESCL_407h_Timer, 0);
+  setTimer(ESCL_787h_Timer, 0);
+  ESCL_2_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_2MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+  ESCL_1_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_1MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+  ESCL_407h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+  ESCL_787h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+}
+on Timer ESCL_2_Timer
+{
+  byte ESCL_2_MegCounter;
+  byte ESCL_2_CheckSum;
+  if(1 == ESCL_2_EnableFlag)
+  {
+    output(ESCL_2_Frame);
+  }
+  ESCL_2_Frame.ESCL_release = @sysvar::SIGNALINFO::ESCL_releaseValue;
+  ESCL_2_Frame.ESCL_Message_Info_check_sum = @sysvar::SIGNALINFO::ESCL_Message_Info_check_sumValue;
+  ESCL_2_Frame.ESCL_Message_Info_AliveCounter = @sysvar::SIGNALINFO::ESCL_Message_Info_AliveCounterValue;
+  ESCL_2_Frame.ESCL_Warning = @sysvar::SIGNALINFO::ESCL_WarningValue;
+  ESCL_2_Frame.ESCL_Learning_Status = @sysvar::SIGNALINFO::ESCL_Learning_StatusValue;
+  ESCL_2_Frame.ESCL_LockStatus = @sysvar::SIGNALINFO::ESCL_LockStatusValue;
+  setTimer(ESCL_2_Timer, 100);
+}
+on Timer ESCL_1_Timer
+{
+  byte ESCL_1_MegCounter;
+  byte ESCL_1_CheckSum;
+  if(1 == ESCL_1_EnableFlag)
+  {
+    output(ESCL_1_Frame);
+  }
+  ESCL_1_Frame.ESCL_iBDUAuthRsp = @sysvar::SIGNALINFO::ESCL_iBDUAuthRspValue;
+  setTimer(ESCL_1_Timer, 0);
+}
+on Timer ESCL_407h_Timer
+{
+  byte ESCL_407h_MegCounter;
+  byte ESCL_407h_CheckSum;
+  if(1 == ESCL_407h_EnableFlag)
+  {
+    output(ESCL_407h_Frame);
+  }
+  ESCL_407h_Frame.ESCLActWuBit = @sysvar::SIGNALINFO::ESCLActWuBitValue;
+  ESCL_407h_Frame.ESCLPNIBit = @sysvar::SIGNALINFO::ESCLPNIBitValue;
+  ESCL_407h_Frame.ESCLSrcNodeID = @sysvar::SIGNALINFO::ESCLSrcNodeIDValue;
+  ESCL_407h_Frame.ESCLRepMsgReq = @sysvar::SIGNALINFO::ESCLRepMsgReqValue;
+  ESCL_407h_Frame.ESCLNMCoSlpBit = @sysvar::SIGNALINFO::ESCLNMCoSlpBitValue;
+  setTimer(ESCL_407h_Timer, 20);
+}
+on Timer ESCL_787h_Timer
+{
+  byte ESCL_787h_MegCounter;
+  byte ESCL_787h_CheckSum;
+  if(1 == ESCL_787h_EnableFlag)
+  {
+    output(ESCL_787h_Frame);
+  }
+  ESCL_787h_Frame.ESCLDiagResponseData = @sysvar::SIGNALINFO::ESCLDiagResponseDataValue;
+  setTimer(ESCL_787h_Timer, 0);
+}
+on sysvar NODE::ESCLEnableAll_Msg
+{
+  if(1 == @sysvar::NODE::ESCLEnableAll_Msg)
+  {
+    @sysvar::NODE::ESCLEnableAll_Msg = 1;
+    @sysvar::NODE::ESCLDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::ESCL_2MessageEnable = 1;
+    ESCL_2_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_2MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_1MessageEnable = 1;
+    ESCL_1_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_1MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable = 1;
+    ESCL_407h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable = 1;
+    ESCL_787h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::ESCLEnableAll_Msg = 0;
+    @sysvar::NODE::ESCLDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::ESCL_2MessageEnable = 0;
+    ESCL_2_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_2MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_1MessageEnable = 0;
+    ESCL_1_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_1MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable = 0;
+    ESCL_407h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable = 0;
+    ESCL_787h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+  }
+}
+on sysvar NODE::ESCLDisableAll_Msg
+{
+  if(1 == @sysvar::NODE::ESCLDisableAll_Msg)
+  {
+    @sysvar::NODE::ESCLEnableAll_Msg = 0;
+    @sysvar::NODE::ESCLDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::ESCL_2MessageEnable = 0;
+    ESCL_2_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_2MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_1MessageEnable = 0;
+    ESCL_1_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_1MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable = 0;
+    ESCL_407h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable = 0;
+    ESCL_787h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::ESCLEnableAll_Msg = 1;
+    @sysvar::NODE::ESCLDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::ESCL_2MessageEnable = 1;
+    ESCL_2_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_2MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_1MessageEnable = 1;
+    ESCL_1_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_1MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable = 1;
+    ESCL_407h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable = 1;
+    ESCL_787h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+  }
+}
+on sysvar MESSAGEFRAME::ESCL_2MessageEnable
+{
+  ESCL_2_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_2MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::ESCL_1MessageEnable
+{
+  ESCL_1_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_1MessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::ESCL_407hMessageEnable
+{
+  ESCL_407h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_407hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::ESCL_787hMessageEnable
+{
+  ESCL_787h_EnableFlag = @sysvar::MESSAGEFRAME::ESCL_787hMessageEnable & @sysvar::NODE::ESCLEnableAll_Msg;
+}

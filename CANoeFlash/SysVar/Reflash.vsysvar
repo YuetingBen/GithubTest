@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="" interface="">
+    <namespace name="DTC" comment="" interface="">
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="CycleFlag" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="CycleTime" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DTC_ExtendedDataTrigger" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DTC_Instruct" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="6" maxValuePhys="6">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="None" />
+          <valuetableentry value="1" description="ReportNumberOfDTCByStatusMask" />
+          <valuetableentry value="2" description="ReportDTCByStatusMask" />
+          <valuetableentry value="5" description="ReportSupportedDTC" />
+          <valuetableentry value="6" description="ClearDTC" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DTC_SnapshotTrigger" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="255" maxValuePhys="255" />
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_ConfirmedDTC" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_PendingDTC" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_TestFailed" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_TestFailedSinceLastClear" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_TestFailedThisOperationCycle" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_TestNotCompletedSinceLastClear" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_TestNotCompletedThisOperationCycle" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mask_WarningIndicatorRequested" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="False" />
+          <valuetableentry value="1" description="True" />
+        </valuetable>
+      </variable>
+    </namespace>
+    <namespace name="REFLASH" comment="" interface="">
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ReflashFilePath" comment="" bitcount="80" isSigned="true" encoding="65001" type="string" />
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ReflashTriger" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TrigerTest" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+    </namespace>
+    <namespace name="TAB" comment="" interface="">
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Tab" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+    </namespace>
+    <namespace name="Test" comment="" interface="">
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Test" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+    </namespace>
+    <namespace name="UDS" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Reset" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="1" minValuePhys="1" maxValue="3" maxValuePhys="3">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="1" description="HardReset" />
+          <valuetableentry value="2" description="KeyOffOnReset" />
+          <valuetableentry value="3" description="SoftwareReset" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Security" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="OEM" />
+          <valuetableentry value="1" description="FLASH" />
+          <valuetableentry value="2" description="SUPPLIER" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SessionControl" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" minValue="1" minValuePhys="1" maxValue="3" maxValuePhys="3">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="1" description="Default" />
+          <valuetableentry value="2" description="Programming" />
+          <valuetableentry value="3" description="Extend" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TesterPresent" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3" maxValuePhys="3">
+        <valuetable definesMinMax="true">
+          <valuetableentry value="0" description="Off" />
+          <valuetableentry value="1" description="OnDisappear" />
+          <valuetableentry value="2" description="OnWithResp" />
+          <valuetableentry value="3" description="OnWithoutResp" />
+        </valuetable>
+      </variable>
+    </namespace>
+  </namespace>
+</systemvariables>

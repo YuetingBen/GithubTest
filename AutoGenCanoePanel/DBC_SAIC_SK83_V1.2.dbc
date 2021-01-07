@@ -1,0 +1,854 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: iBDU HVAC iCGM ESCL BCM PEPS TPMS TIM
+
+
+BO_ 2015 ICGM_Tester_7dfh: 8 iCGM
+ SG_ FunctionDiagRequestData : 0|8@1+ (1,0) [0|0] ""  TIM,TPMS,PEPS,iCGM,iBDU,HVAC,ESCL,BCM
+
+BO_ 641 iBDU_BCM_281h: 8 iBDU
+ SG_ SystemPowerMode : 0|2@1+ (1,0) [0|3] ""  HVAC,iCGM,ESCL,PEPS,TPMS,TIM
+ SG_ SystemPowerModeValidity : 2|1@1+ (1,0) [0|1] ""  HVAC,iCGM,ESCL,PEPS,TPMS,TIM
+ SG_ iBDUMessageCounter : 52|4@1+ (1,0) [0|15] ""  iCGM,ESCL
+ SG_ iBDUCheckSum : 56|8@1+ (1,0) [0|255] ""  iCGM,ESCL
+
+BO_ 885 iBDU_BCM_375h: 8 iBDU
+ SG_ DoorAjarDriverStatus : 5|1@1+ (1,0) [0|1] ""  iCGM,ESCL,PEPS
+
+BO_ 617 iCGM_ESC_269h: 8 iCGM
+ SG_ VehicleSpeed : 0|13@1+ (0.05625,0) [0|300] "km/h"  iBDU,HVAC,ESCL,BCM,PEPS,TPMS
+ SG_ VehicleSpeedStatus : 13|1@1+ (1,0) [0|1] ""  iBDU,HVAC,ESCL,BCM,PEPS,TPMS
+ SG_ ESCMessageCounter : 52|4@1+ (1,0) [0|15] ""  iBDU,HVAC,ESCL,BCM,PEPS
+ SG_ ESCCheckSum : 56|8@1+ (1,0) [0|255] ""  iBDU,HVAC,ESCL,BCM,PEPS
+
+BO_ 1028 iBDU_404h: 8 iBDU
+ SG_ iBDUSrcNodeID : 0|8@1+ (1,0) [0|255] ""  HVAC,iCGM,ESCL
+ SG_ iBDURepMsgReq : 8|1@1+ (1,0) [0|1] ""  HVAC,iCGM,ESCL
+ SG_ iBDUNMCoSlpBit : 11|1@1+ (1,0) [0|1] ""  HVAC,iCGM,ESCL
+ SG_ iBDUActWuBit : 12|1@1+ (1,0) [0|1] ""  HVAC,iCGM,ESCL
+ SG_ iBDUPNIBit : 14|1@1+ (1,0) [0|1] ""  HVAC,iCGM,ESCL
+ SG_ iBDURepMsgState : 16|1@1+ (1,0) [0|1] ""  HVAC,iCGM,ESCL
+
+BO_ 1027 HVAC_403h: 8 HVAC
+ SG_ HVACSrcNodeID : 0|8@1+ (1,0) [0|255] ""  iBDU,iCGM,ESCL
+ SG_ HVACRepMsgReq : 8|1@1+ (1,0) [0|1] ""  iBDU,iCGM,ESCL
+ SG_ HVACNMCoSlpBit : 11|1@1+ (1,0) [0|1] ""  iBDU,iCGM,ESCL
+ SG_ HVACActWuBit : 12|1@1+ (1,0) [0|1] ""  iBDU,iCGM,ESCL
+ SG_ HVACPNIBit : 14|1@1+ (1,0) [0|1] ""  iBDU,iCGM,ESCL
+ SG_ HVACRepMsgState : 16|1@1+ (1,0) [0|1] ""  iBDU,iCGM,ESCL
+
+BO_ 1034 ESCL_40Ah: 8 ESCL
+ SG_ ESCLSrcNodeID : 0|8@1+ (1,0) [0|255] ""  iBDU,HVAC,iCGM
+ SG_ ESCLRepMsgReq : 8|1@1+ (1,0) [0|1] ""  iBDU,HVAC,iCGM
+ SG_ ESCLNMCoSlpBit : 11|1@1+ (1,0) [0|1] ""  iBDU,HVAC,iCGM
+ SG_ ESCLActWuBit : 12|1@1+ (1,0) [0|1] ""  iBDU,HVAC,iCGM
+ SG_ ESCLPNIBit : 14|1@1+ (1,0) [0|1] ""  iBDU,HVAC,iCGM
+ SG_ ESCLRepMsgState : 16|1@1+ (1,0) [0|1] ""  iBDU,HVAC,iCGM
+
+BO_ 1033 iCGM_Body_409h: 8 iCGM
+ SG_ iCGMSrcNodeID : 0|8@1+ (1,0) [0|255] ""  iBDU,HVAC,ESCL
+ SG_ iCGMRepMsgReq : 8|1@1+ (1,0) [0|1] ""  iBDU,HVAC,ESCL
+ SG_ iCGMNMCoSlpBit : 11|1@1+ (1,0) [0|1] ""  iBDU,HVAC,ESCL
+ SG_ iCGMActWuBit : 12|1@1+ (1,0) [0|1] ""  iBDU,HVAC,ESCL
+ SG_ iCGMPNIBit : 14|1@1+ (1,0) [0|1] ""  iBDU,HVAC,ESCL
+ SG_ iCGMRepMsgState : 16|1@1+ (1,0) [0|1] ""  iBDU,HVAC,ESCL
+
+BO_ 528 iCGM_EMS_210h: 8 iCGM
+ SG_ EngineRunActive : 0|1@1+ (1,0) [0|1] ""  iBDU,HVAC,ESCL,BCM,PEPS
+ SG_ PropulsionSystemActive : 60|1@1+ (1,0) [0|1] ""  iBDU,ESCL
+
+BO_ 544 iCGM_EMS_220h: 8 iCGM
+ SG_ EngineSpeed : 0|16@1+ (0.25,0) [0|16383.75] "rpm"  iBDU,HVAC,ESCL,BCM,PEPS
+ SG_ EMSMessageCounter2 : 52|4@1+ (1,0) [0|15] ""  ESCL
+ SG_ EMSChecksum2 : 56|8@1+ (1,0) [0|255] ""  ESCL
+
+BO_ 609 iCGM_EMS_261h: 8 iCGM
+ SG_ EngineStatus : 38|2@1+ (1,0) [0|3] ""  HVAC,ESCL
+ SG_ EngineStatusValidity : 40|1@1+ (1,0) [0|1] ""  HVAC,ESCL
+
+BO_ 866 iCGM_IPK_362h: 8 iCGM
+ SG_ ODOofIPK : 0|24@1+ (1,0) [0|999999] "km"  iBDU,HVAC,ESCL,BCM,PEPS,TPMS,TIM
+
+BO_ 1930 ESCL_78Ah: 8 ESCL
+ SG_ ESCLDiagResponseData : 0|8@1+ (1,0) [0|255] ""  iCGM
+
+BO_ 1802 iCGM_Tester_70Ah: 8 iCGM
+ SG_ TesterDiagRequestData_ESCL : 0|8@1+ (1,0) [0|255] ""  ESCL
+
+BO_ 840 iBDU_348h: 8 iBDU
+ SG_ AccRelayFeedback : 6|1@1+ (1,0) [0|1] ""  iCGM,ESCL
+ SG_ Ig1RelayFeedback : 7|1@1+ (1,0) [0|1] ""  iCGM,ESCL
+
+BO_ 928 iCGM_ESC_3A0h: 8 iCGM
+ SG_ WheelSpeedFL : 0|13@1+ (0.05625,0) [0|300] "km/h"  iBDU,ESCL
+ SG_ WheelSpeedFLStatus : 13|2@1+ (1,0) [0|3] ""  iBDU,ESCL
+ SG_ WheelSpeedFR : 16|13@1+ (0.05625,0) [0|300] "km/h"  iBDU,ESCL
+ SG_ WheelSpeedFRStatus : 29|2@1+ (1,0) [0|3] ""  iBDU,ESCL
+ SG_ WhlSpdSenErrFL : 36|2@1+ (1,0) [0|3] ""  ESCL
+ SG_ WhlSpdSenErrFR : 38|2@1+ (1,0) [0|3] ""  ESCL
+ SG_ ABSMessageCounter_F : 52|4@1+ (1,0) [0|15] ""  iBDU,ESCL
+ SG_ ABSCheckSum_F : 56|8@1+ (1,0) [0|255] ""  iBDU,ESCL
+
+BO_ 929 iCGM_ESC_3A1h: 8 iCGM
+ SG_ WheelSpeedRL : 0|13@1+ (0.05625,0) [0|300] "km/h"  iBDU,ESCL
+ SG_ WheelSpeedRLStatus : 13|2@1+ (1,0) [0|3] ""  iBDU,ESCL
+ SG_ WheelSpeedRR : 16|13@1+ (0.05625,0) [0|300] "km/h"  iBDU,ESCL
+ SG_ WheelSpeedRRStatus : 29|2@1+ (1,0) [0|3] ""  iBDU,ESCL
+ SG_ WhlSpdSenErrRL : 36|2@1+ (1,0) [0|3] ""  ESCL
+ SG_ WhlSpdSenErrRR : 38|2@1+ (1,0) [0|3] ""  ESCL
+ SG_ ABSMessageCounter_R : 52|4@1+ (1,0) [0|15] ""  iBDU,ESCL
+ SG_ ABSCheckSum_R : 56|8@1+ (1,0) [0|255] ""  iBDU,ESCL
+
+BO_ 1508 iBDU_5E4h: 8 iBDU
+ SG_ iBDU_Auth_ESCL_Req : 0|64@1+ (1,0) [0|1.84467440737096E+019] ""  ESCL
+
+BO_ 1509 ESCL_5E5h: 8 ESCL
+ SG_ ESCL_Auth_BCM_Resp : 0|64@1+ (1,0) [0|1.84467440737096E+019] ""  iBDU
+
+BO_ 1510 iBDU_5E6h: 8 iBDU
+ SG_ IBDU_SK2toESCL1 : 0|64@1+ (1,0) [0|1.84467440737096E+019] ""  ESCL
+
+BO_ 1511 iBDU_5E7h: 8 iBDU
+ SG_ IBDU_SK2toESCL2 : 0|64@1+ (1,0) [0|1.84467440737096E+019] ""  ESCL
+
+BO_ 1534 ESCL_5FEh: 8 ESCL
+ SG_ ESCL_SK2toIBDU : 0|64@1+ (1,0) [0|1.84467440737096E+019] ""  iBDU
+
+BO_ 633 ESCL_279h: 8 ESCL
+ SG_ ESCL_LockStatus : 0|3@1+ (1,0) [0|7] ""  iBDU
+ SG_ ESCL_Learning_Status : 4|2@1+ (1,0) [0|3] ""  iBDU
+ SG_ ESCL_Warning_to_IPK : 6|3@1+ (1,0) [0|7] ""  iBDU,iCGM
+ SG_ ESCL_release : 11|1@1+ (1,0) [0|1] ""  iBDU
+ SG_ ESCL_Message_Info_AliveCounter : 52|4@1+ (1,0) [0|15] ""  iBDU
+ SG_ ESCL_Message_CheckSum : 56|8@1+ (1,0) [0|255] ""  iBDU
+
+
+
+CM_ SG_ 641 SystemPowerMode " ";
+CM_ SG_ 641 SystemPowerModeValidity " ";
+CM_ SG_ 641 iBDUMessageCounter " ";
+CM_ SG_ 641 iBDUCheckSum "Checksum=byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  ";
+CM_ SG_ 885 DoorAjarDriverStatus " ";
+CM_ SG_ 617 VehicleSpeed "Quantization:0.05625Km/h
+hex range 0x0000~0x14D6
+phys range 0km/h~300km/h ";
+CM_ SG_ 617 VehicleSpeedStatus " ";
+CM_ SG_ 617 ESCMessageCounter "0~15 ";
+CM_ SG_ 617 ESCCheckSum "Checksum=
+byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6) ";
+CM_ SG_ 1028 iBDUSrcNodeID "Source Node Identifier ";
+CM_ SG_ 1028 iBDURepMsgReq "Repeat Message Request ";
+CM_ SG_ 1028 iBDUNMCoSlpBit "NM Coordinator Sleep Bit ";
+CM_ SG_ 1028 iBDUActWuBit "Active Wakeup Bit ";
+CM_ SG_ 1028 iBDUPNIBit "Partial Network Information Bit (PNI) ";
+CM_ SG_ 1028 iBDURepMsgState "Repeat Message State ";
+CM_ SG_ 1027 HVACSrcNodeID "Source Node Identifier ";
+CM_ SG_ 1027 HVACRepMsgReq "Repeat Message Request ";
+CM_ SG_ 1027 HVACNMCoSlpBit "NM Coordinator Sleep Bit ";
+CM_ SG_ 1027 HVACActWuBit "Active Wakeup Bit ";
+CM_ SG_ 1027 HVACPNIBit "Partial Network Information Bit (PNI) ";
+CM_ SG_ 1027 HVACRepMsgState "Repeat Message State ";
+CM_ SG_ 1034 ESCLSrcNodeID "Source Node Identifier ";
+CM_ SG_ 1034 ESCLRepMsgReq "Repeat Message Request ";
+CM_ SG_ 1034 ESCLNMCoSlpBit "NM Coordinator Sleep Bit ";
+CM_ SG_ 1034 ESCLActWuBit "Active Wakeup Bit ";
+CM_ SG_ 1034 ESCLPNIBit "Partial Network Information Bit (PNI) ";
+CM_ SG_ 1034 ESCLRepMsgState "Repeat Message State ";
+CM_ SG_ 1033 iCGMSrcNodeID "Source Node Identifier ";
+CM_ SG_ 1033 iCGMRepMsgReq "Repeat Message Request ";
+CM_ SG_ 1033 iCGMNMCoSlpBit "NM Coordinator Sleep Bit ";
+CM_ SG_ 1033 iCGMActWuBit "Active Wakeup Bit ";
+CM_ SG_ 1033 iCGMPNIBit "Partial Network Information Bit (PNI) ";
+CM_ SG_ 1033 iCGMRepMsgState "Repeat Message State ";
+CM_ SG_ 528 EngineRunActive "Engine Run Active ";
+CM_ SG_ 528 PropulsionSystemActive "  ";
+CM_ SG_ 544 EngineSpeed "Engine Speed rpm
+Precision of engine speed signal at engine speed > 800 rpm:
+≤ ± 3 rpm
+Precision of engine speed signal at engine speed < 800 rpm: ≤ ± 2 rpm
+Retardation < 40 ms ";
+CM_ SG_ 544 EMSMessageCounter2 "0~15 ";
+CM_ SG_ 544 EMSChecksum2 "Checksum=byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6) ";
+CM_ SG_ 609 EngineStatus "Engine Status ";
+CM_ SG_ 609 EngineStatusValidity "Engine Status Validity ";
+CM_ SG_ 866 ODOofIPK "physical range:0~999999km;
+hex range:0x000000~0x0F423F
+Invalid value:0xFFFFFF;
+quantization:1km ";
+CM_ SG_ 1930 ESCLDiagResponseData " ";
+CM_ SG_ 1802 TesterDiagRequestData_ESCL " ";
+CM_ SG_ 840 AccRelayFeedback " ";
+CM_ SG_ 840 Ig1RelayFeedback " ";
+CM_ SG_ 928 WheelSpeedFL "Quantization:0.05625Km/h
+hex range 0x0000~0x14D6
+phys range 0km/h~300km/h  ";
+CM_ SG_ 928 WheelSpeedFLStatus "  ";
+CM_ SG_ 928 WheelSpeedFR "Quantization:0.05625Km/h
+hex range 0x0000~0x14D6
+phys range 0km/h~300km/h  ";
+CM_ SG_ 928 WheelSpeedFRStatus "  ";
+CM_ SG_ 928 WhlSpdSenErrFL " ";
+CM_ SG_ 928 WhlSpdSenErrFR " ";
+CM_ SG_ 928 ABSMessageCounter_F "  ";
+CM_ SG_ 928 ABSCheckSum_F "Checksum=byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  ";
+CM_ SG_ 929 WheelSpeedRL "Quantization:0.05625Km/h
+hex range 0x0000~0x14D6
+phys range 0km/h~300km/h  ";
+CM_ SG_ 929 WheelSpeedRLStatus "  ";
+CM_ SG_ 929 WheelSpeedRR "Quantization:0.05625Km/h
+hex range 0x0000~0x14D6
+phys range 0km/h~300km/h  ";
+CM_ SG_ 929 WheelSpeedRRStatus "  ";
+CM_ SG_ 929 WhlSpdSenErrRL " ";
+CM_ SG_ 929 WhlSpdSenErrRR " ";
+CM_ SG_ 929 ABSMessageCounter_R "  ";
+CM_ SG_ 929 ABSCheckSum_R "Checksum=byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  ";
+CM_ SG_ 1508 iBDU_Auth_ESCL_Req "iBDU请求ESCL发起认证 ";
+CM_ SG_ 1509 ESCL_Auth_BCM_Resp "iBDU认证码 ";
+CM_ SG_ 1510 IBDU_SK2toESCL1 "IBDU向ESCL教SK2 ";
+CM_ SG_ 1511 IBDU_SK2toESCL2 "IBDU向ESCL教SK2 ";
+CM_ SG_ 1534 ESCL_SK2toIBDU "BCM反馈ESCL学习状态 ";
+CM_ SG_ 633 ESCL_LockStatus "0=the latch of ESCL stays at a position which is neither locked nor unlocked OR the latch of ESCL hasn't reached the final locking/unlocking position yet                                                                   1=Locked                                                                      2=Unlocked                                                                   3=Reserved
+ESCL转向锁状态
+（ESCL锁舌状态） ";
+CM_ SG_ 633 ESCL_Learning_Status "ESCL系统学习状态
+（ESK学习状态） ";
+CM_ SG_ 633 ESCL_Warning_to_IPK "ESCL报警信息
+（ESK学习状态） ";
+CM_ SG_ 633 ESCL_release "ESCL认证是否成功
+（ESCL解锁认证是否成功） ";
+CM_ SG_ 633 ESCL_Message_Info_AliveCounter "消息计数器 ";
+CM_ SG_ 633 ESCL_Message_CheckSum "消息校验 ";
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "Baudrate" INT 0 1000000;
+BA_DEF_  "NmMessageCount" INT 1 255;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_ SG_  "GenSigTimeoutValue" INT 0 65535;
+BA_DEF_ BO_  "DiagUudtResponse" ENUM  "false","true";
+BA_DEF_  "NmAsrRepeatMessageTime" INT 0 65535;
+BA_DEF_  "NmAsrTimeoutTime" INT 1 65535;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 0 65535;
+BA_DEF_  "NmAsrMessageCount" INT 1 256;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 1 65535;
+BA_DEF_  "NmAsrBaseAddress" HEX 0 2047;
+BA_DEF_  "ILTxTimeout" INT 0 65535;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_ BU_  "NmAsrNode" ENUM  "no","yes";
+BA_DEF_ BU_  "NmAsrCanMsgReducedTime" INT 1 65535;
+BA_DEF_ BU_  "ILUsed" ENUM  "no","yes";
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_ BU_  "NmStationAddress" HEX 0 255;
+BA_DEF_ BU_  "NmAsrCanMsgCycleOffset" INT 0 65535;
+BA_DEF_ BU_  "NmNode" ENUM  "no","yes";
+BA_DEF_ BO_  "DiagState" ENUM  "no","yes";
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 65535;
+BA_DEF_ BO_  "GenMsgFastOnStart" INT 0 65535;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","IfActive","NoMsgSendType","NotUsed";
+BA_DEF_ BO_  "NmMessage" ENUM  "no","yes";
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "no","yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "no","yes";
+BA_DEF_ BO_  "TpTxIndex" INT 0 255;
+BA_DEF_ BO_  "DiagRequest" ENUM  "no","yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "no","yes";
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 65535;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 30000;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 100000000000;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 1;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigTimeoutTime" INT 0 65535;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespSubValue" INT 0 65535;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "Baudrate" 125000;
+BA_DEF_DEF_  "NmMessageCount" 255;
+BA_DEF_DEF_  "Manufacturer" "Geely";
+BA_DEF_DEF_  "GenSigTimeoutValue" 0;
+BA_DEF_DEF_  "DiagUudtResponse" "false";
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 3200;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 2000;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 2000;
+BA_DEF_DEF_  "NmAsrMessageCount" 128;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 640;
+BA_DEF_DEF_  "NmAsrBaseAddress" 1280;
+BA_DEF_DEF_  "ILTxTimeout" 0;
+BA_DEF_DEF_  "NmType" "NmAsr";
+BA_DEF_DEF_  "NmAsrNode" "no";
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 320;
+BA_DEF_DEF_  "ILUsed" "no";
+BA_DEF_DEF_  "NodeLayerModules" " ";
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 50;
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 0;
+BA_DEF_DEF_  "NmNode" "no";
+BA_DEF_DEF_  "DiagState" "no";
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgFastOnStart" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmMessage" "no";
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "no";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 10;
+BA_DEF_DEF_  "NmAsrMessage" "no";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "DiagRequest" "no";
+BA_DEF_DEF_  "DiagResponse" "no";
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_REL_ "GenSigTimeoutTime" 0;
+BA_DEF_DEF_REL_ "GenSigSuprvRespSubValue" 0;
+BA_ "NmType" "NmAsr";
+BA_ "Baudrate" 500000;
+BA_ "BusType" "CAN";
+BA_ "Manufacturer" "GEELY";
+BA_ "NmAsrRepeatMessageTime" 1500;
+BA_ "NmAsrMessageCount" 128;
+BA_ "NmAsrCanMsgCycleTime" 500;
+BA_ "NmAsrBaseAddress" 1024;
+BA_ "ILTxTimeout" 0;
+BA_ "DBName" "SK83_BD";
+BA_ "NmStationAddress" BU_ iBDU 0;
+BA_ "NodeLayerModules" BU_ iBDU "AsrNM33.dll, CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ iBDU 4;
+BA_ "NmAsrCanMsgReducedTime" BU_ iBDU 260;
+BA_ "NmAsrCanMsgCycleOffset" BU_ iBDU 10;
+BA_ "ILUsed" BU_ iBDU 1;
+BA_ "NmAsrNode" BU_ iBDU 1;
+BA_ "NmNode" BU_ iBDU 0;
+BA_ "NmStationAddress" BU_ HVAC 0;
+BA_ "NodeLayerModules" BU_ HVAC "AsrNM33.dll, CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ HVAC 3;
+BA_ "NmAsrCanMsgReducedTime" BU_ HVAC 270;
+BA_ "NmAsrCanMsgCycleOffset" BU_ HVAC 20;
+BA_ "ILUsed" BU_ HVAC 1;
+BA_ "NmAsrNode" BU_ HVAC 1;
+BA_ "NmNode" BU_ HVAC 0;
+BA_ "NmStationAddress" BU_ iCGM 0;
+BA_ "NodeLayerModules" BU_ iCGM "AsrNM33.dll, CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ iCGM 9;
+BA_ "NmAsrCanMsgReducedTime" BU_ iCGM 250;
+BA_ "NmAsrCanMsgCycleOffset" BU_ iCGM 0;
+BA_ "ILUsed" BU_ iCGM 1;
+BA_ "NmAsrNode" BU_ iCGM 1;
+BA_ "NmNode" BU_ iCGM 0;
+BA_ "NmStationAddress" BU_ ESCL 0;
+BA_ "NodeLayerModules" BU_ ESCL "AsrNM33.dll, CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ ESCL 10;
+BA_ "NmAsrCanMsgReducedTime" BU_ ESCL 280;
+BA_ "NmAsrCanMsgCycleOffset" BU_ ESCL 30;
+BA_ "ILUsed" BU_ ESCL 1;
+BA_ "NmAsrNode" BU_ ESCL 1;
+BA_ "NmNode" BU_ ESCL 0;
+BA_ "NmStationAddress" BU_ BCM 1;
+BA_ "NodeLayerModules" BU_ BCM "oseknm01.dll,CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ BCM 0;
+BA_ "NmAsrCanMsgCycleOffset" BU_ BCM 0;
+BA_ "ILUsed" BU_ BCM 1;
+BA_ "NmAsrNode" BU_ BCM 0;
+BA_ "NmNode" BU_ BCM 1;
+BA_ "NmStationAddress" BU_ PEPS 2;
+BA_ "NodeLayerModules" BU_ PEPS "oseknm01.dll,CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ PEPS 0;
+BA_ "NmAsrCanMsgCycleOffset" BU_ PEPS 0;
+BA_ "ILUsed" BU_ PEPS 1;
+BA_ "NmAsrNode" BU_ PEPS 0;
+BA_ "NmNode" BU_ PEPS 1;
+BA_ "NmStationAddress" BU_ TPMS 0;
+BA_ "NodeLayerModules" BU_ TPMS "CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ TPMS 0;
+BA_ "NmAsrCanMsgCycleOffset" BU_ TPMS 0;
+BA_ "ILUsed" BU_ TPMS 0;
+BA_ "NmAsrNode" BU_ TPMS 0;
+BA_ "NmNode" BU_ TPMS 0;
+BA_ "NmStationAddress" BU_ TIM 7;
+BA_ "NodeLayerModules" BU_ TIM "oseknm01.dll,CANoeILNLVector.dll";
+BA_ "NmAsrNodeIdentifier" BU_ TIM 0;
+BA_ "NmAsrCanMsgCycleOffset" BU_ TIM 0;
+BA_ "ILUsed" BU_ TIM 1;
+BA_ "NmAsrNode" BU_ TIM 0;
+BA_ "NmNode" BU_ TIM 1;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgILSupport" BO_ 2015 1;
+BA_ "DiagRequest" BO_ 2015 1;
+BA_ "GenMsgCycleTime" BO_ 2015 100;
+BA_ "GenMsgSendType" BO_ 641 0;
+BA_ "GenMsgCycleTime" BO_ 641 20;
+BA_ "GenMsgILSupport" BO_ 641 1;
+BA_ "GenMsgCycleTimeFast" BO_ 641 20;
+BA_ "GenMsgNrOfRepetition" BO_ 641 0;
+BA_ "GenMsgDelayTime" BO_ 641 0;
+BA_ "GenMsgSendType" BO_ 885 0;
+BA_ "GenMsgCycleTime" BO_ 885 200;
+BA_ "GenMsgILSupport" BO_ 885 1;
+BA_ "GenMsgCycleTimeFast" BO_ 885 20;
+BA_ "GenMsgNrOfRepetition" BO_ 885 0;
+BA_ "GenMsgDelayTime" BO_ 885 0;
+BA_ "GenMsgSendType" BO_ 617 0;
+BA_ "GenMsgCycleTime" BO_ 617 20;
+BA_ "GenMsgILSupport" BO_ 617 1;
+BA_ "GenMsgCycleTimeFast" BO_ 617 20;
+BA_ "GenMsgNrOfRepetition" BO_ 617 0;
+BA_ "GenMsgDelayTime" BO_ 617 0;
+BA_ "NmAsrMessage" BO_ 1028 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1028 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1028 0;
+BA_ "GenMsgDelayTime" BO_ 1028 0;
+BA_ "NmAsrMessage" BO_ 1027 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1027 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1027 0;
+BA_ "GenMsgDelayTime" BO_ 1027 0;
+BA_ "NmAsrMessage" BO_ 1034 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1034 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1034 0;
+BA_ "GenMsgDelayTime" BO_ 1034 0;
+BA_ "NmAsrMessage" BO_ 1033 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1033 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1033 0;
+BA_ "GenMsgDelayTime" BO_ 1033 0;
+BA_ "GenMsgSendType" BO_ 528 0;
+BA_ "GenMsgCycleTime" BO_ 528 10;
+BA_ "GenMsgILSupport" BO_ 528 1;
+BA_ "GenMsgCycleTimeFast" BO_ 528 20;
+BA_ "GenMsgNrOfRepetition" BO_ 528 0;
+BA_ "GenMsgDelayTime" BO_ 528 0;
+BA_ "GenMsgSendType" BO_ 544 0;
+BA_ "GenMsgCycleTime" BO_ 544 10;
+BA_ "GenMsgILSupport" BO_ 544 1;
+BA_ "GenMsgCycleTimeFast" BO_ 544 20;
+BA_ "GenMsgNrOfRepetition" BO_ 544 0;
+BA_ "GenMsgDelayTime" BO_ 544 0;
+BA_ "GenMsgSendType" BO_ 609 0;
+BA_ "GenMsgCycleTime" BO_ 609 20;
+BA_ "GenMsgILSupport" BO_ 609 1;
+BA_ "GenMsgCycleTimeFast" BO_ 609 20;
+BA_ "GenMsgNrOfRepetition" BO_ 609 0;
+BA_ "GenMsgDelayTime" BO_ 609 0;
+BA_ "GenMsgSendType" BO_ 866 0;
+BA_ "GenMsgCycleTime" BO_ 866 20;
+BA_ "GenMsgILSupport" BO_ 866 1;
+BA_ "GenMsgCycleTimeFast" BO_ 866 20;
+BA_ "GenMsgNrOfRepetition" BO_ 866 0;
+BA_ "GenMsgDelayTime" BO_ 866 0;
+BA_ "DiagResponse" BO_ 1930 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1930 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1930 0;
+BA_ "GenMsgDelayTime" BO_ 1930 0;
+BA_ "DiagRequest" BO_ 1802 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1802 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1802 0;
+BA_ "GenMsgDelayTime" BO_ 1802 0;
+BA_ "GenMsgSendType" BO_ 840 0;
+BA_ "GenMsgCycleTime" BO_ 840 100;
+BA_ "GenMsgILSupport" BO_ 840 1;
+BA_ "GenMsgCycleTimeFast" BO_ 840 20;
+BA_ "GenMsgNrOfRepetition" BO_ 840 0;
+BA_ "GenMsgDelayTime" BO_ 840 0;
+BA_ "GenMsgSendType" BO_ 928 0;
+BA_ "GenMsgCycleTime" BO_ 928 20;
+BA_ "GenMsgILSupport" BO_ 928 1;
+BA_ "GenMsgCycleTimeFast" BO_ 928 20;
+BA_ "GenMsgNrOfRepetition" BO_ 928 0;
+BA_ "GenMsgDelayTime" BO_ 928 0;
+BA_ "GenMsgSendType" BO_ 929 0;
+BA_ "GenMsgCycleTime" BO_ 929 20;
+BA_ "GenMsgILSupport" BO_ 929 1;
+BA_ "GenMsgCycleTimeFast" BO_ 929 20;
+BA_ "GenMsgNrOfRepetition" BO_ 929 0;
+BA_ "GenMsgDelayTime" BO_ 929 0;
+BA_ "GenMsgCycleTimeFast" BO_ 1508 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1508 0;
+BA_ "GenMsgDelayTime" BO_ 1508 0;
+BA_ "GenMsgILSupport" BO_ 1508 1;
+BA_ "GenMsgNrOfRepetition" BO_ 1509 0;
+BA_ "GenMsgDelayTime" BO_ 1509 0;
+BA_ "GenMsgILSupport" BO_ 1509 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1510 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1510 0;
+BA_ "GenMsgDelayTime" BO_ 1510 0;
+BA_ "GenMsgILSupport" BO_ 1510 1;
+BA_ "GenMsgCycleTimeFast" BO_ 1511 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1511 0;
+BA_ "GenMsgDelayTime" BO_ 1511 0;
+BA_ "GenMsgILSupport" BO_ 1511 1;
+BA_ "GenMsgNrOfRepetition" BO_ 1534 0;
+BA_ "GenMsgDelayTime" BO_ 1534 0;
+BA_ "GenMsgILSupport" BO_ 1534 1;
+BA_ "GenMsgSendType" BO_ 633 0;
+BA_ "GenMsgCycleTime" BO_ 633 100;
+BA_ "GenMsgILSupport" BO_ 633 1;
+BA_ "GenMsgNrOfRepetition" BO_ 633 0;
+BA_ "GenMsgDelayTime" BO_ 633 0;
+BA_ "GenSigSendType" SG_ 2015 FunctionDiagRequestData 1;
+BA_ "GenSigTimeoutValue" SG_ 641 SystemPowerMode 60;
+BA_ "GenSigSendType" SG_ 641 SystemPowerMode 0;
+BA_ "GenSigStartValue" SG_ 641 SystemPowerMode 0;
+BA_ "GenSigTimeoutValue" SG_ 641 SystemPowerModeValidity 60;
+BA_ "GenSigSendType" SG_ 641 SystemPowerModeValidity 0;
+BA_ "GenSigStartValue" SG_ 641 SystemPowerModeValidity 0;
+BA_ "GenSigTimeoutValue" SG_ 641 iBDUMessageCounter 250;
+BA_ "GenSigSendType" SG_ 641 iBDUMessageCounter 0;
+BA_ "GenSigStartValue" SG_ 641 iBDUMessageCounter 0;
+BA_ "GenSigTimeoutValue" SG_ 641 iBDUCheckSum 250;
+BA_ "GenSigSendType" SG_ 641 iBDUCheckSum 0;
+BA_ "GenSigStartValue" SG_ 641 iBDUCheckSum 0;
+BA_ "GenSigTimeoutValue" SG_ 885 DoorAjarDriverStatus 2000;
+BA_ "GenSigSendType" SG_ 885 DoorAjarDriverStatus 0;
+BA_ "GenSigStartValue" SG_ 885 DoorAjarDriverStatus 0;
+BA_ "GenSigTimeoutValue" SG_ 617 VehicleSpeed 250;
+BA_ "GenSigSendType" SG_ 617 VehicleSpeed 0;
+BA_ "GenSigStartValue" SG_ 617 VehicleSpeed 0;
+BA_ "GenSigTimeoutValue" SG_ 617 VehicleSpeedStatus 250;
+BA_ "GenSigSendType" SG_ 617 VehicleSpeedStatus 0;
+BA_ "GenSigStartValue" SG_ 617 VehicleSpeedStatus 0;
+BA_ "GenSigTimeoutValue" SG_ 617 ESCMessageCounter 250;
+BA_ "GenSigSendType" SG_ 617 ESCMessageCounter 0;
+BA_ "GenSigStartValue" SG_ 617 ESCMessageCounter 0;
+BA_ "GenSigTimeoutValue" SG_ 617 ESCCheckSum 250;
+BA_ "GenSigSendType" SG_ 617 ESCCheckSum 0;
+BA_ "GenSigStartValue" SG_ 617 ESCCheckSum 0;
+BA_ "GenSigSendType" SG_ 1028 iBDUSrcNodeID 1;
+BA_ "GenSigStartValue" SG_ 1028 iBDUSrcNodeID 4;
+BA_ "GenSigSendType" SG_ 1028 iBDURepMsgReq 1;
+BA_ "GenSigStartValue" SG_ 1028 iBDURepMsgReq 0;
+BA_ "GenSigSendType" SG_ 1028 iBDUNMCoSlpBit 1;
+BA_ "GenSigStartValue" SG_ 1028 iBDUNMCoSlpBit 0;
+BA_ "GenSigSendType" SG_ 1028 iBDUActWuBit 1;
+BA_ "GenSigStartValue" SG_ 1028 iBDUActWuBit 0;
+BA_ "GenSigSendType" SG_ 1028 iBDUPNIBit 1;
+BA_ "GenSigStartValue" SG_ 1028 iBDUPNIBit 0;
+BA_ "GenSigSendType" SG_ 1028 iBDURepMsgState 1;
+BA_ "GenSigStartValue" SG_ 1028 iBDURepMsgState 0;
+BA_ "GenSigSendType" SG_ 1027 HVACSrcNodeID 1;
+BA_ "GenSigStartValue" SG_ 1027 HVACSrcNodeID 3;
+BA_ "GenSigSendType" SG_ 1027 HVACRepMsgReq 1;
+BA_ "GenSigStartValue" SG_ 1027 HVACRepMsgReq 0;
+BA_ "GenSigSendType" SG_ 1027 HVACNMCoSlpBit 1;
+BA_ "GenSigStartValue" SG_ 1027 HVACNMCoSlpBit 0;
+BA_ "GenSigSendType" SG_ 1027 HVACActWuBit 1;
+BA_ "GenSigStartValue" SG_ 1027 HVACActWuBit 0;
+BA_ "GenSigSendType" SG_ 1027 HVACPNIBit 1;
+BA_ "GenSigStartValue" SG_ 1027 HVACPNIBit 0;
+BA_ "GenSigSendType" SG_ 1027 HVACRepMsgState 1;
+BA_ "GenSigStartValue" SG_ 1027 HVACRepMsgState 0;
+BA_ "GenSigSendType" SG_ 1034 ESCLSrcNodeID 1;
+BA_ "GenSigStartValue" SG_ 1034 ESCLSrcNodeID 10;
+BA_ "GenSigSendType" SG_ 1034 ESCLRepMsgReq 1;
+BA_ "GenSigStartValue" SG_ 1034 ESCLRepMsgReq 0;
+BA_ "GenSigSendType" SG_ 1034 ESCLNMCoSlpBit 1;
+BA_ "GenSigStartValue" SG_ 1034 ESCLNMCoSlpBit 0;
+BA_ "GenSigSendType" SG_ 1034 ESCLActWuBit 1;
+BA_ "GenSigStartValue" SG_ 1034 ESCLActWuBit 0;
+BA_ "GenSigSendType" SG_ 1034 ESCLPNIBit 1;
+BA_ "GenSigStartValue" SG_ 1034 ESCLPNIBit 0;
+BA_ "GenSigSendType" SG_ 1034 ESCLRepMsgState 1;
+BA_ "GenSigStartValue" SG_ 1034 ESCLRepMsgState 0;
+BA_ "GenSigSendType" SG_ 1033 iCGMSrcNodeID 1;
+BA_ "GenSigStartValue" SG_ 1033 iCGMSrcNodeID 9;
+BA_ "GenSigSendType" SG_ 1033 iCGMRepMsgReq 1;
+BA_ "GenSigStartValue" SG_ 1033 iCGMRepMsgReq 0;
+BA_ "GenSigSendType" SG_ 1033 iCGMNMCoSlpBit 1;
+BA_ "GenSigStartValue" SG_ 1033 iCGMNMCoSlpBit 0;
+BA_ "GenSigSendType" SG_ 1033 iCGMActWuBit 1;
+BA_ "GenSigStartValue" SG_ 1033 iCGMActWuBit 0;
+BA_ "GenSigSendType" SG_ 1033 iCGMPNIBit 1;
+BA_ "GenSigStartValue" SG_ 1033 iCGMPNIBit 0;
+BA_ "GenSigSendType" SG_ 1033 iCGMRepMsgState 1;
+BA_ "GenSigStartValue" SG_ 1033 iCGMRepMsgState 0;
+BA_ "GenSigTimeoutValue" SG_ 528 EngineRunActive 250;
+BA_ "GenSigSendType" SG_ 528 EngineRunActive 0;
+BA_ "GenSigStartValue" SG_ 528 EngineRunActive 0;
+BA_ "GenSigTimeoutValue" SG_ 528 PropulsionSystemActive 250;
+BA_ "GenSigSendType" SG_ 528 PropulsionSystemActive 0;
+BA_ "GenSigStartValue" SG_ 528 PropulsionSystemActive 0;
+BA_ "GenSigTimeoutValue" SG_ 544 EngineSpeed 250;
+BA_ "GenSigSendType" SG_ 544 EngineSpeed 0;
+BA_ "GenSigStartValue" SG_ 544 EngineSpeed 0;
+BA_ "GenSigTimeoutValue" SG_ 544 EMSMessageCounter2 250;
+BA_ "GenSigSendType" SG_ 544 EMSMessageCounter2 0;
+BA_ "GenSigStartValue" SG_ 544 EMSMessageCounter2 0;
+BA_ "GenSigTimeoutValue" SG_ 544 EMSChecksum2 250;
+BA_ "GenSigSendType" SG_ 544 EMSChecksum2 0;
+BA_ "GenSigStartValue" SG_ 544 EMSChecksum2 0;
+BA_ "GenSigTimeoutValue" SG_ 609 EngineStatus 250;
+BA_ "GenSigSendType" SG_ 609 EngineStatus 0;
+BA_ "GenSigStartValue" SG_ 609 EngineStatus 0;
+BA_ "GenSigTimeoutValue" SG_ 609 EngineStatusValidity 250;
+BA_ "GenSigSendType" SG_ 609 EngineStatusValidity 0;
+BA_ "GenSigStartValue" SG_ 609 EngineStatusValidity 0;
+BA_ "GenSigTimeoutValue" SG_ 866 ODOofIPK 250;
+BA_ "GenSigSendType" SG_ 866 ODOofIPK 0;
+BA_ "GenSigStartValue" SG_ 866 ODOofIPK 0;
+BA_ "GenSigSendType" SG_ 1930 ESCLDiagResponseData 1;
+BA_ "GenSigStartValue" SG_ 1930 ESCLDiagResponseData 0;
+BA_ "GenSigSendType" SG_ 1802 TesterDiagRequestData_ESCL 1;
+BA_ "GenSigStartValue" SG_ 1802 TesterDiagRequestData_ESCL 0;
+BA_ "GenSigTimeoutValue" SG_ 840 AccRelayFeedback 1000;
+BA_ "GenSigSendType" SG_ 840 AccRelayFeedback 0;
+BA_ "GenSigStartValue" SG_ 840 AccRelayFeedback 0;
+BA_ "GenSigTimeoutValue" SG_ 840 Ig1RelayFeedback 1000;
+BA_ "GenSigSendType" SG_ 840 Ig1RelayFeedback 0;
+BA_ "GenSigStartValue" SG_ 840 Ig1RelayFeedback 0;
+BA_ "GenSigTimeoutValue" SG_ 928 WheelSpeedFL 250;
+BA_ "GenSigSendType" SG_ 928 WheelSpeedFL 0;
+BA_ "GenSigStartValue" SG_ 928 WheelSpeedFL 0;
+BA_ "GenSigTimeoutValue" SG_ 928 WheelSpeedFLStatus 250;
+BA_ "GenSigSendType" SG_ 928 WheelSpeedFLStatus 0;
+BA_ "GenSigStartValue" SG_ 928 WheelSpeedFLStatus 2;
+BA_ "GenSigTimeoutValue" SG_ 928 WheelSpeedFR 250;
+BA_ "GenSigSendType" SG_ 928 WheelSpeedFR 0;
+BA_ "GenSigStartValue" SG_ 928 WheelSpeedFR 0;
+BA_ "GenSigTimeoutValue" SG_ 928 WheelSpeedFRStatus 250;
+BA_ "GenSigSendType" SG_ 928 WheelSpeedFRStatus 0;
+BA_ "GenSigStartValue" SG_ 928 WheelSpeedFRStatus 2;
+BA_ "GenSigTimeoutValue" SG_ 928 WhlSpdSenErrFL 250;
+BA_ "GenSigSendType" SG_ 928 WhlSpdSenErrFL 0;
+BA_ "GenSigStartValue" SG_ 928 WhlSpdSenErrFL 0;
+BA_ "GenSigTimeoutValue" SG_ 928 WhlSpdSenErrFR 250;
+BA_ "GenSigSendType" SG_ 928 WhlSpdSenErrFR 0;
+BA_ "GenSigStartValue" SG_ 928 WhlSpdSenErrFR 0;
+BA_ "GenSigTimeoutValue" SG_ 928 ABSMessageCounter_F 250;
+BA_ "GenSigSendType" SG_ 928 ABSMessageCounter_F 0;
+BA_ "GenSigStartValue" SG_ 928 ABSMessageCounter_F 0;
+BA_ "GenSigTimeoutValue" SG_ 928 ABSCheckSum_F 250;
+BA_ "GenSigSendType" SG_ 928 ABSCheckSum_F 0;
+BA_ "GenSigStartValue" SG_ 928 ABSCheckSum_F 0;
+BA_ "GenSigTimeoutValue" SG_ 929 WheelSpeedRL 250;
+BA_ "GenSigSendType" SG_ 929 WheelSpeedRL 0;
+BA_ "GenSigStartValue" SG_ 929 WheelSpeedRL 0;
+BA_ "GenSigTimeoutValue" SG_ 929 WheelSpeedRLStatus 250;
+BA_ "GenSigSendType" SG_ 929 WheelSpeedRLStatus 0;
+BA_ "GenSigStartValue" SG_ 929 WheelSpeedRLStatus 2;
+BA_ "GenSigTimeoutValue" SG_ 929 WheelSpeedRR 250;
+BA_ "GenSigSendType" SG_ 929 WheelSpeedRR 0;
+BA_ "GenSigStartValue" SG_ 929 WheelSpeedRR 0;
+BA_ "GenSigTimeoutValue" SG_ 929 WheelSpeedRRStatus 250;
+BA_ "GenSigSendType" SG_ 929 WheelSpeedRRStatus 0;
+BA_ "GenSigStartValue" SG_ 929 WheelSpeedRRStatus 2;
+BA_ "GenSigTimeoutValue" SG_ 929 WhlSpdSenErrRL 250;
+BA_ "GenSigSendType" SG_ 929 WhlSpdSenErrRL 0;
+BA_ "GenSigStartValue" SG_ 929 WhlSpdSenErrRL 0;
+BA_ "GenSigTimeoutValue" SG_ 929 WhlSpdSenErrRR 250;
+BA_ "GenSigSendType" SG_ 929 WhlSpdSenErrRR 0;
+BA_ "GenSigStartValue" SG_ 929 WhlSpdSenErrRR 0;
+BA_ "GenSigTimeoutValue" SG_ 929 ABSMessageCounter_R 250;
+BA_ "GenSigSendType" SG_ 929 ABSMessageCounter_R 0;
+BA_ "GenSigStartValue" SG_ 929 ABSMessageCounter_R 0;
+BA_ "GenSigTimeoutValue" SG_ 929 ABSCheckSum_R 250;
+BA_ "GenSigSendType" SG_ 929 ABSCheckSum_R 0;
+BA_ "GenSigStartValue" SG_ 929 ABSCheckSum_R 0;
+BA_ "GenSigSendType" SG_ 1508 iBDU_Auth_ESCL_Req 1;
+BA_ "GenSigStartValue" SG_ 1508 iBDU_Auth_ESCL_Req 0;
+BA_ "GenSigSendType" SG_ 1509 ESCL_Auth_BCM_Resp 1;
+BA_ "GenSigStartValue" SG_ 1509 ESCL_Auth_BCM_Resp 0;
+BA_ "GenSigSendType" SG_ 1510 IBDU_SK2toESCL1 1;
+BA_ "GenSigStartValue" SG_ 1510 IBDU_SK2toESCL1 0;
+BA_ "GenSigSendType" SG_ 1511 IBDU_SK2toESCL2 1;
+BA_ "GenSigStartValue" SG_ 1511 IBDU_SK2toESCL2 0;
+BA_ "GenSigSendType" SG_ 1534 ESCL_SK2toIBDU 1;
+BA_ "GenSigStartValue" SG_ 1534 ESCL_SK2toIBDU 0;
+BA_ "GenSigTimeoutValue" SG_ 633 ESCL_LockStatus 1000;
+BA_ "GenSigSendType" SG_ 633 ESCL_LockStatus 0;
+BA_ "GenSigStartValue" SG_ 633 ESCL_LockStatus 0;
+BA_ "GenSigTimeoutValue" SG_ 633 ESCL_Learning_Status 1000;
+BA_ "GenSigSendType" SG_ 633 ESCL_Learning_Status 0;
+BA_ "GenSigStartValue" SG_ 633 ESCL_Learning_Status 0;
+BA_ "GenSigTimeoutValue" SG_ 633 ESCL_Warning_to_IPK 1000;
+BA_ "GenSigSendType" SG_ 633 ESCL_Warning_to_IPK 0;
+BA_ "GenSigStartValue" SG_ 633 ESCL_Warning_to_IPK 0;
+BA_ "GenSigTimeoutValue" SG_ 633 ESCL_release 1000;
+BA_ "GenSigSendType" SG_ 633 ESCL_release 0;
+BA_ "GenSigStartValue" SG_ 633 ESCL_release 0;
+BA_ "GenSigTimeoutValue" SG_ 633 ESCL_Message_Info_AliveCounter 1000;
+BA_ "GenSigSendType" SG_ 633 ESCL_Message_Info_AliveCounter 0;
+BA_ "GenSigStartValue" SG_ 633 ESCL_Message_Info_AliveCounter 0;
+BA_ "GenSigTimeoutValue" SG_ 633 ESCL_Message_CheckSum 1000;
+BA_ "GenSigSendType" SG_ 633 ESCL_Message_CheckSum 0;
+BA_ "GenSigStartValue" SG_ 633 ESCL_Message_CheckSum 0;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 641 SystemPowerMode 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 641 SystemPowerMode 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 641 SystemPowerMode 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 641 SystemPowerMode 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TPMS SG_ 641 SystemPowerMode 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TIM SG_ 641 SystemPowerMode 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 641 SystemPowerModeValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 641 SystemPowerModeValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 641 SystemPowerModeValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 641 SystemPowerModeValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TPMS SG_ 641 SystemPowerModeValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TIM SG_ 641 SystemPowerModeValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 641 iBDUMessageCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 641 iBDUMessageCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 641 iBDUCheckSum 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 641 iBDUCheckSum 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 885 DoorAjarDriverStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 885 DoorAjarDriverStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 885 DoorAjarDriverStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 617 VehicleSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 617 VehicleSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 617 VehicleSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ BCM SG_ 617 VehicleSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 617 VehicleSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TPMS SG_ 617 VehicleSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 617 VehicleSpeedStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 617 VehicleSpeedStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 617 VehicleSpeedStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ BCM SG_ 617 VehicleSpeedStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 617 VehicleSpeedStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TPMS SG_ 617 VehicleSpeedStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 617 ESCMessageCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 617 ESCMessageCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 617 ESCMessageCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ BCM SG_ 617 ESCMessageCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 617 ESCMessageCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 617 ESCCheckSum 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 617 ESCCheckSum 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 617 ESCCheckSum 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ BCM SG_ 617 ESCCheckSum 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 617 ESCCheckSum 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 528 EngineRunActive 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 528 EngineRunActive 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 528 EngineRunActive 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ BCM SG_ 528 EngineRunActive 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 528 EngineRunActive 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 528 PropulsionSystemActive 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 528 PropulsionSystemActive 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 544 EngineSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 544 EngineSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 544 EngineSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ BCM SG_ 544 EngineSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 544 EngineSpeed 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 544 EMSMessageCounter2 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 544 EMSChecksum2 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 609 EngineStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 609 EngineStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 609 EngineStatusValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 609 EngineStatusValidity 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 866 ODOofIPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ HVAC SG_ 866 ODOofIPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 866 ODOofIPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ BCM SG_ 866 ODOofIPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ PEPS SG_ 866 ODOofIPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TPMS SG_ 866 ODOofIPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ TIM SG_ 866 ODOofIPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 840 AccRelayFeedback 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 840 AccRelayFeedback 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 840 Ig1RelayFeedback 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 840 Ig1RelayFeedback 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 928 WheelSpeedFL 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 WheelSpeedFL 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 928 WheelSpeedFLStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 WheelSpeedFLStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 928 WheelSpeedFR 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 WheelSpeedFR 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 928 WheelSpeedFRStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 WheelSpeedFRStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 WhlSpdSenErrFL 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 WhlSpdSenErrFR 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 928 ABSMessageCounter_F 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 ABSMessageCounter_F 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 928 ABSCheckSum_F 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 928 ABSCheckSum_F 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 929 WheelSpeedRL 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 WheelSpeedRL 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 929 WheelSpeedRLStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 WheelSpeedRLStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 929 WheelSpeedRR 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 WheelSpeedRR 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 929 WheelSpeedRRStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 WheelSpeedRRStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 WhlSpdSenErrRL 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 WhlSpdSenErrRR 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 929 ABSMessageCounter_R 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 ABSMessageCounter_R 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 929 ABSCheckSum_R 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ ESCL SG_ 929 ABSCheckSum_R 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 633 ESCL_LockStatus 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 633 ESCL_Learning_Status 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 633 ESCL_Warning_to_IPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iCGM SG_ 633 ESCL_Warning_to_IPK 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 633 ESCL_release 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 633 ESCL_Message_Info_AliveCounter 150;
+BA_REL_ "GenSigTimeoutTime" BU_SG_REL_ iBDU SG_ 633 ESCL_Message_CheckSum 150;
+VAL_ 641 SystemPowerMode 0 "Off" 1 "Accessory" 2 "Run" 3 "Crank Request" ;
+VAL_ 641 SystemPowerModeValidity 0 "Valid" 1 "Invalid" ;
+VAL_ 885 DoorAjarDriverStatus 0 "Off" 1 "On" ;
+VAL_ 617 VehicleSpeedStatus 0 "Valid" 1 "Invalid" ;
+VAL_ 1028 iBDURepMsgReq 0 "Repeat Message State No Request" 1 "Repeat Message State Resquest" ;
+VAL_ 1028 iBDUNMCoSlpBit 0 "No Request Coordinator Sleep" 1 "Request Coordinator Sleep" ;
+VAL_ 1028 iBDUActWuBit 0 "ECU None Active WakeUp" 1 "ECU Active WakeUp" ;
+VAL_ 1028 iBDUPNIBit 0 "NM No Partial Network Req" 1 "NM Include Partial Network Req" ;
+VAL_ 1028 iBDURepMsgState 0 "Not In Repeat Message State" 1 "In Repeat Message State" ;
+VAL_ 1027 HVACRepMsgReq 0 "Repeat Message State No Request" 1 "Repeat Message State Request" ;
+VAL_ 1027 HVACNMCoSlpBit 0 "No Coordinator Sleep" 1 "Request Coordinator Sleep" ;
+VAL_ 1027 HVACActWuBit 0 "ECU None Active WakeUp" 1 "ECU Active WakeUp" ;
+VAL_ 1027 HVACPNIBit 0 "NM No Partial Network Req" 1 "NM Include Partial Network Req" ;
+VAL_ 1027 HVACRepMsgState 0 "Not In Repeat Message State" 1 "In Repeat Message State" ;
+VAL_ 1034 ESCLRepMsgReq 0 "Repeat Message State No Request" 1 "Repeat Message State Request" ;
+VAL_ 1034 ESCLNMCoSlpBit 0 "No Coordinator Sleep" 1 "Request Coordinator Sleep" ;
+VAL_ 1034 ESCLActWuBit 0 "ECU None Active WakeUp" 1 "ECU Active WakeUp" ;
+VAL_ 1034 ESCLPNIBit 0 "NM No Partial Network Req" 1 "NM Include Partial Network Req" ;
+VAL_ 1034 ESCLRepMsgState 0 "Not In Repeat Message State" 1 "In Repeat Message State" ;
+VAL_ 1033 iCGMRepMsgReq 0 "Repeat Message State No Request" 1 "Repeat Message State Request" ;
+VAL_ 1033 iCGMNMCoSlpBit 0 "No Coordinator Sleep" 1 "Request Coordinator Sleep" ;
+VAL_ 1033 iCGMActWuBit 0 "ECU None Active WakeUp" 1 "ECU Active WakeUp" ;
+VAL_ 1033 iCGMPNIBit 0 "NM No Partial Network Req" 1 "NM Include Partial Network Req" ;
+VAL_ 1033 iCGMRepMsgState 0 "Not In Repeat Message State" 1 "In Repeat Message State" ;
+VAL_ 528 EngineRunActive 0 "False" 1 "True" ;
+VAL_ 528 PropulsionSystemActive 1 "True" 0 "False" ;
+VAL_ 609 EngineStatus 0 "0x0:Stop" 1 "0x1:Crank" 2 "0x2:Running" ;
+VAL_ 609 EngineStatusValidity 0 "Valid" 1 "Invalid" ;
+VAL_ 866 ODOofIPK 16777215 "Invalid" ;
+VAL_ 840 AccRelayFeedback 0 "Relay Off" 1 "Relay ON" ;
+VAL_ 840 Ig1RelayFeedback 0 "Relay Off" 1 "Relay ON" ;
+VAL_ 928 WheelSpeedFLStatus 3 "Reserved" 2 "Init" 1 "Invalid" 0 "Valid" ;
+VAL_ 928 WheelSpeedFRStatus 3 "Reserved" 2 "Init" 1 "Invalid" 0 "Valid" ;
+VAL_ 928 WhlSpdSenErrFL 0 "normal" 1 "Sensor short to battery" 2 "Sensor short to GND/Open Circuit" 3 "Wheel Speed signal not reliable" ;
+VAL_ 928 WhlSpdSenErrFR 0 "normal" 1 "Sensor short to battery" 2 "Sensor short to GND/Open Circuit" 3 "Wheel Speed signal not reliable" ;
+VAL_ 929 WheelSpeedRLStatus 3 "Reserved" 2 "Init" 1 "Invalid" 0 "Valid" ;
+VAL_ 929 WheelSpeedRRStatus 3 "Reserved" 2 "Init" 1 "Invalid" 0 "Valid" ;
+VAL_ 929 WhlSpdSenErrRL 0 "normal" 1 "Sensor short to battery" 2 "Sensor short to GND/Open Circuit" 3 "Wheel Speed signal not reliable" ;
+VAL_ 929 WhlSpdSenErrRR 0 "normal" 1 "Sensor short to battery" 2 "Sensor short to GND/Open Circuit" 3 "Wheel Speed signal not reliable" ;
+VAL_ 633 ESCL_LockStatus 4 "running" 3 "invalid" 2 "fault" 1 "lock" 0 "unlock" ;
+VAL_ 633 ESCL_Learning_Status 0 "Not Learnt                                                             0x1:Learnt                                                                    0x2: Reserved                                                          0x3: Reserved" ;
+VAL_ 633 ESCL_Warning_to_IPK 0 "No warning" 1 "ESCL_SystemWarning" 2 "ESCL_Unlock_Failure_Warning" 3 "ESCL_Lock_Failure_Warning" 4 "0x4~0x7 Reserved" ;
+VAL_ 633 ESCL_release 0 "Failed                                                                               0x1:?Successed" ;
+

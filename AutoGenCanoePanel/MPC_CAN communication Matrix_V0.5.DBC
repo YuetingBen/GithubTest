@@ -1,0 +1,1181 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: ESCL BCM GW PEPS TESTER Vector_XXX
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ ESCL_Address : 0|8@0+ (1,0) [0|255] "bit" Vector__XXX
+
+BO_ 2009 ESCL_DiagResp: 8 ESCL
+ SG_ ESCL_DiagResp_Byte7 : 63|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagResp_Byte6 : 55|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagResp_Byte5 : 47|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagResp_Byte4 : 39|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagResp_Byte3 : 31|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagResp_Byte2 : 23|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagResp_Byte1 : 15|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagResp_Byte0 : 7|8@0+ (1,0) [0|255] "bit" Vector__XXX
+
+BO_ 2001 ESCL_DiagReq: 8 GW
+ SG_ ESCL_DiagReq_Byte7 : 63|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagReq_Byte6 : 55|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagReq_Byte5 : 47|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagReq_Byte4 : 39|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagReq_Byte3 : 31|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagReq_Byte2 : 23|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagReq_Byte1 : 15|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_DiagReq_Byte0 : 7|8@0+ (1,0) [0|255] "bit" Vector__XXX
+
+BO_ 168 MCU_TrqSpd: 8 GW
+ SG_ MCU_TrqSpd_Checksum : 63|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ MCU_TrqSpd_AliveCounter : 51|4@0+ (1,0) [0|15] "bit" Vector__XXX
+ SG_ MCU_TMSpdActSgn : 31|16@0+ (1,-14000) [-14000|14000] "bit"  ESCL
+
+BO_ 1028 NWM_ESCL: 8 ESCL
+ SG_ ESCL_Stayawake_reasons : 39|32@0+ (1,0) [0|4294967295] "bit" Vector__XXX
+ SG_ ESCL_Wakeup_reasons : 23|8@0+ (1,0) [0|255] "bit" Vector__XXX
+ SG_ ESCL_NMSts : 24|1@0+ (1,0) [0|1] "bit" Vector__XXX
+ SG_ ESCL_AWB : 12|1@0+ (1,0) [0|1] "bit" Vector__XXX
+ SG_ ESCL_RMR : 8|1@0+ (1,0) [0|1] "bit" Vector__XXX
+ SG_ ESCL_Address : 7|8@0+ (1,0) [0|255] "bit" Vector__XXX
+
+BO_ 260 PEPS_ESCLAuth: 8 PEPS
+ SG_ PEPS_ESCLAuth : 7|64@0+ (1,0) [0|1.84467440737096E+019] "bit"  ESCL
+
+BO_ 1 New_Message_43: 8 Vector__XXX
+ SG_ New_Signal_229 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 0 New_Message_42: 8 Vector__XXX
+ SG_ New_Signal_228 : 39|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 616 New_Message_46: 8 Vector__XXX
+
+BO_ 16 New_Message_42: 8 PEPS
+
+BO_ 633 ESCL_Message_Info: 8 ESCL
+ SG_ ESCL_RuningLockWarning : 12|1@0+ (1,0) [0|1] "bit" Vector__XXX
+ SG_ ESCL_Message_Info_CheckSum : 63|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_Message_Info_AliveCounter : 51|4@0+ (1,0) [0|15] "bit" Vector__XXX
+ SG_ ESCL_release : 11|1@0+ (1,0) [0|0] "bit"  PEPS
+ SG_ ESCL_BatteryVoltage_Warning : 9|2@0+ (1,0) [0|0] "bit"  GW
+ SG_ ESCL_Lock_Failure_Warning : 7|1@0+ (1,0) [0|0] "bit"  GW
+ SG_ ESCL_Unlock_Failure_Warning : 6|1@0+ (1,0) [0|0] "bit"  PEPS,GW
+ SG_ ESCL_Learning_Status : 5|2@0+ (1,0) [0|0] "bit"  PEPS
+ SG_ ESCL_SystemWarning : 3|1@0+ (1,0) [0|0] "bit"  GW
+ SG_ ESCL_SteeringLockStatus : 2|3@0+ (1,0) [0|0] "bit"  PEPS
+
+BO_ 261 ESCL_PEPSAuth: 8 ESCL
+ SG_ ESCL_PEPSAuth : 7|64@0+ (1,0) [0|1.84467440737096E+019] "bit"  PEPS
+
+BO_ 1030 NWM_AC: 8 Vector__XXX
+ SG_ AC_Address : 7|8@0+ (1,0) [0|127] "bit"  Vector_XXX
+ SG_ AC_RMR : 8|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ AC_AWB : 12|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ AC_Wakeup_reasons : 23|8@0+ (1,0) [0|255] "bit"  Vector_XXX
+ SG_ AC_NMSts : 24|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ AC_Stayawake_reasons : 39|32@0+ (1,0) [0|127] "bit"  Vector_XXX
+
+BO_ 626 PEPS_Message_Info: 8 PEPS
+ SG_ PEPS_Warning_Keyout : 48|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_KeyAuthFail : 34|2@0+ (1,0) [0|3] "bit"  GW
+ SG_ PEPS_Warning_Auth_ESCL_Fail : 29|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_SystemFailureWarning : 0|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Warning_Trunk_open_digitalK : 18|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Warning_No_key_found : 19|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Indication_press_brake : 21|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Indication_shift_to_PN : 22|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Indication_shift_to_Park : 24|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Warning_keyInReminder : 27|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_IGN1FailureWarning : 28|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Warning_UID_LOW_BATT : 30|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_ChargerConnectStarter_Warnn : 31|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Warning_IMMO_Fail : 32|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Indication_UID_Closer : 35|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Warning_keyInReminder_2 : 47|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ PEPS_SSB_Failure_warning : 50|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_TerminalNotOFF_Warning : 51|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ PEPS_AnyDoorOpen_Warning : 52|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ PEPS_WELLight : 55|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ PEPS_TrunkUnlockWithoutKeyCfgRes : 57|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_TrunkUnlockDistanceCfgResul : 58|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_APUCfgResult : 61|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_WALCfgResult : 62|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_SATOCfgResult : 63|1@0+ (1,0) [0|1] "bit"  GW
+
+BO_ 482 PEPS_Message_Sts: 8 PEPS
+ SG_ PEPS_PowerModeValidity : 1|2@0+ (1,0) [0|3] "bit"  GW,BCM
+ SG_ PEPS_PowerMode : 4|3@0+ (1,0) [0|7] "bit"  GW,BCM
+ SG_ PEPS_RemoteControlSt : 7|1@0+ (1,0) [0|1] "bit"  BCM,GW
+ SG_ PEPS_IGN1RelayValidity : 8|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ PEPS_ACCRelaySts : 10|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_IGN1RelaySts : 11|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_IGN2RelaySts : 12|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_StarterRelaySts : 13|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_EngForbidWarn : 16|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_EngineforbidSt : 18|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_Learning_Status : 22|2@0+ (1,0) [0|3] "bit"  Vector_XXX
+ SG_ PEPS_Message_Sts_AliveCounter : 51|4@0+ (1,0) [0|15] "bit"  GW,BCM
+ SG_ PEPS_Message_Sts_Checksum : 63|8@0+ (1,0) [0|255] "bit"  GW,BCM
+
+BO_ 257 PEPS_IMMOCode: 8 PEPS
+ SG_ PEPS_IMMOCode : 7|64@0+ (1,0) [0|1.84467440737096E+019] "bit"  GW
+
+BO_ 624 PEPS_Message_TBOX: 8 PEPS
+ SG_ PEPS_StatusResponse2TBOX : 2|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ PEPS_CrankAllowSts : 5|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ PEPS_TELAuthenStatus : 7|2@0+ (1,0) [0|3] "bit"  GW
+ SG_ PEPS_FailReason2TBOX : 15|8@0+ (1,0) [0|255] "bit"  GW
+
+BO_ 258 PEPS_TELChallengeCode: 8 PEPS
+ SG_ PEPS_TELchallengeCode : 7|64@0+ (1,0) [0|1.84467440737096E+019] "bit"  GW
+
+BO_ 639 PEPS_KeyReminder: 8 PEPS
+ SG_ PEPS_Auth_ESCL_Req : 11|1@0+ (1,0) [0|1] "bit"  ESCL
+ SG_ PEPS_KeyreminderUnlock : 0|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ PEPS_RKECommand : 4|4@0+ (1,0) [0|15] "bit"  GW,BCM
+ SG_ PEPS_LOCK_CMD : 7|3@0+ (1,0) [0|7] "bit"  GW,BCM
+ SG_ PEPS_FOB_NUM : 10|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ PEPS_TrunkSWstatus : 13|2@0+ (1,0) [0|3] "bit"  BCM
+ SG_ PEPS_SATOIndicationLEDControl : 15|2@0+ (1,0) [0|3] "bit"  BCM
+
+BO_ 1027 NWM_PEPS: 8 PEPS
+ SG_ PEPS_Address : 7|8@0+ (1,0) [0|127] "bit"  Vector_XXX
+ SG_ PEPS_RMR : 8|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_AWB : 12|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_Wakeup_reasons : 23|8@0+ (1,0) [0|255] "bit"  Vector_XXX
+ SG_ PEPS_NMSts : 24|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ PEPS_Stayawake_reasons : 39|32@0+ (1,0) [0|1032] "bit"  Vector_XXX
+
+BO_ 645 BCM_LDoorWindowState: 8 BCM
+ SG_ BCM_Drv_Wdw_valid : 0|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_Drv_Val_Wdw_Opened : 7|7@0+ (1,0) [0|100] "%"  GW,PEPS
+ SG_ BCM_Drv_Wdw_OD_Sts : 8|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_Drv_Wdw_Obs_InhibitSts : 9|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_Drv_Wdw_Running_Sts : 12|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ BCM_Drv_Wdw_PositionSts : 14|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+ SG_ BCM_Drv_Wdw_Error : 15|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RLD_Wdw_valid : 16|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RLD_Val_Wdw_Opened : 23|7@0+ (1,0) [0|100] "%"  GW,PEPS
+ SG_ BCM_RLD_Wdw_OD_Sts : 24|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RLD_Wdw_Obs_InhibitSts : 25|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RLD_Wdw_Running_Sts : 28|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ BCM_RLD_Wdw_PositionSts : 30|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+ SG_ BCM_RLD_Wdw_Error : 31|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_FrontLeftDoorAjarStatus : 32|1@0+ (1,0) [0|1] "bit"  GW,PEPS
+ SG_ BCM_RearLeftDoorAjarStatus : 33|1@0+ (1,0) [0|1] "bit"  GW,PEPS
+ SG_ BCM_DoorLockStatusRL_Reserved : 35|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+ SG_ BCM_DoorLockStatusDrv : 37|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+ SG_ BCM_DoorChildLockst : 41|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ BCM_RearMirrorFoldSetResp : 48|1@0+ (1,0) [0|1] "bit"  GW
+
+BO_ 646 BCM_RDoorWindowState: 8 BCM
+ SG_ BCM_Pas_Wdw_valid : 0|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_Pas_Val_Wdw_Opened : 7|7@0+ (1,0) [0|100] "%"  GW,PEPS
+ SG_ BCM_Pas_Wdw_OD_Sts : 8|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_Pas_Wdw_Obs_InhibitSts : 9|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_Pas_Wdw_Running_Sts : 12|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ BCM_Pas_Wdw_PositionSts : 14|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+ SG_ BCM_Pas_Wdw_Error : 15|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RRD_Wdw_valid : 16|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RRD_Val_Wdw_Opened : 23|7@0+ (1,0) [0|100] "%"  GW,PEPS
+ SG_ BCM_RRD_Wdw_OD_Sts : 24|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RRD_Wdw_Obs_InhibitSts : 25|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_RRD_Wdw_Running_Sts : 28|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ BCM_RRD_Wdw_PositionSts : 30|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+ SG_ BCM_RRD_Wdw_Error : 31|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_FrontRightDoorAjarStatus : 32|1@0+ (1,0) [0|1] "bit"  GW,PEPS
+ SG_ BCM_RearRightDoorAjarStatus : 33|1@0+ (1,0) [0|1] "bit"  GW,PEPS
+ SG_ BCM_DoorLockStatusRR_Reserved : 35|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+ SG_ BCM_DoorLockStatusPass : 37|2@0+ (1,0) [0|3] "bit"  PEPS,GW
+
+BO_ 644 BCM_StateUpdate: 8 BCM
+ SG_ BCM_RearDefrosterSts : 1|2@0+ (1,0) [0|3] "bit"  GW
+ SG_ BCM_Central_Lock_CMD : 3|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_Central_unLock_CMD : 4|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_WiperSts : 7|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ BCM_HoodAjarStatus : 9|2@0+ (1,0) [0|3] "bit"  PEPS
+ SG_ BCM_TrunkAjarStatus : 10|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ BCM_IGNOFFUnlockDoorSelectResp : 13|2@0+ (1,0) [0|3] "bit"  GW
+ SG_ BCM_ATWSHistory : 26|3@0+ (1,0) [0|7] "bit"  GW
+ SG_ BCM_FlasherAnimControlSetResp : 28|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_ATWS_St : 31|3@0+ (1,0) [0|7] "bit"  PEPS
+ SG_ BCM_VehicleSearchWarningSetResp : 34|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_FrontWiperIdleModeSetResp : 35|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ BCM_R2_RelaySts : 37|2@0+ (1,0) [0|3] "bit"  GW
+ SG_ BCM_ATWarnTypeSetResp : 44|2@0+ (1,0) [0|3] "bit"  GW
+ SG_ BCM_DayRunLightSetResp : 45|1@0+ (1,0) [0|1] "bit"  GW
+
+BO_ 1025 NWM_BCM: 8 BCM
+ SG_ BCM_Address : 7|8@0+ (1,0) [0|127] "bit"  Vector_XXX
+ SG_ BCM_RMR : 8|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ BCM_AWB : 12|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ BCM_Wakeup_reasons : 23|8@0+ (1,0) [0|255] "bit"  Vector_XXX
+ SG_ BCM_NMSts : 24|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ BCM_Stayawake_reasons : 39|32@0+ (1,0) [0|131071] "bit"  Vector_XXX
+
+BO_ 1042 NWM_DSCU: 8 Vector__XXX
+ SG_ DSCU_Address : 7|8@0+ (1,0) [0|127] "bit"  Vector_XXX
+ SG_ DSCU_RMR : 8|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ DSCU_AWB : 12|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ DSCU_Wakeup_reasons : 23|8@0+ (1,0) [0|255] "bit"  Vector_XXX
+ SG_ DSCU_NMSts : 24|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ DSCU_Stayawake_reasons : 39|32@0+ (1,0) [0|127] "bit"  Vector_XXX
+
+BO_ 354 VCU_Ctrl: 8 GW
+ SG_ VCU_ACPowerAllowed : 7|8@0+ (0.1,0) [0|25.4] "KW" Vector__XXX
+ SG_ VCU_CoolingFanPWMSpd : 15|8@0+ (1,0) [0|100] "%" Vector__XXX
+ SG_ VCU_ePTModeSelect : 17|2@0+ (1,0) [0|3] "bit"  BCM
+ SG_ VCU_HB_ePTReady : 31|1@0+ (1,0) [0|1] "bit"  PEPS,BCM
+ SG_ VCU_ePTReleaseSig : 41|2@0+ (1,0) [0|3] "bit"  PEPS,BCM
+ SG_ VCU_Ctrl_AliveCounter : 51|4@0+ (1,0) [0|15] "bit"  BCM
+ SG_ VCU_DoubleFlashLampOn : 52|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ VCU_Ctrl_Checksum : 63|8@0+ (1,0) [0|255] "bit"  BCM
+
+BO_ 421 VCU_CSControl1: 8 GW
+ SG_ VCU_StartActive : 32|1@0+ (1,0) [0|1] "bit"  PEPS,BCM
+ SG_ VCU_DM_comfortModeAvailable : 33|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ VCU_DM_EcoModeAvailable_Reserved : 34|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ VCU_DM_SportModeAvailable : 35|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ VCU_DM_FailureReasonAndSysFaultF : 55|4@0+ (1,0) [0|15] "bit"  BCM
+
+BO_ 357 VCU_ModeControl: 8 GW
+ SG_ VCU_ModeGearDisplaySts : 12|5@0+ (1,0) [0|31] "bit"  BCM
+ SG_ VCU_CurrentGearPosition : 23|4@0+ (1,0) [0|15] "bit"  PEPS
+ SG_ VCU_ChargeHV_Status : 27|2@0+ (1,0) [0|3] "bit"  PEPS
+
+BO_ 544 OBC_Sts: 8 GW
+ SG_ OBC_OnBdChrgrCCline : 47|2@0+ (1,0) [0|3] "bit"  PEPS
+ SG_ OBC_OnBdChrgrCPline : 54|3@0+ (1,0) [0|7] "bit"  PEPS
+
+BO_ 256 MCU_PEPSAuth: 8 GW
+ SG_ MCU_PEPSAuth : 7|64@0+ (1,0) [0|1.84467440737096E+019] "bit"  PEPS
+
+BO_ 293 ESC_Status: 8 GW
+ SG_ ESC_BrakePedalSwitchStatus : 1|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_VehicleSpeed : 15|13@0+ (0.05625,0) [0|460.63125] "KPH"  BCM
+ SG_ ESC_VehicleSpeedInvalid : 18|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_LdmBLC : 24|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_EPBStatus : 28|2@0+ (1,0) [0|3] "bit"  BCM
+ SG_ ESC_BrakePedalPosition : 39|8@0+ (0.4,0) [0|100] "% " Vector__XXX
+ SG_ ESC_Status_AliveCounter : 51|4@0+ (1,0) [0|15] "bit"  BCM
+ SG_ ESC_HAZActive : 52|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_Status_Checksum : 63|8@0+ (1,0) [0|255] "bit"  BCM
+
+BO_ 292 ESC_WheelSpeedsRC: 8 GW
+ SG_ ESC_FLWheelSpeedRC : 7|12@0+ (1,0) [0|4095] "bit"  BCM
+ SG_ ESC_FRWheelSpeedRC : 11|12@0+ (1,0) [0|4095] "bit"  BCM
+ SG_ ESC_RLWheelSpeedRC : 31|12@0+ (1,0) [0|4095] "bit"  BCM
+ SG_ ESC_RRWheelSpeedRC : 35|12@0+ (1,0) [0|4095] "bit"  BCM
+ SG_ ESC_FLWheelSpeedRCSts : 48|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_FRWheelSpeedRCSts : 49|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_RLWheelSpeedRCSts : 50|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_RRWheelSpeedRCSts : 51|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESC_WheelSpeedsRC_AliveCounter : 55|4@0+ (1,0) [0|15] "bit"  BCM
+ SG_ ESC_WheelSpeedsRC_Checksum : 63|8@0+ (1,0) [0|255] "bit"  BCM
+
+BO_ 290 ESC_FrontWheelSpeedsKPH: 8 GW
+ SG_ ESC_FLWheelSpeedKPH : 7|13@0+ (0.05625,0) [0|460.6875] "KPH"  PEPS
+ SG_ ESC_FLWheelSpeedInvalid : 8|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ ESC_FRWheelSpeedKPH : 23|13@0+ (0.05625,0) [0|460.6875] "KPH"  PEPS
+ SG_ ESC_FRWheelSpeedInvalid : 24|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ ESC_FrontWheelSpeedsKPH_AliveCou : 51|4@0+ (1,0) [0|15] "bit"  PEPS
+ SG_ ESC_FrontWheelSpeedsKPH_Checksum : 63|8@0+ (1,0) [0|255] "bit"  PEPS
+
+BO_ 291 ESC_RearWheelSpeedsKPH: 8 GW
+ SG_ ESC_RLWheelSpeedKPH : 7|13@0+ (0.05625,0) [0|460.6875] "KPH"  PEPS
+ SG_ ESC_RLWheelSpeedInvalid : 8|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ ESC_RRWheelSpeedKPH : 23|13@0+ (0.05625,0) [0|460.6875] "KPH"  PEPS
+ SG_ ESC_RRWheelSpeedInvalid : 24|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ ESC_RearWheelSpeedsKPH_AliveCoun : 51|4@0+ (1,0) [0|15] "bit"  PEPS
+ SG_ ESC_RearWheelSpeedsKPH_Checksum : 63|8@0+ (1,0) [0|255] "bit"  PEPS
+
+BO_ 1009 IPK_TotalOdometer: 8 GW
+ SG_ IPK_IPKTotalOdometer : 7|24@0+ (0.1,0) [0|999999] "KM"  PEPS,BCM
+ SG_ IPK_OdometerbackupEnable : 32|1@0+ (1,0) [0|1] "bit"  BCM
+
+BO_ 621 IPK_STS: 8 GW
+ SG_ IPK_Fail : 5|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ IPK_EPS_DMCorrelativeMode : 34|2@0+ (1,0) [0|3] "bit"  BCM
+ SG_ IPK_Backlightadjust : 39|5@0+ (1,0) [0|31] "bit"  BCM
+
+BO_ 1008 IPK_DateTime_Info: 8 GW
+ SG_ IPK_Second : 5|6@0+ (1,0) [0|59] "s"  BCM
+ SG_ IPK_Minute : 13|6@0+ (1,0) [0|59] "m"  BCM
+ SG_ IPK_Hour : 20|5@0+ (1,0) [0|23] "h"  BCM
+ SG_ IPK_Day : 28|5@0+ (1,0) [1|31] "d"  BCM
+ SG_ IPK_Month : 35|4@0+ (1,0) [1|12] "m"  BCM
+ SG_ IPK_Year : 45|6@0+ (1,0) [0|63] "y"  BCM
+ SG_ IPK_VehicleStopTime : 51|12@0+ (1,0) [0|1440] "min" Vector__XXX
+
+BO_ 658 TBOX_RemCon: 8 GW
+ SG_ TBOX_All_Door_Lock : 3|4@0+ (1,0) [0|15] "bit"  PEPS
+ SG_ TBOX_Inquire_wndw : 8|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ TBOX_Inquire_sunroof : 9|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ TBOX_Inquire_PM25 : 10|1@0+ (1,0) [0|1] "bit" Vector__XXX
+ SG_ TBOX_AirCleanerReq : 12|2@0+ (1,0) [0|3] "bit" Vector__XXX
+ SG_ TBOX_EngineDelayTime : 15|3@0+ (1,0) [0|7] "bit"  PEPS
+ SG_ TBOX_EngineStartReq : 16|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ TBOX_EngineStopReq : 17|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ TBOX_EngineForbidReq : 18|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ TBOX_EnginePermitReq : 19|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ TBOX_CrankAllowReq : 20|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ TBOX_EngineStartTime : 23|3@0+ (1,0) [0|7] "bit"  PEPS
+ SG_ TBOX_TempReq : 28|5@0+ (0.5,17) [17.5|31.5] "¡æ" Vector__XXX
+ SG_ TBOX_PhoneConnectSts : 29|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ TBOX_AirConditionerReq : 31|2@0+ (1,0) [0|3] "bit" Vector__XXX
+ SG_ TBOX_DrvHeatReq_Reserved : 34|3@0+ (1,0) [0|7] "bit" Vector__XXX
+ SG_ TBOX_PassHeatReq_Reserved : 39|3@0+ (1,0) [0|7] "bit" Vector__XXX
+ SG_ TBOX_TrunkCloseAllowReq : 44|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ TBOX_RemCon_AliveCounter : 55|4@0+ (1,0) [0|15] "bit"  PEPS
+ SG_ TBOX_RemCon_Checksum : 63|8@0+ (1,0) [0|255] "bit"  PEPS
+
+BO_ 259 TBOX_ResponseCode: 8 GW
+ SG_ TBOX_ResponseCode : 7|64@0+ (1,0) [0|1.15292150460685E+018] "bit"  PEPS
+
+BO_ 1029 NWM_GW_Comfort: 8 GW
+ SG_ GW_Comfort_Address : 7|8@0+ (1,0) [0|127] "bit"  Vector_XXX
+ SG_ GW_RMR : 8|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ GW_AWB : 12|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ GW_Wakeup_reasons : 23|8@0+ (1,0) [0|255] "bit"  Vector_XXX
+ SG_ GW_NMSts : 24|1@0+ (1,0) [0|1] "bit"  Vector_XXX
+ SG_ GW_Stayawake_reasons : 39|32@0+ (1,0) [0|4095] "bit"  Vector_XXX
+
+BO_ 1941 PEPS_DiagReq: 8 GW
+
+BO_ 1949 PEPS_DiagResp: 8 PEPS
+
+BO_ 2015 Func_DiagReq: 8 GW
+ SG_ Func_DiagReq_Byte7 : 63|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ Func_DiagReq_Byte6 : 55|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ Func_DiagReq_Byte5 : 47|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ Func_DiagReq_Byte4 : 39|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ Func_DiagReq_Byte3 : 31|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ Func_DiagReq_Byte2 : 23|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ Func_DiagReq_Byte1 : 15|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ Func_DiagReq_Byte0 : 7|8@0+ (1,0) [0|255] "bit"  ESCL
+
+BO_ 1668 PEPS_Developmessage1: 8 PEPS
+
+BO_ 1669 PEPS_Developmessage2: 8 PEPS
+
+BO_ 1670 PEPS_Developmessage3: 8 PEPS
+
+BO_ 1676 PEPS_Developmessage4: 8 PEPS
+
+BO_ 1677 PEPS_Developmessage5: 8 PEPS
+
+BO_ 1678 PEPS_Developmessage6: 8 PEPS
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ BO_ 168 "Transmitted by MCU, including actual TM speed, torque";
+CM_ SG_ 168 MCU_TMSpdActSgn "speed with sign (+/-)";
+CM_ BO_ 1028 "ESCL Network management Message";
+CM_ SG_ 1028 ESCL_NMSts "The bit is used to indicate network managementstate. It's only used for test.";
+CM_ SG_ 1028 ESCL_AWB "Active Wakeup Bit";
+CM_ SG_ 1028 ESCL_RMR "Repeat Message Request";
+CM_ SG_ 1028 ESCL_Address "ECU Address";
+CM_ BO_ 260 "PEPS authentication code";
+CM_ SG_ 260 PEPS_ESCLAuth "PEPS authentication code";
+CM_ SG_ 633 ESCL_Message_Info_CheckSum "message checksum";
+CM_ SG_ 633 ESCL_Message_Info_AliveCounter "message alive counter";
+CM_ SG_ 633 ESCL_release "Auth successed or failed";
+CM_ SG_ 633 ESCL_BatteryVoltage_Warning "Battery voltage warning";
+CM_ SG_ 633 ESCL_Lock_Failure_Warning "ESCL lock failure warning";
+CM_ SG_ 633 ESCL_Unlock_Failure_Warning "ESCL unlock failure warning";
+CM_ SG_ 633 ESCL_Learning_Status "ESCL system learning status";
+CM_ SG_ 633 ESCL_SystemWarning "Major issuse exists on ESCL";
+CM_ SG_ 633 ESCL_SteeringLockStatus "ESCL steering lock status";
+CM_ SG_ 261 ESCL_PEPSAuth "ESCL authentication code";
+CM_ BO_ 1030 "AC Network management Message";
+CM_ SG_ 1030 AC_Address "ECU Address";
+CM_ SG_ 1030 AC_RMR "Repeat Message Request";
+CM_ SG_ 1030 AC_AWB "Active Wakeup Bit";
+CM_ SG_ 1030 AC_NMSts "The bit is used to indicate network management state. It's only used for test.";
+CM_ BO_ 626 "Transmitted by PEPS , including PEPS singals";
+CM_ SG_ 626 PEPS_Warning_Keyout "The driver shall be informed, if no key find when ACC/ON and any door is open or from open to close.";
+CM_ SG_ 626 PEPS_KeyAuthFail "Key authentication failure";
+CM_ SG_ 626 PEPS_Warning_Auth_ESCL_Fail "Auth with ESCL failed warning";
+CM_ SG_ 626 PEPS_SystemFailureWarning "PEPS Failure warning";
+CM_ SG_ 626 PEPS_Warning_Trunk_open_digitalK "The driver shall be informed, if omitted digital key in the trunk when driver use digital key trigger open the trunk.";
+CM_ SG_ 626 PEPS_Warning_No_key_found "when warning conditons  meet and  no valid FOB found, PEPS ECU shall send warning signal to cluster and Cancel running authentication.";
+CM_ SG_ 626 PEPS_Indication_press_brake "The driver shall be informed, if he has to press brake (DCT/CVT)";
+CM_ SG_ 626 PEPS_Indication_shift_to_PN " The driver shall be informed, if he has to shift lever in P or N";
+CM_ SG_ 626 PEPS_Indication_shift_to_Park "shift the lever in position N to stop";
+CM_ SG_ 626 PEPS_Warning_keyInReminder "When the key is forgot in the Car ( lock the Door)";
+CM_ SG_ 626 PEPS_IGN1FailureWarning "warning when IGN1 output or input has problem";
+CM_ SG_ 626 PEPS_Warning_UID_LOW_BATT "Key Low Battery";
+CM_ SG_ 626 PEPS_ChargerConnectStarter_Warnn "Can't start the vehicle because of charger connected";
+CM_ SG_ 626 PEPS_Warning_IMMO_Fail "immobilizer authentication failure";
+CM_ SG_ 626 PEPS_Indication_UID_Closer "get UID closer to start";
+CM_ SG_ 626 PEPS_Warning_keyInReminder_2 "When the key is forgot in the Car and vehicle is locked, but one of door change from open to close within 500ms, system send out warning and inform BCM unlock the vehicle";
+CM_ SG_ 626 PEPS_SSB_Failure_warning "SSB Failure warning";
+CM_ SG_ 626 PEPS_TerminalNotOFF_Warning "warning when door lock but ignition is not off";
+CM_ SG_ 626 PEPS_AnyDoorOpen_Warning "warning when door lock but any door is open";
+CM_ SG_ 626 PEPS_WELLight "welcome light status on/off status to BCM";
+CM_ SG_ 626 PEPS_TrunkUnlockWithoutKeyCfgRes "Trunk unlock without key option result";
+CM_ SG_ 626 PEPS_TrunkUnlockDistanceCfgResul "The distance of trunk auto unlock option result";
+CM_ SG_ 626 PEPS_APUCfgResult "Approaching unlock option result";
+CM_ SG_ 626 PEPS_WALCfgResult "Walk away locking option result";
+CM_ SG_ 626 PEPS_SATOCfgResult "Sensorless auto trunk option result";
+CM_ BO_ 482 "Transmitted by PEPS , including PEPS singals";
+CM_ SG_ 482 PEPS_PowerModeValidity "PEPS Power Distribution StatusValidity bit";
+CM_ SG_ 482 PEPS_PowerMode "PEPS Power Distribution Status";
+CM_ SG_ 482 PEPS_RemoteControlSt "PEPS remote control status";
+CM_ SG_ 482 PEPS_IGN1RelayValidity "IGN1 output validity";
+CM_ SG_ 482 PEPS_ACCRelaySts "ACC output status";
+CM_ SG_ 482 PEPS_IGN1RelaySts "IGN1 output status";
+CM_ SG_ 482 PEPS_IGN2RelaySts "IGN2 output status";
+CM_ SG_ 482 PEPS_StarterRelaySts "Starter output status";
+CM_ SG_ 482 PEPS_EngForbidWarn "Engine forbid warning";
+CM_ SG_ 482 PEPS_EngineforbidSt "Engine forbid information";
+CM_ SG_ 482 PEPS_Learning_Status "PEPS System learning status";
+CM_ SG_ 482 PEPS_Message_Sts_AliveCounter "message alive counter";
+CM_ SG_ 482 PEPS_Message_Sts_Checksum "message checksum";
+CM_ BO_ 257 "Transmitted by PEPS";
+CM_ BO_ 624 "Transmitted by PEPS";
+CM_ SG_ 624 PEPS_StatusResponse2TBOX "PEPS send response to TBOX";
+CM_ SG_ 624 PEPS_CrankAllowSts "PEPS crank allow status";
+CM_ SG_ 624 PEPS_TELAuthenStatus "AuthenStatus";
+CM_ SG_ 624 PEPS_FailReason2TBOX "PEPS send fail reason to TBOX";
+CM_ BO_ 258 "Transmitted by PEPS";
+CM_ SG_ 258 PEPS_TELchallengeCode "Challenge code";
+CM_ BO_ 639 "Transmitted by PEPS";
+CM_ SG_ 639 PEPS_Auth_ESCL_Req "The auth request from PEPS to ESCL";
+CM_ SG_ 639 PEPS_KeyreminderUnlock "KeyreminderUnlock";
+CM_ SG_ 639 PEPS_RKECommand "PEPS Remote Key Command";
+CM_ SG_ 639 PEPS_LOCK_CMD "PEPS Lock and unlock Command";
+CM_ SG_ 639 PEPS_FOB_NUM "FOB Identification (2 Fobs in advance)";
+CM_ SG_ 639 PEPS_TrunkSWstatus "PEPS Trunk SW status";
+CM_ SG_ 639 PEPS_SATOIndicationLEDControl "PEPS controls SATO LED on/off ";
+CM_ BO_ 1027 "PEPS Network management Message";
+CM_ SG_ 1027 PEPS_Address "ECU Address";
+CM_ SG_ 1027 PEPS_RMR "Repeat Message Request";
+CM_ SG_ 1027 PEPS_AWB "Active Wakeup Bit";
+CM_ SG_ 1027 PEPS_NMSts "The bit is used to indicate network management state. It's only used for test.";
+CM_ SG_ 645 BCM_Drv_Wdw_valid "driver window valid status";
+CM_ SG_ 645 BCM_Drv_Val_Wdw_Opened "driver window Opened Value";
+CM_ SG_ 645 BCM_Drv_Wdw_OD_Sts "driver window obstacle detection status";
+CM_ SG_ 645 BCM_Drv_Wdw_Obs_InhibitSts "driver window Obstacle inhibit status";
+CM_ SG_ 645 BCM_Drv_Wdw_Running_Sts "Running status of driver window    ";
+CM_ SG_ 645 BCM_Drv_Wdw_PositionSts "Position status of driver window";
+CM_ SG_ 645 BCM_Drv_Wdw_Error "driver window Error status";
+CM_ SG_ 645 BCM_RLD_Wdw_valid "RL window valid status";
+CM_ SG_ 645 BCM_RLD_Val_Wdw_Opened "RL window Opened Value";
+CM_ SG_ 645 BCM_RLD_Wdw_OD_Sts "RL window Obstacle detection status";
+CM_ SG_ 645 BCM_RLD_Wdw_Obs_InhibitSts "RL window Obstacle inhibit status";
+CM_ SG_ 645 BCM_RLD_Wdw_Running_Sts "Running status of Rear Left window    ";
+CM_ SG_ 645 BCM_RLD_Wdw_PositionSts "Position status of Rear Left window    ";
+CM_ SG_ 645 BCM_RLD_Wdw_Error "RL window Error status";
+CM_ SG_ 645 BCM_FrontLeftDoorAjarStatus "Signal from BCM to indicate the ajar/close status of driver door";
+CM_ SG_ 645 BCM_RearLeftDoorAjarStatus "Signal from BCM to indicate the ajar/close status of Rear Left Door";
+CM_ SG_ 645 BCM_DoorLockStatusRL_Reserved "Rear Left Doo rLock Status";
+CM_ SG_ 645 BCM_DoorLockStatusDrv "Driver Door Lock Status";
+CM_ SG_ 645 BCM_DoorChildLockst "Rear door children lock state";
+CM_ SG_ 645 BCM_RearMirrorFoldSetResp "Rear view mirror automatic folding set Response";
+CM_ SG_ 646 BCM_Pas_Wdw_valid "passenger window valid status";
+CM_ SG_ 646 BCM_Pas_Val_Wdw_Opened "passengerwindow Opened Value";
+CM_ SG_ 646 BCM_Pas_Wdw_OD_Sts "passengerwindow Obstacle detection status";
+CM_ SG_ 646 BCM_Pas_Wdw_Obs_InhibitSts "passengerwindow Obstacle inhibit status";
+CM_ SG_ 646 BCM_Pas_Wdw_Running_Sts "Running status of passager window    ";
+CM_ SG_ 646 BCM_Pas_Wdw_PositionSts "Position status of passager window    ";
+CM_ SG_ 646 BCM_Pas_Wdw_Error "passenger window Error status";
+CM_ SG_ 646 BCM_RRD_Wdw_valid "RR window valid status";
+CM_ SG_ 646 BCM_RRD_Val_Wdw_Opened "RR window Opened Value";
+CM_ SG_ 646 BCM_RRD_Wdw_OD_Sts "RR window Obstacle detection status";
+CM_ SG_ 646 BCM_RRD_Wdw_Obs_InhibitSts "RR window Obstacle inhibit status";
+CM_ SG_ 646 BCM_RRD_Wdw_Running_Sts "Running status of Rear Right window    ";
+CM_ SG_ 646 BCM_RRD_Wdw_PositionSts "Position status of Rear Right window    ";
+CM_ SG_ 646 BCM_RRD_Wdw_Error "RR window Error status";
+CM_ SG_ 646 BCM_FrontRightDoorAjarStatus "Signal from BCM to indicate the ajar/close status of passenger door";
+CM_ SG_ 646 BCM_RearRightDoorAjarStatus "Signal from BCM to indicate the ajar/close status of Rear Right Door";
+CM_ SG_ 646 BCM_DoorLockStatusRR_Reserved "Rear Right Door Lock Status";
+CM_ SG_ 646 BCM_DoorLockStatusPass "Passenger Door Lock Status";
+CM_ BO_ 644 "Transmitted by BCM,including control switch and Rear window defroster Status singals";
+CM_ SG_ 644 BCM_RearDefrosterSts "Signal from BCM to indicate if Rear window defroster relay is activated ";
+CM_ SG_ 644 BCM_Central_Lock_CMD "BCM send central lock command";
+CM_ SG_ 644 BCM_Central_unLock_CMD "BCM send central unlock command";
+CM_ SG_ 644 BCM_WiperSts "Front wiper state ";
+CM_ SG_ 644 BCM_HoodAjarStatus "Signal from BCM to indicate the ajar/close status of Hoodlid";
+CM_ SG_ 644 BCM_TrunkAjarStatus "Signal from BCM to indicate the ajar/close status of Truncklid";
+CM_ SG_ 644 BCM_IGNOFFUnlockDoorSelectResp "Select to unlock no door/ unlock driver door/ unlock all 4 doors at IGN OFF response";
+CM_ SG_ 644 BCM_ATWSHistory "Signal from BCM to indicate IPK to show ATWS history record";
+CM_ SG_ 644 BCM_FlasherAnimControlSetResp "Flasher anim control set response";
+CM_ SG_ 644 BCM_ATWS_St "BCM Anti thelf warning status";
+CM_ SG_ 644 BCM_VehicleSearchWarningSetResp "Vehicle search warning set response";
+CM_ SG_ 644 BCM_FrontWiperIdleModeSetResp "Front wiper idle mode set response";
+CM_ SG_ 644 BCM_R2_RelaySts "R2 Relay control status";
+CM_ SG_ 644 BCM_ATWarnTypeSetResp "Anti theft warn type set response";
+CM_ SG_ 644 BCM_DayRunLightSetResp "Daytime Running Light set Response";
+CM_ BO_ 1025 "BCM Network management Message";
+CM_ SG_ 1025 BCM_Address "ECU Address";
+CM_ SG_ 1025 BCM_RMR "Repeat Message Request";
+CM_ SG_ 1025 BCM_AWB "Active Wakeup Bit";
+CM_ SG_ 1025 BCM_NMSts "The bit is used to indicate network management state. It's only used for test.";
+CM_ BO_ 1042 "DSCU Network management Message";
+CM_ SG_ 1042 DSCU_Address "ECU Address";
+CM_ SG_ 1042 DSCU_RMR "Repeat Message Request";
+CM_ SG_ 1042 DSCU_AWB "Active Wakeup Bit";
+CM_ SG_ 1042 DSCU_NMSts "The bit is used to indicate network management state. It's only used for test.";
+CM_ BO_ 354 "Transmitted by GW";
+CM_ SG_ 354 VCU_ACPowerAllowed "indicated power limiting allowed";
+CM_ SG_ 354 VCU_CoolingFanPWMSpd "Cooling Fan Speed State,indicated PWM signals";
+CM_ SG_ 354 VCU_ePTModeSelect "Indicates driver select ePT system Mode";
+CM_ SG_ 354 VCU_HB_ePTReady "Indicates ePT system Ready State";
+CM_ SG_ 354 VCU_ePTReleaseSig "PEPS receives ePT Locked signal from VCU";
+CM_ SG_ 354 VCU_Ctrl_AliveCounter "the AliveCounter of BCM_LightChimeReq message";
+CM_ SG_ 354 VCU_DoubleFlashLampOn "VCU command BCM to activate the double flash light";
+CM_ SG_ 354 VCU_Ctrl_Checksum "the Checksum of the BCM_LightChimeReq message";
+CM_ BO_ 421 "Transmitted by GW";
+CM_ SG_ 421 VCU_StartActive "indicated ePT start processing";
+CM_ SG_ 421 VCU_DM_comfortModeAvailable "comfort mode available status feedback";
+CM_ SG_ 421 VCU_DM_EcoModeAvailable_Reserved "Eco mode available status feedback";
+CM_ SG_ 421 VCU_DM_SportModeAvailable "Sport mode available status feedback";
+CM_ SG_ 421 VCU_DM_FailureReasonAndSysFaultF "change drive mode failure reason feedback and system fault";
+CM_ BO_ 357 "Transmitted by GW";
+CM_ SG_ 357 VCU_ModeGearDisplaySts "Display the gear information";
+CM_ SG_ 357 VCU_CurrentGearPosition "VCU Current Gear Status";
+CM_ SG_ 357 VCU_ChargeHV_Status "indicate vehicle high voltage not ready status";
+CM_ BO_ 544 "Transmitted by GW";
+CM_ SG_ 544 OBC_OnBdChrgrCCline "Status of the Onboard Charger connection to the grid";
+CM_ SG_ 544 OBC_OnBdChrgrCPline "Status of the Onboard Charger PwrAvl from the grid";
+CM_ BO_ 256 "Transmitted by EMS, including Authentication  information";
+CM_ SG_ 256 MCU_PEPSAuth "Transmitted by EMS, including Authentication  information";
+CM_ BO_ 293 "Transmitted by ESC, including ESC status ,Vehicle Speed and Brake switch status";
+CM_ SG_ 293 ESC_BrakePedalSwitchStatus "Signal from ESC/ABS to indicate if Breke Pedal is activated.";
+CM_ SG_ 293 ESC_VehicleSpeed "Vehicle Speed";
+CM_ SG_ 293 ESC_VehicleSpeedInvalid "Signal from ABS_ESC to indicate if VehicleSpeed is valid";
+CM_ SG_ 293 ESC_LdmBLC "ESC command BCM to activate the brake light";
+CM_ SG_ 293 ESC_EPBStatus "status of EPB system";
+CM_ SG_ 293 ESC_BrakePedalPosition "Signal from ESP to indicate brake pedal position";
+CM_ SG_ 293 ESC_Status_AliveCounter "Message Rolling counter";
+CM_ SG_ 293 ESC_HAZActive "Emergency Stop Active";
+CM_ SG_ 293 ESC_Status_Checksum "ESC_Status checksum ";
+CM_ BO_ 292 "Transmitted by ESC, including 4 wheel speed pulse signals";
+CM_ SG_ 292 ESC_FLWheelSpeedRC "Signal from ESC to indicate the front left wheel speed pulse";
+CM_ SG_ 292 ESC_FRWheelSpeedRC "Signal from ESC to indicate the front right wheel speed pulse";
+CM_ SG_ 292 ESC_RLWheelSpeedRC "Signal from ESC to indicate the rear left wheel speed pulse";
+CM_ SG_ 292 ESC_RRWheelSpeedRC "Signal from ESC to indicate the rear right wheel speed pulse";
+CM_ SG_ 292 ESC_FLWheelSpeedRCSts "Signal from ESC to indicate the front left ";
+CM_ SG_ 292 ESC_FRWheelSpeedRCSts "Signal from ESC to indicate the front right wheel speed pulse";
+CM_ SG_ 292 ESC_RLWheelSpeedRCSts "Signal from ESC to indicate the rear left wheel speed pulse";
+CM_ SG_ 292 ESC_RRWheelSpeedRCSts "Signal from ESC to indicate the rear right wheel speed pulse";
+CM_ SG_ 292 ESC_WheelSpeedsRC_AliveCounter "signal couting the times of this message";
+CM_ SG_ 292 ESC_WheelSpeedsRC_Checksum "checksum to check the data integrity";
+CM_ BO_ 290 "Transmitted by ESC, including Front wheel speed signals";
+CM_ SG_ 290 ESC_FLWheelSpeedKPH "Signal from ESC to indicate the front left wheel speed in kph";
+CM_ SG_ 290 ESC_FLWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 290 ESC_FRWheelSpeedKPH "Signal from ESC to indicate the front right wheel speed in kph";
+CM_ SG_ 290 ESC_FRWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 290 ESC_FrontWheelSpeedsKPH_AliveCou "signal couting the times of this message";
+CM_ SG_ 290 ESC_FrontWheelSpeedsKPH_Checksum "CRC code to check the data integrity";
+CM_ BO_ 291 "Transmitted by ESC, including Rear wheel speed signals";
+CM_ SG_ 291 ESC_RLWheelSpeedKPH "Signal from ESC to indicate the rear left wheel speed in kph";
+CM_ SG_ 291 ESC_RLWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 291 ESC_RRWheelSpeedKPH "Signal from ESC to indicate the rear right wheel speed in kph";
+CM_ SG_ 291 ESC_RRWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 291 ESC_RearWheelSpeedsKPH_AliveCoun "signal couting the times of this message";
+CM_ SG_ 291 ESC_RearWheelSpeedsKPH_Checksum "CRC code to check the data integrity";
+CM_ BO_ 1009 "Transmitted by IPK , including Total Odometer";
+CM_ SG_ 1009 IPK_IPKTotalOdometer "the total odometer displayed in IPK";
+CM_ SG_ 1009 IPK_OdometerbackupEnable "Flag to enable other nodes to do odometer backup, IPK check its odometer when IGN ON, and set the flag if odometer is plausible, and clear the flag at IGN OFF";
+CM_ BO_ 621 "Transmitted by IPK , including cluster status singals";
+CM_ SG_ 621 IPK_Fail "Error in the IPK control unit";
+CM_ SG_ 621 IPK_EPS_DMCorrelativeMode "To set EPS Driver Mode Correlative ";
+CM_ SG_ 621 IPK_Backlightadjust "Adjust the backlight";
+CM_ BO_ 1008 "Transmitted by IPK, including IPK date and time information";
+CM_ SG_ 1008 IPK_Second "Second";
+CM_ SG_ 1008 IPK_Minute "Minute";
+CM_ SG_ 1008 IPK_Hour "Hour";
+CM_ SG_ 1008 IPK_Day "day";
+CM_ SG_ 1008 IPK_Month "Month";
+CM_ SG_ 1008 IPK_Year "Year";
+CM_ SG_ 1008 IPK_VehicleStopTime "IPK calculate the Vehicle stop time(time start at IGN OFF)";
+CM_ BO_ 658 "Transmitted by TBOX, including TBOX Status and TBOX for PEPS,HVSM,BCM and AC command signal";
+CM_ SG_ 658 TBOX_All_Door_Lock "Signal from TBOX";
+CM_ SG_ 658 TBOX_Inquire_wndw "inquire the window status";
+CM_ SG_ 658 TBOX_Inquire_sunroof "inquire the sunroof status";
+CM_ SG_ 658 TBOX_Inquire_PM25 "inquire the PM2.5 status";
+CM_ SG_ 658 TBOX_AirCleanerReq "Air Cleaner request";
+CM_ SG_ 658 TBOX_EngineDelayTime "Engine delay time from APP";
+CM_ SG_ 658 TBOX_EngineStartReq "Engine start request";
+CM_ SG_ 658 TBOX_EngineStopReq "Engine stop request";
+CM_ SG_ 658 TBOX_EngineForbidReq "Engine start forbid request";
+CM_ SG_ 658 TBOX_EnginePermitReq "Engine start permit request";
+CM_ SG_ 658 TBOX_CrankAllowReq "Allow cranking request from T-box";
+CM_ SG_ 658 TBOX_EngineStartTime "Engine start time from APP";
+CM_ SG_ 658 TBOX_TempReq "set temperature";
+CM_ SG_ 658 TBOX_PhoneConnectSts "Phone connect status";
+CM_ SG_ 658 TBOX_AirConditionerReq "Air Conditioner request";
+CM_ SG_ 658 TBOX_DrvHeatReq_Reserved "Remote Driver Seat Heating Command";
+CM_ SG_ 658 TBOX_PassHeatReq_Reserved "Remote Passeger Seat Heating Command";
+CM_ SG_ 658 TBOX_TrunkCloseAllowReq "Allow request for trunk close";
+CM_ SG_ 658 TBOX_RemCon_AliveCounter "signal couting the times of this message";
+CM_ SG_ 658 TBOX_RemCon_Checksum "CRC code to check the data integrity";
+CM_ BO_ 259 "Transmitted by TBOX";
+CM_ BO_ 1029 "GW Network management Message";
+CM_ SG_ 1029 GW_Comfort_Address "ECU Address";
+CM_ SG_ 1029 GW_RMR "Repeat Message Request";
+CM_ SG_ 1029 GW_AWB "Active Wakeup Bit";
+CM_ SG_ 1029 GW_NMSts "The bit is used to indicate network management state. It's only used for test.";
+CM_ BO_ 1941 "Transmitted by GW";
+CM_ BO_ 1949 "Transmitted by PEPS";
+CM_ BO_ 2015 "Transmitted by GW";
+CM_ BO_ 1668 "Transmitted by PEPS";
+CM_ BO_ 1669 "Transmitted by PEPS";
+CM_ BO_ 1670 "Transmitted by PEPS";
+CM_ BO_ 1676 "Transmitted by PEPS";
+CM_ BO_ 1677 "Transmitted by PEPS";
+CM_ BO_ 1678 "Transmitted by PEPS";
+BA_DEF_ BO_  "NmMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cycle","NoSendType","IfActive";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cycle","OnChange","OnWrite","IfActive","OnChangeWithRepetition","OnWriteWithRepetition","IfActiveWithRepetition";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 0;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 0;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ SG_  "GenSigTimeoutValue" INT 0 1000000000;
+BA_DEF_ BO_  "GenMsgCycleTimeActive" INT 0 0;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "DiagStationAddress" HEX 0 255;
+BA_DEF_ BU_  "NmNode" ENUM  "Not","Yes";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 65535;
+BA_DEF_ BU_  "NmCAN" INT 0 2;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "NmBaseAddress" HEX 0 2047;
+BA_DEF_  "NmMessageCount" INT 0 255;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ SG_  "SystemSignalLongSymbol" STRING ;
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "GenMsgSendType" "Cycle";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cycle";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "NodeLayerModules" "CANoeILNLVector.dll";
+BA_DEF_DEF_  "GenSigTimeoutValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeActive" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "DiagStationAddress" 0;
+BA_DEF_DEF_  "NmNode" "Not";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NmCAN" 0;
+BA_DEF_DEF_  "Manufacturer" "";
+BA_DEF_DEF_  "NmType" "";
+BA_DEF_DEF_  "NmBaseAddress" 1024;
+BA_DEF_DEF_  "NmMessageCount" 128;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "SystemSignalLongSymbol" "";
+BA_ "DBName" "ComfortCAN";
+BA_ "DiagState" BO_ 2009 1;
+BA_ "DiagResponse" BO_ 2009 1;
+BA_ "GenMsgSendType" BO_ 2009 1;
+BA_ "GenMsgCycleTime" BO_ 2009 40;
+BA_ "GenMsgDelayTime" BO_ 2009 20;
+BA_ "DiagRequest" BO_ 2001 1;
+BA_ "GenMsgSendType" BO_ 2001 1;
+BA_ "GenMsgCycleTime" BO_ 2001 40;
+BA_ "GenMsgDelayTime" BO_ 2001 20;
+BA_ "GenMsgSendType" BO_ 1030 1;
+BA_ "GenMsgCycleTime" BO_ 626 100;
+BA_ "GenMsgCycleTime" BO_ 482 20;
+BA_ "GenMsgSendType" BO_ 257 1;
+BA_ "GenMsgCycleTime" BO_ 624 100;
+BA_ "GenMsgSendType" BO_ 258 1;
+BA_ "GenMsgSendType" BO_ 639 1;
+BA_ "GenMsgSendType" BO_ 1027 1;
+BA_ "GenMsgCycleTime" BO_ 645 100;
+BA_ "GenMsgCycleTime" BO_ 646 100;
+BA_ "GenMsgCycleTime" BO_ 644 100;
+BA_ "GenMsgSendType" BO_ 1025 1;
+BA_ "GenMsgSendType" BO_ 1042 1;
+BA_ "GenMsgCycleTime" BO_ 354 20;
+BA_ "GenMsgCycleTime" BO_ 421 20;
+BA_ "GenMsgCycleTime" BO_ 357 20;
+BA_ "GenMsgCycleTime" BO_ 544 100;
+BA_ "GenMsgSendType" BO_ 256 1;
+BA_ "GenMsgCycleTime" BO_ 293 20;
+BA_ "GenMsgCycleTime" BO_ 292 20;
+BA_ "GenMsgCycleTime" BO_ 290 20;
+BA_ "GenMsgCycleTime" BO_ 291 20;
+BA_ "GenMsgCycleTime" BO_ 1009 1000;
+BA_ "GenMsgCycleTime" BO_ 621 100;
+BA_ "GenMsgCycleTime" BO_ 1008 500;
+BA_ "GenMsgCycleTime" BO_ 658 100;
+BA_ "GenMsgSendType" BO_ 259 1;
+BA_ "GenMsgSendType" BO_ 1029 1;
+BA_ "GenMsgSendType" BO_ 1941 1;
+BA_ "GenMsgSendType" BO_ 1949 1;
+BA_ "GenMsgSendType" BO_ 2015 1;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgCycleTime" BO_ 2015 40;
+BA_ "GenMsgDelayTime" BO_ 2015 20;
+BA_ "GenMsgSendType" BO_ 1668 1;
+BA_ "GenMsgSendType" BO_ 1669 1;
+BA_ "GenMsgSendType" BO_ 1670 1;
+BA_ "GenMsgSendType" BO_ 1676 1;
+BA_ "GenMsgSendType" BO_ 1677 1;
+BA_ "GenMsgSendType" BO_ 1678 1;
+BA_ "GenSigStartValue" SG_ 168 MCU_TMSpdActSgn 28000;
+BA_ "GenSigSendType" SG_ 1030 AC_Address 2;
+BA_ "GenSigSendType" SG_ 1030 AC_RMR 2;
+BA_ "GenSigSendType" SG_ 1030 AC_AWB 2;
+BA_ "GenSigSendType" SG_ 1030 AC_Wakeup_reasons 2;
+BA_ "GenSigSendType" SG_ 1030 AC_NMSts 2;
+BA_ "GenSigSendType" SG_ 1030 AC_Stayawake_reasons 2;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Warning_Trunk_open_digitalK 0;
+BA_ "SystemSignalLongSymbol" SG_ 626 PEPS_Warning_Trunk_open_digitalK "PEPS_Warning_Trunk_open_digitalKey";
+BA_ "GenSigStartValue" SG_ 626 PEPS_Warning_No_key_found 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Indication_press_brake 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Indication_shift_to_PN 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Indication_shift_to_Park 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Warning_keyInReminder 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_IGN1FailureWarning 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Warning_UID_LOW_BATT 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_ChargerConnectStarter_Warnn 0;
+BA_ "SystemSignalLongSymbol" SG_ 626 PEPS_ChargerConnectStarter_Warnn "PEPS_ChargerConnectStarter_Warnning";
+BA_ "GenSigStartValue" SG_ 626 PEPS_Warning_IMMO_Fail 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Indication_UID_Closer 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_Warning_keyInReminder_2 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_SSB_Failure_warning 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_TerminalNotOFF_Warning 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_AnyDoorOpen_Warning 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_WELLight 0;
+BA_ "GenSigStartValue" SG_ 626 PEPS_TrunkUnlockWithoutKeyCfgRes 1;
+BA_ "SystemSignalLongSymbol" SG_ 626 PEPS_TrunkUnlockWithoutKeyCfgRes "PEPS_TrunkUnlockWithoutKeyCfgResult";
+BA_ "GenSigStartValue" SG_ 626 PEPS_TrunkUnlockDistanceCfgResul 1;
+BA_ "SystemSignalLongSymbol" SG_ 626 PEPS_TrunkUnlockDistanceCfgResul "PEPS_TrunkUnlockDistanceCfgResult";
+BA_ "GenSigStartValue" SG_ 626 PEPS_APUCfgResult 1;
+BA_ "GenSigStartValue" SG_ 626 PEPS_WALCfgResult 1;
+BA_ "GenSigStartValue" SG_ 626 PEPS_SATOCfgResult 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_PowerModeValidity 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_PowerMode 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_RemoteControlSt 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_IGN1RelayValidity 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_ACCRelaySts 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_IGN1RelaySts 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_IGN2RelaySts 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_StarterRelaySts 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_EngForbidWarn 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_EngineforbidSt 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_Learning_Status 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_Message_Sts_AliveCounter 0;
+BA_ "GenSigStartValue" SG_ 482 PEPS_Message_Sts_Checksum 0;
+BA_ "GenSigSendType" SG_ 257 PEPS_IMMOCode 2;
+BA_ "GenSigStartValue" SG_ 624 PEPS_StatusResponse2TBOX 0;
+BA_ "GenSigStartValue" SG_ 624 PEPS_CrankAllowSts 0;
+BA_ "GenSigStartValue" SG_ 624 PEPS_TELAuthenStatus 0;
+BA_ "GenSigStartValue" SG_ 624 PEPS_FailReason2TBOX 0;
+BA_ "GenSigSendType" SG_ 258 PEPS_TELchallengeCode 2;
+BA_ "GenSigSendType" SG_ 639 PEPS_KeyreminderUnlock 2;
+BA_ "GenSigSendType" SG_ 639 PEPS_RKECommand 2;
+BA_ "GenSigSendType" SG_ 639 PEPS_LOCK_CMD 2;
+BA_ "GenSigSendType" SG_ 639 PEPS_FOB_NUM 2;
+BA_ "GenSigSendType" SG_ 639 PEPS_TrunkSWstatus 2;
+BA_ "GenSigSendType" SG_ 639 PEPS_SATOIndicationLEDControl 2;
+BA_ "GenSigSendType" SG_ 1027 PEPS_Address 2;
+BA_ "GenSigSendType" SG_ 1027 PEPS_RMR 2;
+BA_ "GenSigSendType" SG_ 1027 PEPS_AWB 2;
+BA_ "GenSigSendType" SG_ 1027 PEPS_Wakeup_reasons 2;
+BA_ "GenSigSendType" SG_ 1027 PEPS_NMSts 2;
+BA_ "GenSigSendType" SG_ 1027 PEPS_Stayawake_reasons 2;
+BA_ "GenSigStartValue" SG_ 645 BCM_Drv_Wdw_valid 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_Drv_Val_Wdw_Opened 127;
+BA_ "GenSigStartValue" SG_ 645 BCM_Drv_Wdw_OD_Sts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_Drv_Wdw_Obs_InhibitSts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_Drv_Wdw_Running_Sts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_Drv_Wdw_PositionSts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_Drv_Wdw_Error 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RLD_Wdw_valid 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RLD_Val_Wdw_Opened 127;
+BA_ "GenSigStartValue" SG_ 645 BCM_RLD_Wdw_OD_Sts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RLD_Wdw_Obs_InhibitSts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RLD_Wdw_Running_Sts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RLD_Wdw_PositionSts 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RLD_Wdw_Error 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_FrontLeftDoorAjarStatus 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RearLeftDoorAjarStatus 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_DoorLockStatusRL_Reserved 2;
+BA_ "GenSigStartValue" SG_ 645 BCM_DoorLockStatusDrv 2;
+BA_ "GenSigStartValue" SG_ 645 BCM_DoorChildLockst 0;
+BA_ "GenSigStartValue" SG_ 645 BCM_RearMirrorFoldSetResp 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_Pas_Wdw_valid 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_Pas_Val_Wdw_Opened 127;
+BA_ "GenSigStartValue" SG_ 646 BCM_Pas_Wdw_OD_Sts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_Pas_Wdw_Obs_InhibitSts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_Pas_Wdw_Running_Sts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_Pas_Wdw_PositionSts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_Pas_Wdw_Error 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_RRD_Wdw_valid 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_RRD_Val_Wdw_Opened 127;
+BA_ "GenSigStartValue" SG_ 646 BCM_RRD_Wdw_OD_Sts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_RRD_Wdw_Obs_InhibitSts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_RRD_Wdw_Running_Sts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_RRD_Wdw_PositionSts 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_RRD_Wdw_Error 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_FrontRightDoorAjarStatus 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_RearRightDoorAjarStatus 0;
+BA_ "GenSigStartValue" SG_ 646 BCM_DoorLockStatusRR_Reserved 2;
+BA_ "GenSigStartValue" SG_ 646 BCM_DoorLockStatusPass 2;
+BA_ "GenSigStartValue" SG_ 644 BCM_RearDefrosterSts 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_Central_Lock_CMD 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_Central_unLock_CMD 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_WiperSts 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_HoodAjarStatus 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_TrunkAjarStatus 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_IGNOFFUnlockDoorSelectResp 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_ATWSHistory 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_FlasherAnimControlSetResp 1;
+BA_ "GenSigStartValue" SG_ 644 BCM_ATWS_St 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_VehicleSearchWarningSetResp 1;
+BA_ "GenSigStartValue" SG_ 644 BCM_FrontWiperIdleModeSetResp 1;
+BA_ "GenSigStartValue" SG_ 644 BCM_R2_RelaySts 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_ATWarnTypeSetResp 0;
+BA_ "GenSigStartValue" SG_ 644 BCM_DayRunLightSetResp 0;
+BA_ "GenSigSendType" SG_ 1025 BCM_Address 2;
+BA_ "GenSigSendType" SG_ 1025 BCM_RMR 2;
+BA_ "GenSigSendType" SG_ 1025 BCM_AWB 2;
+BA_ "GenSigSendType" SG_ 1025 BCM_Wakeup_reasons 2;
+BA_ "GenSigSendType" SG_ 1025 BCM_NMSts 2;
+BA_ "GenSigSendType" SG_ 1025 BCM_Stayawake_reasons 2;
+BA_ "GenSigSendType" SG_ 1042 DSCU_Address 2;
+BA_ "GenSigSendType" SG_ 1042 DSCU_RMR 2;
+BA_ "GenSigSendType" SG_ 1042 DSCU_AWB 2;
+BA_ "GenSigSendType" SG_ 1042 DSCU_Wakeup_reasons 2;
+BA_ "GenSigSendType" SG_ 1042 DSCU_NMSts 2;
+BA_ "GenSigSendType" SG_ 1042 DSCU_Stayawake_reasons 2;
+BA_ "GenSigStartValue" SG_ 354 VCU_ACPowerAllowed 0;
+BA_ "GenSigStartValue" SG_ 354 VCU_CoolingFanPWMSpd 0;
+BA_ "GenSigStartValue" SG_ 354 VCU_ePTModeSelect 0;
+BA_ "GenSigStartValue" SG_ 354 VCU_HB_ePTReady 0;
+BA_ "GenSigStartValue" SG_ 354 VCU_ePTReleaseSig 0;
+BA_ "GenSigStartValue" SG_ 354 VCU_Ctrl_AliveCounter 0;
+BA_ "GenSigStartValue" SG_ 354 VCU_DoubleFlashLampOn 0;
+BA_ "GenSigStartValue" SG_ 354 VCU_Ctrl_Checksum 0;
+BA_ "GenSigStartValue" SG_ 421 VCU_StartActive 0;
+BA_ "GenSigStartValue" SG_ 421 VCU_DM_comfortModeAvailable 0;
+BA_ "GenSigStartValue" SG_ 421 VCU_DM_EcoModeAvailable_Reserved 0;
+BA_ "GenSigStartValue" SG_ 421 VCU_DM_SportModeAvailable 0;
+BA_ "GenSigStartValue" SG_ 421 VCU_DM_FailureReasonAndSysFaultF 0;
+BA_ "SystemSignalLongSymbol" SG_ 421 VCU_DM_FailureReasonAndSysFaultF "VCU_DM_FailureReasonAndSysFaultFBK";
+BA_ "GenSigStartValue" SG_ 357 VCU_ModeGearDisplaySts 31;
+BA_ "GenSigStartValue" SG_ 357 VCU_CurrentGearPosition 15;
+BA_ "GenSigStartValue" SG_ 357 VCU_ChargeHV_Status 0;
+BA_ "GenSigStartValue" SG_ 544 OBC_OnBdChrgrCCline 0;
+BA_ "GenSigStartValue" SG_ 544 OBC_OnBdChrgrCPline 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_BrakePedalSwitchStatus 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_VehicleSpeed 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_VehicleSpeedInvalid 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_LdmBLC 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_EPBStatus 3;
+BA_ "GenSigStartValue" SG_ 293 ESC_BrakePedalPosition 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_Status_AliveCounter 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_HAZActive 0;
+BA_ "GenSigStartValue" SG_ 293 ESC_Status_Checksum 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_FLWheelSpeedRC 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_FRWheelSpeedRC 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_RLWheelSpeedRC 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_RRWheelSpeedRC 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_FLWheelSpeedRCSts 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_FRWheelSpeedRCSts 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_RLWheelSpeedRCSts 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_RRWheelSpeedRCSts 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_WheelSpeedsRC_AliveCounter 0;
+BA_ "GenSigStartValue" SG_ 292 ESC_WheelSpeedsRC_Checksum 0;
+BA_ "GenSigStartValue" SG_ 290 ESC_FLWheelSpeedKPH 0;
+BA_ "GenSigStartValue" SG_ 290 ESC_FLWheelSpeedInvalid 1;
+BA_ "GenSigStartValue" SG_ 290 ESC_FRWheelSpeedKPH 0;
+BA_ "GenSigStartValue" SG_ 290 ESC_FRWheelSpeedInvalid 1;
+BA_ "GenSigStartValue" SG_ 290 ESC_FrontWheelSpeedsKPH_AliveCou 0;
+BA_ "SystemSignalLongSymbol" SG_ 290 ESC_FrontWheelSpeedsKPH_AliveCou "ESC_FrontWheelSpeedsKPH_AliveCounter";
+BA_ "GenSigStartValue" SG_ 290 ESC_FrontWheelSpeedsKPH_Checksum 0;
+BA_ "GenSigStartValue" SG_ 291 ESC_RLWheelSpeedKPH 0;
+BA_ "GenSigStartValue" SG_ 291 ESC_RLWheelSpeedInvalid 1;
+BA_ "GenSigStartValue" SG_ 291 ESC_RRWheelSpeedKPH 0;
+BA_ "GenSigStartValue" SG_ 291 ESC_RRWheelSpeedInvalid 1;
+BA_ "GenSigStartValue" SG_ 291 ESC_RearWheelSpeedsKPH_AliveCoun 0;
+BA_ "SystemSignalLongSymbol" SG_ 291 ESC_RearWheelSpeedsKPH_AliveCoun "ESC_RearWheelSpeedsKPH_AliveCounter";
+BA_ "GenSigStartValue" SG_ 291 ESC_RearWheelSpeedsKPH_Checksum 0;
+BA_ "GenSigStartValue" SG_ 1009 IPK_IPKTotalOdometer 0;
+BA_ "GenSigStartValue" SG_ 1009 IPK_OdometerbackupEnable 0;
+BA_ "GenSigStartValue" SG_ 621 IPK_Fail 0;
+BA_ "GenSigStartValue" SG_ 621 IPK_EPS_DMCorrelativeMode 0;
+BA_ "GenSigStartValue" SG_ 621 IPK_Backlightadjust 0;
+BA_ "GenSigStartValue" SG_ 1008 IPK_Second 0;
+BA_ "GenSigStartValue" SG_ 1008 IPK_Minute 0;
+BA_ "GenSigStartValue" SG_ 1008 IPK_Hour 0;
+BA_ "GenSigStartValue" SG_ 1008 IPK_Day 0;
+BA_ "GenSigStartValue" SG_ 1008 IPK_Month 0;
+BA_ "GenSigStartValue" SG_ 1008 IPK_Year 0;
+BA_ "GenSigStartValue" SG_ 1008 IPK_VehicleStopTime 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_All_Door_Lock 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_Inquire_wndw 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_Inquire_sunroof 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_Inquire_PM25 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_AirCleanerReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_EngineDelayTime 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_EngineStartReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_EngineStopReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_EngineForbidReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_EnginePermitReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_CrankAllowReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_EngineStartTime 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_TempReq 28;
+BA_ "GenSigStartValue" SG_ 658 TBOX_PhoneConnectSts 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_AirConditionerReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_DrvHeatReq_Reserved 7;
+BA_ "GenSigStartValue" SG_ 658 TBOX_PassHeatReq_Reserved 7;
+BA_ "GenSigStartValue" SG_ 658 TBOX_TrunkCloseAllowReq 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_RemCon_AliveCounter 0;
+BA_ "GenSigStartValue" SG_ 658 TBOX_RemCon_Checksum 0;
+BA_ "GenSigSendType" SG_ 259 TBOX_ResponseCode 2;
+BA_ "GenSigSendType" SG_ 1029 GW_Comfort_Address 2;
+BA_ "GenSigSendType" SG_ 1029 GW_RMR 2;
+BA_ "GenSigSendType" SG_ 1029 GW_AWB 2;
+BA_ "GenSigSendType" SG_ 1029 GW_Wakeup_reasons 2;
+BA_ "GenSigSendType" SG_ 1029 GW_NMSts 2;
+BA_ "GenSigSendType" SG_ 1029 GW_Stayawake_reasons 2;
+VAL_ 1028 ESCL_Wakeup_reasons 3 "Reserved" 2 "KL15 ON" 1 "CAN bus activaty" 0 "Default" ;
+VAL_ 1028 ESCL_NMSts 1 "Normal Operation State" 0 "Repeat Message State" ;
+VAL_ 1028 ESCL_AWB 1 "Description for the value '0x1'" 0 "Node has not woken up the network (passive wakeup)" ;
+VAL_ 1028 ESCL_RMR 1 "Repeat Message State requested" 0 "Repeat Message State not requested" ;
+VAL_ 633 ESCL_RuningLockWarning 1 "Warning" 0 "No Warning" ;
+VAL_ 633 ESCL_release 1 "Successed" 0 "Failed" ;
+VAL_ 633 ESCL_BatteryVoltage_Warning 3 "Reserved" 2 "Over voltage (>16V)" 1 "Low voltage (<9V)" 0 "No warning" ;
+VAL_ 633 ESCL_Lock_Failure_Warning 1 "Warning" 0 "No warning" ;
+VAL_ 633 ESCL_Unlock_Failure_Warning 1 "Description for the value '0x1'" 0 "No warning" ;
+VAL_ 633 ESCL_Learning_Status 3 "ESK earased" 2 "Learnt" 1 "Virgin" 0 "Default" ;
+VAL_ 633 ESCL_SystemWarning 1 "Warning" 0 "No warning" ;
+VAL_ 633 ESCL_SteeringLockStatus 4 "RunningOthers: Reserved" 3 "Invaild" 2 "Fault" 1 "Lock" 0 "Unlock" ;
+VAL_ 1030 AC_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested" ;
+VAL_ 1030 AC_AWB 0 "Node has not woken up the network (passive wakeup)" 1 "Node has woken up the network (active Wakeup)" ;
+VAL_ 1030 AC_Wakeup_reasons 0 "Default" 1 "KL15" 2 "NM PDU Received" ;
+VAL_ 1030 AC_NMSts 0 "Repeat Message State" 1 "Normal Operation State" ;
+VAL_ 626 PEPS_Warning_Keyout 1 "Warning" 0 "No warning" ;
+VAL_ 626 PEPS_KeyAuthFail 3 "Reserved" 2 "FUID Auth Pass" 1 "UID Auth Failure" 0 "Default" ;
+VAL_ 626 PEPS_Warning_Auth_ESCL_Fail 1 "Warning" 0 "No warning" ;
+VAL_ 626 PEPS_SystemFailureWarning 1 "Warning" 0 "No warning" ;
+VAL_ 626 PEPS_Warning_Trunk_open_digitalK 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Warning_No_key_found 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Indication_press_brake 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Indication_shift_to_PN 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Indication_shift_to_Park 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Warning_keyInReminder 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_IGN1FailureWarning 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Warning_UID_LOW_BATT 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_ChargerConnectStarter_Warnn 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Warning_IMMO_Fail 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Indication_UID_Closer 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_Warning_keyInReminder_2 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_SSB_Failure_warning 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_TerminalNotOFF_Warning 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_AnyDoorOpen_Warning 0 "No warning" 1 "Warning" ;
+VAL_ 626 PEPS_WELLight 0 "WELLight OFF Request" 1 "WELLight ON Request" ;
+VAL_ 626 PEPS_TrunkUnlockWithoutKeyCfgRes 0 "Disable" 1 "Enable" ;
+VAL_ 626 PEPS_TrunkUnlockDistanceCfgResul 0 "Distance Level1" 1 "Distance Level2" ;
+VAL_ 626 PEPS_APUCfgResult 0 "Disable" 1 "Enable" ;
+VAL_ 626 PEPS_WALCfgResult 0 "Disable" 1 "Enable" ;
+VAL_ 626 PEPS_SATOCfgResult 0 "Disable" 1 "Enable" ;
+VAL_ 482 PEPS_PowerModeValidity 0 "Not available" 1 "Invalid" 2 "Valid" 3 "Reserved" ;
+VAL_ 482 PEPS_PowerMode 0 "OFF" 1 "ACC" 2 "ON" 3 "Reserved" 4 "START" ;
+VAL_ 482 PEPS_RemoteControlSt 0 "Not Remote control mode" 1 "Remote control mode" ;
+VAL_ 482 PEPS_IGN1RelayValidity 0 "Invalid" 1 "Valid" ;
+VAL_ 482 PEPS_ACCRelaySts 0 "Inactive" 1 "Active" ;
+VAL_ 482 PEPS_IGN1RelaySts 0 "Inactive" 1 "Active" ;
+VAL_ 482 PEPS_IGN2RelaySts 0 "Inactive" 1 "Active" ;
+VAL_ 482 PEPS_StarterRelaySts 0 "Inactive" 1 "Active" ;
+VAL_ 482 PEPS_EngForbidWarn 0 "No warning" 1 "Engine forbid warning" ;
+VAL_ 482 PEPS_EngineforbidSt 0 "Engine forbid not working" 1 "Engine forbid working" ;
+VAL_ 482 PEPS_Learning_Status 0 "Busy" 1 "Virgin" 2 "Learnt" 3 "Neutralized" ;
+VAL_ 624 PEPS_StatusResponse2TBOX 0 "Default" 1 "Received(in progress)" 2 "Success" 3 "Failed" ;
+VAL_ 624 PEPS_CrankAllowSts 0 "Not valid" 1 "Valid" ;
+VAL_ 624 PEPS_TELAuthenStatus 0 "Default" 1 "Fail" 2 "Pass" 3 "Reserved" ;
+VAL_ 624 PEPS_FailReason2TBOX 0 "No fail reason" 1 "Wrong command" 2 "Termial NOT OFF" 3 "Voltage out of range" 4 "TeleOption not set" 5 "Speed Invalid" 6 "Vehicle is moving" 7 "Any door opened(4door )" 8 "Key in the car" 9 "PEPS not learnt" 10 "Communication error" 11 "Any door not locked" 12 "Any window not closed" 13 "Brake is pressed" 14 "ATWS status not armed" 15 "IGN1 output failure" 16 "Starter output failure" 17 "Reserved" 18 "SSB pressed" 19 "Telematic authentication failure" 20 "IMMO failed" 21 "Reserved" 22 "Starter output timer expired" 23 "Transition to normal power mode" 24 "Remote engine off request" 25 "Reset caused quiting" 26 "Engine/ePT forbid function not support" 27 "Multiple command received" 28 "Reserved" 29 "hood is open" 30 "Trunk open" 31 "Engine/ePT not run" 32 "Reserved" 33 "ATWS Ststus is alarm" 34 "No Valid fob found" 35 "GearPosition is not PN" 36 "Any door not unlocked" 37 "Exceed Maximum engine/ePT start time" 38 "OBC connection is on" 39 "Exceed Maximum engine/ePT start retry time during one driving cycle" 40 "Remote Engine/ePT Start is already in working" 41 "Trunk open failure" 42 "Window open failed" 45 "Smart Access Start Option not set" ;
+VAL_ 639 PEPS_Auth_ESCL_Req 1 "Request" 0 "No Request" ;
+VAL_ 639 PEPS_KeyreminderUnlock 0 "No command" 1 "Unlock" ;
+VAL_ 639 PEPS_RKECommand 0 "No command" 1 "All door lock" 2 "Reserved" 3 "All door unlock" 4 "Trunk unlock" 5 "Global closing ¡ªwindow up" 6 "Global opening ¡ªwindow down" 7 "Global action stop¡ªwindow move stop(reserved)" 8 "Silent/Sound shift BCM" 9 "Vehicle search" 10 "Window ventilate" 11 "Sunroof close" 12 "Sunroof open" ;
+VAL_ 639 PEPS_LOCK_CMD 0 "No command" 1 "All door lock" 2 "Reserved" 3 "All door unlock" 4 "Trunk unlock" 5 "Global closing--window up" 6 "Reserved" 7 "Reserved" ;
+VAL_ 639 PEPS_FOB_NUM 0 "initial" 1 "key index 1" 2 "key index 2" 3 "key index 3" 5 "digital key" ;
+VAL_ 639 PEPS_TrunkSWstatus 0 "No press" 1 "Press" ;
+VAL_ 639 PEPS_SATOIndicationLEDControl 0 "No command" 1 "SATOLED OFF Request" 2 "SATOLED ON Request" 3 "Reserved" ;
+VAL_ 1027 PEPS_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested" ;
+VAL_ 1027 PEPS_AWB 0 "Node has not woken up the network (passive wakeup)" 1 "Node has woken up the network (active Wakeup)" ;
+VAL_ 1027 PEPS_Wakeup_reasons 0 "Default" 1 "SSSW pressed " 2 "Valid RF signal reveived" 3 "Receive NM PDU seccessfully" 4 "Driver door handle switch pressed(Reserved)" 5 "Passenger door handle switch pressed(Reserved)" ;
+VAL_ 1027 PEPS_NMSts 0 "Repeat Message State" 1 "Normal Operation State" ;
+VAL_ 645 BCM_Drv_Wdw_valid 0 "Invalid" 1 "Valid" ;
+VAL_ 645 BCM_Drv_Val_Wdw_Opened 127 "Invalid" ;
+VAL_ 645 BCM_Drv_Wdw_OD_Sts 0 "Non anti-pinch status" 1 "In Anti-pinch status" ;
+VAL_ 645 BCM_Drv_Wdw_Obs_InhibitSts 0 "Not Obs Inhibit status" 1 "Obs Inhibit status" ;
+VAL_ 645 BCM_Drv_Wdw_Running_Sts 0 "Window stop" 1 "Manual Up" 2 "Manual Down" 3 "Auto Up" 4 "Auto Down" ;
+VAL_ 645 BCM_Drv_Wdw_PositionSts 0 "Middle position" 1 "Complete Open" 2 "Complete Close" 3 "Invalid" ;
+VAL_ 645 BCM_Drv_Wdw_Error 0 "No Error" 1 "Error" ;
+VAL_ 645 BCM_RLD_Wdw_valid 0 "Invalid" 1 "Valid" ;
+VAL_ 645 BCM_RLD_Val_Wdw_Opened 127 "Invalid" ;
+VAL_ 645 BCM_RLD_Wdw_OD_Sts 0 "Non anti-pinch status" 1 "In Anti-pinch status" ;
+VAL_ 645 BCM_RLD_Wdw_Obs_InhibitSts 0 "Not Obs Inhibit status" 1 "Obs Inhibit status" ;
+VAL_ 645 BCM_RLD_Wdw_Running_Sts 0 "Window stop" 1 "Manual Up" 2 "Manual Down" 3 "Auto Up" 4 "Auto Down" ;
+VAL_ 645 BCM_RLD_Wdw_PositionSts 0 "Middle position" 1 "Complete Open" 2 "Complete Close" 3 "Invalid" ;
+VAL_ 645 BCM_RLD_Wdw_Error 0 "No Error" 1 "Error" ;
+VAL_ 645 BCM_FrontLeftDoorAjarStatus 0 "DoorClosed" 1 "DoorAjar" ;
+VAL_ 645 BCM_RearLeftDoorAjarStatus 0 "DoorClosed" 1 "DoorAjar" ;
+VAL_ 645 BCM_DoorLockStatusRL_Reserved 0 "Unlocked" 1 "Locked" 2 "Reserved" 3 "Error (Reserved)" ;
+VAL_ 645 BCM_DoorLockStatusDrv 0 "Unlocked" 1 "Locked" 2 "Reserved" 3 "Error (Reserved)" ;
+VAL_ 645 BCM_DoorChildLockst 0 "Unlock" 1 "Lock" ;
+VAL_ 645 BCM_RearMirrorFoldSetResp 0 "Disable" 1 "Enable" ;
+VAL_ 646 BCM_Pas_Wdw_valid 0 "Invalid" 1 "Valid" ;
+VAL_ 646 BCM_Pas_Val_Wdw_Opened 127 "Invalid" ;
+VAL_ 646 BCM_Pas_Wdw_OD_Sts 0 "Non anti-pinch status" 1 "In Anti-pinch status" ;
+VAL_ 646 BCM_Pas_Wdw_Obs_InhibitSts 0 "Not Obs Inhibit status" 1 "Obs Inhibit status" ;
+VAL_ 646 BCM_Pas_Wdw_Running_Sts 0 "Window stop" 1 "Manual Up" 2 "Manual Down" 3 "Auto Up" 4 "Auto Down" ;
+VAL_ 646 BCM_Pas_Wdw_PositionSts 0 "Middle position" 1 "Complete Open" 2 "Complete Close" 3 "Invalid" ;
+VAL_ 646 BCM_Pas_Wdw_Error 0 "No Error" 1 "Error" ;
+VAL_ 646 BCM_RRD_Wdw_valid 0 "Invalid" 1 "Valid" ;
+VAL_ 646 BCM_RRD_Val_Wdw_Opened 127 "Invalid" ;
+VAL_ 646 BCM_RRD_Wdw_OD_Sts 0 "Non anti-pinch status" 1 "In Anti-pinch status" ;
+VAL_ 646 BCM_RRD_Wdw_Obs_InhibitSts 0 "Not Obs Inhibit status" 1 "Obs Inhibit status" ;
+VAL_ 646 BCM_RRD_Wdw_Running_Sts 0 "Window stop" 1 "Manual Up" 2 "Manual Down" 3 "Auto Up" 4 "Auto Down" ;
+VAL_ 646 BCM_RRD_Wdw_PositionSts 0 "Middle position" 1 "Complete Open" 2 "Complete Close" 3 "Invalid" ;
+VAL_ 646 BCM_RRD_Wdw_Error 0 "No Error" 1 "Error" ;
+VAL_ 646 BCM_FrontRightDoorAjarStatus 0 "DoorClosed" 1 "DoorAjar" ;
+VAL_ 646 BCM_RearRightDoorAjarStatus 0 "DoorClosed" 1 "DoorAjar" ;
+VAL_ 646 BCM_DoorLockStatusRR_Reserved 0 "Unlocked" 1 "Locked" 2 "Reserved" 3 "Error (Reserved)" ;
+VAL_ 646 BCM_DoorLockStatusPass 0 "Unlocked" 1 "Locked" 2 "Reserved" 3 "Error (Reserved)" ;
+VAL_ 644 BCM_RearDefrosterSts 0 "Defroster Inactive" 1 "Defroster active" 2 "Reserved" 3 "Invalid" ;
+VAL_ 644 BCM_Central_Lock_CMD 0 "inactive" 1 "active" ;
+VAL_ 644 BCM_Central_unLock_CMD 0 "inactive" 1 "active" ;
+VAL_ 644 BCM_WiperSts 0 "OFF" 1 "Low speed" 2 "High speed" 3 "Undefined" 4 "Undefined" 5 "Undefined" 6 "Undefined" 7 "Invalid" ;
+VAL_ 644 BCM_HoodAjarStatus 0 "HoodClosed" 1 "HoodAjar" 2 "Reserved" 3 "Invalid(Reserved)" ;
+VAL_ 644 BCM_TrunkAjarStatus 0 "TrunkClosed" 1 "TrunkAjar" ;
+VAL_ 644 BCM_IGNOFFUnlockDoorSelectResp 0 "No request to unlock any door" 1 "Reserved" 2 "Request all doors unlock" 3 "Reserved" ;
+VAL_ 644 BCM_ATWSHistory 0 "No History" 1 "Hood Intrusion" 2 "Trunk Intrusion" 3 "Front Left Door Intrusion" 4 "Front Right Door Intrusion" 5 "Rear Left Door Intrusion" 6 "Rear Right Door Intrusion" 7 "Reserved" ;
+VAL_ 644 BCM_FlasherAnimControlSetResp 0 "Disable" 1 "Enable" ;
+VAL_ 644 BCM_ATWS_St 0 "Armed" 1 "Prearmed" 2 "Disarmed" 3 "Remind" 4 "Alarm" 5 "Partially Armed" 6 "Not used" 7 "Not used" ;
+VAL_ 644 BCM_VehicleSearchWarningSetResp 0 "Enable Only Flasher Request" 1 "Enable Both Flasher and Horn Request" ;
+VAL_ 644 BCM_FrontWiperIdleModeSetResp 0 "Disable" 1 "Enable" ;
+VAL_ 644 BCM_R2_RelaySts 0 "Inactive" 1 "Active" 2 "Error" 3 "Reserved" ;
+VAL_ 644 BCM_ATWarnTypeSetResp 0 "No Request" 1 "Lighting and Horn" 2 "Lighting" 3 "Horn" ;
+VAL_ 644 BCM_DayRunLightSetResp 0 "Disable" 1 "Enable" ;
+VAL_ 1025 BCM_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested" ;
+VAL_ 1025 BCM_AWB 0 "Node has not woken up the network (passive wakeup)" 1 "Node has woken up the network (active Wakeup)" ;
+VAL_ 1025 BCM_Wakeup_reasons 0 "Default" 1 "Ignition status changes from IGN OFF/KL R to other status" 2 "Reserved" 3 "Reserved" 4 "Received NM PDU successfully;" 5 "Hazard switch pressed;" 6 "Driver door ajar status change;" 7 "Passenger door ajar status change" 8 "RL door ajar status change;" 9 "RR door ajar status change;" 10 "Hood door ajar status change;" 11 "Trunk door ajar status change;" 12 "Position light sw activated;" 13 "High beam sw activated;" 14 "Driver door lock status change;" 15 "Other three door lock status change;" 16 "Reserved;" 17 "ATWS status change;" 18 "Ignition status changes from IGN OFF to KL R or KL R to IGN OFF(RKE)" 19 "Key in status change (RKE)" 20 "Glove box switch pressed" ;
+VAL_ 1025 BCM_NMSts 0 "Repeat Message State" 1 "Normal Operation State" ;
+VAL_ 1042 DSCU_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested" ;
+VAL_ 1042 DSCU_AWB 0 "Node has not woken up the network (passive wakeup)" 1 "Node has woken up the network (active Wakeup)" ;
+VAL_ 1042 DSCU_Wakeup_reasons 0 "Default" 1 "IGN status changes from KL15 = OFF to KL15 = ON;" 2 "Reserved" 3 "NM PDU Received" 4 "Any Seat switch status change" ;
+VAL_ 1042 DSCU_NMSts 0 "Repeat Message State" 1 "Normal Operation State" ;
+VAL_ 354 VCU_ACPowerAllowed 255 "Invalid" ;
+VAL_ 354 VCU_ePTModeSelect 0 "Reserved" 1 "HEV Mode" 2 "EV Mode" 3 "Save Mode" ;
+VAL_ 354 VCU_HB_ePTReady 0 "PTReady Not Active" 1 "PTReady Active" ;
+VAL_ 354 VCU_ePTReleaseSig 0 "Undefined" 1 "ePT Released" 2 "ePT Locked" 3 "Reserved" ;
+VAL_ 354 VCU_DoubleFlashLampOn 0 "Inactive" 1 "Active" ;
+VAL_ 421 VCU_StartActive 0 "not in start processing" 1 "start in processing" ;
+VAL_ 421 VCU_DM_comfortModeAvailable 0 "available" 1 "not available" ;
+VAL_ 421 VCU_DM_EcoModeAvailable_Reserved 0 "available" 1 "not available" ;
+VAL_ 421 VCU_DM_SportModeAvailable 0 "available" 1 "not available" ;
+VAL_ 421 VCU_DM_FailureReasonAndSysFaultF 0 "Not Failure" 1 "TCU hot mode(Reserved)" 2 "TCU fault mode(Reserved)" 15 "ePT Fault(Reserved)" ;
+VAL_ 357 VCU_ModeGearDisplaySts 0 "NO Display" 1 "Display P" 2 "Display R" 3 "Display N" 4 "Display D" 30 "Abnormal" 31 "Invalid" ;
+VAL_ 357 VCU_CurrentGearPosition 0 "Current gear N" 12 "Current gear D" 10 "Park" 11 "Current gear Reverse" 15 "Invalid" ;
+VAL_ 357 VCU_ChargeHV_Status 0 "Undefined" 1 "Failed" 2 "Successful" 3 "Reserved" ;
+VAL_ 544 OBC_OnBdChrgrCCline 0 "Not connected" 1 "Connected" 2 "Half-Connected" 3 "Default" ;
+VAL_ 544 OBC_OnBdChrgrCPline 0 "Not Connected" 1 "S2 lock-up state failure" 2 "PowAvailableButNotActivated" 3 "ContectedWithPower" 7 "CP signal failure" ;
+VAL_ 293 ESC_BrakePedalSwitchStatus 0 "Brake Pedal is not active" 1 "Brake Pedal is active" ;
+VAL_ 293 ESC_VehicleSpeed 8190 "Abnormal" 8191 "Invalid value" ;
+VAL_ 293 ESC_VehicleSpeedInvalid 0 "Valid" 1 "Invalid" ;
+VAL_ 293 ESC_LdmBLC 0 "Inactive" 1 "Active" ;
+VAL_ 293 ESC_EPBStatus 0 "Released" 1 "Closed" 2 "In progress" 3 "Reserved" ;
+VAL_ 293 ESC_BrakePedalPosition 251 "Invalid" 252 "Invalid" 253 "Invalid" 254 "Invalid" 255 "Invalid" ;
+VAL_ 293 ESC_HAZActive 0 "Emergency brake light off" 1 "Emergency brake light on" ;
+VAL_ 292 ESC_FLWheelSpeedRCSts 0 "Valid" 1 "Invalid" ;
+VAL_ 292 ESC_FRWheelSpeedRCSts 0 "Valid" 1 "Invalid" ;
+VAL_ 292 ESC_RLWheelSpeedRCSts 0 "Valid" 1 "Invalid" ;
+VAL_ 292 ESC_RRWheelSpeedRCSts 0 "Valid" 1 "Invalid" ;
+VAL_ 290 ESC_FLWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 290 ESC_FLWheelSpeedInvalid 0 "Valid" 1 "Invalid" ;
+VAL_ 290 ESC_FRWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 290 ESC_FRWheelSpeedInvalid 0 "Valid" 1 "Invalid" ;
+VAL_ 291 ESC_RLWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 291 ESC_RLWheelSpeedInvalid 0 "Valid" 1 "Invalid" ;
+VAL_ 291 ESC_RRWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 291 ESC_RRWheelSpeedInvalid 0 "Valid" 1 "Invalid" ;
+VAL_ 1009 IPK_IPKTotalOdometer 16777214 "Abnormal" 16777215 "Invalid" ;
+VAL_ 1009 IPK_OdometerbackupEnable 0 "Disable" 1 "Enable" ;
+VAL_ 621 IPK_Fail 0 "NO error" 1 "error" ;
+VAL_ 621 IPK_EPS_DMCorrelativeMode 0 "No Correlative" 1 "Correlative" ;
+VAL_ 621 IPK_Backlightadjust 0 "No Action" 1 "Level 1" 2 "Level 2" 3 "Level 3" 4 "Level 4" 5 "Level 5" 6 "Level 6" 7 "Level 7" 8 "Level 8" 9 "Level 9" 10 "Level 10" 31 "Invalid" ;
+VAL_ 1008 IPK_VehicleStopTime 4095 "stopping more than 24 hours" ;
+VAL_ 658 TBOX_All_Door_Lock 0 "No command" 1 "All door lock" 2 "Blink lamp" 3 "All door unlock" 4 "Whistle" 5 "Global closing-window up" 6 "Closing window" 7 "Closing sunroof" 8 "Global opening-window down" 9 "Vehicle search" 10 "Trunk unlock" 11 "Window ventilate" 12 "Opening sunroof" ;
+VAL_ 658 TBOX_Inquire_wndw 0 "No inquire" 1 "Inquire" ;
+VAL_ 658 TBOX_Inquire_sunroof 0 "No inquire" 1 "Inquire" ;
+VAL_ 658 TBOX_Inquire_PM25 0 "No inquire" 1 "Inquire" ;
+VAL_ 658 TBOX_AirCleanerReq 0 "No Request" 1 "OFF Request" 2 "ON Request" 3 "Reserved" ;
+VAL_ 658 TBOX_EngineDelayTime 0 "No Request" 1 "Level 1(3min)" 2 "Level 2(5min)" 3 "Level 3(8min)" 4 "Level 4(10min)" 5 "Level 5(Reserved)" 6 "Level 6(Reserved)" 7 "Level 7(Reserved)" ;
+VAL_ 658 TBOX_EngineStartReq 0 "No Request" 1 "Request" ;
+VAL_ 658 TBOX_EngineStopReq 0 "No Request" 1 "Request" ;
+VAL_ 658 TBOX_EngineForbidReq 0 "No Request" 1 "Request" ;
+VAL_ 658 TBOX_EnginePermitReq 0 "No Request" 1 "Request" ;
+VAL_ 658 TBOX_CrankAllowReq 0 "No Request" 1 "Request" ;
+VAL_ 658 TBOX_EngineStartTime 0 "No Request" 1 "Level 1(3min)" 2 "Level 2(5min)" 3 "Level 3(8min)" 4 "Level 4(10min)" 5 "Level 5(Reserved)" 6 "Level 6(Reserved)" 7 "Level 7(Reserved)" ;
+VAL_ 658 TBOX_TempReq 0 "LO" 30 "HI" 31 "Not set" ;
+VAL_ 658 TBOX_PhoneConnectSts 0 "Disconnect" 1 "Connect" ;
+VAL_ 658 TBOX_AirConditionerReq 0 "No Request" 1 "OFF Request" 2 "ON Request" 3 "Reserved" ;
+VAL_ 658 TBOX_DrvHeatReq_Reserved 0 "OFF" 1 "Level 1" 2 "Level 2" 3 "Level 3" 7 "No Request" ;
+VAL_ 658 TBOX_PassHeatReq_Reserved 0 "OFF" 1 "Level 1" 2 "Level 2" 3 "Level 3" 7 "No Request" ;
+VAL_ 658 TBOX_TrunkCloseAllowReq 0 "No Request" 1 "Request" ;
+VAL_ 1029 GW_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested" ;
+VAL_ 1029 GW_AWB 0 "Node has not woken up the network (passive wakeup)" 1 "Node has woken up the network (active Wakeup)" ;
+VAL_ 1029 GW_Wakeup_reasons 0 "Default" 1 "KL15" 2 "NM PDU received" 3 "Waked up HB CAN" 4 "Waked up by PT CAN" 5 "Waked up by CS CAN" 6 "Waked up by CF CAN" 7 "Waked up by IF CAN" ;
+VAL_ 1029 GW_NMSts 0 "Repeat Message State" 1 "Normal Operation State" ;
+

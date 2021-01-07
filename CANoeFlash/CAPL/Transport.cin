@@ -1,0 +1,416 @@
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   Transport.cin                              $                                    *
+*            $Revision: 1.3 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/02/12 11:37:44CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup Transport                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  Transport Transport
+    \ingroup   Transport
+    \brief   The Transport functional module. <br>
+*/
+
+/**************************************************************************************************/
+
+variables
+{
+  /* CAN transport layer */
+  enum TRANSPORT_STATUS
+  {
+    TP_INITIAL_STEP = 0,
+    TP_MONITOR_STEP,
+    TP_SEND_SINGLE_STEP,
+    TP_RECEIVED_SINGLE_STEP,
+    TP_SEND_FIRSTFRAME_STEP,
+    TP_RECEIVED_FIRSTFRAME_STEP,
+    TP_SEND_CONFRAME_STEP,
+    TP_RECEIVED_CONFRAME_STEP,
+    TP_SEND_FLOWFRAME_STEP,
+    TP_RECEIVED_FLOWFRAME_STEP,
+    TP_FINISHED
+  };
+  
+  enum TRANSPORT_STATUS TransportStatus = TP_INITIAL_STEP;
+  
+  msTimer TpTimeoutTimer;
+  
+  byte TpDataSend[4096];
+  byte TpDataReceived[4096];
+  word TpDataSendLen;
+  word TpDataReceivedLen;
+  word TpDataSendIndex;
+  word TpDataReceivedIndex;
+  byte TpSequenceNum;
+  byte TpSeparationTimer;
+  
+  enum TRUE_FALSE TpSendTriger;
+  enum TRUE_FALSE TpSendRequestFinishedFlag;
+  enum TRUE_FALSE TpRequestResult = FALSE;
+  
+  word N_As = 70;
+  word N_Bs = 150;
+  word N_Cs = 70;
+  word N_Ar = 70;
+  word N_Br = 70;
+  word N_Cr = 150;
+  
+  byte TpPaddingData = 0xAA;
+  byte TpBlockSize;
+  byte TpSTmin;
+}
+
+/**************************************************************************************************/
+/**
+    \brief   TpTimeoutTimer <br>
+    
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+on timer TpTimeoutTimer
+{
+  write("TpTimeoutTimer");
+  TransportStatus = TP_INITIAL_STEP;
+  MessageReceivedFlag = FALSE;
+}
+
+
+/**************************************************************************************************/
+/**
+    \brief   Transport_Task <br>
+    
+    \period  1ms
+    
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void Transport_Task()
+{
+  byte i = 0;
+  byte continueFrameSendCnt = 1;
+  
+  switch(TransportStatus)
+  {
+    case TP_INITIAL_STEP:
+    {   
+      if((TRUE == MessageReceivedFlag) || (TRUE == TpSendTriger))
+      {
+        TransportStatus = TP_MONITOR_STEP;
+      }
+      
+      break;
+    }
+    
+    case TP_MONITOR_STEP:
+    {
+      //write("TP_MONITOR_STEP");
+      if(TRUE == MessageReceivedFlag)
+      {
+        MessageReceivedFlag = FALSE;
+        if(0x00 == ((DataReceivedBuffer[0] & 0xF0) >> 4))
+        {
+          TransportStatus = TP_RECEIVED_SINGLE_STEP;
+        }
+        else if(0x01 == ((DataReceivedBuffer[0] & 0xF0) >> 4))
+        {
+          TransportStatus = TP_RECEIVED_FIRSTFRAME_STEP;
+        }
+        else
+        {
+          /* Do nothing */
+        }
+      }
+      else if(TRUE == TpSendTriger)
+      {
+        TpSendTriger = FALSE;
+        TpRequestResult = FALSE;
+        
+        if(TpDataSendLen <= 7)
+        {
+          TransportStatus = TP_SEND_SINGLE_STEP;
+        }
+        else
+        {
+          TransportStatus = TP_SEND_FIRSTFRAME_STEP;
+        }
+      }
+      break;
+    }
+    
+    case TP_SEND_SINGLE_STEP:
+    {
+      //write("TP_SEND_SINGLE_STEP");
+      
+      DataSendBuffer[0] = 0x0F & TpDataSendLen;
+      
+      for(i = 0; i < 7; i++)
+      {
+        if(TpDataSendIndex <  TpDataSendLen)
+        {
+          DataSendBuffer[i + 1] = TpDataSend[TpDataSendIndex];
+        }
+        else
+        {
+          DataSendBuffer[i + 1] = TpPaddingData;
+        }
+        TpDataSendIndex = TpDataSendIndex + 1;
+      }
+      
+      MessageSendTriger = TRUE;
+      TransportStatus = TP_FINISHED;
+      break;
+    }
+    
+    case TP_RECEIVED_SINGLE_STEP:
+    {
+      TpDataReceivedLen = (DataReceivedBuffer[0] & 0x0F);
+      for(i = 0; i < TpDataReceivedLen; i++)
+      {
+        TpDataReceived[i] = DataReceivedBuffer[1 + i];
+      }
+      TransportStatus = TP_FINISHED;
+      TpRequestResult = TRUE;
+      break;
+    }
+    
+    case TP_SEND_FIRSTFRAME_STEP:
+    {
+      //write("TP_SEND_FIRSTFRAME_STEP");
+      
+      DataSendBuffer[0] = 0x10 | (0x0F & (TpDataSendLen >> 8));
+      DataSendBuffer[1] = 0xFF & TpDataSendLen;
+      TpSequenceNum = 1;
+      
+      for(i = 0; i < 6; i++)
+      {
+        DataSendBuffer[i + 2] = TpDataSend[i];
+      }
+      TpDataSendIndex = 6;
+      
+      setTimer(TpTimeoutTimer, N_Bs);
+      MessageSendTriger = TRUE;
+      TransportStatus = TP_RECEIVED_FLOWFRAME_STEP;
+      break;
+    }
+    
+    case TP_RECEIVED_FIRSTFRAME_STEP:
+    {
+      //write("TP_RECEIVED_FIRSTFRAME_STEP");
+      
+      TpDataReceivedLen = (DataReceivedBuffer[0] & 0x0F) * 16 + DataReceivedBuffer[1];
+      TpDataReceivedIndex = 6;
+      
+      for(i = 0; i < 6; i++)
+      {
+        TpDataReceived[i] = DataReceivedBuffer[i + 2];
+      }
+      TransportStatus = TP_SEND_FLOWFRAME_STEP;
+      
+      setTimer(TpTimeoutTimer, N_Br);
+      
+      break;
+    }
+    
+    case TP_SEND_CONFRAME_STEP:
+    {
+      //write("TP_SEND_CONFRAME_STEP");
+      
+      DataSendBuffer[0] = (0x20 | (TpSequenceNum & 0x0F));
+
+      if(TpSeparationTimer >= TpSTmin)
+      {
+        if(continueFrameSendCnt <= TpBlockSize)
+        {
+          TpSeparationTimer = 0;
+          MessageSendTriger = TRUE;
+          TpSequenceNum = TpSequenceNum + 1;
+          setTimer(TpTimeoutTimer, N_Cs);
+  
+          for(i = 0; i < 7; i++)
+          {
+            if(TpDataSendIndex < TpDataSendLen)
+            {
+              DataSendBuffer[i + 1] = TpDataSend[TpDataSendIndex];
+            }
+            else
+            {
+              DataSendBuffer[i + 1] = TpPaddingData;
+            }
+            TpDataSendIndex = TpDataSendIndex + 1;
+          }
+          
+          //write("Tping CONFRAME, TpDataSendIndex %d", TpDataSendIndex);
+          if(TpDataSendIndex >= TpDataSendLen)
+          {
+            /* Sended full data */
+            TransportStatus = TP_FINISHED;
+          }
+          else
+          {
+            /* Keep sending consecutive frame */
+          }
+          continueFrameSendCnt = continueFrameSendCnt + 1;
+        }
+        else
+        {
+          /* If the received size over BlockSize, switch to TP_RECEIVED_FLOWFRAME_STEP */
+          TransportStatus = TP_RECEIVED_FLOWFRAME_STEP;
+        }
+      }
+      else
+      {
+        TpSeparationTimer = TpSeparationTimer + 1;
+      }
+      
+      break;
+    }
+    
+    case TP_RECEIVED_CONFRAME_STEP:
+    {
+      //write("TP_RECEIVED_CONFRAME_STEP");
+      
+      if(TRUE == MessageReceivedFlag)
+      {
+        MessageReceivedFlag = FALSE;
+        setTimer(TpTimeoutTimer, N_Cr);
+        
+        if(0x02 == ((DataReceivedBuffer[0] & 0xF0) >> 4))
+        {
+          for(i = 0; i < 7; i++)
+          {
+            TpDataReceived[TpDataReceivedIndex] = DataReceivedBuffer[i + 1];
+            TpDataReceivedIndex = TpDataReceivedIndex + 1;
+          }
+          if(TpDataReceivedIndex >= TpDataReceivedLen)
+          {
+            /* Received full data */
+            TransportStatus = TP_FINISHED;
+            TpRequestResult = TRUE;
+          }
+          else
+          {
+            /* Keep receiving consecutive frame */
+          }
+        }
+        else
+        {
+          TransportStatus = TP_FINISHED;
+        }
+      }
+      else
+      {
+        /* Watting for Consecutive frame */
+      }
+      break;
+    }
+    
+    case TP_SEND_FLOWFRAME_STEP:
+    {
+      DataSendBuffer[0] = 0x30;
+      DataSendBuffer[1] = 0x00;
+      DataSendBuffer[2] = 0x00;
+      DataSendBuffer[3] = TpPaddingData;
+      DataSendBuffer[4] = TpPaddingData;
+      DataSendBuffer[5] = TpPaddingData;
+      DataSendBuffer[6] = TpPaddingData;
+      DataSendBuffer[7] = TpPaddingData;
+      
+      TransportStatus = TP_RECEIVED_CONFRAME_STEP;
+      MessageSendTriger = TRUE;
+      setTimer(TpTimeoutTimer, N_Cr);
+      break;
+    }
+    
+    case TP_RECEIVED_FLOWFRAME_STEP:
+    {
+      //write("TP_RECEIVED_FLOWFRAME_STEP");
+      if(TRUE == MessageReceivedFlag)
+      {
+        MessageReceivedFlag = FALSE;
+
+        if(0x03 == ((DataReceivedBuffer[0] & 0xF0) >> 4))
+        {
+          TpBlockSize = DataReceivedBuffer[1];
+          TpSTmin = DataReceivedBuffer[2];          
+          TransportStatus = TP_SEND_CONFRAME_STEP;
+          TpSeparationTimer = 0;
+      	  if(0x00 == TpBlockSize)
+      	  {
+      	    TpBlockSize = 255;
+      	  }
+        }
+        else
+        {
+          TransportStatus = TP_FINISHED;
+        }
+        
+        continueFrameSendCnt = 1;
+      }
+      else
+      {
+        /* Waitting for Flow Control frame */
+      }
+      break;
+    }
+    
+    case TP_FINISHED:
+    {
+      /*
+      write("TpDataReceivedLen: %d", TpDataReceivedLen);
+      write("TpDataReceived[0]: %d", TpDataReceived[0]);
+      write("TpDataReceived[1]: %d", TpDataReceived[1]);
+      write("TpDataReceived[2]: %d", TpDataReceived[2]);
+      write("TpDataReceived[3]: %d", TpDataReceived[3]);
+      write("TpDataReceived[4]: %d", TpDataReceived[4]);
+      write("TpDataReceived[5]: %d", TpDataReceived[5]);
+      write("TpDataReceived[6]: %d", TpDataReceived[6]);
+      write("TpDataReceived[7]: %d", TpDataReceived[7]);
+      write("TpDataReceived[8]: %d", TpDataReceived[8]);
+      write("TpDataReceived[9]: %d", TpDataReceived[9]);
+      write("TpDataReceived[10]: %d", TpDataReceived[10]);
+      write("TpDataReceived[11]: %d", TpDataReceived[11]);
+      write("TpDataReceived[12]: %d", TpDataReceived[12]);
+      write("TpDataReceived[13]: %d", TpDataReceived[13]);
+      write("TpDataReceived[14]: %d", TpDataReceived[14]);
+      write("TpDataReceived[15]: %d", TpDataReceived[15]);
+      write("TpDataReceived[16]: %d", TpDataReceived[16]);
+      write("TpDataReceived[17]: %d", TpDataReceived[17]);
+      write("TpDataReceived[18]: %d", TpDataReceived[18]);
+      write("TpDataReceived[19]: %d", TpDataReceived[19]);
+      write("TpDataReceived[20]: %d", TpDataReceived[20]);
+      write("TpDataReceived[21]: %d", TpDataReceived[21]);
+      */
+      //write("TpRequestResult: %d", TpRequestResult);
+      
+      TpDataSendLen = 0;
+      //TpDataReceivedLen = 0;
+      TpDataSendIndex = 0;
+      TpDataReceivedIndex = 0;
+      TpSendRequestFinishedFlag = TRUE;
+      
+      TransportStatus = TP_INITIAL_STEP;
+      cancelTimer(TpTimeoutTimer);
+      break;
+    }
+  }
+}

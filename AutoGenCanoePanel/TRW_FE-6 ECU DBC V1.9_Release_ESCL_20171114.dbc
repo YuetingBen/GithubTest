@@ -1,0 +1,457 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: AC BCM ESCL GW PEPS
+
+
+BO_ 1009 IPK_TotalOdometer: 8 GW
+ SG_ IPK_IPKTotalOdometer : 7|24@0+ (0.1,0) [0|9999990] "km"  BCM,AC,ESCL,PEPS
+
+BO_ 1028 NWM_ESCL: 8 ESCL
+ SG_ ESCL_Address : 7|8@0+ (1,0) [0|127] "bit"  BCM
+ SG_ ESCL_AWB : 12|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Wakeup_reasons : 23|8@0+ (1,0) [0|255] "bit"  BCM
+ SG_ ESCL_NMSts : 24|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit32 : 32|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit33 : 33|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit34 : 34|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit36 : 36|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit37 : 37|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit38 : 38|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit39 : 39|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit40 : 40|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit41 : 41|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_Stayawake_reasons_bit42 : 42|1@0+ (1,0) [0|1] "bit"  BCM
+ SG_ ESCL_RMR : 8|1@0+ (1,0) [0|1] "bit"  BCM
+
+BO_ 133 EMS_EngineRPM: 8 GW
+ SG_ EMS_EngineSpeedRPM : 23|16@0+ (0.25,0) [0|16383.5] "RPM"  AC,ESCL,PEPS
+ SG_ EMS_EngineRPM_CheckSum : 39|8@0+ (1,0) [0|255] "bit"  BCM,ESCL
+ SG_ EMS_EngineSpeedRPMInvalid : 44|1@0+ (1,0) [0|1] "bit"  AC,ESCL,PEPS
+ SG_ EMS_EngStatus : 47|3@0+ (1,0) [0|7] "bit"  BCM,AC,ESCL,PEPS
+ SG_ EMS_EngineRPM_AliveCounter : 63|4@0+ (1,0) [0|15] "bit"  BCM,ESCL
+
+BO_ 2001 ESCL_DiagReq: 8 GW
+ SG_ ESCL_DiagReq_Byte0 : 7|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ ESCL_DiagReq_Byte1 : 15|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ ESCL_DiagReq_Byte2 : 23|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ ESCL_DiagReq_Byte3 : 31|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ ESCL_DiagReq_Byte4 : 39|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ ESCL_DiagReq_Byte5 : 47|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ ESCL_DiagReq_Byte6 : 55|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ ESCL_DiagReq_Byte7 : 63|8@0+ (1,0) [0|255] "bit"  ESCL
+
+BO_ 2009 ESCL_DiagResp: 8 ESCL
+ SG_ ESCL_DiagResp_Byte0 : 7|8@0+ (1,0) [0|255] "bit"  GW
+ SG_ ESCL_DiagResp_Byte2 : 23|8@0+ (1,0) [0|255] "bit"  GW
+ SG_ ESCL_DiagResp_Byte3 : 31|8@0+ (1,0) [0|255] "bit"  GW
+ SG_ ESCL_DiagResp_Byte4 : 39|8@0+ (1,0) [0|255] "bit"  GW
+ SG_ ESCL_DiagResp_Byte5 : 47|8@0+ (1,0) [0|255] "bit"  GW
+ SG_ ESCL_DiagResp_Byte6 : 55|8@0+ (1,0) [0|255] "bit"  GW
+ SG_ ESCL_DiagResp_Byte7 : 63|8@0+ (1,0) [0|255] "bit"  GW
+ SG_ ESCL_DiagResp_Byte1 : 15|8@0+ (1,0) [0|255] "bit"  GW
+
+BO_ 2015 Func_DiagReq: 8 GW
+ SG_ Func_DiagReq_Byte0 : 7|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+ SG_ Func_DiagReq_Byte1 : 15|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+ SG_ Func_DiagReq_Byte2 : 23|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+ SG_ Func_DiagReq_Byte3 : 31|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+ SG_ Func_DiagReq_Byte4 : 39|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+ SG_ Func_DiagReq_Byte5 : 47|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+ SG_ Func_DiagReq_Byte6 : 55|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+ SG_ Func_DiagReq_Byte7 : 63|8@0+ (1,0) [0|255] "bit"  BCM,AC,ESCL,PEPS
+
+BO_ 260 PEPS_ESCLAuth: 8 PEPS
+ SG_ PEPS_ESCLAuth_Byte0 : 7|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ PEPS_ESCLAuth_Byte1 : 15|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ PEPS_ESCLAuth_Byte2 : 23|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ PEPS_ESCLAuth_Byte3 : 31|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ PEPS_ESCLAuth_Byte4 : 39|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ PEPS_ESCLAuth_Byte5 : 47|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ PEPS_ESCLAuth_Byte6 : 55|8@0+ (1,0) [0|255] "bit"  ESCL
+ SG_ PEPS_ESCLAuth_Byte7 : 63|8@0+ (1,0) [0|255] "bit"  ESCL
+
+BO_ 261 ESCL_PEPSAuth: 8 ESCL
+ SG_ ESCL_PEPSAuth_Byte0 : 7|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_PEPSAuth_Byte2 : 23|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_PEPSAuth_Byte3 : 31|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_PEPSAuth_Byte4 : 39|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_PEPSAuth_Byte5 : 47|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_PEPSAuth_Byte6 : 55|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_PEPSAuth_Byte7 : 63|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_PEPSAuth_Byte1 : 15|8@0+ (1,0) [0|255] "bit"  PEPS
+
+BO_ 290 ESC_FrontWheelSpeedsKPH: 8 GW
+ SG_ ESC_FLWheelSpeedKPH : 7|13@0+ (0.05625,0) [0|460.6875] "KPH"  ESCL,PEPS
+ SG_ ESC_FLWheelSpeedInvalid : 8|1@0+ (1,0) [0|1] "bit"  ESCL,PEPS
+ SG_ ESC_FRWheelSpeedKPH : 23|13@0+ (0.05625,0) [0|460.6875] "KPH"  ESCL,PEPS
+ SG_ ESC_FRWheelSpeedInvalid : 24|1@0+ (1,0) [0|1] "bit"  ESCL,PEPS
+ SG_ ESC_FrontWheelSpeedsKPH_Counter : 51|4@0+ (1,0) [0|15] "bit"  ESCL,PEPS
+ SG_ ESC_FrontWheelSpeedsKPH_CheckSum : 63|8@0+ (1,0) [0|255] "bit"  ESCL,PEPS
+
+BO_ 291 ESC_RearWheelSpeedsKPH: 8 GW
+ SG_ ESC_RLWheelSpeedKPH : 7|13@0+ (0.05625,0) [0|460.6875] "KPH"  ESCL,PEPS
+ SG_ ESC_RLWheelSpeedInvalid : 8|1@0+ (1,0) [0|1] "bit"  ESCL,PEPS
+ SG_ ESC_RRWheelSpeedKPH : 23|13@0+ (0.05625,0) [0|460.6875] "KPH"  ESCL,PEPS
+ SG_ ESC_RRWheelSpeedInvalid : 24|1@0+ (1,0) [0|1] "bit"  ESCL,PEPS
+ SG_ ESC_RearWheelSpeedsKPH_Counter : 51|4@0+ (1,0) [0|15] "bit"  ESCL,PEPS
+ SG_ ESC_RearWheelSpeedsKPH_CheckSum : 63|8@0+ (1,0) [0|255] "bit"  ESCL,PEPS
+
+BO_ 482 PEPS_Message_Sts: 8 PEPS
+ SG_ PEPS_PowerModeValidity : 1|2@0+ (1,0) [0|3] "bit"  BCM,GW,AC,ESCL
+ SG_ PEPS_PowerMode : 4|3@0+ (1,0) [0|7] "bit"  BCM,GW,AC,ESCL
+ SG_ PEPS_Message_Sts_AliveCounter : 51|4@0+ (1,0) [0|15] "bit"  ESCL
+ SG_ PEPS_Message_Sts_CheckSum : 63|8@0+ (1,0) [0|255] "bit"  ESCL
+
+BO_ 633 ESCL_Message_Info: 8 ESCL
+ SG_ ESCL_SteeringLockStatus : 2|3@0+ (1,0) [0|7] "bit"  PEPS
+ SG_ ESCL_release : 11|1@0+ (1,0) [0|1] "bit"  PEPS
+ SG_ ESCL_SystemWarning : 3|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ ESCL_Learning_Status : 5|2@0+ (1,0) [0|3] "bit"  PEPS
+ SG_ ESCL_Message_Info_AliveCounter : 51|4@0+ (1,0) [0|15] "bit"  PEPS
+ SG_ ESCL_Message_Info_CheckSum : 63|8@0+ (1,0) [0|255] "bit"  PEPS
+ SG_ ESCL_Unlock_Failure_Warning : 6|1@0+ (1,0) [0|1] "bit"  GW,PEPS
+ SG_ ESCL_Lock_Failure_Warning : 7|1@0+ (1,0) [0|1] "bit"  GW
+ SG_ ESCL_BatteryVoltage_Warning : 9|2@0+ (1,0) [0|3] "bit"  GW
+
+BO_ 639 PEPS_KeyReminder: 8 PEPS
+ SG_ PEPS_RKECommand : 4|4@0+ (1,0) [0|15] "bit"  BCM,ESCL
+ SG_ PEPS_LOCK_CMD : 7|3@0+ (1,0) [0|7] "bit"  BCM,ESCL
+ SG_ PEPS_Auth_ESCL_Req : 11|1@0+ (1,0) [0|1] "bit"  ESCL
+
+BO_ 645 BCM_LDoorWindowState: 8 BCM
+ SG_ BCM_FrontLeftDoorAjarStatus : 32|1@0+ (1,0) [0|1] "bit"  GW,ESCL,PEPS
+
+
+
+CM_ " ";
+CM_ BO_ 1009 "Transmitted by IPK , including Total Odometer";
+CM_ SG_ 1009 IPK_IPKTotalOdometer "the total odometer displayed in IPK";
+CM_ BO_ 1028 "ESCL Network management Message";
+CM_ SG_ 1028 ESCL_Address "ECU Address";
+CM_ SG_ 1028 ESCL_AWB "Active Wakeup Bit";
+CM_ SG_ 1028 ESCL_NMSts "The bit is used to indicate network management state. It's only used for test.";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit32 "KL15_HW is not off";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit33 "KL15_CAN is not off";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit34 "FL Wheel speed HW is not 0";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit36 "FL wheel speed CAN signal is not 0";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit37 "FR wheel speed CAN signal is not 0";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit38 "RL wheel speed CAN signal is not 0";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit39 "RR wheel speed CAN signal is not 0";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit40 "Engine speed  is not 0";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit41 "30s Timer delay";
+CM_ SG_ 1028 ESCL_Stayawake_reasons_bit42 "Diagnosis service is in progress";
+CM_ SG_ 1028 ESCL_RMR "Repeat Message Request";
+CM_ BO_ 133 "Transmitted by EMS, including RPM and accel. padel position status";
+CM_ SG_ 133 EMS_EngineSpeedRPM "Signal from EMS/PowerTrian to indicate Engine RPM ";
+CM_ SG_ 133 EMS_EngineRPM_CheckSum "Message checksum";
+CM_ SG_ 133 EMS_EngineSpeedRPMInvalid "Invalid flag for EMS_EngineSpeedRPM";
+CM_ SG_ 133 EMS_EngStatus "Engine running status";
+CM_ SG_ 133 EMS_EngineRPM_AliveCounter "Message counter for this frame";
+CM_ BO_ 2001 "Transmitted by GW";
+CM_ BO_ 2009 "Transmitted by ESCL";
+CM_ BO_ 2015 "Transmitted by GW";
+CM_ BO_ 260 "Transmitted by PEPS, including Authentication  information";
+CM_ BO_ 261 "Transmitted by ESCL, including Authentication  code";
+CM_ BO_ 290 "Transmitted by ESC, including 4 wheel speed signals";
+CM_ SG_ 290 ESC_FLWheelSpeedKPH "Signal from ESC to indicate the front left wheel speed in kph";
+CM_ SG_ 290 ESC_FLWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 290 ESC_FRWheelSpeedKPH "Signal from ESC to indicate the front right wheel speed in kph";
+CM_ SG_ 290 ESC_FRWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 290 ESC_FrontWheelSpeedsKPH_Counter "signal couting the times of this message";
+CM_ SG_ 290 ESC_FrontWheelSpeedsKPH_CheckSum "checksum to check the data integrity";
+CM_ BO_ 291 "Transmitted by ESC, including 4 wheel speed signals";
+CM_ SG_ 291 ESC_RLWheelSpeedKPH "Signal from ESC to indicate the rear left wheel speed in kph";
+CM_ SG_ 291 ESC_RLWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 291 ESC_RRWheelSpeedKPH "Signal from ESC to indicate the rear right wheel speed in kph";
+CM_ SG_ 291 ESC_RRWheelSpeedInvalid "signal to identify if the wheel speed value valid";
+CM_ SG_ 291 ESC_RearWheelSpeedsKPH_Counter "signal couting the times of this message";
+CM_ SG_ 291 ESC_RearWheelSpeedsKPH_CheckSum "checksum to check the data integrity";
+CM_ BO_ 482 "Transmitted by PEPS , including PEPS singals";
+CM_ SG_ 482 PEPS_PowerModeValidity "PEPS Power Distribution StatusValidity bit";
+CM_ SG_ 482 PEPS_PowerMode "PEPS Power Distribution Status";
+CM_ SG_ 482 PEPS_Message_Sts_AliveCounter "message alive counter";
+CM_ SG_ 482 PEPS_Message_Sts_CheckSum "message checksum";
+CM_ BO_ 633 "Transmitted by ESCL , including ESCL singals";
+CM_ SG_ 633 ESCL_SteeringLockStatus "ESCL steering lock status
+0x0: Unlock   The state of ESCL is unlock
+0x1: Lock      The state of ESCL is lock
+0x2: Fault      The lock-tongue is not in right interval for lock
+0x3: Invalid    The lock-tongue is in right interval, but not in right position for lock
+0x4::Running ESCL is locking or unlocking";
+CM_ SG_ 633 ESCL_release "Auth successed or failed";
+CM_ SG_ 633 ESCL_SystemWarning "Major issuse exists on ESCL ";
+CM_ SG_ 633 ESCL_Learning_Status "ESCL system learning status";
+CM_ SG_ 633 ESCL_Message_Info_AliveCounter "message alive counter";
+CM_ SG_ 633 ESCL_Message_Info_CheckSum "message checksum";
+CM_ SG_ 633 ESCL_Unlock_Failure_Warning "ESCL unlock failure warning";
+CM_ SG_ 633 ESCL_Lock_Failure_Warning "ESCL lock failure warning";
+CM_ SG_ 633 ESCL_BatteryVoltage_Warning "Battery voltage warning";
+CM_ BO_ 639 "Transmitted by PEPS";
+CM_ SG_ 639 PEPS_RKECommand "PEPS Remote Key Command";
+CM_ SG_ 639 PEPS_LOCK_CMD "PEPS Lock and unlock Command";
+CM_ SG_ 639 PEPS_Auth_ESCL_Req "The auth request from PEPS to ESCL";
+CM_ BO_ 645 "Transmitted by BCM, including Left Window Status Message";
+CM_ SG_ 645 BCM_FrontLeftDoorAjarStatus "Signal from BCM to indicate the ajar/close status of driver door";
+BA_DEF_ BU_  "NmAsrCAN" INT 0 127;
+BA_DEF_ SG_  "GenSigTimeoutTime" INT 0 1000000000;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 0;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cycle","OnChange","OnWrite","IfActive","OnChangeWithRepetition","OnWriteWithRepetition","IfActiveWithRepetition";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTimeActive" INT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 40;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 65535;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 65535;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cycle","NoSendType","IfActive";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "No","Yes";
+BA_DEF_ BU_  "DiagStationAddress" HEX 0 255;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "NmAsrNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "ILTxTimeout" INT 0 5000;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "NmAsrMessageCount" INT 1 256;
+BA_DEF_  "NmAsrBaseAddress" HEX 0 2047;
+BA_DEF_  "NmAsrTimeoutTime" INT 1 65535;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 0 65535;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 0 65535;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 1 65535;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v3_0" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_3" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v3_1" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_2" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_1" INT 0 0;
+BA_DEF_REL_ BU_SG_REL_  "GenMsgTimeoutTime" INT 0 9999;
+BA_DEF_DEF_  "NmAsrCAN" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cycle";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgCycleTimeActive" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 20;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 40;
+BA_DEF_DEF_  "GenMsgSendType" "Cycle";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "NmAsrMessage" "No";
+BA_DEF_DEF_  "DiagStationAddress" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "NodeLayerModules" "CANoeILNLVector.dll";
+BA_DEF_DEF_  "NmAsrNode" "Yes";
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 0;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "ILTxTimeout" 50;
+BA_DEF_DEF_  "Manufacturer" "Geely";
+BA_DEF_DEF_  "NmAsrMessageCount" 128;
+BA_DEF_DEF_  "NmAsrBaseAddress" 1024;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 2000;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 2000;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 1600;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 500;
+BA_DEF_DEF_  "NmType" "NmAsr";
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v3_0" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_3" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v3_1" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_2" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_1" 0;
+BA_DEF_DEF_REL_ "GenMsgTimeoutTime" 500;
+BA_ "DBName" "ComfortCAN";
+BA_ "NmAsrCAN" BU_ ESCL 4;
+BA_ "NmAsrNodeIdentifier" BU_ ESCL 4;
+BA_ "GenMsgSendType" BO_ 1009 2;
+BA_ "GenMsgCycleTime" BO_ 1009 1000;
+BA_ "NmAsrMessage" BO_ 1028 1;
+BA_ "GenMsgCycleTime" BO_ 133 10;
+BA_ "GenMsgSendType" BO_ 133 2;
+BA_ "GenMsgSendType" BO_ 2001 1;
+BA_ "DiagRequest" BO_ 2001 1;
+BA_ "GenMsgSendType" BO_ 2009 1;
+BA_ "DiagResponse" BO_ 2009 1;
+BA_ "DiagState" BO_ 2009 1;
+BA_ "GenMsgSendType" BO_ 2015 1;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgSendType" BO_ 260 1;
+BA_ "GenMsgCycleTime" BO_ 261 0;
+BA_ "GenMsgSendType" BO_ 261 1;
+BA_ "GenMsgSendType" BO_ 290 2;
+BA_ "GenMsgCycleTime" BO_ 290 20;
+BA_ "GenMsgCycleTime" BO_ 291 20;
+BA_ "GenMsgSendType" BO_ 291 2;
+BA_ "GenMsgCycleTime" BO_ 482 20;
+BA_ "GenMsgCycleTime" BO_ 633 100;
+BA_ "GenMsgSendType" BO_ 639 2;
+BA_ "GenMsgNrOfRepetition" BO_ 639 3;
+BA_ "GenMsgCycleTime" BO_ 645 100;
+BA_ "GenSigTimeoutTime" SG_ 1009 IPK_IPKTotalOdometer 5000;
+BA_ "GenSigSendType" SG_ 1009 IPK_IPKTotalOdometer 3;
+BA_ "GenSigTimeoutTime" SG_ 133 EMS_EngineSpeedRPM 250;
+BA_ "GenSigTimeoutTime" SG_ 133 EMS_EngineRPM_CheckSum 250;
+BA_ "GenSigTimeoutTime" SG_ 133 EMS_EngineSpeedRPMInvalid 250;
+BA_ "GenSigTimeoutTime" SG_ 133 EMS_EngStatus 250;
+BA_ "GenSigTimeoutTime" SG_ 133 EMS_EngineRPM_AliveCounter 250;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte0 3;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte2 3;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte3 3;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte4 3;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte5 3;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte6 3;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte7 3;
+BA_ "GenSigSendType" SG_ 261 ESCL_PEPSAuth_Byte1 3;
+BA_ "GenSigTimeoutTime" SG_ 290 ESC_FLWheelSpeedKPH 250;
+BA_ "GenSigSendType" SG_ 290 ESC_FLWheelSpeedKPH 3;
+BA_ "GenSigTimeoutTime" SG_ 290 ESC_FLWheelSpeedInvalid 250;
+BA_ "GenSigSendType" SG_ 290 ESC_FLWheelSpeedInvalid 3;
+BA_ "GenSigStartValue" SG_ 290 ESC_FLWheelSpeedInvalid 1;
+BA_ "GenSigTimeoutTime" SG_ 290 ESC_FRWheelSpeedKPH 250;
+BA_ "GenSigSendType" SG_ 290 ESC_FRWheelSpeedKPH 3;
+BA_ "GenSigTimeoutTime" SG_ 290 ESC_FRWheelSpeedInvalid 250;
+BA_ "GenSigSendType" SG_ 290 ESC_FRWheelSpeedInvalid 3;
+BA_ "GenSigStartValue" SG_ 290 ESC_FRWheelSpeedInvalid 1;
+BA_ "GenSigTimeoutTime" SG_ 290 ESC_FrontWheelSpeedsKPH_Counter 250;
+BA_ "GenSigSendType" SG_ 290 ESC_FrontWheelSpeedsKPH_Counter 3;
+BA_ "GenSigTimeoutTime" SG_ 290 ESC_FrontWheelSpeedsKPH_CheckSum 250;
+BA_ "GenSigSendType" SG_ 290 ESC_FrontWheelSpeedsKPH_CheckSum 3;
+BA_ "GenSigSendType" SG_ 291 ESC_RLWheelSpeedKPH 3;
+BA_ "GenSigTimeoutTime" SG_ 291 ESC_RLWheelSpeedKPH 250;
+BA_ "GenSigSendType" SG_ 291 ESC_RLWheelSpeedInvalid 3;
+BA_ "GenSigTimeoutTime" SG_ 291 ESC_RLWheelSpeedInvalid 250;
+BA_ "GenSigStartValue" SG_ 291 ESC_RLWheelSpeedInvalid 1;
+BA_ "GenSigSendType" SG_ 291 ESC_RRWheelSpeedKPH 3;
+BA_ "GenSigTimeoutTime" SG_ 291 ESC_RRWheelSpeedKPH 250;
+BA_ "GenSigSendType" SG_ 291 ESC_RRWheelSpeedInvalid 3;
+BA_ "GenSigTimeoutTime" SG_ 291 ESC_RRWheelSpeedInvalid 250;
+BA_ "GenSigStartValue" SG_ 291 ESC_RRWheelSpeedInvalid 1;
+BA_ "GenSigSendType" SG_ 291 ESC_RearWheelSpeedsKPH_Counter 3;
+BA_ "GenSigTimeoutTime" SG_ 291 ESC_RearWheelSpeedsKPH_Counter 250;
+BA_ "GenSigSendType" SG_ 291 ESC_RearWheelSpeedsKPH_CheckSum 3;
+BA_ "GenSigTimeoutTime" SG_ 291 ESC_RearWheelSpeedsKPH_CheckSum 250;
+BA_ "GenSigTimeoutTime" SG_ 482 PEPS_PowerModeValidity 250;
+BA_ "GenSigTimeoutTime" SG_ 482 PEPS_PowerMode 250;
+BA_ "GenSigTimeoutTime" SG_ 482 PEPS_Message_Sts_AliveCounter 250;
+BA_ "GenSigTimeoutTime" SG_ 482 PEPS_Message_Sts_CheckSum 250;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_SteeringLockStatus 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_release 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_SystemWarning 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_Learning_Status 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_Message_Info_AliveCounter 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_Message_Info_CheckSum 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_Unlock_Failure_Warning 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_Lock_Failure_Warning 500;
+BA_ "GenSigTimeoutTime" SG_ 633 ESCL_BatteryVoltage_Warning 500;
+BA_ "GenSigTimeoutTime" SG_ 639 PEPS_RKECommand 40;
+BA_ "GenSigSendType" SG_ 639 PEPS_RKECommand 5;
+BA_ "GenSigTimeoutTime" SG_ 639 PEPS_LOCK_CMD 40;
+BA_ "GenSigSendType" SG_ 639 PEPS_LOCK_CMD 5;
+BA_ "GenSigTimeoutTime" SG_ 639 PEPS_Auth_ESCL_Req 40;
+BA_ "GenSigSendType" SG_ 639 PEPS_Auth_ESCL_Req 5;
+BA_ "GenSigTimeoutTime" SG_ 645 BCM_FrontLeftDoorAjarStatus 500;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 1009 IPK_IPKTotalOdometer 5000;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 133 EMS_EngineSpeedRPM 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 133 EMS_EngineRPM_CheckSum 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 133 EMS_EngineSpeedRPMInvalid 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 133 EMS_EngStatus 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 133 EMS_EngineRPM_AliveCounter 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 290 ESC_FLWheelSpeedKPH 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 290 ESC_FLWheelSpeedInvalid 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 290 ESC_FRWheelSpeedKPH 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 290 ESC_FRWheelSpeedInvalid 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 290 ESC_FrontWheelSpeedsKPH_Counter 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 290 ESC_FrontWheelSpeedsKPH_CheckSum 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 291 ESC_RLWheelSpeedKPH 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 291 ESC_RLWheelSpeedInvalid 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 291 ESC_RRWheelSpeedKPH 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 291 ESC_RRWheelSpeedInvalid 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 291 ESC_RearWheelSpeedsKPH_Counter 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 291 ESC_RearWheelSpeedsKPH_CheckSum 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 482 PEPS_PowerModeValidity 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 482 PEPS_PowerMode 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 482 PEPS_Message_Sts_AliveCounter 250;
+BA_REL_ "GenMsgTimeoutTime" BU_SG_REL_ ESCL SG_ 482 PEPS_Message_Sts_CheckSum 250;
+VAL_ 1009 IPK_IPKTotalOdometer 16777215 "Invalid" ;
+VAL_ 1028 ESCL_AWB 1 "Node has woken up the network (active Wakeup)" 0 "Node has not woken up the network (passive wakeup)" ;
+VAL_ 1028 ESCL_Wakeup_reasons 2 "KL15 ON" 1 "CAN bus activaty" 0 "Default" ;
+VAL_ 1028 ESCL_NMSts 1 "Normal Operation State" 0 "Repeat Message State" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit32 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit33 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit34 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit36 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit37 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit38 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit39 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit40 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit41 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_Stayawake_reasons_bit42 1 "Active" 0 "Inactive" ;
+VAL_ 1028 ESCL_RMR 1 "Repeat Message State requested" 0 "Repeat Message State not requested" ;
+VAL_ 133 EMS_EngineSpeedRPM 65534 "Abnormal" 65535 "Invalid" ;
+VAL_ 133 EMS_EngineSpeedRPMInvalid 1 "Invalid" 0 "Valid" ;
+VAL_ 133 EMS_EngStatus 7 "Invalid" 6 "Abnormal" 5 "Reserved" 4 "Reserved" 3 "Running" 2 "Reserved" 1 "Cranking" 0 "Engine Stop" ;
+VAL_ 290 ESC_FLWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 290 ESC_FLWheelSpeedInvalid 1 "Invalid" 0 "Valid" ;
+VAL_ 290 ESC_FRWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 290 ESC_FRWheelSpeedInvalid 1 "Invalid" 0 "Valid" ;
+VAL_ 291 ESC_RLWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 291 ESC_RLWheelSpeedInvalid 1 "Invalid" 0 "Valid" ;
+VAL_ 291 ESC_RRWheelSpeedKPH 8191 "Invalid" ;
+VAL_ 291 ESC_RRWheelSpeedInvalid 1 "Invalid" 0 "Valid" ;
+VAL_ 482 PEPS_PowerModeValidity 3 "Reserved" 2 "Valid" 1 "Invalid" 0 "Not available" ;
+VAL_ 482 PEPS_PowerMode 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "START" 3 "Reserved" 2 "ON" 1 "ACC" 0 "OFF" ;
+VAL_ 633 ESCL_SteeringLockStatus 4 "Running" 3 "Invalid" 2 "Fault" 1 "Lock" 0 "Unlock" ;
+VAL_ 633 ESCL_release 1 "Successed" 0 "Failed" ;
+VAL_ 633 ESCL_SystemWarning 1 "Warning" 0 "No warning" ;
+VAL_ 633 ESCL_Learning_Status 3 "ESK earased" 2 "Learnt" 1 "Virgin" 0 "Default" ;
+VAL_ 633 ESCL_Unlock_Failure_Warning 1 "Warning" 0 "No warning" ;
+VAL_ 633 ESCL_Lock_Failure_Warning 1 "Warning" 0 "No warning" ;
+VAL_ 633 ESCL_BatteryVoltage_Warning 3 "Reserved" 2 "Over voltage (>16V)" 1 "Low voltage (<9V)" 0 "No warning" ;
+VAL_ 639 PEPS_RKECommand 15 "Reserved" 14 "Reserved" 13 "Reserved" 12 "Sunroof open" 11 "Sunroof close" 10 "Window ventilate" 9 "Vehicle search" 8 "Silent/Sound shift BCM" 7 "Global action stop！window move stop (Reserved)" 6 "Global opening ！window down" 5 "Global closing ！window up" 4 "Trunk unlock" 3 "All door unlock" 2 "Reserved" 1 "All door lock" 0 "No command" ;
+VAL_ 639 PEPS_LOCK_CMD 7 "Reserved" 6 "Reserved" 5 "Global closing ！window up" 4 "Trunk unlock" 3 "All door unlock" 2 "Reserved" 1 "All door lock" 0 "No command" ;
+VAL_ 639 PEPS_Auth_ESCL_Req 1 "Request" 0 "No Request" ;
+VAL_ 645 BCM_FrontLeftDoorAjarStatus 1 "DoorAjar" 0 "DoorClosed" ;
+

@@ -1,0 +1,2140 @@
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   UdsApplication.cin                              $                                    *
+*            $Revision: 1.4 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/03/12 13:12:03CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup UdsApplication                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  UdsApplication UdsApplication
+    \ingroup   UdsApplication
+    \brief   The UdsApplication functional module. <br>
+*/
+
+/**************************************************************************************************/
+variables
+{
+  msTimer P2CANClientTimer;
+  
+  word P2CAN_Client = 150;
+  word P2CAN_ClientExtend = 5000;
+  word S3Client = 4000;
+  
+  enum TRUE_FALSE P2TimeoutFlag;
+  msTimer TesterPresent;
+
+  
+	enum SERVICESTATUS
+	{
+		SRVICE_INIT = 0,
+		SENDING_REQ,
+		SENDING_FINISHED,
+		WATTTING_RESP,
+		POS_RESP,
+		NEG_RESP,
+		NO_RESP,
+		SRVICE_FINISHED
+	};
+
+	enum ADDRESSEDTYPE
+	{
+		PHY_ADDRESSED= 0,
+		FUN_ADDRESSED
+	};
+  
+  enum SESSION
+  {
+    ISOSAERESERVED = 0,
+    DEFAULT_SESSION,
+    PROGRAMMING_SESSION,
+    EXTENDED_SESSION
+  };
+
+  enum RESETCMD
+  {
+    HARDR_ESTE = 1,
+    KEYOFFON_RESET,
+    SOFTWARE_SESSION
+  };
+
+  enum CONTROL_DTC_SETTING
+  {
+    DTC_ENABLE = 0x01,
+    DTC_DISABLE= 0x02
+  };
+
+  enum SECURITYTYPE
+  {
+    OEM_SECURITY = 0x01,
+    FLASH_SECURITY = 0x11,
+    SAIC_FLASH_SECURITY = 0x05,
+    SUPPLIER_SECURITY = 0x61
+  };
+
+	enum ROUTINETYPE
+	{
+		SARTROUTINE = 0x01,
+		STOPOUTINE = 0x03
+	};
+
+	enum CRCTYPE
+	{
+		CRCNOREQUEST = 0x00,
+		CRCREQUEST = 0x01
+	};
+	
+  /* Diagnostic and communication management functional unit */
+  enum TRUE_FALSE DiagnosticSessionControl_10_Triger = FALSE;
+  enum TRUE_FALSE ECUReset_11_Triger = FALSE;
+  enum TRUE_FALSE SecurityAccess_27_Seed_Triger = FALSE;
+  enum TRUE_FALSE SecurityAccess_27_Key_Triger = FALSE;
+  enum TRUE_FALSE CommunicationControl_28_Triger = FALSE;
+	enum TRUE_FALSE TesterPresent_3E_Triger = FALSE;
+	enum TRUE_FALSE AccessTimingParameter_83_Triger = FALSE;
+	enum TRUE_FALSE SecuredDataTransmission_84_Triger = FALSE;
+	enum TRUE_FALSE ControlDTCSetting_85_Triger = FALSE;
+	enum TRUE_FALSE ResponseOnEvent_86_Triger = FALSE;
+	enum TRUE_FALSE LinkControl_87_Triger = FALSE;
+	/* Data transmission functional unit */
+	enum TRUE_FALSE ReadDataByIdentifier_22_Triger = FALSE;
+	enum TRUE_FALSE ReadMemoryByAddress_23_Triger = FALSE;
+  enum TRUE_FALSE ReadScalingDataByIdentifier_24_Triger = FALSE;
+  enum TRUE_FALSE ReadDataByPeriodicIdentifier_2A_Triger = FALSE;
+  enum TRUE_FALSE DynamicallyDefineDataIdentifier_2C_Triger = FALSE;
+  enum TRUE_FALSE WriteDataByIdentifier_2E_Triger = FALSE;
+  enum TRUE_FALSE WriteMemoryByAddress_3D_Triger = FALSE;
+  /* Stored data transmission functional unit */
+  enum TRUE_FALSE ClearDiagnosticInformation_14_Triger = FALSE;
+  enum TRUE_FALSE ReadDTCInformation_19_01_Triger = FALSE;
+  enum TRUE_FALSE ReadDTCInformation_19_02_Triger = FALSE;
+  enum TRUE_FALSE ReadDTCInformation_19_04_Triger = FALSE;
+  enum TRUE_FALSE ReadDTCInformation_19_06_Triger = FALSE;
+  enum TRUE_FALSE ReadDTCInformation_19_0A_Triger = FALSE;
+
+  /* InputOutput control functional unit */
+  enum TRUE_FALSE InputOutputControlByIdentifier_2F_Triger = FALSE;
+  /* Remote activation of routine functional unit */
+  enum TRUE_FALSE RoutineControl_31_Triger = FALSE;
+  /* Upload download functional unit */
+  enum TRUE_FALSE RequestDownload_34_Triger = FALSE;
+  enum TRUE_FALSE RequestUpload_35_Triger = FALSE;
+  enum TRUE_FALSE TransferData_36_Triger = FALSE;
+  enum TRUE_FALSE RequestTransferExit_37_Triger = FALSE;
+
+	enum SESSION SessionControl_Value;
+	enum RESETCMD Reset_Value;
+	enum CONTROL_DTC_SETTING Dtc_Control_Value;
+	enum SECURITYTYPE Security_Value;
+
+  enum ADDRESSEDTYPE AddressedType;
+	enum IFENABLED TesterPresent_3E_RespEnable = DISABLED;
+	enum IFENABLED TesterPresent_3E_Disappear = DISABLED;
+	enum IFENABLED TesterPresent_3E_Enable = DISABLED;
+
+  /* DTC mask default value = 0x09, Mask_TestFailed & Mask_ConfirmedDTC */
+  byte DtcMask = 0x09;
+  
+  dword DtcNumber;
+  enum IFENABLED  DtcSnapshotEnable = DISABLED;
+  enum IFENABLED  DtcExtendedDatatEnable = DISABLED;
+
+  
+	byte PidDataArray[30];
+	byte PidDataLen;
+	byte RoutineControlDataArray[30];
+	byte RoutineControlDataLen;
+	enum ROUTINETYPE RoutineControlType;
+
+	dword RequestDownloadMemoryAddress;
+	dword RequestDownloadMemorySize;
+  dword TransferDataAllowedLen; /* Received from $34 positive response */
+
+	byte BlockSequenceCounter = 0;
+	byte TransferDataArray[4096];
+	dword TransferDataArrayIndex;
+	dword TransferDataLen;
+
+  /* RequestTransferExit (37 hex) service */
+	enum CRCTYPE RequestCrcType = CRCNOREQUEST;
+
+  byte TargetReflashDataArrray[131072];
+  dword TargetDataLength = 0;
+
+  enum TRUE_FALSE SendNextStepEnable = FALSE;
+}
+
+/* UDS application function */
+on timer P2CANClientTimer
+{	
+	write("P2CANClientTimer");
+	P2TimeoutFlag = TRUE;
+}
+
+on timer TesterPresent
+{
+	if(ENABLED == TesterPresent_3E_Enable && FALSE == ReflashTaskEnable)
+	{
+		TesterPresent_3E_Triger = TRUE;
+	}
+	else
+	{
+		TesterPresent_3E_Triger = FALSE;
+	}
+	setTimer(TesterPresent, S3Client);
+}
+
+void Uds_App_Task()
+{
+	enum SERVICESTATUS temp;
+	/* Diagnostic and communication management functional unit */
+	if(TRUE == DiagnosticSessionControl_10_Triger)
+	{
+		temp = DiagnosticSessionControl_10(SessionControl_Value);
+		if(temp == SRVICE_INIT)
+		{
+			DiagnosticSessionControl_10_Triger = FALSE;
+		}
+	}
+
+	if(TRUE == ECUReset_11_Triger)
+	{
+		temp = ECUReset_11(Reset_Value);
+		if(temp == SRVICE_INIT)
+		{
+			ECUReset_11_Triger = FALSE;
+		}
+	}
+
+	if(TRUE == SecurityAccess_27_Seed_Triger)
+	{
+		temp = SecurityAccess_27_Seed(Security_Value);
+		if(temp == SRVICE_INIT)
+		{
+			SecurityAccess_27_Seed_Triger = FALSE;
+		}
+	}
+
+	if(TRUE == SecurityAccess_27_Key_Triger)
+	{
+		temp = SecurityAccess_27_Key(Security_Value);
+		if(temp == SRVICE_INIT)
+		{
+			SecurityAccess_27_Key_Triger = FALSE;
+		}
+	}
+
+	if(TRUE == TesterPresent_3E_Triger)
+	{
+		temp = TesterPresent_3E(TesterPresent_3E_RespEnable);
+		if(temp == SRVICE_INIT)
+		{
+			TesterPresent_3E_Triger = FALSE;
+		}
+	}
+
+	if(TRUE == ControlDTCSetting_85_Triger)
+	{
+		temp = ControlDTCSetting_85(Dtc_Control_Value);
+		if(temp == SRVICE_INIT)
+		{
+			ControlDTCSetting_85_Triger = FALSE;
+		}
+	}
+
+	/* Data transmission functional unit */
+	if(TRUE == ReadDataByIdentifier_22_Triger)
+	{
+		temp = ReadDataByIdentifier_22(PidDataArray, PidDataLen);
+		if(temp == SRVICE_INIT)
+		{
+			ReadDataByIdentifier_22_Triger = FALSE;
+		}
+	}
+	
+	if(TRUE == WriteDataByIdentifier_2E_Triger)
+	{
+		temp = WriteDataByIdentifier_2E(PidDataArray, PidDataLen);
+		if(temp == SRVICE_INIT)
+		{
+			WriteDataByIdentifier_2E_Triger = FALSE;
+		}
+	}
+
+	/* Stored data transmission functional unit */
+	if(TRUE == ReadDTCInformation_19_01_Triger)
+	{
+		temp = DTC_reportNumberOfDTCByStatusMask_19_01();
+		if(temp == SRVICE_INIT)
+		{
+			ReadDTCInformation_19_01_Triger = FALSE;
+		}
+	}
+	
+	if(TRUE == ReadDTCInformation_19_02_Triger)
+	{
+		temp = DTC_reportDTCByStatusMask_19_02(DtcMask);
+		if(temp == SRVICE_INIT)
+		{
+			ReadDTCInformation_19_02_Triger = FALSE;
+		}
+	}
+	
+	if(TRUE == ReadDTCInformation_19_04_Triger)
+	{
+		temp = DTC_reportDTCSnapshotRecordByDTCNumber_19_04(DtcNumber);
+		if(temp == SRVICE_INIT)
+		{
+			ReadDTCInformation_19_04_Triger = FALSE;
+		}
+	}
+	
+	if(TRUE == ReadDTCInformation_19_06_Triger)
+	{
+		temp = DTC_reportDTCExtendedDataRecordByDTCNumber_19_06(DtcNumber);
+		if(temp == SRVICE_INIT)
+		{
+			ReadDTCInformation_19_06_Triger = FALSE;
+		}
+	}
+	
+	if(TRUE == ReadDTCInformation_19_0A_Triger)
+	{
+		temp = DTC_reportSupportedDTC_19_0A();
+		if(temp == SRVICE_INIT)
+		{
+			ReadDTCInformation_19_0A_Triger = FALSE;
+		}
+	}
+
+	/* InputOutput control functional unit */
+
+	/* Remote activation of routine functional unit */
+	if(TRUE == RoutineControl_31_Triger)
+	{
+		temp = RoutineControl_31(RoutineControlType, RoutineControlDataArray, RoutineControlDataLen);
+		if(temp == SRVICE_INIT)
+		{
+			RoutineControl_31_Triger = FALSE;
+		}
+	}
+  
+	/* Upload download functional unit */
+	if(TRUE == RequestDownload_34_Triger)
+	{
+		temp = RequestDownload_34(RequestDownloadMemoryAddress, RequestDownloadMemorySize);
+		if(temp == SRVICE_INIT)
+		{
+			RequestDownload_34_Triger = FALSE;
+		}
+	}
+
+	if(TRUE == TransferData_36_Triger)
+	{
+		temp = TransferData_36();
+		if(temp == SRVICE_INIT)
+		{
+			TransferData_36_Triger = FALSE;
+		}
+	}
+
+	if(TRUE == RequestTransferExit_37_Triger)
+	{
+		temp = RequestTransferExit_37(RequestCrcType);
+		if(temp == SRVICE_INIT)
+		{
+			RequestTransferExit_37_Triger = FALSE;
+		}
+	}
+	
+	if(POS_RESP == temp)
+	{
+		SendNextStepEnable = TRUE;
+	}
+}
+
+/* Diagnostic and communication control functional unit */
+enum SERVICESTATUS DiagnosticSessionControl_10(enum SESSION session)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x10;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = (byte)session;
+
+			TpDataSendLen = 2;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS ECUReset_11(enum RESETCMD resetCmd)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x11;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = (byte)resetCmd;
+
+			TpDataSendLen = 2;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS SecurityAccess_27_Seed(enum SECURITYTYPE securityType)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x27;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = (byte)securityType;
+
+			TpDataSendLen = 2;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			seedArray[0] = TpDataReceived[2];
+			seedArray[1] = TpDataReceived[3];
+			seedArray[2] = TpDataReceived[4];
+			seedArray[3] = TpDataReceived[5];
+
+			security_access_calc(securityType);
+			
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS SecurityAccess_27_Key(enum SECURITYTYPE securityType)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x27;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = (byte)securityType + 1;
+			
+			TpDataSend[2] = returnKey[0];
+			TpDataSend[3] = returnKey[1];
+			TpDataSend[4] = returnKey[2];
+			TpDataSend[5] = returnKey[3];
+
+			TpDataSendLen = 6;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS CommunicationControl_28()
+{return(SRVICE_FINISHED);}
+
+enum SERVICESTATUS TesterPresent_3E(enum IFENABLED respEnabled)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x3E;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			if(ENABLED == respEnabled)
+			{
+				TpDataSend[1] = 0x00;
+				serviceStatus = SENDING_FINISHED;
+			}
+			else
+			{
+				/* Disable response */
+				TpDataSend[1] = 0x00 | 0x80;
+				serviceStatus = SRVICE_FINISHED;
+			}
+
+			TpDataSendLen = 2;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS SecuredDataTransmission_84()
+{return(SRVICE_FINISHED);}
+
+enum SERVICESTATUS ControlDTCSetting_85(enum CONTROL_DTC_SETTING Cmd)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x85;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = (byte)Cmd;
+
+			TpDataSendLen = 2;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+void ResponseOnEvent_86()
+{}
+
+void LinkControl_87()
+{}
+
+/* Data transmission functional unit */
+enum SERVICESTATUS ReadDataByIdentifier_22(byte dataArray[], byte dataLen)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x22;
+	byte i;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			for(i = 0; i < dataLen; i++)
+			{
+				TpDataSend[i + 1] = dataArray[i];
+			}
+
+			TpDataSendLen = dataLen + 1;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+void ReadMemoryByAddress_23()
+{}
+
+void ReadScalingDataByIdentifier_24()
+{}
+
+void ReadDataByPeriodicIdentifier_2A()
+{}
+
+void DynamicallyDefineDataIdentifier_2C()
+{}
+
+enum SERVICESTATUS WriteDataByIdentifier_2E(byte dataArray[], byte dataLen)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x2E;
+	byte i;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			for(i = 0; i < dataLen; i++)
+			{
+				TpDataSend[i + 1] = dataArray[i];
+			}
+
+			TpDataSendLen = dataLen + 1;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+void WriteMemoryByAddress_3D()
+{}
+
+/* Stored data transmission functional unit */
+/* ReadDTCInformation */
+enum SERVICESTATUS DTC_reportNumberOfDTCByStatusMask_19_01()
+{return(SRVICE_FINISHED);}
+
+enum SERVICESTATUS DTC_reportDTCByStatusMask_19_02(byte mask)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x19;
+	byte subServiceID = 0x02;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = subServiceID;
+			TpDataSend[2] = mask;
+
+			TpDataSendLen = 3;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS DTC_reportDTCSnapshotRecordByDTCNumber_19_04(dword dtcNumber)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x19;
+	byte subServiceID = 0x04;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = subServiceID;
+			TpDataSend[2] = (byte)(dtcNumber >> 16);
+			TpDataSend[3] = (byte)(dtcNumber >> 8);
+			TpDataSend[4] = (byte)dtcNumber ;
+			TpDataSend[5] = 0xFF;
+
+			TpDataSendLen = 6;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS DTC_reportDTCExtendedDataRecordByDTCNumber_19_06(dword dtcNumber)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x19;
+	byte subServiceID = 0x06;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = subServiceID;
+			TpDataSend[2] = (byte)(dtcNumber >> 16);
+			TpDataSend[3] = (byte)(dtcNumber >> 8);
+			TpDataSend[4] = (byte)dtcNumber ;
+			TpDataSend[5] = 0xFF;
+
+			TpDataSendLen = 6;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS DTC_reportSupportedDTC_19_0A()
+{return(SRVICE_FINISHED);}
+
+enum SERVICESTATUS ClearDiagnosticInformation_14()
+{return(SRVICE_FINISHED);}
+
+/* Input/Output control functional unit */
+enum SERVICESTATUS InputOutputControlByIdentifier_2F()
+{return(SRVICE_FINISHED);}
+
+/* Remote activation of routine functional unit */
+enum SERVICESTATUS RoutineControl_31(enum ROUTINETYPE controlType, byte dataArray[], byte dataLen)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x31;
+	byte i;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = (byte)controlType;
+			
+			for(i = 0; i < dataLen; i++)
+			{
+				TpDataSend[i + 2] = dataArray[i];
+			}
+
+			TpDataSendLen = dataLen + 2;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+/* Upload/Download functional unit */
+enum SERVICESTATUS RequestDownload_34(dword memoryAddress, dword memorySize)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x34;
+	
+	byte temp_length;
+	byte i;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = 0x00; /* dataFormatIdentifier */
+			TpDataSend[2] = 0x44; /* addressAndLengthFormatIdentifier */
+			/* memoryAddress[] */
+			TpDataSend[3] = (byte)(memoryAddress >> 24);
+			TpDataSend[4] = (byte)(memoryAddress >> 16);
+			TpDataSend[5] = (byte)(memoryAddress >> 8);
+			TpDataSend[6] = (byte)(memoryAddress);
+			/* memorySize[] */
+			TpDataSend[7] = (byte)(memorySize >> 24);
+			TpDataSend[8] = (byte)(memorySize >> 16);
+			TpDataSend[9] = (byte)(memorySize >> 8);
+			TpDataSend[10] = (byte)(memorySize);
+
+			TpDataSendLen = 11;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			temp_length = (byte)((TpDataReceived[1] & 0xF0) >> 4);
+			TransferDataAllowedLen = 0;
+			for(i = 0; i < temp_length; i++)
+			{
+				TransferDataAllowedLen |= (TpDataReceived[2 + i] << (8 * (temp_length - i -1)));
+				//TransferDataAllowedLen = 0x82;
+			}
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+void RequestUpload_35()
+{}
+
+enum SERVICESTATUS TransferData_36()
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x36;
+	word i;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{	
+			TransferDataArrayIndex = 0;
+			if((TransferDataAllowedLen -2) <= TargetDataLength)
+			{
+				TransferDataLen = TransferDataAllowedLen;
+			}
+			else
+			{
+				TransferDataLen = TargetDataLength + 2;
+			}
+
+			for(i = 0; i < (TransferDataLen - 2); i++)
+			{
+				TransferDataArray[i] = TargetReflashDataArrray[TransferDataArrayIndex + i];
+			}
+			BlockSequenceCounter = 1;
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = BlockSequenceCounter;
+			for(i = 0; i < (TransferDataLen - 2); i++)
+			{
+				TpDataSend[i + 2] = TransferDataArray[i];
+			}
+			TransferDataArrayIndex = TransferDataArrayIndex + TransferDataAllowedLen - 2;
+
+			TpDataSendLen = TransferDataLen;
+			
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			cancelTimer(P2CANClientTimer);
+			
+			if(TransferDataArrayIndex >= TargetDataLength)
+			{
+				serviceStatus = SRVICE_FINISHED;
+			}
+			else if((TransferDataArrayIndex + TransferDataAllowedLen - 2) >= TargetDataLength)
+			{
+				TransferDataLen = TargetDataLength - TransferDataArrayIndex +2;
+				serviceStatus = SENDING_REQ;
+			}
+			else
+			{
+				TransferDataLen = TransferDataAllowedLen;
+				serviceStatus = SENDING_REQ;
+			}
+
+			write("TransferDataArrayIndex POS %d", TransferDataArrayIndex);
+			write("TargetDataLength POS %d", TargetDataLength);
+			
+			
+			for(i = 0; i < (TransferDataLen - 2); i++)
+			{
+				TransferDataArray[i] = TargetReflashDataArrray[TransferDataArrayIndex + i];
+			}
+			BlockSequenceCounter = BlockSequenceCounter + 1;
+
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}
+
+enum SERVICESTATUS RequestTransferExit_37(enum CRCTYPE CrcType)
+{
+	enum SERVICESTATUS ret_result;
+	enum SERVICESTATUS serviceStatus;
+	byte serviceID = 0x37;
+	
+	switch(serviceStatus)
+	{
+		case SRVICE_INIT:
+		{
+			serviceStatus = SENDING_REQ;
+			break;
+		}
+		case SENDING_REQ:
+		{
+			TpSendTriger = TRUE;
+			
+			TpDataSend[0] = serviceID;
+			TpDataSend[1] = CrcType;
+
+			TpDataSendLen = 1;
+
+			P2TimeoutFlag = FALSE;
+			TpSendRequestFinishedFlag = FALSE;
+			
+			serviceStatus = SENDING_FINISHED;
+			break;
+		}
+		case SENDING_FINISHED:
+		{
+			if(TRUE == TpSendRequestFinishedFlag)
+			{
+				serviceStatus = WATTTING_RESP;
+				setTimer(P2CANClientTimer, P2CAN_Client);
+			}
+			break;
+		}
+		case WATTTING_RESP:
+		{
+			if(TRUE == P2TimeoutFlag)
+			{
+				P2TimeoutFlag = FALSE;
+				serviceStatus = NO_RESP;
+			}
+			else if(TRUE == TpRequestResult)
+			{
+				TpRequestResult = FALSE;
+				
+				if(0x7F == TpDataReceived[0])
+				{
+					if(0x78 == TpDataReceived[2])
+					{
+						setTimer(P2CANClientTimer, P2CAN_ClientExtend);
+						serviceStatus = WATTTING_RESP;
+					}
+					else
+					{
+						serviceStatus = NEG_RESP;
+					}
+				}
+				else if(TpDataReceived[0] == serviceID + 0x40)
+				{
+					serviceStatus = POS_RESP;
+				}
+				else
+				{
+					serviceStatus = WATTTING_RESP;
+				}
+			}
+			else
+			{
+				/* Nothing */
+			}
+			break;
+		}
+		case POS_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NEG_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			break;
+		}
+		case NO_RESP:
+		{
+			serviceStatus = SRVICE_FINISHED;
+			
+			break;
+		}
+		case SRVICE_FINISHED:
+		{
+			serviceStatus = SRVICE_INIT;
+			cancelTimer(P2CANClientTimer);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+
+	ret_result = serviceStatus;
+	return(ret_result);
+}

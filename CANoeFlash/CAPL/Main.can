@@ -1,0 +1,172 @@
+/*@!Encoding:936*/
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   Main.can                              $                                    *
+*            $Revision: 1.4 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/03/12 13:12:02CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup Main                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  Main Main
+    \ingroup   Main(OS)
+    \brief   The Main functional module. <br>
+*/
+
+/**************************************************************************************************/
+includes
+{
+	#include "Main.cin"              /* Main model head */
+  #include "PanelControl.cin"      /* PanelControl model head */
+  #include "ReflashTask.cin"       /* ReflashTask model head */
+	#include "FlashDriverData.cin"   /* FlashDriverData model head */
+  #include "CrcCal.cin"            /* CrcCal model head */
+  #include "SecurityAccess.cin"    /* SecurityAccess model head */
+  #include "Transport.cin"         /* Transport model head */
+  #include "CanDriver.cin"         /* CanDriver model head */
+  #include "Dtc.cin"               /* DTC model head */
+  #include "TestTask.cin"          /* TestTask model head */
+  #include "UdsApplication.cin"    /* UdsApplication model head */
+}
+
+variables
+{
+  /* A: GEELY_FE_6 */
+  /* B: GAC A26 */
+  /* C: GAC A12 */
+  /* D: SAIC SK83 */
+  const char projectCfg = 'A'; /* C: GAC A12 */ 
+
+  struct LOCAL_TIME_TYPE
+  {
+    long Seconds; /* (0 - 60) */
+    long Minutes; /* (0 - 60) */
+    long Hours; /* (0 - 24) */
+    long DayofMonth; /* (1 - 31) */
+    long Month; /* (0 - 11) */
+    long Year;  /* (starting with 1900) */
+    long DayofWeek;  /* (0 - 7) */
+    long DayofYear;  /* (0 - 365) */
+    long Flag;  /* Flag for daylight saving time */
+  };
+  long LocalTime[9];
+  long LocalTime_DayofMonth; /* (1 - 31) */
+  long LocalTime_Month; /* (0 - 11) */
+  long LocalTime_Year; /* (starting with 1900) */
+}
+
+on start
+{
+  setTimer(MianTimer, 1);
+  setTimer(TesterPresent, 1);
+  VersionOutput();
+  /* Initialization Function */
+  DTC_Display_Init_Task();
+  Get_Local_Time_Init_Task();
+}
+
+/**************************************************************************************************/
+/**
+    \brief   Main task
+             Simple operation system
+    \period  1ms
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+on timer MianTimer
+{
+	/* Application task */
+  Security_Cal_Task();
+
+  if('A' == projectCfg)
+  {
+    GEELY_FE_6_Reflash_Task();
+  }
+  else if('B' == projectCfg)
+  {
+    GAC_A26_Reflash_Task();
+  }
+  else if('C' == projectCfg)
+  {
+    GAC_A12_Reflash_Task();
+  }
+  else if('D' == projectCfg)
+  {
+    SAIC_SK83_Reflash_Task();
+  }
+
+  /* CAN related task */
+  Uds_App_Task();
+  Transport_Task();
+  Can_Send_Task();
+  DTC_Display_Task();
+  //Test_Task();
+  //Test_Task_1();
+  
+  RealTimer = RealTimer + 1;
+  
+  setTimer(MianTimer, 1);
+}
+
+void Get_Local_Time_Init_Task(void)
+{
+  getLocalTime(LocalTime);
+  
+  LocalTime_DayofMonth = LocalTime[3];
+  LocalTime_Month = LocalTime[4] + 1;
+  LocalTime_Year = LocalTime[5] + 1900;
+
+  /*
+  write("LocalTime_Year %d", LocalTime_Year);
+  write("LocalTime_Month %d", LocalTime_Month);
+  write("LocalTime_DayofMonth %d", LocalTime_DayofMonth);
+
+  write("LocalTime_YearHigh_byte %x", LocalTime_YearHigh_byte);
+  write("LocalTime_YearLow_byte %x", LocalTime_YearLow_byte);
+  write("LocalTime_Month_byte %x", LocalTime_Month_byte);
+  write("LocalTime_Day_byte %x", LocalTime_Day_byte);
+  */
+  
+  /*
+  write(" Get_Local_Time_Init_Task");
+  write(" Seconds  %d",LocalTime[0]);
+  write(" Minutes  %d",LocalTime[1]);
+  write(" Hours  %d",LocalTime[2]);
+  write(" Day of month  %d",LocalTime[3]);
+  write(" Month  %d",LocalTime[4]);
+  write(" Year  %d",LocalTime[5]);
+  write(" Day of week  %d",LocalTime[6]);
+  write(" Day of Year  %d",LocalTime[7]);
+  write(" Flag for daylight saving time  %d",LocalTime[8]);
+  */
+  
+}
+
+void VersionOutput(void)
+{
+	putValueToControl("Main_Panel","VersionDisplayControl", "**Reflash-0.01******************\n");
+	putValueToControl("Main_Panel","VersionDisplayControl", "Author:Yueting.Ben\n");
+	putValueToControl("Main_Panel","VersionDisplayControl", "Description:Initial version\n\n");
+	
+}
+
+

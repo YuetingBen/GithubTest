@@ -1,0 +1,475 @@
+/*@!Encoding:936*/
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   CanDriver.cin                              $                                    *
+*            $Revision: 1.3 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/02/12 11:37:43CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup CanDriver                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  CanDriver CanDriver
+    \ingroup   DriverCAN
+    \brief   The CanDriver functional module. <br>
+*/
+
+/**************************************************************************************************/
+variables
+{
+  /* Geely FE-6 */
+  message 0x7D1 PhyRequestID = {dlc = 8};
+  message 0x7D9 ResponseID = {dlc = 8};
+
+  /* GAC A26 */
+   /*
+  message 0x747 PhyRequestID = {dlc = 8}; 
+  message 0x7C7 ResponseID = {dlc = 8};
+  */
+  /* SAIC SK83 */
+  /*
+  message 0x70A PhyRequestID = {dlc = 8}; 
+  message 0x78A ResponseID = {dlc = 8};
+  */
+  message 0x7DF FunRequestID = {dlc = 8};
+  
+  byte DataSendBuffer[8];
+  byte DataReceivedBuffer[8];
+
+  /* CAN Send Task */
+  enum TRUE_FALSE MessageSendTriger;
+  enum TRUE_FALSE MessageReceivedFlag;
+}
+
+
+/**************************************************************************************************/
+/**
+    \brief   Receive CAN diagnostic message
+             CAN message ID should be modify manually for different prodect
+             MessageDisplayControl: When in reflash task, the DisplayControl will not display message to prevent 
+             the computer is laggy;
+             Note: putValueToControl("Main_Panel","xxx_DisplayControl", "xxx_message"): It is display "xxx_message"
+             in "xxx_DisplayControl" of "Main_Panel";
+
+             void ltoa(long val, char s[], long base):The number val is converted to a string s,In this case, base indicates a number base 
+             between 2 and 36. s must be large enough to accept the converted;
+             char toUpper(char c): Transforms a character or string to upper case. Only characters a-z and A-Z are supported;
+             
+    \period  Event
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+/* SAIC SK83  */
+/* on message 0x78A */
+/* GAC A26 */
+/* on message 0x7C7 */
+/* GEELY FE6 */
+on message 0x7D9
+{
+	char id[8];
+	char realTimer[8];
+	char s0[3];
+	char s1[3];
+	char s2[3];
+	char s3[3];
+	char s4[3];
+	char s5[3];
+	char s6[3];
+	char s7[3];
+	
+	enum IFENABLED messageDisappear;
+	messageDisappear = DISABLED;
+
+	/* Set the MessageReceivedFlag to inform transport layer receive messgae */
+  MessageReceivedFlag = TRUE;
+  
+  /* Get the received data */
+  DataReceivedBuffer[0] = this.byte(0);
+  DataReceivedBuffer[1] = this.byte(1);
+  DataReceivedBuffer[2] = this.byte(2);
+  DataReceivedBuffer[3] = this.byte(3);
+  DataReceivedBuffer[4] = this.byte(4);
+  DataReceivedBuffer[5] = this.byte(5);
+  DataReceivedBuffer[6] = this.byte(6);
+  DataReceivedBuffer[7] = this.byte(7);
+
+	if(ENABLED == TesterPresent_3E_Disappear)
+	{
+		if((0x02 == DataReceivedBuffer[0]) && (0x3E == DataReceivedBuffer[1]))
+		{
+			messageDisappear = ENABLED;
+		}
+	}
+	if((ENABLED == ReflashTaskEnable) || (ENABLED == TestTaskEnable))
+	{
+		messageDisappear = ENABLED;
+	}
+  
+	if(DISABLED == messageDisappear)
+  {
+  	/* Display the timmer, fill '0' to make each number to length 8, for beauty layout */
+	  ltoa(RealTimer, realTimer, 10);
+		if(0 == realTimer[0])
+	  {
+	    /* The real timmer length is 0, shall fill 8 * '0' */
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "00000000");
+	  }
+	  else if(0 == realTimer[1])
+	  {
+	    /* The real timmer length is 1, shall fill 7 * '0' */
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "0000000");
+	  }
+	  else if(0 == realTimer[2])
+	  {
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "000000");
+	  }
+	  else if(0 == realTimer[3])
+	  {
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "00000");
+	  }
+	  else if(0 == realTimer[4])
+	  {
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "0000");
+	  }
+	  else if(0 == realTimer[5])
+	  {
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "000");
+	  }
+	  else if(0 == realTimer[6])
+	  {
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "00");
+	  }
+	  else if(0 == realTimer[7])
+	  {
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  else
+	  {
+	  	putValueToControl("Main_Panel","MessageDisplayControl", "");
+	  }	  
+	  putValueToControl("Main_Panel","MessageDisplayControl", realTimer);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+
+	  ltoa(this.id, id, 16);
+		putValueToControl("Main_Panel","MessageDisplayControl", id);
+		putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  ltoa(DataReceivedBuffer[0], s0, 16);
+	  ltoa(DataReceivedBuffer[1], s1, 16);
+	  ltoa(DataReceivedBuffer[2], s2, 16);
+	  ltoa(DataReceivedBuffer[3], s3, 16);
+	  ltoa(DataReceivedBuffer[4], s4, 16);
+	  ltoa(DataReceivedBuffer[5], s5, 16);
+	  ltoa(DataReceivedBuffer[6], s6, 16);
+	  ltoa(DataReceivedBuffer[7], s7, 16);
+	  
+	  toUpper(s0, s0, elcount(s0));
+	  toUpper(s1, s1, elcount(s1));
+	  toUpper(s2, s2, elcount(s2));
+	  toUpper(s3, s3, elcount(s3));
+	  toUpper(s4, s4, elcount(s4));
+	  toUpper(s5, s5, elcount(s5));
+	  toUpper(s6, s6, elcount(s6));
+	  toUpper(s7, s7, elcount(s7));
+	  
+	  putValueToControl("Main_Panel","MessageDisplayControl", "Rx ");
+
+	  /* Display the message data, fill '0' to make each number to length 2, for beauty layout */
+	  if(DataReceivedBuffer[0] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s0);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  if(DataReceivedBuffer[1] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s1);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  if(DataReceivedBuffer[2] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s2);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  if(DataReceivedBuffer[3] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s3);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  if(DataReceivedBuffer[4] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s4);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  if(DataReceivedBuffer[5] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s5);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  if(DataReceivedBuffer[6] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s6);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	  
+	  if(DataReceivedBuffer[7] <= 0x0F)
+	  {
+	  putValueToControl("Main_Panel","MessageDisplayControl", "0");
+	  }
+	  putValueToControl("Main_Panel","MessageDisplayControl", s7);
+	  putValueToControl("Main_Panel","MessageDisplayControl", " \n");
+	}
+}
+
+
+/**************************************************************************************************/
+/**
+    \brief   Can_Send_Task
+             MessageDisplayControl: When in reflash task, the DisplayControl will not display message to prevent 
+             the computer is laggy;
+             Note: putValueToControl("Main_Panel","xxx_DisplayControl", "xxx_message"): It is display "xxx_message"
+             in "xxx_DisplayControl" of "Main_Panel";
+
+             void ltoa(long val, char s[], long base):The number val is converted to a string s,In this case, base indicates a number base 
+             between 2 and 36. s must be large enough to accept the converted;
+             char toUpper(char c): Transforms a character or string to upper case. Only characters a-z and A-Z are supported;
+
+    \period  1ms
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void Can_Send_Task()
+{
+	char id[8];
+	char realTimer[8];
+	char s0[3];
+	char s1[3];
+	char s2[3];
+	char s3[3];
+	char s4[3];
+	char s5[3];
+	char s6[3];
+	char s7[3];
+
+	enum IFENABLED messageDisappear;
+	
+	messageDisappear = DISABLED;
+
+	/* When reflash working or 3E service set with disappear, the message shall not display at MessageDisplayControl */
+	if(ENABLED == TesterPresent_3E_Disappear)
+	{
+		if((0x02 == DataSendBuffer[0]) && (0x3E == DataSendBuffer[1]))
+		{
+			messageDisappear = ENABLED;
+		}
+	}
+	if((ENABLED == ReflashTaskEnable) || (ENABLED == TestTaskEnable))
+	{
+		messageDisappear = ENABLED;
+	}
+	
+  if(TRUE == MessageSendTriger)
+  {
+    MessageSendTriger = FALSE;
+    
+    ltoa(RealTimer, realTimer, 10);
+
+    /* Message disappear */
+    if(DISABLED == messageDisappear)
+	  {
+	    /* Display the timmer, fill '0' to make each number to length 8, for beauty layout */
+			if(0 == realTimer[0])
+		  {
+		  	/* The real timmer length is 0, shall fill 8 * '0' */
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "00000000");
+		  }
+		  else if(0 == realTimer[1])
+		  {
+		  	/* The real timmer length is 1, shall fill 7 * '0' */
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0000000");
+		  }
+		  else if(0 == realTimer[2])
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "000000");
+		  }
+		  else if(0 == realTimer[3])
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "00000");
+		  }
+		  else if(0 == realTimer[4])
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0000");
+		  }
+		  else if(0 == realTimer[5])
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "000");
+		  }
+		  else if(0 == realTimer[6])
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "00");
+		  }
+		  else if(0 == realTimer[7])
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  else
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "");
+		  }	  
+		  putValueToControl("Main_Panel","MessageDisplayControl", realTimer);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+		}
+
+    /* Switch the addressing type: Functional Addressed or Physical Addressed */
+    if(FUN_ADDRESSED == AddressedType)
+    {
+	    FunRequestID.byte(0) = DataSendBuffer[0];
+	    FunRequestID.byte(1) = DataSendBuffer[1];
+	    FunRequestID.byte(2) = DataSendBuffer[2];
+	    FunRequestID.byte(3) = DataSendBuffer[3];
+	    FunRequestID.byte(4) = DataSendBuffer[4];
+	    FunRequestID.byte(5) = DataSendBuffer[5];
+	    FunRequestID.byte(6) = DataSendBuffer[6];
+	    FunRequestID.byte(7) = DataSendBuffer[7];
+	    if(DISABLED == messageDisappear)
+	    {
+		    ltoa(FunRequestID.id, id, 16);
+		    putValueToControl("Main_Panel","MessageDisplayControl", id);
+		    putValueToControl("Main_Panel","MessageDisplayControl", " ");
+	    }
+	    output(FunRequestID);
+    }
+    else
+    {
+	    PhyRequestID.byte(0) = DataSendBuffer[0];
+	    PhyRequestID.byte(1) = DataSendBuffer[1];
+	    PhyRequestID.byte(2) = DataSendBuffer[2];
+	    PhyRequestID.byte(3) = DataSendBuffer[3];
+	    PhyRequestID.byte(4) = DataSendBuffer[4];
+	    PhyRequestID.byte(5) = DataSendBuffer[5];
+	    PhyRequestID.byte(6) = DataSendBuffer[6];
+	    PhyRequestID.byte(7) = DataSendBuffer[7];
+      if(DISABLED == messageDisappear)
+	    {
+		    ltoa(PhyRequestID.id, id, 16);
+		    putValueToControl("Main_Panel","MessageDisplayControl", id);
+		    putValueToControl("Main_Panel","MessageDisplayControl", " ");
+		  }
+
+	    output(PhyRequestID);
+	  }
+	  /* Message not disappear */
+	  if(DISABLED == messageDisappear)
+		{
+		  /* Transform the number type to string type */
+			ltoa(DataSendBuffer[0], s0, 16);
+			ltoa(DataSendBuffer[1], s1, 16);
+			ltoa(DataSendBuffer[2], s2, 16);
+			ltoa(DataSendBuffer[3], s3, 16);
+			ltoa(DataSendBuffer[4], s4, 16);
+			ltoa(DataSendBuffer[5], s5, 16);
+			ltoa(DataSendBuffer[6], s6, 16);
+			ltoa(DataSendBuffer[7], s7, 16);
+
+      /* Transform the lower case to upper case */
+			toUpper(s0, s0, elcount(s0));
+			toUpper(s1, s1, elcount(s1));
+			toUpper(s2, s2, elcount(s2));
+			toUpper(s3, s3, elcount(s3));
+			toUpper(s4, s4, elcount(s4));
+			toUpper(s5, s5, elcount(s5));
+			toUpper(s6, s6, elcount(s6));
+			toUpper(s7, s7, elcount(s7));
+			
+			putValueToControl("Main_Panel","MessageDisplayControl", "Tx ");
+			
+			/* Display the message data, fill '0' to make each number to length 2, for beauty layout */
+			if(DataSendBuffer[0] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s0);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+		  
+		  if(DataSendBuffer[1] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s1);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+
+		  if(DataSendBuffer[2] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s2);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+
+		  if(DataSendBuffer[3] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s3);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+
+		  if(DataSendBuffer[4] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s4);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+
+		  if(DataSendBuffer[5] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s5);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+
+		  if(DataSendBuffer[6] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s6);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " ");
+
+		  if(DataSendBuffer[7] <= 0x0F)
+		  {
+		  	putValueToControl("Main_Panel","MessageDisplayControl", "0");
+		  }
+		  putValueToControl("Main_Panel","MessageDisplayControl", s7);
+		  putValueToControl("Main_Panel","MessageDisplayControl", " \n");
+		}
+  }
+}
+

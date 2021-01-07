@@ -1,0 +1,763 @@
+/*@!Encoding:936*/
+/*M+NMMMNdyso+////++oyhmNMMMMMMMMMMMMMMMNmhso++////+oshmNMMMMMMMMMMMMMMMNmhyo++////+osydNNNNMNNNM*/
+/*M+NMMd///+osyyyyss+///+smNMMMMMMMMMNds+///osyyyyyso////sdNMMMMMMMMMNmy+///+osyyyyso+///ohNNNNNM*/
+/*M+NNMdohmNNMNNNNNNNNdy+//odNMMMMNNh+//+ymNNNNNNNNNNNmy+//+hNNNNNNNdo//+sdNNNNNNNNNNNmho//+yNNNM*/
+/*M+NNNNNNNmhysooosydNNNNh+//yNNNNms//+dNNNNdysooosydNNNNdo//omNNNNy//+hNNNNdysooooyhmNNNms//+dNM*/
+/*M+NNNNNdo//////////+ymNNmo//smmdo//sNNNms///////////sdmmdo//+dmms//omNNNy+//////////odmmms//+dM*/
+/*M+mNNNy//////////////+mNNm+///////oNNNd+//////////////////////////+mNNm+/////////////////////oM*/
+/*M+mNNd////////////////sNNNmdddhhhhmNNm+////////////////hhhhhhhhhhhdNNNmhhhhhhhhhhhhhhhhhhhh///M*/
+/*M+mNNd////////////////oNNNNNNNNNNNNNNm+////////////////dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNm+//M*/
+/*M/hNNmo///////////////hNNNs///////yNNNy///////////////////////////////////////////////omNNh//+M*/
+/*M/+dNNms////////////+hNNNy//+sss///hNNmy/////////////ssss+///sss+///ssss+////////////smNNd+//yM*/
+/*M//+hmNNmyo+/////+shmNNms//+dNNNh+//ymNNmho+/////+ohmNNmy///hNNNd+//odNNmhs+//////oymNNmh+//ymM*/
+/*Mh+//+ymNNNmmmdmmNNNmds///smNNNNNdo//+ydmNNNmmdmmmNNmdy+//odNNNNNms///sdmNNNmmdmmmNNNmy+//+hmNM*/
+/*Mmmho///+syhdddddhyo+///sdmNNNNNNNmho///+syhdddddhys+///ohmNNNNNNNNds+//+oyhdddddhys+///ohmNNNM*/
+/*Mmmmmdyo+///////////oshmmmNmmmmmmNNmmmhs+///////////+shmmNNNNNNNNNNNNmhso///////////+oydmNNmmmM*/
+/*MmmmmmmmmmdhyyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyhddmmmmmmmmmmmmmmmmmmmmmmmddhyyyyhdmmmmmmmmmmmM*/
+/*MMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNMMMMMMMMMMMMM
+*            $Workfile::   TestTask.cin                              $                                    *
+*            $Revision: 1.1 $                                    *
+*         from $Author: Yueting Ben (BenY) $                                    *
+*  Last check in $Date: 2019/02/12 13:12:38CST $                                    *
+*        Last $Modtime::   Jul 22 2015 10:34:50               $                                    *
+****************************************************************************************************
+*  Responsible for this file:    Yueting.Ben                                                           *
+*  Backup for this file:         Yueting.Ben                                                            *
+***************************************************************************************************/
+/** \file
+    \ingroup ReflashTask                                                                                  */
+/**************************************************************************************************/
+/** \defgroup  TestTask TestTask
+    \ingroup   Application
+    \brief   The TestTask functional module. <br>
+*/
+
+/**************************************************************************************************/
+
+variables
+{
+  enum TEST_STATUS
+  {
+    TEST_INITIAL_STEP = 0,
+    TEST_STEP_1,
+    TEST_STEP_2,
+    TEST_STEP_3,
+    TEST_STEP_4,
+    TEST_STEP_5,
+    TEST_STEP_6,
+    TEST_STEP_7,
+    TEST_STEP_8,
+    TEST_STEP_9,
+    TEST_STEP_10,
+    TEST_STEP_11,
+    TEST_STEP_12,
+    TEST_STEP_13,
+    TEST_STEP_14,
+    TEST_STEP_15,
+    TEST_STEP_16,
+    TEST_STEP_17,
+    TEST_STEP_18,
+    TEST_STEP_19,
+    TEST_STEP_20,
+    TEST_STEP_21,
+    TEST_STEP_22,
+    TEST_STEP_23,
+    TEST_STEP_24,
+    TEST_STEP_25,
+    TEST_STEP_26,
+    TEST_STEP_27,
+    TEST_STEP_28,
+    TEST_STEP_29,
+    TEST_STEP_30,
+    TEST_STEP_31,
+    TEST_STEP_WAITTING
+  };
+  
+	enum TRUE_FALSE TestTaskEnable = FALSE;
+  enum TEST_STATUS TestStatus = TEST_INITIAL_STEP;
+  enum TRUE_FALSE TestWaittingFlag = FALSE;
+  dword TestWaittingTimeNum = 0;
+
+  /* Power control */
+  char text_remoteCtrl[20] = ":SYSTem:REMote\n";
+  char text_localCtrl[20] = "SYSTem:LOCal\n";
+  char text_remote[20] = "SYSTem:RWLock\n";
+  char text_outputOn[20] = ":OUTPut:STATe 1\n";
+  char text_outputOff[20] = ":OUTPut:STATe 0\n";
+  char text_displayOffOff[20] = ":DISPlay: 0\n";
+  
+  char text_getError[20] = ":SYST:ERR?\n";
+  char text_setVoltage13[50] = ":SOURce:VOLTage:LEVel:IMMediate:AMPLitude 13\n";
+  char text_setCurrent[50] = ":SOURce:CURRent:LEVel:IMMediate:AMPLitude 10\n";
+  
+  byte buffer[50];
+  byte i;
+  byte length;
+  byte portNum = 10;
+  
+}
+
+/**************************************************************************************************/
+/**
+    \brief   void Test_Task()
+             Do the step sequently . <br> 
+             
+    \author  Yueting.Ben
+*/
+/**************************************************************************************************/
+void Test_Task()
+{
+  byte vinValue = 0x20;
+  byte eskValue = 0x10;
+  dword cycleNum = 0;
+  
+  switch (TestStatus)
+  {
+    case TEST_INITIAL_STEP:
+    {
+      if(TRUE == TestTaskEnable)
+      {
+        TestStatus = TEST_STEP_1;
+        SendNextStepEnable = TRUE;
+        write("TestStatus = TEST_STEP_1;");
+
+        if (1 == RS232Open(portNum))
+        {
+          write("It works with port 1.");
+        }
+        
+        if( 0!= RS232Configure(portNum,9600,8,2,0))
+        {
+          write("Set typical default at port 1.");
+        }
+        
+        if( 0!=RS232SetHandshake(portNum,0,0,0,0,0))
+        {
+          write("No handshake at port 1.");
+        }
+        
+        length= strlen(text_setVoltage13);
+        for(i = 0; i < length; i++)
+        {
+          buffer[i]= text_setVoltage13[i];
+        }
+        if (1 == RS232Send(portNum, buffer, length))
+        {
+          write("Power Supply: Set voltage limitation OK ");
+        }
+
+      
+      }
+      break;
+    }
+    case TEST_STEP_1:
+    {
+      if(TRUE == TestTaskEnable)
+      {
+        TestStatus = TEST_STEP_2;
+        SendNextStepEnable = TRUE;
+    
+        length= strlen(text_setCurrent);
+        for(i = 0; i < length; i++)
+        {
+          buffer[i]= text_setCurrent[i];
+        }
+        if (1 == RS232Send(portNum, buffer, length))
+        {
+          write("Power Supply: Set current limitation OK ");
+        } 
+      }
+      break;
+    }
+    case TEST_STEP_2:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 1000;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_STEP_3;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+    case TEST_STEP_3:
+    {
+      if(TRUE == TestTaskEnable)
+      {
+        TestStatus = TEST_STEP_4;
+        SendNextStepEnable = TRUE;
+    
+        length= strlen(text_remoteCtrl);
+        for(i = 0; i < length; i++)
+        {
+          buffer[i]= text_remoteCtrl[i];
+        }
+        if (1 == RS232Send(portNum, buffer, length))
+        {
+          write("Power Supply: Set remote control OK ");
+        }
+      }
+      break;
+    }
+    case TEST_STEP_4:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 1000;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_STEP_5;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+    case TEST_STEP_5:
+    {
+      if(TRUE == TestTaskEnable)
+      {
+        TestStatus = TEST_STEP_6;
+        SendNextStepEnable = TRUE;
+    
+        length= strlen(text_setVoltage13);
+        for(i = 0; i < length; i++)
+        {
+          buffer[i]= text_setVoltage13[i];
+        }
+        if (1 == RS232Send(portNum, buffer, length))
+        {
+          write("Power Supply: Set remote control OK ");
+        }
+      }
+      break;
+    }
+    case TEST_STEP_6:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 100;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_STEP_7;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+    case TEST_STEP_7:
+    {
+      TestStatus = TEST_STEP_8;
+      SendNextStepEnable = TRUE;
+  
+      powerSupply_control(1);
+
+      break;
+    }
+
+    case TEST_STEP_8:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 2000;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_STEP_9;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+    
+    case TEST_STEP_9: 
+    {
+	    if(TRUE == SendNextStepEnable) 
+    	{
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		TestStatus = TEST_STEP_10;
+    	}
+      break;
+    }
+    
+    case TEST_STEP_10: 
+    {
+    	
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		write("REFLASH_SECURITY_SEED_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = SUPPLIER_SECURITY;
+    		
+				SecurityAccess_27_Seed_Triger = TRUE;				
+    		
+    		TestStatus = TEST_STEP_11;
+    	}
+      break;
+    }
+    
+    case TEST_STEP_11: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		write("REFLASH_SECURITY_KEY_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = SUPPLIER_SECURITY;
+				
+				SecurityAccess_27_Key_Triger = TRUE;				
+    		
+    		TestStatus = TEST_STEP_12;
+    	}
+      break;
+    }
+
+		case TEST_STEP_12: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xFE;
+				PidDataArray[1] = 0x00;
+				
+				PidDataArray[2] = 0x01;
+				
+				PidDataLen = 2 + 1;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		TestStatus = TEST_STEP_13;
+    	}
+      break;
+    }
+    
+		case TEST_STEP_13: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		SendNextStepEnable = FALSE;
+
+    		if(0x60 <= vinValue )
+    		{
+    		  vinValue = 0x20;
+    		}
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x90;
+				
+				PidDataArray[2] = vinValue;
+				PidDataArray[3] = 0x20;
+				PidDataArray[4] = 0x20;
+				PidDataArray[5] = 0x20;
+				PidDataArray[6] = 0x20;
+				PidDataArray[7] = 0x20;
+				PidDataArray[8] = 0x20;
+				PidDataArray[9] = 0x20;
+				PidDataArray[10] = 0x20;
+				PidDataArray[11] = 0x20;
+				PidDataArray[12] = 0x20;
+				PidDataArray[13] = 0x20;
+				PidDataArray[14] = 0x20;
+				PidDataArray[15] = 0x20;
+				PidDataArray[16] = 0x20;
+				PidDataArray[17] = 0x20;
+				PidDataArray[18] = 0x20;
+				
+				PidDataLen = 2 + 17;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		TestStatus = TEST_STEP_14;
+    	}
+      break;
+    }
+
+		case TEST_STEP_14: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == WriteDataByIdentifier_2E_Triger))
+    	{
+    		SendNextStepEnable = FALSE;
+
+    		if(0xF0 <= eskValue )
+    		{
+    		  eskValue = 0x10;
+    		}
+
+				PidDataArray[0] = 0x71;
+				PidDataArray[1] = 0x30;
+				
+				PidDataArray[2] = eskValue;
+				PidDataArray[3] = 0x20;
+				PidDataArray[4] = 0x20;
+				PidDataArray[5] = 0x20;
+				PidDataArray[6] = 0x20;
+				PidDataArray[7] = 0x20;
+				PidDataArray[8] = 0x20;
+				PidDataArray[9] = 0x20;
+				PidDataArray[10] = 0x20;
+				PidDataArray[11] = 0x20;
+				PidDataArray[12] = 0x20;
+				PidDataArray[13] = 0x20;
+				PidDataArray[14] = 0x20;
+				PidDataArray[15] = 0x20;
+				PidDataArray[16] = 0x20;
+				PidDataArray[17] = 0x20;
+				
+				PidDataLen = 2 + 16;
+
+				WriteDataByIdentifier_2E_Triger = TRUE;
+    		
+    		TestStatus = TEST_STEP_15;
+    	}
+      break;
+    }
+    
+    case TEST_STEP_15:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 1000;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_STEP_16;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+
+    case TEST_STEP_16:
+    {
+      TestStatus = TEST_STEP_17;
+      SendNextStepEnable = TRUE;
+      
+      powerSupply_control(2);
+      
+      break;
+    }
+    case TEST_STEP_17:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 3000;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_STEP_18;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+    
+    case TEST_STEP_18:
+    {
+      TestStatus = TEST_STEP_19;
+      SendNextStepEnable = TRUE;
+      
+      powerSupply_control(1);
+      
+      break;
+    }
+    
+    case TEST_STEP_19:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 2000;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_STEP_20;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+    
+    case TEST_STEP_20: 
+    {
+	    if(TRUE == SendNextStepEnable) 
+    	{
+    		write("TO_EXTEND_MODE_STEP");
+    		SendNextStepEnable = FALSE;
+
+				DiagnosticSessionControl_10_Triger = TRUE;
+				SessionControl_Value = EXTENDED_SESSION;
+    		
+    		TestStatus = TEST_STEP_21;
+    	}
+      break;
+    }
+    
+    case TEST_STEP_21: 
+    {
+    	
+    	if((TRUE == SendNextStepEnable) && (FALSE == DiagnosticSessionControl_10_Triger))
+    	{
+    		write("REFLASH_SECURITY_SEED_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = SUPPLIER_SECURITY;
+    		
+				SecurityAccess_27_Seed_Triger = TRUE;				
+    		
+    		TestStatus = TEST_STEP_22;
+    	}
+      break;
+    }
+    
+    case TEST_STEP_22: 
+    {
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Seed_Triger))
+    	{
+    		write("REFLASH_SECURITY_KEY_STEP");
+    		SendNextStepEnable = FALSE;
+    		Security_Value = SUPPLIER_SECURITY;
+				
+				SecurityAccess_27_Key_Triger = TRUE;				
+    		
+    		TestStatus = TEST_STEP_23;
+    	}
+      break;
+    }
+
+		case TEST_STEP_23: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == SecurityAccess_27_Key_Triger))
+    	{
+    		write("READ_VERSIONNUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0xF1;
+				PidDataArray[1] = 0x90;
+				PidDataLen = 2;
+
+				ReadDataByIdentifier_22_Triger = TRUE;
+    		
+    		TestStatus = TEST_STEP_24;
+    	}
+      break;
+    }
+
+ 		case TEST_STEP_24: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == ReadDataByIdentifier_22_Triger))
+    	{
+        if(vinValue == TpDataReceived[3])
+        {
+    		  TestStatus = TEST_STEP_25;
+    		  write("*************VIN Written Successfully*************");
+    		  vinValue = vinValue + 1;
+    		}
+    		else
+    		{
+    		  TestStatus = TEST_STEP_28;
+    		}
+    	}
+    }
+		case TEST_STEP_25: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == ReadDataByIdentifier_22_Triger))
+    	{
+    		write("READ_VERSIONNUM_STEP");
+    		SendNextStepEnable = FALSE;
+
+				PidDataArray[0] = 0x71;
+				PidDataArray[1] = 0x30;
+				PidDataLen = 2;
+
+				ReadDataByIdentifier_22_Triger = TRUE;
+    		
+    		TestStatus = TEST_STEP_26;
+    	}
+      break;
+    }
+
+ 		case TEST_STEP_26: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == ReadDataByIdentifier_22_Triger))
+    	{
+        if(eskValue == TpDataReceived[3])
+        {
+    		  TestStatus = TEST_STEP_27;
+    		  write("*************ESK Written Successfully*************");
+    		  eskValue = eskValue + 1;
+    		}
+    		else
+    		{
+    		  TestStatus = TEST_STEP_28;
+    		}
+    	}
+      break;
+    }
+    case TEST_STEP_27:
+    {
+      TestStatus = TEST_STEP_8;
+      SendNextStepEnable = TRUE;
+      
+      write("*Test OK: * %d", cycleNum);
+      cycleNum = cycleNum + 1;
+      
+      break;
+    }
+    case TEST_STEP_28:
+    {
+      TestStatus = TEST_STEP_29;
+      write("!!!!ERRROR!!!!ERRROR!!!!ERRROR!!!!ERRROR!!!!ERRROR!!!!ERRROR!!!!ERRROR  %d", cycleNum);
+      break;
+    }
+  }
+}
+
+void Test_Task_1()
+{	
+  switch (TestStatus)
+  {
+    case TEST_INITIAL_STEP:
+    {
+      if(TRUE == TestTaskEnable)
+      {
+        TestStatus = TEST_STEP_1;
+        SendNextStepEnable = TRUE;
+        write("TestStatus = TEST_STEP_1;");
+      }
+      break;
+    }
+		case TEST_STEP_1: 
+    {	
+    	if((TRUE == SendNextStepEnable) && (FALSE == ECUReset_11_Triger))
+    	{
+    		SendNextStepEnable = FALSE;
+
+				Reset_Value = HARDR_ESTE;
+
+				ECUReset_11_Triger = TRUE;
+    		
+    		TestStatus = TEST_STEP_2;
+    	}
+      break;
+    }
+    case TEST_STEP_2:
+    {
+      if(FALSE == TestWaittingFlag)
+      {
+        TestWaittingFlag = TRUE;
+        TestWaittingTimeNum = 2000;
+      }
+      else
+      {
+        if(1 >= TestWaittingTimeNum)
+        {
+          TestStatus = TEST_INITIAL_STEP;
+          TestWaittingFlag = FALSE;
+        }
+        else
+        {
+          TestWaittingTimeNum--;
+        }
+        
+      }
+      break;
+    }
+  }
+}
+
+
+void powerSupply_control(byte control)
+{
+  if(1 == control)
+  {
+    length= strlen(text_outputOn);
+    for(i = 0; i < length; i++)
+    {
+      buffer[i]= text_outputOn[i];
+    }
+    if (1 == RS232Send(portNum, buffer, length))
+    {
+      write("Power Supply: Power On ");
+    }
+  }
+  else if(2 == control)
+  {
+    length= strlen(text_outputOff);
+    for(i = 0; i < length; i++)
+    {
+      buffer[i]= text_outputOff[i];
+    }
+    if (1 == RS232Send(portNum, buffer, length))
+    {
+      write("Power Supply: Power Off ");
+    }
+  }
+  else
+  {
+    ;
+  } 
+}
+

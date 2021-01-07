@@ -1,0 +1,221 @@
+/* -----------------------------------------------------------------------------
+  Filename:    IBDU.can
+  
+  Description: Brief: Brief_Replace
+               Generation date: GenerationDate_Replace
+
+ ----------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+  C O P Y R I G H T
+ -------------------------------------------------------------------------------
+  Copyright (c) 2019 by Yueting Ben. All rights reserved.
+ -------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------- */
+ variables
+{
+  message iBDU_ESCLAuth_Code iBDU_ESCLAuth_Code_Frame;
+  message iBDU_KeyReminder iBDU_KeyReminder_Frame;
+  message iBDU_281h iBDU_281h_Frame;
+  message iBDU_375h iBDU_375h_Frame;
+  message iBDU_348h iBDU_348h_Frame;
+  message IBDU_404h IBDU_404h_Frame;
+  msTimer iBDU_ESCLAuth_Code_Timer;
+  msTimer iBDU_KeyReminder_Timer;
+  msTimer iBDU_281h_Timer;
+  msTimer iBDU_375h_Timer;
+  msTimer iBDU_348h_Timer;
+  msTimer IBDU_404h_Timer;
+  byte iBDU_ESCLAuth_Code_EnableFlag;
+  byte iBDU_KeyReminder_EnableFlag;
+  byte iBDU_281h_EnableFlag;
+  byte iBDU_375h_EnableFlag;
+  byte iBDU_348h_EnableFlag;
+  byte IBDU_404h_EnableFlag;
+}
+on start
+{
+  setTimer(iBDU_ESCLAuth_Code_Timer, 0);
+  setTimer(iBDU_KeyReminder_Timer, 0);
+  setTimer(iBDU_281h_Timer, 0);
+  setTimer(iBDU_375h_Timer, 0);
+  setTimer(iBDU_348h_Timer, 0);
+  setTimer(IBDU_404h_Timer, 0);
+  iBDU_ESCLAuth_Code_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  iBDU_KeyReminder_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  iBDU_281h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  iBDU_375h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  iBDU_348h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  IBDU_404h_EnableFlag = @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+}
+on Timer iBDU_ESCLAuth_Code_Timer
+{
+  byte iBDU_ESCLAuth_Code_MegCounter;
+  byte iBDU_ESCLAuth_Code_CheckSum;
+  if(1 == iBDU_ESCLAuth_Code_EnableFlag)
+  {
+    output(iBDU_ESCLAuth_Code_Frame);
+  }
+  iBDU_ESCLAuth_Code_Frame.iBDU_ESCLAuth_Code = @sysvar::SIGNALINFO::iBDU_ESCLAuth_CodeValue;
+  setTimer(iBDU_ESCLAuth_Code_Timer, 0);
+}
+on Timer iBDU_KeyReminder_Timer
+{
+  byte iBDU_KeyReminder_MegCounter;
+  byte iBDU_KeyReminder_CheckSum;
+  if(1 == iBDU_KeyReminder_EnableFlag)
+  {
+    output(iBDU_KeyReminder_Frame);
+  }
+  iBDU_KeyReminder_Frame.iBDU_Auth_ESCL_Req = @sysvar::SIGNALINFO::iBDU_Auth_ESCL_ReqValue;
+  setTimer(iBDU_KeyReminder_Timer, 0);
+}
+on Timer iBDU_281h_Timer
+{
+  byte iBDU_281h_MegCounter;
+  byte iBDU_281h_CheckSum;
+  if(1 == iBDU_281h_EnableFlag)
+  {
+    output(iBDU_281h_Frame);
+  }
+  iBDU_281h_Frame.SystemPowerModeValidity = @sysvar::SIGNALINFO::SystemPowerModeValidityValue;
+  iBDU_281h_Frame.SystemPowerMode = @sysvar::SIGNALINFO::SystemPowerModeValue;
+  iBDU_281h_Frame.iBDUMessageCounter = @sysvar::SIGNALINFO::iBDUMessageCounterValue;
+  iBDU_281h_Frame.iBDUCheckSum = @sysvar::SIGNALINFO::iBDUCheckSumValue;
+  setTimer(iBDU_281h_Timer, 20);
+}
+on Timer iBDU_375h_Timer
+{
+  byte iBDU_375h_MegCounter;
+  byte iBDU_375h_CheckSum;
+  if(1 == iBDU_375h_EnableFlag)
+  {
+    output(iBDU_375h_Frame);
+  }
+  iBDU_375h_Frame.DoorAjarDriverStatus = @sysvar::SIGNALINFO::DoorAjarDriverStatusValue;
+  setTimer(iBDU_375h_Timer, 200);
+}
+on Timer iBDU_348h_Timer
+{
+  byte iBDU_348h_MegCounter;
+  byte iBDU_348h_CheckSum;
+  if(1 == iBDU_348h_EnableFlag)
+  {
+    output(iBDU_348h_Frame);
+  }
+  iBDU_348h_Frame.Ig1RelayFeedback = @sysvar::SIGNALINFO::Ig1RelayFeedbackValue;
+  iBDU_348h_Frame.AccRelayFeedback = @sysvar::SIGNALINFO::AccRelayFeedbackValue;
+  setTimer(iBDU_348h_Timer, 100);
+}
+on Timer IBDU_404h_Timer
+{
+  byte IBDU_404h_MegCounter;
+  byte IBDU_404h_CheckSum;
+  if(1 == IBDU_404h_EnableFlag)
+  {
+    output(IBDU_404h_Frame);
+  }
+  IBDU_404h_Frame.iBDUSrcNodeID = @sysvar::SIGNALINFO::iBDUSrcNodeIDValue;
+  IBDU_404h_Frame.iBDURepMsgReq = @sysvar::SIGNALINFO::iBDURepMsgReqValue;
+  IBDU_404h_Frame.iBDUPNIBit = @sysvar::SIGNALINFO::iBDUPNIBitValue;
+  IBDU_404h_Frame.iBDUNMCoSlpBit = @sysvar::SIGNALINFO::iBDUNMCoSlpBitValue;
+  IBDU_404h_Frame.iBDUActWuBit = @sysvar::SIGNALINFO::iBDUActWuBitValue;
+  setTimer(IBDU_404h_Timer, 0);
+}
+on sysvar NODE::IBDUEnableAll_Msg
+{
+  if(1 == @sysvar::NODE::IBDUEnableAll_Msg)
+  {
+    @sysvar::NODE::IBDUEnableAll_Msg = 1;
+    @sysvar::NODE::IBDUDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable = 1;
+    iBDU_ESCLAuth_Code_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable = 1;
+    iBDU_KeyReminder_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable = 1;
+    iBDU_281h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable = 1;
+    iBDU_375h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable = 1;
+    iBDU_348h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable = 1;
+    IBDU_404h_EnableFlag = @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::IBDUEnableAll_Msg = 0;
+    @sysvar::NODE::IBDUDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable = 0;
+    iBDU_ESCLAuth_Code_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable = 0;
+    iBDU_KeyReminder_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable = 0;
+    iBDU_281h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable = 0;
+    iBDU_375h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable = 0;
+    iBDU_348h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable = 0;
+    IBDU_404h_EnableFlag = @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  }
+}
+on sysvar NODE::IBDUDisableAll_Msg
+{
+  if(1 == @sysvar::NODE::IBDUDisableAll_Msg)
+  {
+    @sysvar::NODE::IBDUEnableAll_Msg = 0;
+    @sysvar::NODE::IBDUDisableAll_Msg = 1;
+    @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable = 0;
+    iBDU_ESCLAuth_Code_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable = 0;
+    iBDU_KeyReminder_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable = 0;
+    iBDU_281h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable = 0;
+    iBDU_375h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable = 0;
+    iBDU_348h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable = 0;
+    IBDU_404h_EnableFlag = @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  }
+  else
+  {
+    @sysvar::NODE::IBDUEnableAll_Msg = 1;
+    @sysvar::NODE::IBDUDisableAll_Msg = 0;
+    @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable = 1;
+    iBDU_ESCLAuth_Code_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable = 1;
+    iBDU_KeyReminder_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable = 1;
+    iBDU_281h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable = 1;
+    iBDU_375h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable = 1;
+    iBDU_348h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+    @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable = 1;
+    IBDU_404h_EnableFlag = @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+  }
+}
+on sysvar MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable
+{
+  iBDU_ESCLAuth_Code_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_ESCLAuth_CodeMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iBDU_KeyReminderMessageEnable
+{
+  iBDU_KeyReminder_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_KeyReminderMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iBDU_281hMessageEnable
+{
+  iBDU_281h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_281hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iBDU_375hMessageEnable
+{
+  iBDU_375h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_375hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::iBDU_348hMessageEnable
+{
+  iBDU_348h_EnableFlag = @sysvar::MESSAGEFRAME::iBDU_348hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+}
+on sysvar MESSAGEFRAME::IBDU_404hMessageEnable
+{
+  IBDU_404h_EnableFlag = @sysvar::MESSAGEFRAME::IBDU_404hMessageEnable & @sysvar::NODE::IBDUEnableAll_Msg;
+}
